@@ -1,0 +1,200 @@
+{
+  "id": "puja_navratri_durga_puja",
+  "festivalId": "fest_navratri",
+  "name": { "en": "Navratri Durga Puja with Kalash Sthapana", "hi": "नवरात्रि दुर्गा पूजन व कलश स्थापना" },
+  "alternateNames": { "en": ["Durga Puja", "Ghatasthapana", "Kalash Sthapana", "Navratri Puja"], "hi": ["दुर्गा पूजन", "घटस्थापना", "कलश स्थापना"] },
+  "category": "festival",
+  "regions": ["pan_india"],
+  "summary": { "en": "Nine-day festival celebrating Goddess Durga and her victory over evil. Kalash Sthapana (pot installation) marks the beginning of Navratri, symbolizing the manifestation of divine energy and the planting of seeds for prosperity.", "hi": "देवी दुर्गा और बुराई पर उनकी जीत का नौ दिनों का उत्सव। कलश स्थापना नवरात्रि की शुरुआत को दर्शाती है, दिव्य ऊर्जा की अभिव्यक्ति और समृद्धि के बीजों को रोपण करती है।" },
+  "significance": { "en": "Navratri celebrates the nine forms (Navadurga) of Goddess Durga. Each day represents a different aspect of the goddess and her divine powers. Kalash Sthapana on the first day marks the beginning of the festival and represents the awakening of divine feminine energy. The germinating barley (jau) inside the kalash symbolizes prosperity and abundance. Durga is worshipped for her power to destroy evil and protect her devotees.", "hi": "नवरात्रि देवी दुर्गा के नौ रूपों (नवदुर्गा) का जश्न है। हर दिन देवी के एक अलग पहलू और उनकी दिव्य शक्तियों का प्रतिनिधित्व करता है। पहले दिन कलश स्थापना त्योहार की शुरुआत को दर्शाती है और दिव्य स्त्री ऊर्जा के जागरण का प्रतिनिधित्व करती है। कलश के अंदर अंकुरित जौ (जौ) समृद्धि और प्रचुरता का प्रतीक है। दुर्गा को बुराई को नष्ट करने और अपने भक्तों की रक्षा करने की शक्ति के लिए पूजा जाता है।" },
+  "samagri": [
+    {
+      "samagriId": "sm_durga_idol",
+      "classification": "OPTIONAL",
+      "purpose": { "en": "Idol or image of Goddess Durga, optional if worshipping in the kalash form", "hi": "देवी दुर्गा की मूर्ति या छवि, यदि कलश के रूप में पूजा करें तो वैकल्पिक" },
+      "sortOrder": 1
+    },
+    {
+      "samagriId": "sm_kalash",
+      "classification": "REQUIRED",
+      "purpose": { "en": "Sacred pot representing the cosmic womb and source of life", "hi": "ब्रह्मांडीय गर्भ और जीवन के स्रोत का प्रतिनिधित्व करने वाला पवित्र कलश" },
+      "sortOrder": 2
+    },
+    {
+      "samagriId": "sm_soil",
+      "classification": "REQUIRED",
+      "purpose": { "en": "Holy earth to fill the kalash, preferably from a temple or auspicious place", "hi": "कलश भरने के लिए पवित्र मिट्टी, अधिमानतः मंदिर या शुभ स्थान से" },
+      "sortOrder": 3
+    },
+    {
+      "samagriId": "sm_barley",
+      "classification": "REQUIRED",
+      "purpose": { "en": "Barley seeds (jau) to sprout in the kalash, symbolizing prosperity and growth", "hi": "कलश में अंकुरित करने के लिए जौ के बीज, समृद्धि और विकास का प्रतीक" },
+      "sortOrder": 4
+    },
+    {
+      "samagriId": "sm_water",
+      "classification": "REQUIRED",
+      "purpose": { "en": "To fill the kalash and water the seeds", "hi": "कलश भरने और बीजों को पानी देने के लिए" },
+      "sortOrder": 5
+    },
+    {
+      "samagriId": "sm_flowers",
+      "classification": "COMMON",
+      "purpose": { "en": "To decorate the kalash and offer to the goddess", "hi": "कलश को सजाने और देवी को चढ़ाने के लिए" },
+      "quantityGuidance": { "en": "as needed" },
+      "sortOrder": 6
+    },
+    {
+      "samagriId": "sm_red_flowers",
+      "classification": "OPTIONAL",
+      "purpose": { "en": "Red flowers are especially significant for Durga worship", "hi": "लाल फूल दुर्गा पूजा के लिए विशेष रूप से महत्वपूर्ण हैं" },
+      "sortOrder": 7
+    },
+    {
+      "samagriId": "sm_incense",
+      "classification": "COMMON",
+      "purpose": { "en": "To purify the space and invoke divine presence", "hi": "स्थान को शुद्ध करने और दिव्य उपस्थिति को आमंत्रित करने के लिए" },
+      "sortOrder": 8
+    },
+    {
+      "samagriId": "sm_diya",
+      "classification": "REQUIRED",
+      "purpose": { "en": "To light as an offering of light and energy", "hi": "प्रकाश और ऊर्जा के भोग के रूप में जलाने के लिए" },
+      "quantityGuidance": { "en": "multiple diyas recommended" },
+      "sortOrder": 9
+    },
+    {
+      "samagriId": "sm_oil",
+      "classification": "REQUIRED",
+      "purpose": { "en": "To fuel the diyas", "hi": "दीयों को जलाने के लिए" },
+      "quantityGuidance": { "en": "as needed" },
+      "sortOrder": 10
+    },
+    {
+      "samagriId": "sm_turmeric",
+      "classification": "COMMON",
+      "purpose": { "en": "For tilak and ritual purposes", "hi": "तिलक और पूजा के लिए" },
+      "sortOrder": 11
+    },
+    {
+      "samagriId": "sm_vermillion",
+      "classification": "COMMON",
+      "purpose": { "en": "For tilak and ritual offerings", "hi": "तिलक और पूजा के लिए" },
+      "sortOrder": 12
+    },
+    {
+      "samagriId": "sm_rice",
+      "classification": "COMMON",
+      "purpose": { "en": "To offer along with flowers", "hi": "फूलों के साथ चढ़ाने के लिए" },
+      "quantityGuidance": { "en": "as needed" },
+      "sortOrder": 13
+    }
+  ],
+  "steps": [
+    {
+      "id": "step_ndp_1",
+      "stepNumber": 1,
+      "title": { "en": "Purification and Preparation", "hi": "शुद्धिकरण और तैयारी" },
+      "description": { "en": "Clean and purify the puja space. Select a clean location, preferably facing east or north. Gather all materials for the Kalash Sthapana. Sit in a comfortable meditative posture.", "hi": "पूजा के स्थान को साफ करें और शुद्ध करें। एक स्वच्छ स्थान चुनें, अधिमानतः पूर्व या उत्तर की ओर मुख करते हुए। कलश स्थापना के लिए सभी सामग्री एकत्रित करें। एक आरामदायक ध्यान मुद्रा में बैठें।" },
+      "relatedSamagriIds": ["sm_kalash", "sm_soil", "sm_barley", "sm_water"],
+      "isOptional": false
+    },
+    {
+      "id": "step_ndp_2",
+      "stepNumber": 2,
+      "title": { "en": "Prepare the Kalash", "hi": "कलश तैयार करें" },
+      "description": { "en": "Fill the kalash with holy soil (preferably from a temple or sacred place). Fill it three-quarters full. Add barley seeds on top of the soil. Pour water carefully so that the seeds are moist but not waterlogged. The kalash should be placed on a raised platform or stand.", "hi": "कलश को पवित्र मिट्टी से भरें (अधिमानतः मंदिर या पवित्र स्थान से)। इसे तीन-चौथाई भरें। मिट्टी के ऊपर जौ के बीज डालें। सावधानीपूर्वक पानी डालें ताकि बीज नम हों लेकिन जलभराव न हो। कलश को एक ऊंचे मंच या आधार पर रखा जाना चाहिए।" },
+      "relatedSamagriIds": ["sm_kalash", "sm_soil", "sm_barley", "sm_water"],
+      "isOptional": false
+    },
+    {
+      "id": "step_ndp_3",
+      "stepNumber": 3,
+      "title": { "en": "Light the Diyas", "hi": "दीये जलाएं" },
+      "description": { "en": "Light multiple diyas around and near the kalash. The light represents the divine presence of Goddess Durga and the victory of light over darkness.", "hi": "कलश के चारों ओर कई दीये जलाएं। प्रकाश देवी दुर्गा की दिव्य उपस्थिति और प्रकाश की अंधकार पर जीत का प्रतीक है।" },
+      "relatedSamagriIds": ["sm_diya", "sm_oil"],
+      "isOptional": false
+    },
+    {
+      "id": "step_ndp_4",
+      "stepNumber": 4,
+      "title": { "en": "Apply Tilak", "hi": "तिलक लगाएं" },
+      "description": { "en": "Apply turmeric and vermillion tilak on your forehead, marking the beginning of the sacred Navratri festival.", "hi": "अपने माथे पर हल्दी और सिंदूर का तिलक लगाएं, पवित्र नवरात्रि त्योहार की शुरुआत को दर्शाते हुए।" },
+      "relatedSamagriIds": ["sm_turmeric", "sm_vermillion"],
+      "isOptional": false
+    },
+    {
+      "id": "step_ndp_5",
+      "stepNumber": 5,
+      "title": { "en": "Burn Incense", "hi": "अगरबत्ती जलाएं" },
+      "description": { "en": "Light incense and move it in circles in front of the kalash. The fragrance purifies the space and invokes the divine presence.", "hi": "अगरबत्ती जलाएं और इसे कलश के सामने गोलाकार गति में लें। सुगंध स्थान को शुद्ध करती है और दिव्य उपस्थिति को आमंत्रित करती है।" },
+      "relatedSamagriIds": ["sm_incense"],
+      "isOptional": false
+    },
+    {
+      "id": "step_ndp_6",
+      "stepNumber": 6,
+      "title": { "en": "Invocation of the Goddess", "hi": "देवी का आह्वान" },
+      "description": { "en": "Offer flowers, rice, and prayers to invoke Goddess Durga. Speak your intentions for the nine-day festival. Seek her blessings for victory over obstacles, strength, and prosperity.", "hi": "देवी दुर्गा को आमंत्रित करने के लिए फूल, चावल और प्रार्थना चढ़ाएं। नौ दिनों के त्योहार के लिए अपनी मंशा व्यक्त करें। बाधाओं पर जीत, शक्ति और समृद्धि के लिए उनका आशीर्वाद माँगें।" },
+      "relatedSamagriIds": ["sm_flowers", "sm_rice"],
+      "isOptional": false
+    },
+    {
+      "id": "step_ndp_7",
+      "stepNumber": 7,
+      "title": { "en": "Meditation and Prayers", "hi": "ध्यान और प्रार्थना" },
+      "description": { "en": "Sit in quiet meditation before the kalash. Visualize the divine energy of Goddess Durga manifesting through the kalash. Meditate on her nine forms (Nav Durga) and seek her blessings for the festival period. Recite prayers or mantras as per your tradition.", "hi": "कलश के सामने शांति से ध्यान करें। देवी दुर्गा की दिव्य ऊर्जा को कलश के माध्यम से प्रकट होते हुए देखें। उनके नौ रूपों (नव दुर्गा) पर ध्यान करें और त्योहार की अवधि के लिए उनका आशीर्वाद माँगें। अपनी परंपरा के अनुसार प्रार्थना या मंत्र दोहराएं।" },
+      "relatedSamagriIds": [],
+      "isOptional": false
+    },
+    {
+      "id": "step_ndp_8",
+      "stepNumber": 8,
+      "title": { "en": "Aarti", "hi": "आरती" },
+      "description": { "en": "Perform aarti by waving the lamp in front of the kalash in a circular motion. The aarti represents gratitude and the welcoming of divine energy into your home and life.", "hi": "दीये को कलश के सामने गोलाकार गति में लहरा कर आरती करें। आरती कृतज्ञता का प्रतिनिधित्व करती है और अपने घर और जीवन में दिव्य ऊर्जा के आगमन को दर्शाती है।" },
+      "relatedSamagriIds": ["sm_diya"],
+      "isOptional": false
+    },
+    {
+      "id": "step_ndp_9",
+      "stepNumber": 9,
+      "title": { "en": "Daily Care of Kalash", "hi": "कलश की दैनिक देखभाल" },
+      "description": { "en": "During the nine days of Navratri, keep the kalash in a clean, safe place. Water the seeds daily so they sprout into golden barley shoots (jau). Light diyas before the kalash each day. On the ninth day (Dussehra or Vijayadashami), the sprouted barley shoots are distributed as prasad.", "hi": "नवरात्रि के नौ दिनों के दौरान, कलश को एक स्वच्छ, सुरक्षित स्थान पर रखें। बीजों को प्रतिदिन पानी दें ताकि वे सुनहरी जौ की शूटों (जौ) में अंकुरित हों। हर दिन कलश के सामने दीये जलाएं। नवमी (दशहरा या विजयदशमी) को, अंकुरित जौ को प्रसाद के रूप में वितरित किया जाता है।" },
+      "relatedSamagriIds": ["sm_water"],
+      "isOptional": false,
+      "importantNote": { "en": "Protect the kalash from disturbance and ensure it receives proper light and ventilation for the barley to sprout.", "hi": "कलश को परेशानी से बचाएं और जौ के अंकुरण के लिए उचित प्रकाश और वेंटिलेशन सुनिश्चित करें।" }
+    },
+    {
+      "id": "step_ndp_10",
+      "stepNumber": 10,
+      "title": { "en": "Seek Blessings", "hi": "आशीर्वाद लें" },
+      "description": { "en": "Respectfully bow to the kalash and seek Goddess Durga's blessings for strength, victory, and protection. Touch your forehead to the ground as a gesture of complete surrender.", "hi": "कलश को सम्मान पूर्वक नमस्कार करें और देवी दुर्गा से शक्ति, जीत और सुरक्षा का आशीर्वाद माँगें। पूर्ण समर्पण के संकेत के रूप में अपने माथे को जमीन से छुएं।" },
+      "relatedSamagriIds": [],
+      "isOptional": false
+    }
+  ],
+  "variations": [
+    {
+      "id": "var_ndp_eastern",
+      "regions": ["east"],
+      "title": { "en": "Eastern India - Bengal Tradition", "hi": "पूर्वी भारत - बंगाल परंपरा" },
+      "description": { "en": "In Bengal, Navratri is celebrated as Durga Puja with grand community celebrations, elaborate pandals, and artistic displays. The worship focuses on Goddess Durga's nine forms, and the festival includes cultural programs, processions, and community feasting.", "hi": "बंगाल में, नवरात्रि को दुर्गा पूजा के रूप में भव्य सामुदायिक समारोहों, विस्तृत पंडालों और कलात्मक प्रदर्शनों के साथ मनाया जाता है। पूजा देवी दुर्गा के नौ रूपों पर केंद्रित है, और त्योहार में सांस्कृतिक कार्यक्रम, जुलूस और सामुदायिक भोज शामिल हैं।" },
+      "affectsSamagriIds": ["sm_flowers", "sm_red_flowers"],
+      "affectsStepIds": []
+    },
+    {
+      "id": "var_ndp_south",
+      "regions": ["south"],
+      "title": { "en": "South Indian Tradition", "hi": "दक्षिण भारतीय परंपरा" },
+      "description": { "en": "In South India, Navratri is celebrated with Golu (display of idols) in homes, Dandiya and Garba dances (in some regions), and the reading of Devi Mahatmya. The worship includes rituals specific to the region and local goddesses.", "hi": "दक्षिण भारत में, नवरात्रि को घरों में गोलू (मूर्तियों का प्रदर्शन), डांडिया और गरबा नृत्य (कुछ क्षेत्रों में), और देवी माहात्म्य के पाठ के साथ मनाया जाता है। पूजा में क्षेत्र के लिए विशिष्ट अनुष्ठान और स्थानीय देवियों की पूजा शामिल है।" },
+      "affectsSamagriIds": [],
+      "affectsStepIds": []
+    }
+  ],
+  "disclaimer": { "en": "This is a general guide to Navratri Durga Puja with Kalash Sthapana. Regional practices, family traditions, and local customs vary widely. Please follow your family's practices and consult a local priest for specific rituals and guidance.", "hi": "यह नवरात्रि दुर्गा पूजा व कलश स्थापना का एक सामान्य मार्गदर्शन है। क्षेत्रीय प्रथाएं, पारिवारिक परंपराएं, और स्थानीय रीति-रिवाज व्यापक रूप से भिन्न होते हैं। कृपया अपनी पारिवारिक परंपराओं का पालन करें और विशिष्ट अनुष्ठानों और मार्गदर्शन के लिए एक स्थानीय पुजारी से परामर्श लें।" },
+  "reviewStatus": "ai_drafted",
+  "sourceNote": { "en": "AI-drafted general guide based on widely documented Navratri and Kalash Sthapana practices across India. Not yet verified by a pandit. Regional and local variations require consultation with a qualified priest familiar with your community's traditions.", "hi": "भारत भर में व्यापक रूप से प्रलेखित नवरात्रि और कलश स्थापना प्रथाओं के आधार पर AI द्वारा तैयार सामान्य मार्गदर्शन। अभी तक किसी पंडित द्वारा सत्यापित नहीं। क्षेत्रीय और स्थानीय भिन्नताओं के लिए आपके समुदाय की परंपराओं से परिचित एक योग्य पुजारी से परामर्श आवश्यक है।" },
+  "contentVersion": 1,
+  "status": "active"
+}

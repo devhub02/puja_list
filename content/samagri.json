@@ -1,1 +1,280 @@
-[]
+[
+  {
+    "id": "sm_deity_idol",
+    "name": { "en": "Deity idol/murti", "hi": "देवता की मूर्ति" },
+    "description": { "en": "Statue or idol representing the deity being worshipped", "hi": "पूजे जाने वाले देवता का मूर्ति या प्रतिमा" },
+    "status": "active"
+  },
+  {
+    "id": "sm_ganesh_idol",
+    "name": { "en": "Ganesh idol", "hi": "गणेश मूर्ति" },
+    "description": { "en": "Idol of Lord Ganesh", "hi": "भगवान गणेश की मूर्ति" },
+    "status": "active"
+  },
+  {
+    "id": "sm_lakshmi_idol",
+    "name": { "en": "Lakshmi idol", "hi": "लक्ष्मी मूर्ति" },
+    "description": { "en": "Idol of Goddess Lakshmi", "hi": "देवी लक्ष्मी की मूर्ति" },
+    "alternateNames": { "en": ["Laxmi idol"], "hi": ["लक्षमी मूर्ति"] },
+    "status": "active"
+  },
+  {
+    "id": "sm_saraswati_idol",
+    "name": { "en": "Saraswati idol", "hi": "सरस्वती मूर्ति" },
+    "description": { "en": "Idol of Goddess Saraswati", "hi": "देवी सरस्वती की मूर्ति" },
+    "status": "active"
+  },
+  {
+    "id": "sm_shiva_lingam",
+    "name": { "en": "Shiva lingam", "hi": "शिव लिंग" },
+    "description": { "en": "Symbol of Lord Shiva in puja", "hi": "पूजा में भगवान शिव का प्रतीक" },
+    "status": "active"
+  },
+  {
+    "id": "sm_krishna_idol",
+    "name": { "en": "Krishna idol", "hi": "कृष्ण मूर्ति" },
+    "description": { "en": "Idol of Lord Krishna", "hi": "भगवान कृष्ण की मूर्ति" },
+    "status": "active"
+  },
+  {
+    "id": "sm_hanuman_idol",
+    "name": { "en": "Hanuman idol", "hi": "हनुमान मूर्ति" },
+    "description": { "en": "Idol of Lord Hanuman", "hi": "भगवान हनुमान की मूर्ति" },
+    "status": "active"
+  },
+  {
+    "id": "sm_durga_idol",
+    "name": { "en": "Durga idol", "hi": "दुर्गा मूर्ति" },
+    "description": { "en": "Idol of Goddess Durga", "hi": "देवी दुर्गा की मूर्ति" },
+    "status": "active"
+  },
+  {
+    "id": "sm_flowers",
+    "name": { "en": "Flowers", "hi": "फूल" },
+    "description": { "en": "Fresh flowers for offering", "hi": "पूजा के लिए ताजे फूल" },
+    "status": "active"
+  },
+  {
+    "id": "sm_yellow_flowers",
+    "name": { "en": "Yellow flowers", "hi": "पीले फूल" },
+    "description": { "en": "Yellow flowers, preferably marigold or chrysanthemum", "hi": "पीले फूल, अधिमानतः गेंदा या गुलदाउदी" },
+    "status": "active"
+  },
+  {
+    "id": "sm_red_flowers",
+    "name": { "en": "Red flowers", "hi": "लाल फूल" },
+    "description": { "en": "Red flowers for offering", "hi": "चढ़ाने के लिए लाल फूल" },
+    "status": "active"
+  },
+  {
+    "id": "sm_marigold",
+    "name": { "en": "Marigold", "hi": "गेंदा" },
+    "description": { "en": "Marigold flowers", "hi": "गेंदे के फूल" },
+    "status": "active"
+  },
+  {
+    "id": "sm_incense",
+    "name": { "en": "Incense/agarbatti", "hi": "अगरबत्ती" },
+    "description": { "en": "Aromatic incense sticks", "hi": "सुगंधित अगरबत्ती" },
+    "status": "active"
+  },
+  {
+    "id": "sm_diya",
+    "name": { "en": "Diya/lamp", "hi": "दीया" },
+    "description": { "en": "Oil lamp for lighting", "hi": "प्रकाश के लिए तेल का दीया" },
+    "status": "active"
+  },
+  {
+    "id": "sm_oil",
+    "name": { "en": "Oil", "hi": "तेल" },
+    "description": { "en": "Oil for the lamp, typically sesame or coconut oil", "hi": "दीये के लिए तेल, आमतौर पर तिल या नारियल का तेल" },
+    "status": "active"
+  },
+  {
+    "id": "sm_ghee",
+    "name": { "en": "Ghee", "hi": "घी" },
+    "description": { "en": "Clarified butter", "hi": "शुद्ध घी" },
+    "status": "active"
+  },
+  {
+    "id": "sm_modak",
+    "name": { "en": "Modak", "hi": "मोदक" },
+    "description": { "en": "Sweet dumpling made of rice and jaggery", "hi": "चावल और गुड़ से बना मीठा दुम्पलिंग" },
+    "status": "active"
+  },
+  {
+    "id": "sm_coconut",
+    "name": { "en": "Coconut", "hi": "नारियल" },
+    "description": { "en": "Fresh coconut", "hi": "ताजी नारियल" },
+    "status": "active"
+  },
+  {
+    "id": "sm_jaggery",
+    "name": { "en": "Jaggery", "hi": "गुड़" },
+    "description": { "en": "Unrefined sugar made from sugarcane", "hi": "गन्ने से बना अपरिष्कृत शक्कर" },
+    "status": "active"
+  },
+  {
+    "id": "sm_turmeric",
+    "name": { "en": "Turmeric", "hi": "हल्दी" },
+    "description": { "en": "Turmeric powder", "hi": "हल्दी का पाउडर" },
+    "status": "active"
+  },
+  {
+    "id": "sm_turmeric_powder",
+    "name": { "en": "Turmeric powder", "hi": "हल्दी पाउडर" },
+    "description": { "en": "Ground turmeric for tilak and offering", "hi": "तिलक और पूजा के लिए हल्दी पाउडर" },
+    "status": "active"
+  },
+  {
+    "id": "sm_vermillion",
+    "name": { "en": "Vermillion/sindoor", "hi": "सिंदूर" },
+    "description": { "en": "Red powder for tilak and offering", "hi": "तिलक और पूजा के लिए लाल पाउडर" },
+    "status": "active"
+  },
+  {
+    "id": "sm_besan",
+    "name": { "en": "Besan/gram flour", "hi": "बेसन" },
+    "description": { "en": "Ground chickpea flour", "hi": "पीसा हुआ चना का आटा" },
+    "status": "active"
+  },
+  {
+    "id": "sm_milk",
+    "name": { "en": "Milk", "hi": "दूध" },
+    "description": { "en": "Fresh milk", "hi": "ताजा दूध" },
+    "status": "active"
+  },
+  {
+    "id": "sm_yogurt",
+    "name": { "en": "Yogurt", "hi": "दही" },
+    "description": { "en": "Curd or yogurt", "hi": "दही" },
+    "status": "active"
+  },
+  {
+    "id": "sm_honey",
+    "name": { "en": "Honey", "hi": "शहद" },
+    "description": { "en": "Pure honey", "hi": "शुद्ध शहद" },
+    "status": "active"
+  },
+  {
+    "id": "sm_water",
+    "name": { "en": "Water", "hi": "जल" },
+    "description": { "en": "Clean water", "hi": "स्वच्छ जल" },
+    "status": "active"
+  },
+  {
+    "id": "sm_wheat_flour",
+    "name": { "en": "Wheat flour", "hi": "गेहूं का आटा" },
+    "description": { "en": "Ground wheat flour", "hi": "पीसा हुआ गेहूं का आटा" },
+    "status": "active"
+  },
+  {
+    "id": "sm_rice",
+    "name": { "en": "Rice", "hi": "चावल" },
+    "description": { "en": "Uncooked rice grains", "hi": "कच्चे चावल के दाने" },
+    "status": "active"
+  },
+  {
+    "id": "sm_sweets",
+    "name": { "en": "Sweets", "hi": "मिठाई" },
+    "description": { "en": "Traditional sweets for offering", "hi": "पूजा के लिए पारंपरिक मिठाई" },
+    "status": "active"
+  },
+  {
+    "id": "sm_dry_fruits",
+    "name": { "en": "Dry fruits", "hi": "सूखे मेवे" },
+    "description": { "en": "Dried fruits and nuts", "hi": "सूखे फल और मेवे" },
+    "status": "active"
+  },
+  {
+    "id": "sm_banana",
+    "name": { "en": "Banana", "hi": "केला" },
+    "description": { "en": "Fresh banana", "hi": "ताजा केला" },
+    "status": "active"
+  },
+  {
+    "id": "sm_fruit",
+    "name": { "en": "Fruit", "hi": "फल" },
+    "description": { "en": "Fresh fruit for offering", "hi": "पूजा के लिए ताजा फल" },
+    "status": "active"
+  },
+  {
+    "id": "sm_kalash",
+    "name": { "en": "Kalash", "hi": "कलश" },
+    "description": { "en": "Pot or vessel for ritual worship", "hi": "पूजा के लिए बर्तन या कलश" },
+    "status": "active"
+  },
+  {
+    "id": "sm_bilva_leaves",
+    "name": { "en": "Bilva leaves", "hi": "बेलपत्र" },
+    "description": { "en": "Leaves of the bilva tree, sacred to Shiva", "hi": "बेल के पेड़ की पत्तियां, शिव को समर्पित" },
+    "alternateNames": { "en": ["bael leaves", "wood apple leaves"], "hi": ["बेल की पत्तियां"] },
+    "status": "active"
+  },
+  {
+    "id": "sm_barley",
+    "name": { "en": "Barley seeds/jau", "hi": "जौ" },
+    "description": { "en": "Barley seeds for sprouting", "hi": "अंकुरित करने के लिए जौ के बीज" },
+    "status": "active"
+  },
+  {
+    "id": "sm_soil",
+    "name": { "en": "Soil/earth", "hi": "मिट्टी" },
+    "description": { "en": "Holy earth or soil from auspicious place", "hi": "पवित्र मिट्टी या मंदिर से मिट्टी" },
+    "status": "active"
+  },
+  {
+    "id": "sm_butter",
+    "name": { "en": "Butter", "hi": "मक्खन" },
+    "description": { "en": "Fresh butter or makhan", "hi": "ताजा मक्खन" },
+    "status": "active"
+  },
+  {
+    "id": "sm_book",
+    "name": { "en": "Book/manuscript", "hi": "किताब" },
+    "description": { "en": "Books representing knowledge", "hi": "ज्ञान का प्रतीक किताब" },
+    "status": "active"
+  },
+  {
+    "id": "sm_musical_instrument",
+    "name": { "en": "Musical instrument", "hi": "वाद्य यंत्र" },
+    "description": { "en": "Any musical instrument like sitar or veena", "hi": "कोई भी वाद्य यंत्र जैसे सितार या वीणा" },
+    "status": "active"
+  },
+  {
+    "id": "sm_coins",
+    "name": { "en": "Coins", "hi": "सिक्के" },
+    "description": { "en": "Coins as symbolic offering to Lakshmi", "hi": "लक्ष्मी को प्रतीकात्मक चढ़ावा" },
+    "status": "active"
+  },
+  {
+    "id": "sm_red_cloth",
+    "name": { "en": "Red cloth", "hi": "लाल कपड़ा" },
+    "description": { "en": "Red fabric for ritual use", "hi": "पूजा के लिए लाल कपड़ा" },
+    "status": "active"
+  },
+  {
+    "id": "sm_camphor",
+    "name": { "en": "Camphor", "hi": "कपूर" },
+    "description": { "en": "Camphor for aarti or offering", "hi": "आरती या पूजा के लिए कपूर" },
+    "status": "active"
+  },
+  {
+    "id": "sm_bell",
+    "name": { "en": "Bell", "hi": "घंटी" },
+    "description": { "en": "Bell for ringing during prayers", "hi": "प्रार्थना के दौरान बजाने के लिए घंटी" },
+    "status": "active"
+  },
+  {
+    "id": "sm_conch",
+    "name": { "en": "Conch", "hi": "शंख" },
+    "description": { "en": "Conch shell for puja rituals", "hi": "पूजा की परंपरा के लिए शंख" },
+    "status": "active"
+  },
+  {
+    "id": "sm_aarti_lamp",
+    "name": { "en": "Aarti lamp", "hi": "आरती का दीया" },
+    "description": { "en": "Multi-wick lamp for aarti ritual", "hi": "आरती की परंपरा के लिए बहु-बत्ती दीया" },
+    "status": "active"
+  }
+]

@@ -1,0 +1,187 @@
+{
+  "id": "puja_satyanarayan_puja",
+  "festivalId": "fest_satyanarayan",
+  "name": { "en": "Satyanarayan Puja", "hi": "सत्यनारायण पूजन" },
+  "alternateNames": { "en": ["Satyanarayana Puja", "Satya Narayan Puja"], "hi": ["सत्यनारायण पूजा"] },
+  "category": "household",
+  "regions": ["pan_india"],
+  "summary": { "en": "Puja performed for family welfare, prosperity, and fulfillment of wishes. Dedicated to Lord Satyanarayan, a form of Lord Vishnu.", "hi": "पारिवारिक कल्याण, समृद्धि और इच्छा की पूर्ति के लिए की जाने वाली पूजा। भगवान विष्णु के एक रूप सत्यनारायण को समर्पित।" },
+  "significance": { "en": "Satyanarayan Puja is performed to seek the blessings of Lord Satyanarayan for family prosperity, good health, and the fulfillment of desires. It is believed that this puja removes obstacles, brings good fortune, and ensures the welfare of the entire household. The puja can be performed on any auspicious day and is often done when seeking specific blessings or thanking the deity for favors received.", "hi": "सत्यनारायण पूजा परिवार की समृद्धि, अच्छे स्वास्थ्य और इच्छाओं की पूर्ति के लिए भगवान सत्यनारायण का आशीर्वाद पाने के लिए की जाती है। माना जाता है कि यह पूजा बाधाओं को दूर करती है, सुख लाती है और पूरे घर के कल्याण को सुनिश्चित करती है। पूजा किसी भी शुभ दिन पर की जा सकती है और अक्सर विशिष्ट आशीर्वाद माँगते समय या देवता द्वारा की गई कृपा के लिए धन्यवाद करते समय की जाती है।" },
+  "samagri": [
+    {
+      "samagriId": "sm_deity_idol",
+      "classification": "REQUIRED",
+      "purpose": { "en": "To represent Lord Satyanarayan or any form of Vishnu", "hi": "भगवान सत्यनारायण या विष्णु के किसी भी रूप का प्रतिनिधित्व करने के लिए" },
+      "sortOrder": 1
+    },
+    {
+      "samagriId": "sm_kalash",
+      "classification": "COMMON",
+      "purpose": { "en": "Sacred pot representing cosmic energy and abundance", "hi": "ब्रह्मांडीय ऊर्जा और प्रचुरता का प्रतिनिधित्व करने वाला पवित्र कलश" },
+      "sortOrder": 2
+    },
+    {
+      "samagriId": "sm_water",
+      "classification": "REQUIRED",
+      "purpose": { "en": "For ritual bathing of the deity and filling the kalash", "hi": "देवता को नहलाने और कलश भरने के लिए" },
+      "sortOrder": 3
+    },
+    {
+      "samagriId": "sm_flowers",
+      "classification": "COMMON",
+      "purpose": { "en": "To offer to the deity as an expression of devotion", "hi": "भक्ति की अभिव्यक्ति के रूप में देवता को चढ़ाने के लिए" },
+      "quantityGuidance": { "en": "as needed" },
+      "sortOrder": 4
+    },
+    {
+      "samagriId": "sm_incense",
+      "classification": "COMMON",
+      "purpose": { "en": "To purify the space and create a sacred atmosphere", "hi": "स्थान को शुद्ध करने और पवित्र वातावरण बनाने के लिए" },
+      "sortOrder": 5
+    },
+    {
+      "samagriId": "sm_diya",
+      "classification": "REQUIRED",
+      "purpose": { "en": "To light as an offering and symbol of divine light", "hi": "चढ़ावे के रूप में और दिव्य प्रकाश का प्रतीक" },
+      "sortOrder": 6
+    },
+    {
+      "samagriId": "sm_oil",
+      "classification": "REQUIRED",
+      "purpose": { "en": "To fuel the diya", "hi": "दीये को जलाने के लिए" },
+      "quantityGuidance": { "en": "as needed" },
+      "sortOrder": 7
+    },
+    {
+      "samagriId": "sm_wheat_flour",
+      "classification": "COMMON",
+      "purpose": { "en": "To make halwa (sweet pudding) as bhog offering", "hi": "भोग के रूप में हलवा (मीठा हलुआ) बनाने के लिए" },
+      "sortOrder": 8
+    },
+    {
+      "samagriId": "sm_jaggery",
+      "classification": "COMMON",
+      "purpose": { "en": "To make halwa sweet", "hi": "हलवा को मीठा बनाने के लिए" },
+      "sortOrder": 9
+    },
+    {
+      "samagriId": "sm_ghee",
+      "classification": "COMMON",
+      "purpose": { "en": "To cook halwa and for ritual purposes", "hi": "हलवा पकाने और अनुष्ठान के लिए" },
+      "sortOrder": 10
+    },
+    {
+      "samagriId": "sm_dry_fruits",
+      "classification": "OPTIONAL",
+      "purpose": { "en": "To add to halwa or offer as enriched bhog", "hi": "हलवा में मिलाने या समृद्ध भोग के रूप में चढ़ाने के लिए" },
+      "sortOrder": 11
+    },
+    {
+      "samagriId": "sm_banana",
+      "classification": "OPTIONAL",
+      "purpose": { "en": "To offer as fruit bhog", "hi": "फल भोग के रूप में चढ़ाने के लिए" },
+      "sortOrder": 12
+    },
+    {
+      "samagriId": "sm_turmeric",
+      "classification": "COMMON",
+      "purpose": { "en": "For applying tilak", "hi": "तिलक लगाने के लिए" },
+      "sortOrder": 13
+    },
+    {
+      "samagriId": "sm_vermillion",
+      "classification": "COMMON",
+      "purpose": { "en": "For tilak and ritual offerings", "hi": "तिलक और पूजा के लिए" },
+      "sortOrder": 14
+    }
+  ],
+  "steps": [
+    {
+      "id": "step_snp_1",
+      "stepNumber": 1,
+      "title": { "en": "Purification and Setup", "hi": "शुद्धिकरण और तैयारी" },
+      "description": { "en": "Clean and prepare the puja space. Arrange the deity idol or symbol of Satyanarayan on the altar. Fill the kalash with water and place it beside or in front of the idol. Light the diya.", "hi": "पूजा के स्थान को साफ करें और तैयार करें। वेदी पर सत्यनारायण की मूर्ति या प्रतीक को व्यवस्थित करें। कलश को जल से भरें और इसे मूर्ति के बगल में या सामने रखें। दीया जलाएं।" },
+      "relatedSamagriIds": ["sm_deity_idol", "sm_kalash", "sm_water", "sm_diya", "sm_oil"],
+      "isOptional": false
+    },
+    {
+      "id": "step_snp_2",
+      "stepNumber": 2,
+      "title": { "en": "Invocation and Offerings", "hi": "आह्वान और भोग" },
+      "description": { "en": "Offer flowers and prayers to invoke Lord Satyanarayan. Offer rice grains, flowers, and water from the kalash. Speak your intentions and wishes for your family's welfare.", "hi": "भगवान सत्यनारायण को आमंत्रित करने के लिए फूल और प्रार्थना चढ़ाएं। चावल, फूल और कलश का जल चढ़ाएं। अपने परिवार के कल्याण के लिए अपनी मंशा और इच्छाओं को व्यक्त करें।" },
+      "relatedSamagriIds": ["sm_flowers"],
+      "isOptional": false
+    },
+    {
+      "id": "step_snp_3",
+      "stepNumber": 3,
+      "title": { "en": "Apply Tilak", "hi": "तिलक लगाएं" },
+      "description": { "en": "Apply turmeric and vermillion tilak on the idol and on yourself, marking the sacred nature of the ritual.", "hi": "मूर्ति पर और अपने माथे पर हल्दी और सिंदूर का तिलक लगाएं, पूजा की पवित्र प्रकृति को दर्शाते हुए।" },
+      "relatedSamagriIds": ["sm_turmeric", "sm_vermillion"],
+      "isOptional": false
+    },
+    {
+      "id": "step_snp_4",
+      "stepNumber": 4,
+      "title": { "en": "Burn Incense", "hi": "अगरबत्ती जलाएं" },
+      "description": { "en": "Light incense and move it in circles in front of the idol, purifying the space and creating a sacred environment.", "hi": "अगरबत्ती जलाएं और इसे मूर्ति के सामने गोलाकार गति में लें, स्थान को शुद्ध करते हुए और एक पवित्र वातावरण बनाते हुए।" },
+      "relatedSamagriIds": ["sm_incense"],
+      "isOptional": false
+    },
+    {
+      "id": "step_snp_5",
+      "stepNumber": 5,
+      "title": { "en": "Meditation and Prayers", "hi": "ध्यान और प्रार्थना" },
+      "description": { "en": "Sit in meditation and focus on Lord Satyanarayan. Silently offer your prayers for family prosperity, health, and the fulfillment of your righteous wishes. Recite prayers or mantras as per your tradition.", "hi": "ध्यान में बैठें और भगवान सत्यनारायण पर ध्यान केंद्रित करें। परिवार की समृद्धि, स्वास्थ्य और आपकी धार्मिक इच्छाओं की पूर्ति के लिए मन ही मन प्रार्थना करें। अपनी परंपरा के अनुसार प्रार्थना या मंत्र दोहराएं।" },
+      "relatedSamagriIds": [],
+      "isOptional": false
+    },
+    {
+      "id": "step_snp_6",
+      "stepNumber": 6,
+      "title": { "en": "Prepare and Offer Halwa", "hi": "हलवा तैयार करें और चढ़ाएं" },
+      "description": { "en": "Prepare halwa (wheat flour pudding cooked in ghee and jaggery) as the main bhog offering. Offer the hot halwa at the feet of the idol along with dry fruits if available. Halwa symbolizes sweetness and prosperity.", "hi": "हलवा (घी और गुड़ में पकाया गया गेहूं का आटा) तैयार करें मुख्य भोग के रूप में। मूर्ति के पैरों में गर्म हलवा चढ़ाएं, साथ में सूखे मेवे भी यदि उपलब्ध हों। हलवा मिठास और समृद्धि का प्रतीक है।" },
+      "relatedSamagriIds": ["sm_wheat_flour", "sm_jaggery", "sm_ghee", "sm_dry_fruits"],
+      "isOptional": false
+    },
+    {
+      "id": "step_snp_7",
+      "stepNumber": 7,
+      "title": { "en": "Aarti", "hi": "आरती" },
+      "description": { "en": "Perform aarti by waving the lamp in front of the idol in a circular motion. The aarti signifies the completion of the puja and your gratitude to the deity.", "hi": "दीये को मूर्ति के सामने गोलाकार गति में लहरा कर आरती करें। आरती पूजा की समाप्ति और देवता के प्रति आपकी कृतज्ञता को दर्शाती है।" },
+      "relatedSamagriIds": ["sm_diya"],
+      "isOptional": false
+    },
+    {
+      "id": "step_snp_8",
+      "stepNumber": 8,
+      "title": { "en": "Seek Blessings", "hi": "आशीर्वाद लें" },
+      "description": { "en": "Respectfully bow to the idol and seek Satyanarayan's blessings for your family. Touch your head to receive the blessings, and then pass the blessed water from the kalash or halwa to family members.", "hi": "मूर्ति को सम्मान पूर्वक नमस्कार करें और अपने परिवार के लिए सत्यनारायण का आशीर्वाद लें। आशीर्वाद प्राप्त करने के लिए अपने सिर को छुएं, और फिर कलश का या हलवा को परिवार के सदस्यों को दें।" },
+      "relatedSamagriIds": [],
+      "isOptional": false
+    },
+    {
+      "id": "step_snp_9",
+      "stepNumber": 9,
+      "title": { "en": "Distribute Prasad", "hi": "प्रसाद वितरण" },
+      "description": { "en": "Distribute the halwa as prasad to all family members and guests. Everyone should taste the prasad to receive the deity's blessings. Some families share the katha (story) of Satyanarayan during this time.", "hi": "सभी परिवार के सदस्यों और मेहमानों को हलवा प्रसाद के रूप में वितरित करें। हर किसी को देवता का आशीर्वाद पाने के लिए प्रसाद का स्वाद लेना चाहिए। कुछ परिवार इस समय सत्यनारायण की कथा साझा करते हैं।" },
+      "relatedSamagriIds": ["sm_wheat_flour"],
+      "isOptional": false
+    }
+  ],
+  "variations": [
+    {
+      "id": "var_snp_occasions",
+      "regions": ["pan_india"],
+      "title": { "en": "Occasion-based Variations", "hi": "अवसर-आधारित भिन्नताएं" },
+      "description": { "en": "Satyanarayan Puja is often performed on specific occasions such as birthdays, anniversaries, new beginnings, recovery from illness, or after achieving success. The puja structure remains the same, but the intention and prayers are adjusted based on the specific occasion.", "hi": "सत्यनारायण पूजा अक्सर विशिष्ट अवसरों पर की जाती है जैसे जन्मदिन, वर्षगांठ, नई शुरुआत, बीमारी से ठीक होना, या सफलता प्राप्त करने के बाद। पूजा की संरचना समान रहती है, लेकिन विशिष्ट अवसर के आधार पर इरादा और प्रार्थनाएं बदल जाती हैं।" },
+      "affectsSamagriIds": [],
+      "affectsStepIds": ["step_snp_5"]
+    }
+  ],
+  "disclaimer": { "en": "This is a general guide to Satyanarayan Puja. Regional practices, family traditions, and the involvement of a qualified priest may vary. Please follow your family's practices and consult a local priest for proper rituals.", "hi": "यह सत्यनारायण पूजा का एक सामान्य मार्गदर्शन है। क्षेत्रीय प्रथाएं, पारिवारिक परंपराएं, और एक योग्य पुजारी की भागीदारी भिन्न हो सकती है। कृपया अपनी पारिवारिक परंपराओं का पालन करें और उचित अनुष्ठानों के लिए एक स्थानीय पुजारी से परामर्श लें।" },
+  "reviewStatus": "ai_drafted",
+  "sourceNote": { "en": "AI-drafted general guide based on widely documented Satyanarayan Puja practices. Not yet verified by a pandit. Specific variations for different occasions require consultation with a qualified priest.", "hi": "व्यापक रूप से प्रलेखित सत्यनारायण पूजा प्रथाओं के आधार पर AI द्वारा तैयार सामान्य मार्गदर्शन। अभी तक किसी पंडित द्वारा सत्यापित नहीं। विभिन्न अवसरों के लिए विशिष्ट भिन्नताओं के लिए एक योग्य पुजारी से परामर्श आवश्यक है।" },
+  "contentVersion": 1,
+  "status": "active"
+}

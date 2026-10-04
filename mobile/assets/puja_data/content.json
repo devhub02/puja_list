@@ -1,13 +1,3741 @@
 {
-  "checksum": "sha256:a3904a3c4c095da2df6d00f3bcfa91b8655883e7af61fbe355c79d326c26159a",
+  "checksum": "sha256:f0ad6931c333fc701940badaef7ddaf04630da487008d8b57990b1392e3619d1",
   "schemaVersion": 1,
-  "contentVersion": 1,
+  "contentVersion": 2,
   "languages": [
     "en",
     "hi"
   ],
-  "festivals": [],
-  "pujas": [],
-  "samagri": [],
+  "festivals": [
+    {
+      "id": "fest_diwali",
+      "name": {
+        "en": "Diwali",
+        "hi": "दिवाली"
+      },
+      "alternateNames": {
+        "en": [
+          "Deepavali",
+          "Festival of Lights"
+        ],
+        "hi": [
+          "दीपावली",
+          "प्रकाश का पर्व"
+        ]
+      },
+      "description": {
+        "en": "Festival of lights celebrating the victory of light over darkness and good over evil.",
+        "hi": "प्रकाश पर अंधकार और अच्छाई पर बुराई की जीत का उत्सव।"
+      },
+      "significance": {
+        "en": "Diwali is the most significant festival in the Hindu calendar, symbolizing the triumph of good over evil, knowledge over ignorance, and hope over despair. Lakshmi, the goddess of wealth and prosperity, is worshipped during Diwali.",
+        "hi": "दिवाली हिंदू पंचांग का सबसे महत्वपूर्ण त्योहार है, जो अच्छाई पर बुराई, ज्ञान पर अज्ञानता और आशा पर निराशा की जीत का प्रतीक है। दिवाली के दौरान संपत्ति और समृद्धि की देवी लक्ष्मी की पूजा की जाती है।"
+      },
+      "regions": [
+        "pan_india"
+      ],
+      "pujaIds": [
+        "puja_diwali_lakshmi_puja"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "fest_ganesh_chaturthi",
+      "name": {
+        "en": "Ganesh Chaturthi",
+        "hi": "गणेश चतुर्थी"
+      },
+      "alternateNames": {
+        "en": [
+          "Ganesh Jayanti",
+          "Vinayaka Chaturthi"
+        ],
+        "hi": [
+          "गणेश जयंती",
+          "विनायक चतुर्थी"
+        ]
+      },
+      "description": {
+        "en": "Festival celebrating the birth of Lord Ganesh, the remover of obstacles.",
+        "hi": "बाधाओं को दूर करने वाले भगवान गणेश के जन्म का त्योहार।"
+      },
+      "significance": {
+        "en": "Ganesh Chaturthi celebrates the wisdom and prosperity of Lord Ganesh. He is worshipped at the beginning of all auspicious endeavors as the remover of obstacles.",
+        "hi": "गणेश चतुर्थी भगवान गणेश की बुद्धिमत्ता और समृद्धि का जश्न है। सभी शुभ कार्यों की शुरुआत में उन्हें बाधा निवारण के रूप में पूजा जाता है।"
+      },
+      "regions": [
+        "pan_india"
+      ],
+      "pujaIds": [
+        "puja_ganesh_chaturthi"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "fest_hanuman_puja",
+      "name": {
+        "en": "Hanuman Puja",
+        "hi": "हनुमान पूजन"
+      },
+      "alternateNames": {
+        "en": [
+          "Hanuman Jayanti"
+        ],
+        "hi": [
+          "हनुमान जयंती"
+        ]
+      },
+      "description": {
+        "en": "Puja dedicated to Lord Hanuman, the devoted follower of Lord Rama.",
+        "hi": "भगवान राम के परमभक्त हनुमान को समर्पित पूजा।"
+      },
+      "significance": {
+        "en": "Hanuman Puja celebrates the devotion, strength, and courage of Lord Hanuman. Hanuman is worshipped as the embodiment of loyalty, courage, and righteousness. His puja is believed to bring strength and protection.",
+        "hi": "हनुमान पूजन भगवान हनुमान की भक्ति, शक्ति और साहस का जश्न है। हनुमान को भक्ति, साहस और धार्मिकता का प्रतीक माना जाता है। उनकी पूजा शक्ति और सुरक्षा लाने के लिए मानी जाती है।"
+      },
+      "regions": [
+        "pan_india"
+      ],
+      "pujaIds": [
+        "puja_hanuman_puja"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "fest_janmashtami",
+      "name": {
+        "en": "Janmashtami",
+        "hi": "जन्माष्टमी"
+      },
+      "alternateNames": {
+        "en": [
+          "Krishna Janmashtami",
+          "Gokulashtami"
+        ],
+        "hi": [
+          "कृष्ण जन्माष्टमी",
+          "गोकुलाष्टमी"
+        ]
+      },
+      "description": {
+        "en": "Festival celebrating the birth of Lord Krishna.",
+        "hi": "भगवान कृष्ण के जन्म का त्योहार।"
+      },
+      "significance": {
+        "en": "Janmashtami celebrates the birth of Lord Krishna, the eighth avatar of Vishnu. Krishna is revered for his wisdom, divine love, and role in the Mahabharata. Devotees celebrate with devotional singing, dancing, and butter-based offerings.",
+        "hi": "जन्माष्टमी विष्णु के आठवें अवतार भगवान कृष्ण के जन्म का जश्न है। कृष्ण को उनकी बुद्धिमत्ता, दिव्य प्रेम और महाभारत में उनकी भूमिका के लिए पूजा जाता है। भक्त भक्ति गीत, नृत्य और मक्खन पर आधारित चढ़ावे के साथ मनाते हैं।"
+      },
+      "regions": [
+        "pan_india"
+      ],
+      "pujaIds": [
+        "puja_janmashtami"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "fest_maha_shivratri",
+      "name": {
+        "en": "Maha Shivratri",
+        "hi": "महा शिवरात्रि"
+      },
+      "alternateNames": {
+        "en": [
+          "Shivaratri",
+          "Shivratri"
+        ],
+        "hi": [
+          "शिवरात्रि"
+        ]
+      },
+      "description": {
+        "en": "Festival celebrating Lord Shiva, observed on the 14th night of the dark fortnight of Phalgun.",
+        "hi": "फाल्गुन के कृष्ण पक्ष की चतुर्दशी रात को भगवान शिव को समर्पित त्योहार।"
+      },
+      "significance": {
+        "en": "Maha Shivratri celebrates the power and divinity of Lord Shiva. It is believed that on this night, Shiva performed the cosmic dance. Devotees fast and meditate to seek Shiva's blessings.",
+        "hi": "महा शिवरात्रि भगवान शिव की शक्ति और दिव्यता का जश्न है। माना जाता है कि इसी रात को शिव ने कॉस्मिक नृत्य किया था। भक्त शिव का आशीर्वाद पाने के लिए व्रत रखते और ध्यान करते हैं।"
+      },
+      "regions": [
+        "pan_india"
+      ],
+      "pujaIds": [
+        "puja_maha_shivratri"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "fest_navratri",
+      "name": {
+        "en": "Navratri",
+        "hi": "नवरात्रि"
+      },
+      "alternateNames": {
+        "en": [
+          "Dasara",
+          "Durga Puja",
+          "Navaratri"
+        ],
+        "hi": [
+          "दशहरा",
+          "दुर्गा पूजन",
+          "नवरात्र"
+        ]
+      },
+      "description": {
+        "en": "Nine-day festival celebrating Goddess Durga and her victory over evil.",
+        "hi": "देवी दुर्गा और बुराई पर उनकी जीत का नौ दिनों का त्योहार।"
+      },
+      "significance": {
+        "en": "Navratri celebrates the nine forms of Goddess Durga. Each day represents a different aspect of the divine feminine power. The festival culminates in Dussehra, celebrating the victory of good over evil.",
+        "hi": "नवरात्रि देवी दुर्गा के नौ रूपों का जश्न है। हर दिन दिव्य स्त्री शक्ति के एक अलग पहलू का प्रतिनिधित्व करता है। त्योहार दशहरे में समाप्त होता है, जो अच्छाई की बुराई पर जीत का जश्न है।"
+      },
+      "regions": [
+        "pan_india"
+      ],
+      "pujaIds": [
+        "puja_navratri_durga_puja"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "fest_saraswati_puja",
+      "name": {
+        "en": "Saraswati Puja",
+        "hi": "सरस्वती पूजन"
+      },
+      "alternateNames": {
+        "en": [
+          "Vasant Panchami",
+          "Saraswati Jayanti"
+        ],
+        "hi": [
+          "वसंत पंचमी",
+          "सरस्वती जयंती"
+        ]
+      },
+      "description": {
+        "en": "Festival dedicated to Goddess Saraswati, the deity of knowledge, learning, and the arts.",
+        "hi": "ज्ञान, शिक्षा और कलाओं की देवी सरस्वती को समर्पित त्योहार।"
+      },
+      "significance": {
+        "en": "Saraswati Puja is celebrated to invoke the blessings of Goddess Saraswati for wisdom, learning, and intellectual growth. It marks the beginning of spring and is particularly important for students and scholars.",
+        "hi": "सरस्वती पूजन ज्ञान, शिक्षा और बौद्धिक विकास के लिए देवी सरस्वती का आशीर्वाद पाने के लिए मनाया जाता है। यह वसंत की शुरुआत का प्रतीक है और छात्रों और विद्वानों के लिए विशेष रूप से महत्वपूर्ण है।"
+      },
+      "regions": [
+        "pan_india"
+      ],
+      "pujaIds": [
+        "puja_saraswati_puja"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "fest_satyanarayan",
+      "name": {
+        "en": "Satyanarayan Puja",
+        "hi": "सत्यनारायण पूजन"
+      },
+      "alternateNames": {
+        "en": [
+          "Satyanarayana Puja"
+        ],
+        "hi": [
+          "सत्यनारायण पूजा"
+        ]
+      },
+      "description": {
+        "en": "Puja dedicated to Lord Satyanarayan, an avatar of Vishnu, performed for family welfare and prosperity.",
+        "hi": "भगवान सत्यनारायण, विष्णु के अवतार को समर्पित पूजा, जो पारिवारिक कल्याण और समृद्धि के लिए की जाती है।"
+      },
+      "significance": {
+        "en": "Satyanarayan Puja is performed to seek blessings for family prosperity, good health, and the fulfillment of wishes. It is believed that this puja removes obstacles and brings good fortune to the household.",
+        "hi": "सत्यनारायण पूजन परिवार की समृद्धि, अच्छे स्वास्थ्य और इच्छाओं की पूर्ति के लिए किया जाता है। माना जाता है कि यह पूजा बाधाओं को दूर करता है और घर में खुशहाली लाता है।"
+      },
+      "regions": [
+        "pan_india"
+      ],
+      "pujaIds": [
+        "puja_satyanarayan_puja"
+      ],
+      "status": "active"
+    }
+  ],
+  "pujas": [
+    {
+      "id": "puja_diwali_lakshmi_puja",
+      "festivalId": "fest_diwali",
+      "name": {
+        "en": "Diwali Lakshmi Puja",
+        "hi": "दिवाली लक्ष्मी पूजन"
+      },
+      "alternateNames": {
+        "en": [
+          "Lakshmi Puja",
+          "Lakshmi Pooja"
+        ],
+        "hi": [
+          "लक्ष्मी पूजा",
+          "लक्ष्मी पूजन"
+        ]
+      },
+      "category": "festival",
+      "regions": [
+        "pan_india"
+      ],
+      "summary": {
+        "en": "Worship of Goddess Lakshmi on Diwali, seeking her blessings for prosperity, wealth, and good fortune for the household.",
+        "hi": "दिवाली पर देवी लक्ष्मी की पूजा, घर के लिए समृद्धि, धन और सुख-समृद्धि का आशीर्वाद माँगना।"
+      },
+      "significance": {
+        "en": "Lakshmi Puja during Diwali is one of the most important rituals in the Hindu calendar. Lakshmi is the goddess of wealth, prosperity, and abundance. The puja is performed to invite Lakshmi into the home and life, ensuring financial stability, success, and overall well-being of the family.",
+        "hi": "दिवाली के दौरान लक्ष्मी पूजा हिंदू पंचांग में सबसे महत्वपूर्ण अनुष्ठानों में से एक है। लक्ष्मी धन, समृद्धि और प्रचुरता की देवी हैं। पूजा घर और जीवन में लक्ष्मी को आमंत्रित करने के लिए की जाती है, जिससे परिवार की आर्थिक स्थिरता, सफलता और समग्र कल्याण सुनिश्चित हो।"
+      },
+      "samagri": [
+        {
+          "samagriId": "sm_lakshmi_idol",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "To represent and worship Goddess Lakshmi",
+            "hi": "देवी लक्ष्मी का प्रतिनिधित्व और पूजा करने के लिए"
+          },
+          "sortOrder": 1
+        },
+        {
+          "samagriId": "sm_diya",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "To light as a symbol of prosperity and to illuminate the home",
+            "hi": "समृद्धि का प्रतीक और घर को रोशन करने के लिए"
+          },
+          "quantityGuidance": {
+            "en": "multiple diyas recommended"
+          },
+          "sortOrder": 2
+        },
+        {
+          "samagriId": "sm_oil",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "To fuel the diyas",
+            "hi": "दीयों को जलाने के लिए"
+          },
+          "quantityGuidance": {
+            "en": "as needed"
+          },
+          "sortOrder": 3
+        },
+        {
+          "samagriId": "sm_flowers",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "To offer to the goddess as an expression of devotion",
+            "hi": "देवी को भक्ति का प्रकटीकरण के रूप में चढ़ाने के लिए"
+          },
+          "quantityGuidance": {
+            "en": "as needed"
+          },
+          "sortOrder": 4
+        },
+        {
+          "samagriId": "sm_incense",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "To purify the space and create a sacred atmosphere",
+            "hi": "स्थान को शुद्ध करने और पवित्र वातावरण बनाने के लिए"
+          },
+          "sortOrder": 5
+        },
+        {
+          "samagriId": "sm_turmeric",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "For applying tilak to the deity and self",
+            "hi": "देवी और स्वयं पर तिलक लगाने के लिए"
+          },
+          "sortOrder": 6
+        },
+        {
+          "samagriId": "sm_vermillion",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "For tilak and ritual offerings",
+            "hi": "तिलक और पूजा के लिए"
+          },
+          "sortOrder": 7
+        },
+        {
+          "samagriId": "sm_rice",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "To offer along with flowers and prayers",
+            "hi": "फूलों और प्रार्थनाओं के साथ चढ़ाने के लिए"
+          },
+          "quantityGuidance": {
+            "en": "as needed"
+          },
+          "sortOrder": 8
+        },
+        {
+          "samagriId": "sm_sweets",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "To offer as bhog to the goddess and distribute as prasad",
+            "hi": "देवी को भोग के रूप में चढ़ाने और प्रसाद के रूप में वितरित करने के लिए"
+          },
+          "sortOrder": 9
+        },
+        {
+          "samagriId": "sm_dry_fruits",
+          "classification": "OPTIONAL",
+          "purpose": {
+            "en": "To offer as an enriched bhog",
+            "hi": "समृद्ध भोग के रूप में चढ़ाने के लिए"
+          },
+          "sortOrder": 10
+        },
+        {
+          "samagriId": "sm_coins",
+          "classification": "OPTIONAL",
+          "purpose": {
+            "en": "Symbolic offering of wealth and prosperity",
+            "hi": "धन और समृद्धि का प्रतीकात्मक भोग"
+          },
+          "sortOrder": 11
+        },
+        {
+          "samagriId": "sm_water",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "For ritual bathing and washing of the deity",
+            "hi": "देवी को नहलाने और धोने के लिए"
+          },
+          "sortOrder": 12
+        }
+      ],
+      "steps": [
+        {
+          "id": "step_dlp_1",
+          "stepNumber": 1,
+          "title": {
+            "en": "Purification and Setup",
+            "hi": "शुद्धिकरण और तैयारी"
+          },
+          "description": {
+            "en": "Clean and decorate the puja space. Arrange the Lakshmi idol on a raised altar. Light multiple diyas around the space to symbolize the victory of light over darkness.",
+            "hi": "पूजा के स्थान को साफ करें और सजाएं। लक्ष्मी मूर्ति को एक ऊँची वेदी पर व्यवस्थित करें। प्रकाश पर अंधकार की जीत का प्रतीक देने के लिए स्थान के चारों ओर कई दीये जलाएं।"
+          },
+          "relatedSamagriIds": [
+            "sm_lakshmi_idol",
+            "sm_diya",
+            "sm_oil"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_dlp_2",
+          "stepNumber": 2,
+          "title": {
+            "en": "Invocation of the Goddess",
+            "hi": "देवी का आह्वान"
+          },
+          "description": {
+            "en": "Begin the puja by offering flowers and rice at the feet of the Lakshmi idol. Invoke the goddess to bless your home with prosperity and abundance. Recite prayers or mantras as per your family tradition.",
+            "hi": "लक्ष्मी मूर्ति के पैरों में फूल और चावल चढ़ा कर पूजा शुरू करें। देवी को अपने घर को समृद्धि और प्रचुरता से आशीर्वादित करने के लिए आह्वान करें। अपनी पारिवारिक परंपरा के अनुसार प्रार्थना या मंत्र दोहराएं।"
+          },
+          "relatedSamagriIds": [
+            "sm_flowers",
+            "sm_rice"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_dlp_3",
+          "stepNumber": 3,
+          "title": {
+            "en": "Apply Tilak",
+            "hi": "तिलक लगाएं"
+          },
+          "description": {
+            "en": "Apply turmeric and vermillion tilak on the idol's forehead and on your forehead. This marks the sacred nature of the ritual and your dedication.",
+            "hi": "मूर्ति के माथे पर और अपने माथे पर हल्दी और सिंदूर का तिलक लगाएं। यह पूजा की पवित्र प्रकृति और आपकी भक्ति को दर्शाता है।"
+          },
+          "relatedSamagriIds": [
+            "sm_turmeric",
+            "sm_vermillion"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_dlp_4",
+          "stepNumber": 4,
+          "title": {
+            "en": "Burn Incense",
+            "hi": "अगरबत्ती जलाएं"
+          },
+          "description": {
+            "en": "Light incense and move it in circles in front of the idol. The fragrance symbolizes the presence of the goddess and purifies the environment.",
+            "hi": "अगरबत्ती जलाएं और इसे मूर्ति के सामने गोलाकार गति में लें। सुगंध देवी की उपस्थिति का प्रतीक है और पर्यावरण को शुद्ध करती है।"
+          },
+          "relatedSamagriIds": [
+            "sm_incense"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_dlp_5",
+          "stepNumber": 5,
+          "title": {
+            "en": "Meditation and Prayers",
+            "hi": "ध्यान और प्रार्थना"
+          },
+          "description": {
+            "en": "Sit in meditation and focus on the idol. Silently offer prayers to Lakshmi for prosperity, wealth, health, and the well-being of your family. Visualize abundance flowing into your life and home.",
+            "hi": "ध्यान में बैठें और मूर्ति पर ध्यान केंद्रित करें। मन ही मन में लक्ष्मी से समृद्धि, धन, स्वास्थ्य और आपके परिवार के कल्याण के लिए प्रार्थना करें। अपने जीवन और घर में प्रचुरता के प्रवाह की कल्पना करें।"
+          },
+          "relatedSamagriIds": [],
+          "isOptional": false
+        },
+        {
+          "id": "step_dlp_6",
+          "stepNumber": 6,
+          "title": {
+            "en": "Symbolic Offerings",
+            "hi": "प्रतीकात्मक भोग"
+          },
+          "description": {
+            "en": "Offer coins or symbolic representations of wealth at the feet of the goddess. This is a symbolic offering of your acknowledgment of her as the source of all prosperity.",
+            "hi": "देवी के पैरों में सिक्के या धन के प्रतीकात्मक प्रतिनिधित्व चढ़ाएं। यह समृद्धि के सभी स्रोत के रूप में देवी की स्वीकृति का एक प्रतीकात्मक भोग है।"
+          },
+          "relatedSamagriIds": [
+            "sm_coins"
+          ],
+          "isOptional": true
+        },
+        {
+          "id": "step_dlp_7",
+          "stepNumber": 7,
+          "title": {
+            "en": "Offer Sweets and Fruits",
+            "hi": "मिठाई और फल चढ़ाएं"
+          },
+          "description": {
+            "en": "Offer sweets, dry fruits, and other delicacies at the feet of the idol. Sweets symbolize the sweetness of life and prosperity.",
+            "hi": "मूर्ति के पैरों में मिठाई, सूखे मेवे और अन्य व्यंजन चढ़ाएं। मिठाई जीवन की मिठास और समृद्धि का प्रतीक है।"
+          },
+          "relatedSamagriIds": [
+            "sm_sweets",
+            "sm_dry_fruits"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_dlp_8",
+          "stepNumber": 8,
+          "title": {
+            "en": "Aarti",
+            "hi": "आरती"
+          },
+          "description": {
+            "en": "Perform aarti by waving the lamp in front of the idol in a circular motion, expressing gratitude and completing the worship. The light of the aarti symbolizes the divine grace of the goddess.",
+            "hi": "दीये को मूर्ति के सामने गोलाकार गति में लहरा कर आरती करें, कृतज्ञता व्यक्त करते हुए और पूजा को पूरा करते हुए। आरती का प्रकाश देवी की दिव्य कृपा का प्रतीक है।"
+          },
+          "relatedSamagriIds": [
+            "sm_diya"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_dlp_9",
+          "stepNumber": 9,
+          "title": {
+            "en": "Seek Blessings",
+            "hi": "आशीर्वाद लें"
+          },
+          "description": {
+            "en": "Respectfully bow to the idol and seek Lakshmi's blessings for your household. Touch the altar and then your heart as a gesture of accepting her blessings into your life.",
+            "hi": "मूर्ति को सम्मान पूर्वक नमस्कार करें और अपने घर के लिए लक्ष्मी का आशीर्वाद लें। वेदी को छुएं और फिर अपने हृदय को छुएं, आशीर्वाद को अपने जीवन में स्वीकार करने का संकेत।"
+          },
+          "relatedSamagriIds": [],
+          "isOptional": false
+        },
+        {
+          "id": "step_dlp_10",
+          "stepNumber": 10,
+          "title": {
+            "en": "Distribute Prasad",
+            "hi": "प्रसाद वितरण"
+          },
+          "description": {
+            "en": "Distribute the sweets and offerings as prasad to family members and guests. Prasad carries the blessings of the goddess and is believed to bring prosperity to all who partake in it.",
+            "hi": "मिठाई और भोग को प्रसाद के रूप में परिवार के सदस्यों और मेहमानों में वितरित करें। प्रसाद देवी का आशीर्वाद लाता है और ऐसा माना जाता है कि यह सभी को समृद्धि लाता है।"
+          },
+          "relatedSamagriIds": [
+            "sm_sweets"
+          ],
+          "isOptional": false
+        }
+      ],
+      "variations": [
+        {
+          "id": "var_dlp_north",
+          "regions": [
+            "north"
+          ],
+          "title": {
+            "en": "North Indian Tradition",
+            "hi": "उत्तर भारतीय परंपरा"
+          },
+          "description": {
+            "en": "In North India, particularly in Delhi and surrounding areas, Lakshmi Puja is often performed with the lighting of Lakshmi Chowki (sacred square) and the placement of rice grains in specific patterns. The puja may include offerings of wheat and barley.",
+            "hi": "उत्तर भारत में, विशेष रूप से दिल्ली और आस-पास के क्षेत्रों में, लक्ष्मी पूजा अक्सर लक्ष्मी चौकी (पवित्र वर्ग) को प्रकाश देने और विशेष पैटर्न में चावल के दाने रखने के साथ की जाती है। पूजा में गेहूं और जौ का भोग शामिल हो सकता है।"
+          },
+          "affectsStepIds": [],
+          "affectsSamagriIds": []
+        },
+        {
+          "id": "var_dlp_south",
+          "regions": [
+            "south"
+          ],
+          "title": {
+            "en": "South Indian Tradition",
+            "hi": "दक्षिण भारतीय परंपरा"
+          },
+          "description": {
+            "en": "In South India, Lakshmi Puja often includes the making of Kolam (decorative patterns on the ground) and is sometimes combined with the worship of other deities. The offering of banana and other local fruits is common.",
+            "hi": "दक्षिण भारत में, लक्ष्मी पूजा में अक्सर कोलम (जमीन पर सजावटी पैटर्न) बनाना शामिल है और कभी-कभी अन्य देवताओं की पूजा के साथ मिलाया जाता है। केला और अन्य स्थानीय फलों का भोग आम है।"
+          },
+          "affectsStepIds": [],
+          "affectsSamagriIds": []
+        }
+      ],
+      "preparationChecklist": [],
+      "disclaimer": {
+        "en": "This is a general guide to Lakshmi Puja. Regional practices, family traditions, and the involvement of a qualified priest may vary. Please follow your family's practices and consult a local priest for proper rituals.",
+        "hi": "यह लक्ष्मी पूजा का एक सामान्य मार्गदर्शन है। क्षेत्रीय प्रथाएं, पारिवारिक परंपराएं, और एक योग्य पुजारी की भागीदारी भिन्न हो सकती है। कृपया अपनी पारिवारिक परंपराओं का पालन करें और उचित अनुष्ठानों के लिए एक स्थानीय पुजारी से परामर्श लें।"
+      },
+      "reviewStatus": "ai_drafted",
+      "sourceNote": {
+        "en": "AI-drafted general guide based on widely documented Diwali Lakshmi Puja practices. Not yet verified by a pandit. Regional variations and specific family traditions require consultation with a qualified priest.",
+        "hi": "व्यापक रूप से प्रलेखित दिवाली लक्ष्मी पूजा प्रथाओं के आधार पर AI द्वारा तैयार सामान्य मार्गदर्शन। अभी तक किसी पंडित द्वारा सत्यापित नहीं। क्षेत्रीय भिन्नताएं और विशिष्ट पारिवारिक परंपराओं के लिए एक योग्य पुजारी से परामर्श आवश्यक है।"
+      },
+      "contentVersion": 1,
+      "status": "active"
+    },
+    {
+      "id": "puja_ganesh_chaturthi",
+      "festivalId": "fest_ganesh_chaturthi",
+      "name": {
+        "en": "Ganesh Chaturthi Puja",
+        "hi": "गणेश चतुर्थी पूजन"
+      },
+      "alternateNames": {
+        "en": [
+          "Ganesh Jayanti Puja",
+          "Vinayaka Chaturthi Puja"
+        ],
+        "hi": [
+          "गणेश जयंती पूजन"
+        ]
+      },
+      "category": "festival",
+      "regions": [
+        "pan_india"
+      ],
+      "summary": {
+        "en": "Worship ritual for Lord Ganesh on his birthday, seeking blessings for the removal of obstacles and the success of new endeavors.",
+        "hi": "भगवान गणेश के जन्मदिन पर पूजा, बाधाओं को दूर करने और नए कार्यों की सफलता के लिए आशीर्वाद माँगना।"
+      },
+      "significance": {
+        "en": "Ganesh Chaturthi celebrates the birth of Lord Ganesh, the most widely worshipped deity in Hinduism. Ganesh is invoked at the beginning of all auspicious rituals as the remover of obstacles (Vighnaharta). This puja seeks his blessings for wisdom, success, and the removal of all impediments from life.",
+        "hi": "गणेश चतुर्थी हिंदू धर्म के सबसे व्यापक रूप से पूजे जाने वाले देवता भगवान गणेश के जन्म का जश्न है। गणेश को सभी शुभ कार्यों की शुरुआत में बाधा निवारक (विघ्नहर्ता) के रूप में आमंत्रित किया जाता है। यह पूजा उनका आशीर्वाद माँगती है ज्ञान, सफलता और जीवन से सभी बाधाओं को दूर करने के लिए।"
+      },
+      "samagri": [
+        {
+          "samagriId": "sm_ganesh_idol",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "To represent and worship Lord Ganesh",
+            "hi": "भगवान गणेश का प्रतिनिधित्व और पूजा करने के लिए"
+          },
+          "sortOrder": 1
+        },
+        {
+          "samagriId": "sm_flowers",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "To offer to the deity as a mark of devotion",
+            "hi": "भक्ति का प्रतीक के रूप में देवता को चढ़ाने के लिए"
+          },
+          "quantityGuidance": {
+            "en": "as needed"
+          },
+          "sortOrder": 2
+        },
+        {
+          "samagriId": "sm_incense",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "To purify the space and create a sacred atmosphere",
+            "hi": "स्थान को शुद्ध करने और पवित्र वातावरण बनाने के लिए"
+          },
+          "sortOrder": 3
+        },
+        {
+          "samagriId": "sm_diya",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "To light as an offering and to symbolize the light of knowledge",
+            "hi": "चढ़ावे के रूप में प्रकाश करने और ज्ञान के प्रकाश का प्रतीक"
+          },
+          "sortOrder": 4
+        },
+        {
+          "samagriId": "sm_oil",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "To fuel the diya",
+            "hi": "दीये को जलाने के लिए"
+          },
+          "quantityGuidance": {
+            "en": "as needed"
+          },
+          "sortOrder": 5
+        },
+        {
+          "samagriId": "sm_modak",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Traditional sweet offering to Lord Ganesh, his favorite food",
+            "hi": "भगवान गणेश को पारंपरिक मीठा भोग, उनका पसंदीदा भोजन"
+          },
+          "sortOrder": 6
+        },
+        {
+          "samagriId": "sm_coconut",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "To offer as a fruit offering",
+            "hi": "फल भोग के रूप में चढ़ाने के लिए"
+          },
+          "sortOrder": 7
+        },
+        {
+          "samagriId": "sm_turmeric",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "For applying tilak on the deity and self",
+            "hi": "देवता और स्वयं पर तिलक लगाने के लिए"
+          },
+          "sortOrder": 8
+        },
+        {
+          "samagriId": "sm_vermillion",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "For tilak and offering",
+            "hi": "तिलक और पूजा के लिए"
+          },
+          "sortOrder": 9
+        },
+        {
+          "samagriId": "sm_rice",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "To offer along with flowers as an offering",
+            "hi": "फूलों के साथ चढ़ावे के रूप में"
+          },
+          "quantityGuidance": {
+            "en": "as needed"
+          },
+          "sortOrder": 10
+        },
+        {
+          "samagriId": "sm_water",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "For ritual bathing of the deity and washing",
+            "hi": "देवता को नहलाने और धोने के लिए"
+          },
+          "sortOrder": 11
+        },
+        {
+          "samagriId": "sm_camphor",
+          "classification": "OPTIONAL",
+          "purpose": {
+            "en": "For aarti offering at the end of the puja",
+            "hi": "पूजा के अंत में आरती के लिए"
+          },
+          "sortOrder": 12
+        }
+      ],
+      "steps": [
+        {
+          "id": "step_gc_1",
+          "stepNumber": 1,
+          "title": {
+            "en": "Purification and Setup",
+            "hi": "शुद्धिकरण और तैयारी"
+          },
+          "description": {
+            "en": "Clean and prepare the puja space. Arrange the Ganesh idol and samagri items on the altar. Sit in a comfortable position facing the idol.",
+            "hi": "पूजा के स्थान को साफ करें और तैयार करें। गणेश मूर्ति और सभी सामग्री को वेदी पर व्यवस्थित करें। मूर्ति के सामने आरामदायक मुद्रा में बैठें।"
+          },
+          "relatedSamagriIds": [
+            "sm_ganesh_idol",
+            "sm_water"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_gc_2",
+          "stepNumber": 2,
+          "title": {
+            "en": "Light the Diya",
+            "hi": "दीया जलाएं"
+          },
+          "description": {
+            "en": "Light the diya using oil and set it in front of the altar. The lamp symbolizes divine knowledge and dispels darkness.",
+            "hi": "तेल का उपयोग करके दीया जलाएं और इसे वेदी के सामने रखें। दीया दिव्य ज्ञान का प्रतीक है और अंधकार को दूर करता है।"
+          },
+          "relatedSamagriIds": [
+            "sm_diya",
+            "sm_oil"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_gc_3",
+          "stepNumber": 3,
+          "title": {
+            "en": "Offer Flowers and Rice",
+            "hi": "फूल और चावल चढ़ाएं"
+          },
+          "description": {
+            "en": "Offer fresh flowers and rice grains at the feet of the Ganesh idol, expressing devotion and respect.",
+            "hi": "गणेश मूर्ति के पैरों में ताजे फूल और चावल के दाने चढ़ाएं, भक्ति और सम्मान व्यक्त करते हुए।"
+          },
+          "relatedSamagriIds": [
+            "sm_flowers",
+            "sm_rice"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_gc_4",
+          "stepNumber": 4,
+          "title": {
+            "en": "Apply Tilak",
+            "hi": "तिलक लगाएं"
+          },
+          "description": {
+            "en": "Apply turmeric and vermillion tilak on the idol's forehead and on yourself. This marks the sacred nature of the ritual.",
+            "hi": "मूर्ति के माथे पर और अपने माथे पर हल्दी और सिंदूर का तिलक लगाएं। यह पूजा की पवित्र प्रकृति को दर्शाता है।"
+          },
+          "relatedSamagriIds": [
+            "sm_turmeric",
+            "sm_vermillion"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_gc_5",
+          "stepNumber": 5,
+          "title": {
+            "en": "Burn Incense",
+            "hi": "अगरबत्ती जलाएं"
+          },
+          "description": {
+            "en": "Light agarbatti (incense) and move it in circles in front of the idol. The fragrance purifies the space and aids concentration.",
+            "hi": "अगरबत्ती जलाएं और इसे मूर्ति के सामने गोलाकार गति में लें। सुगंध स्थान को शुद्ध करती है और ध्यान में मदद करती है।"
+          },
+          "relatedSamagriIds": [
+            "sm_incense"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_gc_6",
+          "stepNumber": 6,
+          "title": {
+            "en": "Meditation and Prayers",
+            "hi": "ध्यान और प्रार्थना"
+          },
+          "description": {
+            "en": "Sit quietly and meditate on Lord Ganesh. Offer prayers seeking his blessings for wisdom, success, and the removal of obstacles. Recite mantras or prayers as per your family tradition.",
+            "hi": "भगवान गणेश पर ध्यान करते हुए शांति से बैठें। बुद्धिमत्ता, सफलता और बाधाओं को दूर करने के लिए उनका आशीर्वाद माँगने के लिए प्रार्थना करें। अपनी पारिवारिक परंपरा के अनुसार मंत्र या प्रार्थना दोहराएं।"
+          },
+          "relatedSamagriIds": [],
+          "isOptional": false
+        },
+        {
+          "id": "step_gc_7",
+          "stepNumber": 7,
+          "title": {
+            "en": "Offer Modak",
+            "hi": "मोदक चढ़ाएं"
+          },
+          "description": {
+            "en": "Offer modak and other sweets at the feet of the idol. Modak is Ganesh's favorite offering and symbolizes sweetness and joy.",
+            "hi": "मूर्ति के पैरों में मोदक और अन्य मिठाइयां चढ़ाएं। मोदक गणेश का पसंदीदा भोग है और मिठास और आनंद का प्रतीक है।"
+          },
+          "relatedSamagriIds": [
+            "sm_modak"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_gc_8",
+          "stepNumber": 8,
+          "title": {
+            "en": "Aarti",
+            "hi": "आरती"
+          },
+          "description": {
+            "en": "Perform aarti by waving the lamp or camphor flame in front of the idol in a circular motion. This signifies the completion of the puja and gratitude to the deity.",
+            "hi": "दीये या कपूर की लपट को मूर्ति के सामने गोलाकार गति में लहरा कर आरती करें। यह पूजा की समाप्ति और देवता के प्रति कृतज्ञता को दर्शाता है।"
+          },
+          "relatedSamagriIds": [
+            "sm_diya",
+            "sm_camphor"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_gc_9",
+          "stepNumber": 9,
+          "title": {
+            "en": "Seek Blessings",
+            "hi": "आशीर्वाद लें"
+          },
+          "description": {
+            "en": "Respectfully bow to the idol and seek Ganesh's blessings. Touch the altar and then your forehead as a gesture of receiving blessings.",
+            "hi": "मूर्ति को सम्मान पूर्वक नमस्कार करें और गणेश का आशीर्वाद लें। वेदी को छुएं और फिर अपने माथे को छुएं, आशीर्वाद प्राप्त करने का संकेत।"
+          },
+          "relatedSamagriIds": [],
+          "isOptional": false
+        },
+        {
+          "id": "step_gc_10",
+          "stepNumber": 10,
+          "title": {
+            "en": "Distribute Prasad",
+            "hi": "प्रसाद वितरण"
+          },
+          "description": {
+            "en": "Distribute the offered food (modak, sweets, coconut) as prasad among family members and guests. Prasad carries the blessings of the deity.",
+            "hi": "चढ़ाई गई मिठाइयों (मोदक, मिठाई, नारियल) को परिवार के सदस्यों और मेहमानों में प्रसाद के रूप में वितरित करें। प्रसाद देवता का आशीर्वाद ले कर आता है।"
+          },
+          "relatedSamagriIds": [
+            "sm_modak",
+            "sm_coconut"
+          ],
+          "isOptional": false
+        }
+      ],
+      "variations": [
+        {
+          "id": "var_gc_maharashtra",
+          "regions": [
+            "west"
+          ],
+          "title": {
+            "en": "Maharashtra Tradition",
+            "hi": "महाराष्ट्र परंपरा"
+          },
+          "description": {
+            "en": "In Maharashtra, the puja is followed by a 10-day celebration. On the final day (Anant Chaturdashi), the idol is immersed in water (Ganesh Visarjan). Modak is the main offering throughout the festival.",
+            "hi": "महाराष्ट्र में, पूजा के बाद 10 दिनों का उत्सव होता है। अंतिम दिन (अनंत चतुर्दशी) को मूर्ति को जल में विसर्जित किया जाता है (गणेश विसर्जन)। पूरे त्योहार के दौरान मोदक मुख्य भोग है।"
+          },
+          "affectsStepIds": [],
+          "affectsSamagriIds": [
+            "sm_modak"
+          ]
+        },
+        {
+          "id": "var_gc_south",
+          "regions": [
+            "south"
+          ],
+          "title": {
+            "en": "South Indian Tradition",
+            "hi": "दक्षिण भारतीय परंपरा"
+          },
+          "description": {
+            "en": "In South India, the puja includes the preparation of neyyappam (sweet preparations) and the application of kumkum (vermillion) is more prominent. The festival duration may vary by region and local customs.",
+            "hi": "दक्षिण भारत में, पूजा में नेय्यप्पम (मीठी तैयारी) की तैयारी शामिल है और कुमकुम (सिंदूर) का प्रयोग अधिक प्रमुख है। त्योहार की अवधि क्षेत्र और स्थानीय रीति-रिवाजों में भिन्न हो सकती है।"
+          },
+          "affectsStepIds": [],
+          "affectsSamagriIds": [
+            "sm_vermillion"
+          ]
+        }
+      ],
+      "preparationChecklist": [],
+      "disclaimer": {
+        "en": "This is a general guide to Ganesh Chaturthi puja. Regional practices and family traditions may vary. The ritual sequence and methods may differ based on your sampradaya (tradition) and local customs. Please follow your family's practices and consult a local priest if you are unfamiliar with the ritual.",
+        "hi": "यह गणेश चतुर्थी पूजा का एक सामान्य मार्गदर्शन है। क्षेत्रीय प्रथाएं और पारिवारिक परंपराएं भिन्न हो सकती हैं। अनुष्ठान का क्रम और विधि आपकी संप्रदाय (परंपरा) और स्थानीय रीति-रिवाजों के आधार पर भिन्न हो सकती है। कृपया अपनी पारिवारिक परंपराओं का पालन करें और यदि आप इस अनुष्ठान से परिचित नहीं हैं तो किसी स्थानीय पंडित से परामर्श लें।"
+      },
+      "reviewStatus": "ai_drafted",
+      "sourceNote": {
+        "en": "AI-drafted general guide based on widely documented Ganesh Chaturthi puja practices. Not yet verified by a pandit. Details such as exact timings and mantra texts require consultation with a qualified priest.",
+        "hi": "व्यापक रूप से प्रलेखित गणेश चतुर्थी पूजा प्रथाओं के आधार पर AI द्वारा तैयार सामान्य मार्गदर्शन। अभी तक किसी पंडित द्वारा सत्यापित नहीं। सटीक समय और मंत्र पाठ जैसे विवरण के लिए एक योग्य पुजारी से सलाह लेनी चाहिए।"
+      },
+      "contentVersion": 1,
+      "status": "active"
+    },
+    {
+      "id": "puja_hanuman_puja",
+      "festivalId": "fest_hanuman_puja",
+      "name": {
+        "en": "Hanuman Puja",
+        "hi": "हनुमान पूजन"
+      },
+      "alternateNames": {
+        "en": [
+          "Hanuman Jayanti",
+          "Hanuman Chalisa"
+        ],
+        "hi": [
+          "हनुमान जयंती",
+          "हनुमान चालीसा"
+        ]
+      },
+      "category": "household",
+      "regions": [
+        "pan_india"
+      ],
+      "summary": {
+        "en": "Worship of Lord Hanuman, the devoted follower of Lord Rama, seeking his blessings for strength, courage, protection, and spiritual growth. Hanuman is one of the most widely worshipped deities in Hinduism.",
+        "hi": "भगवान राम के परमभक्त हनुमान की पूजा, शक्ति, साहस, सुरक्षा और आध्यात्मिक विकास के लिए उनका आशीर्वाद माँगना। हनुमान हिंदू धर्म में सबसे अधिक पूजे जाने वाले देवताओं में से एक हैं।"
+      },
+      "significance": {
+        "en": "Hanuman Puja celebrates the strength, courage, loyalty, and devotion of Lord Hanuman. Hanuman is worshipped as the embodiment of discipline, righteousness, and selfless service. He is believed to be the greatest devotee of Lord Rama and his life exemplifies dedication to the divine. Devotees seek Hanuman's blessings for physical strength, mental clarity, protection from negative forces, and spiritual enlightenment.",
+        "hi": "हनुमान पूजा भगवान हनुमान की शक्ति, साहस, वफादारी और भक्ति का जश्न है। हनुमान को अनुशासन, धार्मिकता और निःस्वार्थ सेवा का प्रतीक माना जाता है। वह भगवान राम के महानतम भक्त माने जाते हैं और उनका जीवन दिव्य के प्रति समर्पण का उदाहरण है। भक्त शारीरिक शक्ति, मानसिक स्पष्टता, नकारात्मक शक्तियों से सुरक्षा और आध्यात्मिक ज्ञान के लिए हनुमान का आशीर्वाद माँगते हैं।"
+      },
+      "samagri": [
+        {
+          "samagriId": "sm_hanuman_idol",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "To represent and worship Lord Hanuman",
+            "hi": "भगवान हनुमान का प्रतिनिधित्व और पूजा करने के लिए"
+          },
+          "sortOrder": 1
+        },
+        {
+          "samagriId": "sm_vermillion",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "For tilak and anointing the idol, red color is sacred to Hanuman",
+            "hi": "तिलक और मूर्ति को रंगने के लिए, लाल रंग हनुमान को पवित्र है"
+          },
+          "sortOrder": 2
+        },
+        {
+          "samagriId": "sm_marigold",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Marigold flowers for offering to Hanuman",
+            "hi": "हनुमान को चढ़ाने के लिए गेंदे के फूल"
+          },
+          "quantityGuidance": {
+            "en": "as needed"
+          },
+          "sortOrder": 3
+        },
+        {
+          "samagriId": "sm_flowers",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Various flowers for offering",
+            "hi": "चढ़ाने के लिए विभिन्न फूल"
+          },
+          "quantityGuidance": {
+            "en": "as needed"
+          },
+          "sortOrder": 4
+        },
+        {
+          "samagriId": "sm_incense",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "To purify the space",
+            "hi": "स्थान को शुद्ध करने के लिए"
+          },
+          "sortOrder": 5
+        },
+        {
+          "samagriId": "sm_diya",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "To light as an offering of light and energy",
+            "hi": "प्रकाश और ऊर्जा के भोग के रूप में"
+          },
+          "sortOrder": 6
+        },
+        {
+          "samagriId": "sm_oil",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "To fuel the diyas",
+            "hi": "दीयों को जलाने के लिए"
+          },
+          "quantityGuidance": {
+            "en": "as needed"
+          },
+          "sortOrder": 7
+        },
+        {
+          "samagriId": "sm_besan",
+          "classification": "OPTIONAL",
+          "purpose": {
+            "en": "To make laddoos (sweets) as offering",
+            "hi": "भोग के लिए लड्डू बनाने के लिए"
+          },
+          "sortOrder": 8
+        },
+        {
+          "samagriId": "sm_jaggery",
+          "classification": "OPTIONAL",
+          "purpose": {
+            "en": "Ingredient for making sweets",
+            "hi": "मिठाई बनाने के लिए सामग्री"
+          },
+          "sortOrder": 9
+        },
+        {
+          "samagriId": "sm_sweets",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "To offer and distribute as prasad",
+            "hi": "भोग के रूप में चढ़ाने और प्रसाद वितरित करने के लिए"
+          },
+          "sortOrder": 10
+        },
+        {
+          "samagriId": "sm_turmeric",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "For tilak",
+            "hi": "तिलक के लिए"
+          },
+          "sortOrder": 11
+        },
+        {
+          "samagriId": "sm_rice",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "To offer along with flowers",
+            "hi": "फूलों के साथ चढ़ाने के लिए"
+          },
+          "quantityGuidance": {
+            "en": "as needed"
+          },
+          "sortOrder": 12
+        },
+        {
+          "samagriId": "sm_water",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "For ritual bathing and washing",
+            "hi": "पूजा के लिए जल"
+          },
+          "sortOrder": 13
+        }
+      ],
+      "steps": [
+        {
+          "id": "step_hp_1",
+          "stepNumber": 1,
+          "title": {
+            "en": "Purification and Setup",
+            "hi": "शुद्धिकरण और तैयारी"
+          },
+          "description": {
+            "en": "Clean and prepare the puja space. Arrange the Hanuman idol on the altar. Decorate with red cloth or flowers as red is the sacred color for Hanuman. Light diyas around the altar. Sit in a comfortable position facing the idol.",
+            "hi": "पूजा के स्थान को साफ करें और तैयार करें। हनुमान की मूर्ति को वेदी पर व्यवस्थित करें। लाल कपड़े या फूलों से सजाएं क्योंकि लाल हनुमान का पवित्र रंग है। वेदी के चारों ओर दीये जलाएं।"
+          },
+          "relatedSamagriIds": [
+            "sm_hanuman_idol",
+            "sm_diya",
+            "sm_oil"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_hp_2",
+          "stepNumber": 2,
+          "title": {
+            "en": "Apply Tilak",
+            "hi": "तिलक लगाएं"
+          },
+          "description": {
+            "en": "Apply turmeric and vermillion tilak on your forehead and on the idol. Vermillion is particularly sacred to Hanuman, so it is applied generously on his form.",
+            "hi": "अपने माथे पर और मूर्ति पर हल्दी और सिंदूर का तिलक लगाएं। सिंदूर विशेष रूप से हनुमान को पवित्र है।"
+          },
+          "relatedSamagriIds": [
+            "sm_turmeric",
+            "sm_vermillion"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_hp_3",
+          "stepNumber": 3,
+          "title": {
+            "en": "Burn Incense",
+            "hi": "अगरबत्ती जलाएं"
+          },
+          "description": {
+            "en": "Light incense and move it in circles in front of the idol. The fragrance purifies the space and creates a sacred environment for worship.",
+            "hi": "अगरबत्ती जलाएं और इसे मूर्ति के सामने गोलाकार गति में लें।"
+          },
+          "relatedSamagriIds": [
+            "sm_incense"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_hp_4",
+          "stepNumber": 4,
+          "title": {
+            "en": "Offer Flowers",
+            "hi": "फूल चढ़ाएं"
+          },
+          "description": {
+            "en": "Offer marigold and other flowers at the feet of Hanuman. Flowers represent devotion and beauty. The offering of flowers is a traditional way to honor the deity.",
+            "hi": "हनुमान के पैरों में गेंदे और अन्य फूल चढ़ाएं। फूल भक्ति और सौंदर्य का प्रतिनिधित्व करते हैं।"
+          },
+          "relatedSamagriIds": [
+            "sm_marigold",
+            "sm_flowers"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_hp_5",
+          "stepNumber": 5,
+          "title": {
+            "en": "Meditation and Prayers",
+            "hi": "ध्यान और प्रार्थना"
+          },
+          "description": {
+            "en": "Sit in quiet meditation and focus on Hanuman. Visualize his divine form—powerful, courageous, and devoted. Silently offer prayers seeking his blessings for strength, protection, courage, and spiritual guidance. Recite the Hanuman Chalisa or other prayers as per your tradition.",
+            "hi": "शांति से ध्यान करें और हनुमान पर ध्यान केंद्रित करें। शक्ति, सुरक्षा, साहस और आध्यात्मिक मार्गदर्शन के लिए प्रार्थना करें। हनुमान चालीसा या अन्य प्रार्थना दोहराएं।"
+          },
+          "relatedSamagriIds": [],
+          "isOptional": false
+        },
+        {
+          "id": "step_hp_6",
+          "stepNumber": 6,
+          "title": {
+            "en": "Offer Rice and Vermillion",
+            "hi": "चावल और सिंदूर चढ़ाएं"
+          },
+          "description": {
+            "en": "Offer rice grains mixed with vermillion at the feet of the idol. This is a traditional offering that symbolizes respect and devotion to Hanuman.",
+            "hi": "सिंदूर के साथ मिले चावल को मूर्ति के पैरों में चढ़ाएं। यह एक पारंपरिक भोग है जो हनुमान के प्रति सम्मान और भक्ति का प्रतीक है।"
+          },
+          "relatedSamagriIds": [
+            "sm_rice",
+            "sm_vermillion"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_hp_7",
+          "stepNumber": 7,
+          "title": {
+            "en": "Offer Sweets",
+            "hi": "मिठाई चढ़ाएं"
+          },
+          "description": {
+            "en": "Offer sweets or laddoos at the feet of Hanuman as a mark of devotion and celebration. Sweets symbolize the sweetness of divine presence and blessing.",
+            "hi": "भक्ति और पूजा के चिन्ह के रूप में हनुमान के पैरों में मिठाई या लड्डू चढ़ाएं।"
+          },
+          "relatedSamagriIds": [
+            "sm_sweets"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_hp_8",
+          "stepNumber": 8,
+          "title": {
+            "en": "Aarti",
+            "hi": "आरती"
+          },
+          "description": {
+            "en": "Perform aarti by waving the lamp in front of the idol in a circular motion. The aarti expresses gratitude to Hanuman for his strength, protection, and guidance.",
+            "hi": "दीये को मूर्ति के सामने गोलाकार गति में लहरा कर आरती करें। आरती हनुमान के शक्ति, सुरक्षा और मार्गदर्शन के लिए कृतज्ञता व्यक्त करती है।"
+          },
+          "relatedSamagriIds": [
+            "sm_diya"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_hp_9",
+          "stepNumber": 9,
+          "title": {
+            "en": "Seek Blessings",
+            "hi": "आशीर्वाद लें"
+          },
+          "description": {
+            "en": "Respectfully bow to the idol and seek Hanuman's blessings. Touch your forehead to show complete dedication and receive his grace. Ask for strength of body and mind, courage to face challenges, and protection from harm.",
+            "hi": "मूर्ति को सम्मान पूर्वक नमस्कार करें और हनुमान का आशीर्वाद लें। शरीर और मन की शक्ति, चुनौतियों का सामना करने का साहस, और नुकसान से सुरक्षा माँगें।"
+          },
+          "relatedSamagriIds": [],
+          "isOptional": false
+        },
+        {
+          "id": "step_hp_10",
+          "stepNumber": 10,
+          "title": {
+            "en": "Distribute Prasad",
+            "hi": "प्रसाद वितरण"
+          },
+          "description": {
+            "en": "Distribute the offered sweets as prasad to family members and guests. Prasad carries Hanuman's blessings and is believed to grant strength and protection to all who partake. The distribution is an important part of completing the puja.",
+            "hi": "मिठाई को प्रसाद के रूप में परिवार के सदस्यों और मेहमानों को वितरित करें। प्रसाद हनुमान का आशीर्वाद लाता है।"
+          },
+          "relatedSamagriIds": [
+            "sm_sweets"
+          ],
+          "isOptional": false
+        }
+      ],
+      "variations": [
+        {
+          "id": "var_hp_tuesday",
+          "regions": [
+            "pan_india"
+          ],
+          "title": {
+            "en": "Tuesday Worship",
+            "hi": "मंगलवार की पूजा"
+          },
+          "description": {
+            "en": "Tuesday is considered the most auspicious day for Hanuman Puja, as it is believed to be associated with Hanuman's powers. Many devotees observe a special puja on Tuesdays, often fasting or performing additional rituals. Hanuman Puja on Tuesday is believed to bring greater benefits and blessings.",
+            "hi": "मंगलवार को हनुमान पूजा के लिए सबसे शुभ दिन माना जाता है, क्योंकि यह हनुमान की शक्तियों से जुड़ा माना जाता है। कई भक्त मंगलवार को विशेष पूजा करते हैं।"
+          },
+          "affectsStepIds": [],
+          "affectsSamagriIds": []
+        },
+        {
+          "id": "var_hp_hanuman_chalisa",
+          "regions": [
+            "pan_india"
+          ],
+          "title": {
+            "en": "Hanuman Chalisa Recitation",
+            "hi": "हनुमान चालीसा का पाठ"
+          },
+          "description": {
+            "en": "Many devotees recite the Hanuman Chalisa (40 verses in praise of Hanuman) during the puja. The Chalisa is a powerful devotional prayer that praises Hanuman's qualities and seeks his blessings. Reciting the Chalisa is believed to bring protection and strength.",
+            "hi": "कई भक्त पूजा के दौरान हनुमान चालीसा (हनुमान की प्रशंसा में 40 श्लोक) का पाठ करते हैं। चालीसा एक शक्तिशाली भक्ति प्रार्थना है जो हनुमान की गुणों की प्रशंसा करती है।"
+          },
+          "affectsStepIds": [
+            "step_hp_5"
+          ],
+          "affectsSamagriIds": []
+        }
+      ],
+      "preparationChecklist": [],
+      "disclaimer": {
+        "en": "This is a general guide to Hanuman Puja. Regional practices and family traditions may vary. The recitation of Hanuman Chalisa or specific mantras should be done as per your family tradition or with guidance from a qualified priest. Please follow your family's practices for the most authentic experience.",
+        "hi": "यह हनुमान पूजा का एक सामान्य मार्गदर्शन है। क्षेत्रीय प्रथाएं और पारिवारिक परंपराएं भिन्न हो सकती हैं। कृपया अपनी पारिवारिक परंपराओं का पालन करें और सबसे प्रामाणिक अनुभव के लिए एक योग्य पुजारी से सलाह लें।"
+      },
+      "reviewStatus": "ai_drafted",
+      "sourceNote": {
+        "en": "AI-drafted general guide based on widely documented Hanuman Puja practices. Not yet verified by a pandit. The Hanuman Chalisa text and specific mantras should be obtained from reliable sources or a qualified priest.",
+        "hi": "व्यापक रूप से प्रलेखित हनुमान पूजा प्रथाओं के आधार पर AI द्वारा तैयार सामान्य मार्गदर्शन। अभी तक किसी पंडित द्वारा सत्यापित नहीं। हनुमान चालीसा पाठ और विशिष्ट मंत्रों को विश्वसनीय स्रोतों या एक योग्य पुजारी से प्राप्त किया जाना चाहिए।"
+      },
+      "contentVersion": 1,
+      "status": "active"
+    },
+    {
+      "id": "puja_janmashtami",
+      "festivalId": "fest_janmashtami",
+      "name": {
+        "en": "Janmashtami Puja",
+        "hi": "जन्माष्टमी पूजन"
+      },
+      "alternateNames": {
+        "en": [
+          "Krishna Janmashtami",
+          "Gokulashtami",
+          "Krishna Jayanti"
+        ],
+        "hi": [
+          "कृष्ण जन्माष्टमी",
+          "गोकुलाष्टमी"
+        ]
+      },
+      "category": "festival",
+      "regions": [
+        "pan_india"
+      ],
+      "summary": {
+        "en": "Celebration of the birth of Lord Krishna, the eighth avatar of Vishnu. The puja is marked by devotional singing, playing with butter, and midnight celebrations when Krishna is believed to be born.",
+        "hi": "भगवान कृष्ण के जन्म का जश्न, विष्णु के आठवें अवतार। पूजा भक्ति गीत, मक्खन के साथ खेलने और आधी रात के समारोहों से चिह्नित है जब कृष्ण का जन्म माना जाता है।"
+      },
+      "significance": {
+        "en": "Janmashtami celebrates the birth of Lord Krishna, the eighth avatar of Lord Vishnu. Krishna is revered for his divine wisdom, unconditional love, compassion, and his role in the Mahabharata and Bhagavad Gita. The puja is an expression of joy and devotion. Many temples organize grand celebrations with cultural performances, devotional songs, and enactments of Krishna's life.",
+        "hi": "जन्माष्टमी भगवान विष्णु के आठवें अवतार भगवान कृष्ण के जन्म का जश्न है। कृष्ण को उनकी दिव्य बुद्धिमत्ता, निःशर्त प्रेम, करुणा और महाभारत व भगवद् गीता में उनकी भूमिका के लिए पूजा जाता है। पूजा आनंद और भक्ति की अभिव्यक्ति है। कई मंदिर सांस्कृतिक कार्यक्रमों, भक्ति गीतों और कृष्ण के जीवन की प्रस्तुतियों के साथ भव्य समारोहों का आयोजन करते हैं।"
+      },
+      "samagri": [
+        {
+          "samagriId": "sm_krishna_idol",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "To represent and worship Lord Krishna",
+            "hi": "भगवान कृष्ण का प्रतिनिधित्व और पूजा करने के लिए"
+          },
+          "sortOrder": 1
+        },
+        {
+          "samagriId": "sm_flowers",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "To offer to Krishna as a mark of devotion",
+            "hi": "भक्ति का प्रतीक के रूप में कृष्ण को चढ़ाने के लिए"
+          },
+          "quantityGuidance": {
+            "en": "as needed"
+          },
+          "sortOrder": 2
+        },
+        {
+          "samagriId": "sm_diya",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "To light especially at midnight when Krishna is believed to be born",
+            "hi": "आधी रात को जलाने के लिए जब कृष्ण का जन्म माना जाता है"
+          },
+          "sortOrder": 3
+        },
+        {
+          "samagriId": "sm_oil",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "To fuel the diyas",
+            "hi": "दीयों को जलाने के लिए"
+          },
+          "quantityGuidance": {
+            "en": "as needed"
+          },
+          "sortOrder": 4
+        },
+        {
+          "samagriId": "sm_incense",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "To purify the space and create a sacred atmosphere",
+            "hi": "स्थान को शुद्ध करने और पवित्र वातावरण बनाने के लिए"
+          },
+          "sortOrder": 5
+        },
+        {
+          "samagriId": "sm_butter",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Offering to Krishna, his beloved food (Makhan), and playfully offered",
+            "hi": "कृष्ण को भोग, उनका पसंदीदा खाना (मक्खन), और खेल-खेल में चढ़ाया जाता है"
+          },
+          "sortOrder": 6
+        },
+        {
+          "samagriId": "sm_milk",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "For ritual purposes and offerings",
+            "hi": "अनुष्ठान और भोग के लिए"
+          },
+          "sortOrder": 7
+        },
+        {
+          "samagriId": "sm_yogurt",
+          "classification": "OPTIONAL",
+          "purpose": {
+            "en": "As an offering to Krishna",
+            "hi": "कृष्ण को भोग के रूप में"
+          },
+          "sortOrder": 8
+        },
+        {
+          "samagriId": "sm_honey",
+          "classification": "OPTIONAL",
+          "purpose": {
+            "en": "As part of offerings",
+            "hi": "भोग के रूप में"
+          },
+          "sortOrder": 9
+        },
+        {
+          "samagriId": "sm_sweets",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "To offer and distribute as prasad",
+            "hi": "भोग के रूप में चढ़ाने और प्रसाद वितरित करने के लिए"
+          },
+          "sortOrder": 10
+        },
+        {
+          "samagriId": "sm_fruit",
+          "classification": "OPTIONAL",
+          "purpose": {
+            "en": "To offer as fruit bhog",
+            "hi": "फल भोग के रूप में"
+          },
+          "sortOrder": 11
+        },
+        {
+          "samagriId": "sm_turmeric",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "For applying tilak",
+            "hi": "तिलक लगाने के लिए"
+          },
+          "sortOrder": 12
+        },
+        {
+          "samagriId": "sm_vermillion",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "For tilak and ritual offerings",
+            "hi": "तिलक और पूजा के लिए"
+          },
+          "sortOrder": 13
+        }
+      ],
+      "steps": [
+        {
+          "id": "step_j_1",
+          "stepNumber": 1,
+          "title": {
+            "en": "Purification and Setup",
+            "hi": "शुद्धिकरण और तैयारी"
+          },
+          "description": {
+            "en": "Clean and decorate the puja space with flowers and festive decorations. Arrange the Krishna idol on the altar, preferably in a cradle or crib (to symbolize his birth). Light diyas around the space to create a festive and sacred atmosphere.",
+            "hi": "पूजा के स्थान को फूलों और त्योहार की सजावट से सजाएं। कृष्ण की मूर्ति को वेदी पर व्यवस्थित करें, अधिमानतः पालने में (जन्म का प्रतीक)। स्थान के चारों ओर दीये जलाएं।"
+          },
+          "relatedSamagriIds": [
+            "sm_krishna_idol",
+            "sm_flowers",
+            "sm_diya",
+            "sm_oil"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_j_2",
+          "stepNumber": 2,
+          "title": {
+            "en": "Apply Tilak",
+            "hi": "तिलक लगाएं"
+          },
+          "description": {
+            "en": "Apply turmeric and vermillion tilak on your forehead and on the idol, marking the sacred celebration.",
+            "hi": "अपने माथे पर और मूर्ति पर हल्दी और सिंदूर का तिलक लगाएं, पवित्र जश्न को दर्शाते हुए।"
+          },
+          "relatedSamagriIds": [
+            "sm_turmeric",
+            "sm_vermillion"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_j_3",
+          "stepNumber": 3,
+          "title": {
+            "en": "Burn Incense",
+            "hi": "अगरबत्ती जलाएं"
+          },
+          "description": {
+            "en": "Light incense and move it in circles before the idol, creating a sacred and fragrant space for the celebration.",
+            "hi": "अगरबत्ती जलाएं और इसे मूर्ति के सामने गोलाकार गति में लें, जश्न के लिए एक पवित्र और सुगंधित स्थान बनाते हुए।"
+          },
+          "relatedSamagriIds": [
+            "sm_incense"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_j_4",
+          "stepNumber": 4,
+          "title": {
+            "en": "Offer Flowers and Prayers",
+            "hi": "फूल और प्रार्थना चढ़ाएं"
+          },
+          "description": {
+            "en": "Offer flowers and prayers to Lord Krishna. Speak your intentions and seek his blessings for love, joy, wisdom, and divine grace. Recite prayers or mantras as per your family tradition.",
+            "hi": "भगवान कृष्ण को फूल और प्रार्थना चढ़ाएं। अपनी मंशा व्यक्त करें और प्रेम, आनंद, बुद्धिमत्ता और दिव्य कृपा के लिए उनका आशीर्वाद माँगें।"
+          },
+          "relatedSamagriIds": [
+            "sm_flowers"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_j_5",
+          "stepNumber": 5,
+          "title": {
+            "en": "Meditation and Devotional Singing",
+            "hi": "ध्यान और भक्ति गीत"
+          },
+          "description": {
+            "en": "Sit in meditation before the idol. Visualize Lord Krishna in your heart. Sing devotional songs (bhajans) about Krishna's life, his divine plays (leelas), and his teachings. Devotional music and singing are central to Janmashtami celebrations.",
+            "hi": "मूर्ति के सामने ध्यान करें। कृष्ण को अपने हृदय में देखें। कृष्ण के जीवन, उनकी दिव्य लीलाओं और उनकी शिक्षाओं के बारे में भक्ति गीत गाएं। भक्ति संगीत जन्माष्टमी के जश्न का केंद्र है।"
+          },
+          "relatedSamagriIds": [],
+          "isOptional": false
+        },
+        {
+          "id": "step_j_6",
+          "stepNumber": 6,
+          "title": {
+            "en": "Midnight Celebration (if possible)",
+            "hi": "आधी रात का समारोह (यदि संभव हो)"
+          },
+          "description": {
+            "en": "If timing allows, perform the main puja at midnight, as Krishna is believed to be born at midnight. At this time, offer special prayers, light more diyas, and perform the aarti. If midnight is not possible, perform the puja during the day with equal devotion.",
+            "hi": "यदि समय की अनुमति हो, तो आधी रात को मुख्य पूजा करें, क्योंकि कृष्ण का जन्म आधी रात को माना जाता है। इस समय विशेष प्रार्थना करें, और आरती करें। यदि आधी रात संभव नहीं है, तो दिन में समान भक्ति के साथ पूजा करें।"
+          },
+          "relatedSamagriIds": [
+            "sm_diya"
+          ],
+          "isOptional": true
+        },
+        {
+          "id": "step_j_7",
+          "stepNumber": 7,
+          "title": {
+            "en": "Offer Butter and Sweets",
+            "hi": "मक्खन और मिठाई चढ़ाएं"
+          },
+          "description": {
+            "en": "Offer butter (makhan) and sweets to Krishna. Butter is Krishna's favorite food, and offering it playfully (as children do) is a cherished part of Janmashtami. Place butter and sweets at the feet of the idol, and some devotees playfully feed butter to the idol.",
+            "hi": "कृष्ण को मक्खन (मक्खन) और मिठाई चढ़ाएं। मक्खन कृष्ण का पसंदीदा भोजन है, और इसे खेल-खेल में चढ़ाना (जैसे बच्चे करते हैं) जन्माष्टमी का एक प्रिय हिस्सा है। मक्खन और मिठाई को मूर्ति के पैरों में रखें।"
+          },
+          "relatedSamagriIds": [
+            "sm_butter",
+            "sm_sweets"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_j_8",
+          "stepNumber": 8,
+          "title": {
+            "en": "Aarti",
+            "hi": "आरती"
+          },
+          "description": {
+            "en": "Perform aarti by waving the lamp in front of the idol in a circular motion. The aarti expresses gratitude for Krishna's birth and the joy he brings to the world.",
+            "hi": "दीये को मूर्ति के सामने गोलाकार गति में लहरा कर आरती करें। आरती कृष्ण के जन्म और दुनिया में लाई गई खुशियों के लिए कृतज्ञता व्यक्त करती है।"
+          },
+          "relatedSamagriIds": [
+            "sm_diya"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_j_9",
+          "stepNumber": 9,
+          "title": {
+            "en": "Seek Blessings",
+            "hi": "आशीर्वाद लें"
+          },
+          "description": {
+            "en": "Respectfully bow to the idol and seek Krishna's blessings for love, joy, spiritual growth, and protection. Touch your forehead to receive his blessings.",
+            "hi": "मूर्ति को सम्मान पूर्वक नमस्कार करें और प्रेम, आनंद, आध्यात्मिक विकास और सुरक्षा के लिए कृष्ण का आशीर्वाद लें।"
+          },
+          "relatedSamagriIds": [],
+          "isOptional": false
+        },
+        {
+          "id": "step_j_10",
+          "stepNumber": 10,
+          "title": {
+            "en": "Distribute Prasad",
+            "hi": "प्रसाद वितरण"
+          },
+          "description": {
+            "en": "Distribute the butter and sweets as prasad to all family members and guests. Prasad carries Krishna's blessings and is believed to bring joy and divine grace. The distribution is done in celebration of Krishna's birth.",
+            "hi": "मक्खन और मिठाई को सभी परिवार के सदस्यों और मेहमानों को प्रसाद के रूप में वितरित करें। प्रसाद कृष्ण का आशीर्वाद लाता है। वितरण कृष्ण के जन्म का जश्न मनाने के लिए किया जाता है।"
+          },
+          "relatedSamagriIds": [
+            "sm_butter",
+            "sm_sweets"
+          ],
+          "isOptional": false
+        }
+      ],
+      "variations": [
+        {
+          "id": "var_j_mathura",
+          "regions": [
+            "north"
+          ],
+          "title": {
+            "en": "Mathura and Brindavan Tradition",
+            "hi": "मथुरा और ब्रندावन परंपरा"
+          },
+          "description": {
+            "en": "In Mathura and Brindavan, Krishna's birthplace and childhood home, Janmashtami is celebrated with grand processions, elaborate decorations, and community feasts. The temples organize special midnight prayers and enactments of Krishna's birth story.",
+            "hi": "मथुरा और ब्रंदावन, कृष्ण के जन्मस्थान और बचपन के घर में, जन्माष्टमी को भव्य जुलूसों, विस्तृत सजावट और सामुदायिक भोजों के साथ मनाया जाता है।"
+          },
+          "affectsStepIds": [],
+          "affectsSamagriIds": [
+            "sm_butter",
+            "sm_sweets"
+          ]
+        },
+        {
+          "id": "var_j_raas_leela",
+          "regions": [
+            "pan_india"
+          ],
+          "title": {
+            "en": "Raas Leela Celebrations",
+            "hi": "राास लीला समारोह"
+          },
+          "description": {
+            "en": "In some regions, particularly in North India, Janmashtami includes Raas Leela (the cosmic dance) performances where devotees enact Krishna's divine love story with Gopis (milkmaids). These theatrical presentations are forms of devotional expression.",
+            "hi": "कुछ क्षेत्रों में, विशेष रूप से उत्तर भारत में, जन्माष्टमी में राास लीला (ब्रह्मांडीय नृत्य) प्रस्तुतियां शामिल हैं जहां भक्त कृष्ण की गोपियों के साथ दिव्य प्रेम की कहानी को नाटकीय रूप देते हैं।"
+          },
+          "affectsStepIds": [],
+          "affectsSamagriIds": []
+        }
+      ],
+      "preparationChecklist": [],
+      "disclaimer": {
+        "en": "This is a general guide to Janmashtami Puja. Regional practices, family traditions, and the exact timing (based on lunar calendar) may vary. Please follow your family's practices and consult a local priest for specific rituals and timing.",
+        "hi": "यह जन्माष्टमी पूजा का एक सामान्य मार्गदर्शन है। क्षेत्रीय प्रथाएं, पारिवारिक परंपराएं, और सटीक समय (चंद्र पंचांग के आधार पर) भिन्न हो सकते हैं। कृपया अपनी पारिवारिक परंपराओं का पालन करें और विशिष्ट अनुष्ठानों के लिए एक स्थानीय पुजारी से परामर्श लें।"
+      },
+      "reviewStatus": "ai_drafted",
+      "sourceNote": {
+        "en": "AI-drafted general guide based on widely documented Janmashtami practices. Not yet verified by a pandit. The exact date and timing should be determined from the lunar calendar in consultation with a priest.",
+        "hi": "व्यापक रूप से प्रलेखित जन्माष्टमी प्रथाओं के आधार पर AI द्वारा तैयार सामान्य मार्गदर्शन। अभी तक किसी पंडित द्वारा सत्यापित नहीं। सटीक तारीख और समय को एक पुजारी से परामर्श लेकर चंद्र पंचांग से निर्धारित किया जाना चाहिए।"
+      },
+      "contentVersion": 1,
+      "status": "active"
+    },
+    {
+      "id": "puja_maha_shivratri",
+      "festivalId": "fest_maha_shivratri",
+      "name": {
+        "en": "Maha Shivratri Puja",
+        "hi": "महा शिवरात्रि पूजन"
+      },
+      "alternateNames": {
+        "en": [
+          "Shivaratri Puja",
+          "Mahashivratri"
+        ],
+        "hi": [
+          "शिवरात्रि पूजा",
+          "महाशिवरात्रि"
+        ]
+      },
+      "category": "festival",
+      "regions": [
+        "pan_india"
+      ],
+      "summary": {
+        "en": "Night-long worship of Lord Shiva celebrated on the 14th night of the dark fortnight of Phalgun. Seeks blessings for spiritual growth and protection.",
+        "hi": "फाल्गुन के कृष्ण पक्ष की 14वीं रात को भगवान शिव की रात भर की पूजा। आध्यात्मिक विकास और सुरक्षा के लिए आशीर्वाद माँगना।"
+      },
+      "significance": {
+        "en": "Maha Shivratri celebrates the power and glory of Lord Shiva, the supreme being in Hindu philosophy. It is believed that on this night, Shiva performed the cosmic dance (Tandava). The puja involves all-night vigil, meditation, and fasting. Devotees seek Shiva's blessings for spiritual awakening, destruction of ego, and ultimate liberation.",
+        "hi": "महा शिवरात्रि भगवान शिव की शक्ति और महिमा का जश्न है, जो हिंदू दर्शन में सर्वोच्च हैं। माना जाता है कि इसी रात को शिव ने ब्रह्मांडीय नृत्य (तांडव) किया था। पूजा में रात भर की विगिल, ध्यान और व्रत शामिल हैं। भक्त आध्यात्मिक जागृति, अहंकार के विनाश और अंतिम मुक्ति के लिए शिव का आशीर्वाद माँगते हैं।"
+      },
+      "samagri": [
+        {
+          "samagriId": "sm_shiva_lingam",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "To represent Lord Shiva in the puja",
+            "hi": "पूजा में भगवान शिव का प्रतिनिधित्व करने के लिए"
+          },
+          "sortOrder": 1
+        },
+        {
+          "samagriId": "sm_bilva_leaves",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "Sacred leaves for offering to Shiva, considered essential for the puja",
+            "hi": "शिव को चढ़ाने के लिए पवित्र पत्तियां, पूजा के लिए आवश्यक माने जाते हैं"
+          },
+          "quantityGuidance": {
+            "en": "as available"
+          },
+          "sortOrder": 2
+        },
+        {
+          "samagriId": "sm_flowers",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "To offer to the deity as a mark of devotion",
+            "hi": "भक्ति का प्रतीक के रूप में देवता को चढ़ाने के लिए"
+          },
+          "quantityGuidance": {
+            "en": "as needed"
+          },
+          "sortOrder": 3
+        },
+        {
+          "samagriId": "sm_milk",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "For ritual bathing and abhisheka of the Shiva lingam",
+            "hi": "शिव लिंग को नहलाने और अभिषेक के लिए"
+          },
+          "sortOrder": 4
+        },
+        {
+          "samagriId": "sm_yogurt",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "For ritual bathing of the lingam",
+            "hi": "लिंग को नहलाने के लिए"
+          },
+          "sortOrder": 5
+        },
+        {
+          "samagriId": "sm_ghee",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "For ritual bathing of the lingam and offering",
+            "hi": "लिंग को नहलाने और भोग के लिए"
+          },
+          "sortOrder": 6
+        },
+        {
+          "samagriId": "sm_honey",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "For ritual bathing of the lingam",
+            "hi": "लिंग को नहलाने के लिए"
+          },
+          "sortOrder": 7
+        },
+        {
+          "samagriId": "sm_water",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "For ritual bathing and washing of the lingam",
+            "hi": "लिंग को नहलाने और धोने के लिए"
+          },
+          "sortOrder": 8
+        },
+        {
+          "samagriId": "sm_incense",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "To purify the space during the all-night vigil",
+            "hi": "रात भर की पूजा के दौरान स्थान को शुद्ध करने के लिए"
+          },
+          "sortOrder": 9
+        },
+        {
+          "samagriId": "sm_diya",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "To light during the all-night vigil, symbolizing divine light",
+            "hi": "रात भर की पूजा के दौरान दीया जलाने के लिए, दिव्य प्रकाश का प्रतीक"
+          },
+          "sortOrder": 10
+        },
+        {
+          "samagriId": "sm_oil",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "To fuel the diyas throughout the night",
+            "hi": "पूरी रात दीयों को जलाने के लिए"
+          },
+          "quantityGuidance": {
+            "en": "more quantity needed for all-night vigil"
+          },
+          "sortOrder": 11
+        },
+        {
+          "samagriId": "sm_turmeric",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "For tilak",
+            "hi": "तिलक लगाने के लिए"
+          },
+          "sortOrder": 12
+        },
+        {
+          "samagriId": "sm_vermillion",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "For tilak and ritual purposes",
+            "hi": "तिलक और पूजा के लिए"
+          },
+          "sortOrder": 13
+        }
+      ],
+      "steps": [
+        {
+          "id": "step_ms_1",
+          "stepNumber": 1,
+          "title": {
+            "en": "Purification and Setup",
+            "hi": "शुद्धिकरण और तैयारी"
+          },
+          "description": {
+            "en": "Clean and prepare the puja space. Set up the Shiva lingam on an altar with a base (usually a stone or metal container). Arrange all samagri items around the lingam. Light the diya and incense. Sit in a comfortable meditation posture facing the lingam.",
+            "hi": "पूजा के स्थान को साफ करें और तैयार करें। शिव लिंग को आधार के साथ (आमतौर पर पत्थर या धातु का कंटेनर) वेदी पर स्थापित करें। सभी सामग्री को लिंग के चारों ओर व्यवस्थित करें। दीया और अगरबत्ती जलाएं। लिंग के सामने एक आरामदायक ध्यान मुद्रा में बैठें।"
+          },
+          "relatedSamagriIds": [
+            "sm_shiva_lingam",
+            "sm_diya",
+            "sm_oil",
+            "sm_incense"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_ms_2",
+          "stepNumber": 2,
+          "title": {
+            "en": "Ritual Bathing of the Lingam",
+            "hi": "लिंग का अभिषेक"
+          },
+          "description": {
+            "en": "Perform the ritual bathing (abhisheka) of the Shiva lingam. Begin by bathing it with water, followed by milk, yogurt, ghee, and honey in sequence. Each bathing is a form of worship and purification. Rinse with water at the end.",
+            "hi": "शिव लिंग का अभिषेक (नहलाना) करें। पहले जल से नहलाएं, फिर दूध, दही, घी और शहद का क्रमानुसार प्रयोग करें। हर नहलाना पूजा और शुद्धिकरण का एक रूप है। अंत में जल से धो लें।"
+          },
+          "relatedSamagriIds": [
+            "sm_water",
+            "sm_milk",
+            "sm_yogurt",
+            "sm_ghee",
+            "sm_honey"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_ms_3",
+          "stepNumber": 3,
+          "title": {
+            "en": "Apply Tilak",
+            "hi": "तिलक लगाएं"
+          },
+          "description": {
+            "en": "Apply turmeric and vermillion tilak on yourself as a mark of participation in the sacred ritual. This signifies your dedication to Lord Shiva.",
+            "hi": "पवित्र अनुष्ठान में भागीदारी के निशान के रूप में अपने माथे पर हल्दी और सिंदूर का तिलक लगाएं। यह भगवान शिव के प्रति आपकी भक्ति को दर्शाता है।"
+          },
+          "relatedSamagriIds": [
+            "sm_turmeric",
+            "sm_vermillion"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_ms_4",
+          "stepNumber": 4,
+          "title": {
+            "en": "Offer Bilva Leaves",
+            "hi": "बेलपत्र चढ़ाएं"
+          },
+          "description": {
+            "en": "Offer fresh bilva leaves on the lingam. Bilva leaves are sacred to Shiva and are considered the most important offering. Offer them with devotion and prayers. The leaves can be offered in groups of three (representing the three aspects of Shiva) or as individual leaves.",
+            "hi": "लिंग पर ताजी बेलपत्र चढ़ाएं। बेलपत्र शिव को पवित्र हैं और सबसे महत्वपूर्ण भोग माने जाते हैं। उन्हें भक्ति और प्रार्थना के साथ चढ़ाएं। पत्तियों को तीन के समूह में (शिव के तीन पहलुओं का प्रतिनिधित्व) या व्यक्तिगत पत्तियों के रूप में चढ़ाया जा सकता है।"
+          },
+          "relatedSamagriIds": [
+            "sm_bilva_leaves"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_ms_5",
+          "stepNumber": 5,
+          "title": {
+            "en": "Offer Flowers",
+            "hi": "फूल चढ़ाएं"
+          },
+          "description": {
+            "en": "Offer flowers at the base of the lingam as a symbol of devotion and beauty. Flowers represent the beauty of creation and the divine.",
+            "hi": "भक्ति और सौंदर्य का प्रतीक के रूप में लिंग के आधार पर फूल चढ़ाएं। फूल सृष्टि की सुंदरता और दिव्य प्रतिनिधित्व करते हैं।"
+          },
+          "relatedSamagriIds": [
+            "sm_flowers"
+          ],
+          "isOptional": true
+        },
+        {
+          "id": "step_ms_6",
+          "stepNumber": 6,
+          "title": {
+            "en": "All-Night Vigil and Meditation",
+            "hi": "रात भर की विगिल और ध्यान"
+          },
+          "description": {
+            "en": "Engage in an all-night vigil dedicated to Lord Shiva. Spend the night in meditation, chanting, or silent prayer. Keep the diyas lit throughout the night. Some devotees recite scriptures, particularly the Shiva Purana or Shiva Chalisa. Maintain focus on spiritual practices and avoid sleep to honor Shiva.",
+            "hi": "भगवान शिव के लिए समर्पित रात भर की विगिल में लगे रहें। रात को ध्यान, जाप या मौन प्रार्थना में बिताएं। पूरी रात दीये जलाए रखें। कुछ भक्त शास्त्रों को पढ़ते हैं, विशेष रूप से शिव पुराण या शिव चालीसा। आध्यात्मिक प्रथाओं पर ध्यान केंद्रित करें और शिव का सम्मान करने के लिए नींद से बचें।"
+          },
+          "relatedSamagriIds": [
+            "sm_diya"
+          ],
+          "isOptional": false,
+          "importantNote": {
+            "en": "An all-night vigil can be physically demanding. If fasting or staying awake all night is not possible, perform the puja during the day with the same devotion. Adjust the duration based on your physical capacity.",
+            "hi": "रात भर की विगिल शारीरिक रूप से कठिन हो सकती है। यदि व्रत रखना या पूरी रात जागना संभव नहीं है, तो उसी भक्ति के साथ दिन में पूजा करें। अपनी शारीरिक क्षमता के आधार पर अवधि को समायोजित करें।"
+          }
+        },
+        {
+          "id": "step_ms_7",
+          "stepNumber": 7,
+          "title": {
+            "en": "Renewal of Offerings",
+            "hi": "भोग का नवीनीकरण"
+          },
+          "description": {
+            "en": "During the night, periodically offer fresh bilva leaves and other offerings to the lingam. This can be done at midnight or during the early morning hours. Each offering is a gesture of continuous devotion.",
+            "hi": "रात के दौरान, समय-समय पर लिंग को ताजी बेलपत्र और अन्य भोग चढ़ाएं। यह आधी रात या सुबह के शुरुआती घंटों में किया जा सकता है। हर भोग निरंतर भक्ति का एक संकेत है।"
+          },
+          "relatedSamagriIds": [
+            "sm_bilva_leaves",
+            "sm_flowers"
+          ],
+          "isOptional": true
+        },
+        {
+          "id": "step_ms_8",
+          "stepNumber": 8,
+          "title": {
+            "en": "Aarti at Dawn",
+            "hi": "भोर में आरती"
+          },
+          "description": {
+            "en": "As dawn approaches, perform the aarti by waving the lamp in front of the lingam in a circular motion. The aarti marks the completion of the all-night vigil and gratitude to Lord Shiva. This is the main aarti of the puja.",
+            "hi": "जैसे-जैसे भोर निकट आती है, लिंग के सामने दीये को गोलाकार गति में लहरा कर आरती करें। आरती रात भर की विगिल की समाप्ति और भगवान शिव के प्रति कृतज्ञता को दर्शाती है। यह पूजा की मुख्य आरती है।"
+          },
+          "relatedSamagriIds": [
+            "sm_diya"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_ms_9",
+          "stepNumber": 9,
+          "title": {
+            "en": "Seek Blessings",
+            "hi": "आशीर्वाद लें"
+          },
+          "description": {
+            "en": "Respectfully bow to the lingam and seek Shiva's blessings for spiritual growth, protection, and liberation. Touch your forehead to the ground as a gesture of complete surrender and devotion.",
+            "hi": "लिंग को सम्मान पूर्वक नमस्कार करें और आध्यात्मिक विकास, सुरक्षा और मुक्ति के लिए शिव का आशीर्वाद लें। पूर्ण समर्पण और भक्ति के संकेत के रूप में अपने माथे को जमीन से छुएं।"
+          },
+          "relatedSamagriIds": [],
+          "isOptional": false
+        },
+        {
+          "id": "step_ms_10",
+          "stepNumber": 10,
+          "title": {
+            "en": "Prasad Distribution",
+            "hi": "प्रसाद वितरण"
+          },
+          "description": {
+            "en": "Distribute prasad (blessed offerings) to family members and others. Traditionally, fruit, milk-based sweets, or simple offerings are distributed. Prasad carries Shiva's blessings to all who partake.",
+            "hi": "परिवार के सदस्यों और अन्य लोगों को प्रसाद वितरित करें। परंपरागत रूप से, फल, दूध-आधारित मिठाई, या सरल भोग वितरित किए जाते हैं। प्रसाद सभी को शिव का आशीर्वाद लाता है।"
+          },
+          "relatedSamagriIds": [],
+          "isOptional": true
+        }
+      ],
+      "variations": [
+        {
+          "id": "var_ms_fasting",
+          "regions": [
+            "pan_india"
+          ],
+          "title": {
+            "en": "Fasting Tradition",
+            "hi": "व्रत परंपरा"
+          },
+          "description": {
+            "en": "Many devotees observe a fast (vrat) on Maha Shivratri. There are different types of fasts: complete abstinence from food, consuming only fruits and milk, or consuming specific foods. People with health conditions, pregnant women, or those on medication should consult a doctor before fasting. Breaking the fast should be done after the puja is complete.",
+            "hi": "कई भक्त महा शिवरात्रि पर व्रत (उपवास) रखते हैं। विभिन्न प्रकार के व्रत हैं: भोजन से पूर्ण परहेज, केवल फल और दूध का सेवन, या विशिष्ट भोजन का सेवन। स्वास्थ्य स्थितियों वाले लोग, गर्भवती महिलाएं, या दवाई ले रहे लोगों को व्रत रखने से पहले डॉक्टर से परामर्श करना चाहिए। पूजा पूरी होने के बाद व्रत तोड़ना चाहिए।"
+          },
+          "affectsStepIds": [
+            "step_ms_6"
+          ],
+          "affectsSamagriIds": []
+        },
+        {
+          "id": "var_ms_north",
+          "regions": [
+            "north"
+          ],
+          "title": {
+            "en": "North Indian Tradition",
+            "hi": "उत्तर भारतीय परंपरा"
+          },
+          "description": {
+            "en": "In North India, particularly in Uttar Pradesh and the Himalayas, Maha Shivratri is celebrated with grand processions and community gatherings at Shiva temples. The worship of the lingam remains central, and large bonfires (havan) are often lit during the night.",
+            "hi": "उत्तर भारत में, विशेष रूप से उत्तर प्रदेश और हिमालयी क्षेत्रों में, महा शिवरात्रि भव्य जुलूस और शिव मंदिरों में सामुदायिक समारोहों के साथ मनाई जाती है। लिंग की पूजा केंद्रीय रहती है, और रात के दौरान बड़ी अलाइन (हवन) अक्सर जलाई जाती हैं।"
+          },
+          "affectsStepIds": [],
+          "affectsSamagriIds": []
+        }
+      ],
+      "preparationChecklist": [],
+      "disclaimer": {
+        "en": "This is a general guide to Maha Shivratri Puja. People with health conditions, pregnant women, nursing mothers, or those on medications should consult their doctor before fasting or performing all-night vigils. Regional practices and family traditions may vary. Please follow your family's practices and consult a local priest for proper rituals.",
+        "hi": "यह महा शिवरात्रि पूजा का एक सामान्य मार्गदर्शन है। स्वास्थ्य स्थितियों वाले लोग, गर्भवती महिलाएं, दूध पिलाने वाली माताएं, या दवाई ले रहे लोगों को व्रत रखने या रात भर की विगिल करने से पहले अपने डॉक्टर से परामर्श करना चाहिए। क्षेत्रीय प्रथाएं और पारिवारिक परंपराएं भिन्न हो सकती हैं। कृपया अपनी पारिवारिक परंपराओं का पालन करें और उचित अनुष्ठानों के लिए एक स्थानीय पुजारी से परामर्श लें।"
+      },
+      "reviewStatus": "ai_drafted",
+      "sourceNote": {
+        "en": "AI-drafted general guide based on widely documented Maha Shivratri puja practices. Not yet verified by a pandit. Fasting guidance should be personalized based on individual health conditions.",
+        "hi": "व्यापक रूप से प्रलेखित महा शिवरात्रि पूजा प्रथाओं के आधार पर AI द्वारा तैयार सामान्य मार्गदर्शन। अभी तक किसी पंडित द्वारा सत्यापित नहीं। व्रत का मार्गदर्शन व्यक्तिगत स्वास्थ्य स्थितियों के आधार पर व्यक्तिगत होना चाहिए।"
+      },
+      "contentVersion": 1,
+      "status": "active"
+    },
+    {
+      "id": "puja_navratri_durga_puja",
+      "festivalId": "fest_navratri",
+      "name": {
+        "en": "Navratri Durga Puja with Kalash Sthapana",
+        "hi": "नवरात्रि दुर्गा पूजन व कलश स्थापना"
+      },
+      "alternateNames": {
+        "en": [
+          "Durga Puja",
+          "Ghatasthapana",
+          "Kalash Sthapana",
+          "Navratri Puja"
+        ],
+        "hi": [
+          "दुर्गा पूजन",
+          "घटस्थापना",
+          "कलश स्थापना"
+        ]
+      },
+      "category": "festival",
+      "regions": [
+        "pan_india"
+      ],
+      "summary": {
+        "en": "Nine-day festival celebrating Goddess Durga and her victory over evil. Kalash Sthapana (pot installation) marks the beginning of Navratri, symbolizing the manifestation of divine energy and the planting of seeds for prosperity.",
+        "hi": "देवी दुर्गा और बुराई पर उनकी जीत का नौ दिनों का उत्सव। कलश स्थापना नवरात्रि की शुरुआत को दर्शाती है, दिव्य ऊर्जा की अभिव्यक्ति और समृद्धि के बीजों को रोपण करती है।"
+      },
+      "significance": {
+        "en": "Navratri celebrates the nine forms (Navadurga) of Goddess Durga. Each day represents a different aspect of the goddess and her divine powers. Kalash Sthapana on the first day marks the beginning of the festival and represents the awakening of divine feminine energy. The germinating barley (jau) inside the kalash symbolizes prosperity and abundance. Durga is worshipped for her power to destroy evil and protect her devotees.",
+        "hi": "नवरात्रि देवी दुर्गा के नौ रूपों (नवदुर्गा) का जश्न है। हर दिन देवी के एक अलग पहलू और उनकी दिव्य शक्तियों का प्रतिनिधित्व करता है। पहले दिन कलश स्थापना त्योहार की शुरुआत को दर्शाती है और दिव्य स्त्री ऊर्जा के जागरण का प्रतिनिधित्व करती है। कलश के अंदर अंकुरित जौ (जौ) समृद्धि और प्रचुरता का प्रतीक है। दुर्गा को बुराई को नष्ट करने और अपने भक्तों की रक्षा करने की शक्ति के लिए पूजा जाता है।"
+      },
+      "samagri": [
+        {
+          "samagriId": "sm_durga_idol",
+          "classification": "OPTIONAL",
+          "purpose": {
+            "en": "Idol or image of Goddess Durga, optional if worshipping in the kalash form",
+            "hi": "देवी दुर्गा की मूर्ति या छवि, यदि कलश के रूप में पूजा करें तो वैकल्पिक"
+          },
+          "sortOrder": 1
+        },
+        {
+          "samagriId": "sm_kalash",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "Sacred pot representing the cosmic womb and source of life",
+            "hi": "ब्रह्मांडीय गर्भ और जीवन के स्रोत का प्रतिनिधित्व करने वाला पवित्र कलश"
+          },
+          "sortOrder": 2
+        },
+        {
+          "samagriId": "sm_soil",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "Holy earth to fill the kalash, preferably from a temple or auspicious place",
+            "hi": "कलश भरने के लिए पवित्र मिट्टी, अधिमानतः मंदिर या शुभ स्थान से"
+          },
+          "sortOrder": 3
+        },
+        {
+          "samagriId": "sm_barley",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "Barley seeds (jau) to sprout in the kalash, symbolizing prosperity and growth",
+            "hi": "कलश में अंकुरित करने के लिए जौ के बीज, समृद्धि और विकास का प्रतीक"
+          },
+          "sortOrder": 4
+        },
+        {
+          "samagriId": "sm_water",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "To fill the kalash and water the seeds",
+            "hi": "कलश भरने और बीजों को पानी देने के लिए"
+          },
+          "sortOrder": 5
+        },
+        {
+          "samagriId": "sm_flowers",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "To decorate the kalash and offer to the goddess",
+            "hi": "कलश को सजाने और देवी को चढ़ाने के लिए"
+          },
+          "quantityGuidance": {
+            "en": "as needed"
+          },
+          "sortOrder": 6
+        },
+        {
+          "samagriId": "sm_red_flowers",
+          "classification": "OPTIONAL",
+          "purpose": {
+            "en": "Red flowers are especially significant for Durga worship",
+            "hi": "लाल फूल दुर्गा पूजा के लिए विशेष रूप से महत्वपूर्ण हैं"
+          },
+          "sortOrder": 7
+        },
+        {
+          "samagriId": "sm_incense",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "To purify the space and invoke divine presence",
+            "hi": "स्थान को शुद्ध करने और दिव्य उपस्थिति को आमंत्रित करने के लिए"
+          },
+          "sortOrder": 8
+        },
+        {
+          "samagriId": "sm_diya",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "To light as an offering of light and energy",
+            "hi": "प्रकाश और ऊर्जा के भोग के रूप में जलाने के लिए"
+          },
+          "quantityGuidance": {
+            "en": "multiple diyas recommended"
+          },
+          "sortOrder": 9
+        },
+        {
+          "samagriId": "sm_oil",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "To fuel the diyas",
+            "hi": "दीयों को जलाने के लिए"
+          },
+          "quantityGuidance": {
+            "en": "as needed"
+          },
+          "sortOrder": 10
+        },
+        {
+          "samagriId": "sm_turmeric",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "For tilak and ritual purposes",
+            "hi": "तिलक और पूजा के लिए"
+          },
+          "sortOrder": 11
+        },
+        {
+          "samagriId": "sm_vermillion",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "For tilak and ritual offerings",
+            "hi": "तिलक और पूजा के लिए"
+          },
+          "sortOrder": 12
+        },
+        {
+          "samagriId": "sm_rice",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "To offer along with flowers",
+            "hi": "फूलों के साथ चढ़ाने के लिए"
+          },
+          "quantityGuidance": {
+            "en": "as needed"
+          },
+          "sortOrder": 13
+        }
+      ],
+      "steps": [
+        {
+          "id": "step_ndp_1",
+          "stepNumber": 1,
+          "title": {
+            "en": "Purification and Preparation",
+            "hi": "शुद्धिकरण और तैयारी"
+          },
+          "description": {
+            "en": "Clean and purify the puja space. Select a clean location, preferably facing east or north. Gather all materials for the Kalash Sthapana. Sit in a comfortable meditative posture.",
+            "hi": "पूजा के स्थान को साफ करें और शुद्ध करें। एक स्वच्छ स्थान चुनें, अधिमानतः पूर्व या उत्तर की ओर मुख करते हुए। कलश स्थापना के लिए सभी सामग्री एकत्रित करें। एक आरामदायक ध्यान मुद्रा में बैठें।"
+          },
+          "relatedSamagriIds": [
+            "sm_kalash",
+            "sm_soil",
+            "sm_barley",
+            "sm_water"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_ndp_2",
+          "stepNumber": 2,
+          "title": {
+            "en": "Prepare the Kalash",
+            "hi": "कलश तैयार करें"
+          },
+          "description": {
+            "en": "Fill the kalash with holy soil (preferably from a temple or sacred place). Fill it three-quarters full. Add barley seeds on top of the soil. Pour water carefully so that the seeds are moist but not waterlogged. The kalash should be placed on a raised platform or stand.",
+            "hi": "कलश को पवित्र मिट्टी से भरें (अधिमानतः मंदिर या पवित्र स्थान से)। इसे तीन-चौथाई भरें। मिट्टी के ऊपर जौ के बीज डालें। सावधानीपूर्वक पानी डालें ताकि बीज नम हों लेकिन जलभराव न हो। कलश को एक ऊंचे मंच या आधार पर रखा जाना चाहिए।"
+          },
+          "relatedSamagriIds": [
+            "sm_kalash",
+            "sm_soil",
+            "sm_barley",
+            "sm_water"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_ndp_3",
+          "stepNumber": 3,
+          "title": {
+            "en": "Light the Diyas",
+            "hi": "दीये जलाएं"
+          },
+          "description": {
+            "en": "Light multiple diyas around and near the kalash. The light represents the divine presence of Goddess Durga and the victory of light over darkness.",
+            "hi": "कलश के चारों ओर कई दीये जलाएं। प्रकाश देवी दुर्गा की दिव्य उपस्थिति और प्रकाश की अंधकार पर जीत का प्रतीक है।"
+          },
+          "relatedSamagriIds": [
+            "sm_diya",
+            "sm_oil"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_ndp_4",
+          "stepNumber": 4,
+          "title": {
+            "en": "Apply Tilak",
+            "hi": "तिलक लगाएं"
+          },
+          "description": {
+            "en": "Apply turmeric and vermillion tilak on your forehead, marking the beginning of the sacred Navratri festival.",
+            "hi": "अपने माथे पर हल्दी और सिंदूर का तिलक लगाएं, पवित्र नवरात्रि त्योहार की शुरुआत को दर्शाते हुए।"
+          },
+          "relatedSamagriIds": [
+            "sm_turmeric",
+            "sm_vermillion"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_ndp_5",
+          "stepNumber": 5,
+          "title": {
+            "en": "Burn Incense",
+            "hi": "अगरबत्ती जलाएं"
+          },
+          "description": {
+            "en": "Light incense and move it in circles in front of the kalash. The fragrance purifies the space and invokes the divine presence.",
+            "hi": "अगरबत्ती जलाएं और इसे कलश के सामने गोलाकार गति में लें। सुगंध स्थान को शुद्ध करती है और दिव्य उपस्थिति को आमंत्रित करती है।"
+          },
+          "relatedSamagriIds": [
+            "sm_incense"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_ndp_6",
+          "stepNumber": 6,
+          "title": {
+            "en": "Invocation of the Goddess",
+            "hi": "देवी का आह्वान"
+          },
+          "description": {
+            "en": "Offer flowers, rice, and prayers to invoke Goddess Durga. Speak your intentions for the nine-day festival. Seek her blessings for victory over obstacles, strength, and prosperity.",
+            "hi": "देवी दुर्गा को आमंत्रित करने के लिए फूल, चावल और प्रार्थना चढ़ाएं। नौ दिनों के त्योहार के लिए अपनी मंशा व्यक्त करें। बाधाओं पर जीत, शक्ति और समृद्धि के लिए उनका आशीर्वाद माँगें।"
+          },
+          "relatedSamagriIds": [
+            "sm_flowers",
+            "sm_rice"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_ndp_7",
+          "stepNumber": 7,
+          "title": {
+            "en": "Meditation and Prayers",
+            "hi": "ध्यान और प्रार्थना"
+          },
+          "description": {
+            "en": "Sit in quiet meditation before the kalash. Visualize the divine energy of Goddess Durga manifesting through the kalash. Meditate on her nine forms (Nav Durga) and seek her blessings for the festival period. Recite prayers or mantras as per your tradition.",
+            "hi": "कलश के सामने शांति से ध्यान करें। देवी दुर्गा की दिव्य ऊर्जा को कलश के माध्यम से प्रकट होते हुए देखें। उनके नौ रूपों (नव दुर्गा) पर ध्यान करें और त्योहार की अवधि के लिए उनका आशीर्वाद माँगें। अपनी परंपरा के अनुसार प्रार्थना या मंत्र दोहराएं।"
+          },
+          "relatedSamagriIds": [],
+          "isOptional": false
+        },
+        {
+          "id": "step_ndp_8",
+          "stepNumber": 8,
+          "title": {
+            "en": "Aarti",
+            "hi": "आरती"
+          },
+          "description": {
+            "en": "Perform aarti by waving the lamp in front of the kalash in a circular motion. The aarti represents gratitude and the welcoming of divine energy into your home and life.",
+            "hi": "दीये को कलश के सामने गोलाकार गति में लहरा कर आरती करें। आरती कृतज्ञता का प्रतिनिधित्व करती है और अपने घर और जीवन में दिव्य ऊर्जा के आगमन को दर्शाती है।"
+          },
+          "relatedSamagriIds": [
+            "sm_diya"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_ndp_9",
+          "stepNumber": 9,
+          "title": {
+            "en": "Daily Care of Kalash",
+            "hi": "कलश की दैनिक देखभाल"
+          },
+          "description": {
+            "en": "During the nine days of Navratri, keep the kalash in a clean, safe place. Water the seeds daily so they sprout into golden barley shoots (jau). Light diyas before the kalash each day. On the ninth day (Dussehra or Vijayadashami), the sprouted barley shoots are distributed as prasad.",
+            "hi": "नवरात्रि के नौ दिनों के दौरान, कलश को एक स्वच्छ, सुरक्षित स्थान पर रखें। बीजों को प्रतिदिन पानी दें ताकि वे सुनहरी जौ की शूटों (जौ) में अंकुरित हों। हर दिन कलश के सामने दीये जलाएं। नवमी (दशहरा या विजयदशमी) को, अंकुरित जौ को प्रसाद के रूप में वितरित किया जाता है।"
+          },
+          "relatedSamagriIds": [
+            "sm_water"
+          ],
+          "isOptional": false,
+          "importantNote": {
+            "en": "Protect the kalash from disturbance and ensure it receives proper light and ventilation for the barley to sprout.",
+            "hi": "कलश को परेशानी से बचाएं और जौ के अंकुरण के लिए उचित प्रकाश और वेंटिलेशन सुनिश्चित करें।"
+          }
+        },
+        {
+          "id": "step_ndp_10",
+          "stepNumber": 10,
+          "title": {
+            "en": "Seek Blessings",
+            "hi": "आशीर्वाद लें"
+          },
+          "description": {
+            "en": "Respectfully bow to the kalash and seek Goddess Durga's blessings for strength, victory, and protection. Touch your forehead to the ground as a gesture of complete surrender.",
+            "hi": "कलश को सम्मान पूर्वक नमस्कार करें और देवी दुर्गा से शक्ति, जीत और सुरक्षा का आशीर्वाद माँगें। पूर्ण समर्पण के संकेत के रूप में अपने माथे को जमीन से छुएं।"
+          },
+          "relatedSamagriIds": [],
+          "isOptional": false
+        }
+      ],
+      "variations": [
+        {
+          "id": "var_ndp_eastern",
+          "regions": [
+            "east"
+          ],
+          "title": {
+            "en": "Eastern India - Bengal Tradition",
+            "hi": "पूर्वी भारत - बंगाल परंपरा"
+          },
+          "description": {
+            "en": "In Bengal, Navratri is celebrated as Durga Puja with grand community celebrations, elaborate pandals, and artistic displays. The worship focuses on Goddess Durga's nine forms, and the festival includes cultural programs, processions, and community feasting.",
+            "hi": "बंगाल में, नवरात्रि को दुर्गा पूजा के रूप में भव्य सामुदायिक समारोहों, विस्तृत पंडालों और कलात्मक प्रदर्शनों के साथ मनाया जाता है। पूजा देवी दुर्गा के नौ रूपों पर केंद्रित है, और त्योहार में सांस्कृतिक कार्यक्रम, जुलूस और सामुदायिक भोज शामिल हैं।"
+          },
+          "affectsStepIds": [],
+          "affectsSamagriIds": [
+            "sm_flowers",
+            "sm_red_flowers"
+          ]
+        },
+        {
+          "id": "var_ndp_south",
+          "regions": [
+            "south"
+          ],
+          "title": {
+            "en": "South Indian Tradition",
+            "hi": "दक्षिण भारतीय परंपरा"
+          },
+          "description": {
+            "en": "In South India, Navratri is celebrated with Golu (display of idols) in homes, Dandiya and Garba dances (in some regions), and the reading of Devi Mahatmya. The worship includes rituals specific to the region and local goddesses.",
+            "hi": "दक्षिण भारत में, नवरात्रि को घरों में गोलू (मूर्तियों का प्रदर्शन), डांडिया और गरबा नृत्य (कुछ क्षेत्रों में), और देवी माहात्म्य के पाठ के साथ मनाया जाता है। पूजा में क्षेत्र के लिए विशिष्ट अनुष्ठान और स्थानीय देवियों की पूजा शामिल है।"
+          },
+          "affectsStepIds": [],
+          "affectsSamagriIds": []
+        }
+      ],
+      "preparationChecklist": [],
+      "disclaimer": {
+        "en": "This is a general guide to Navratri Durga Puja with Kalash Sthapana. Regional practices, family traditions, and local customs vary widely. Please follow your family's practices and consult a local priest for specific rituals and guidance.",
+        "hi": "यह नवरात्रि दुर्गा पूजा व कलश स्थापना का एक सामान्य मार्गदर्शन है। क्षेत्रीय प्रथाएं, पारिवारिक परंपराएं, और स्थानीय रीति-रिवाज व्यापक रूप से भिन्न होते हैं। कृपया अपनी पारिवारिक परंपराओं का पालन करें और विशिष्ट अनुष्ठानों और मार्गदर्शन के लिए एक स्थानीय पुजारी से परामर्श लें।"
+      },
+      "reviewStatus": "ai_drafted",
+      "sourceNote": {
+        "en": "AI-drafted general guide based on widely documented Navratri and Kalash Sthapana practices across India. Not yet verified by a pandit. Regional and local variations require consultation with a qualified priest familiar with your community's traditions.",
+        "hi": "भारत भर में व्यापक रूप से प्रलेखित नवरात्रि और कलश स्थापना प्रथाओं के आधार पर AI द्वारा तैयार सामान्य मार्गदर्शन। अभी तक किसी पंडित द्वारा सत्यापित नहीं। क्षेत्रीय और स्थानीय भिन्नताओं के लिए आपके समुदाय की परंपराओं से परिचित एक योग्य पुजारी से परामर्श आवश्यक है।"
+      },
+      "contentVersion": 1,
+      "status": "active"
+    },
+    {
+      "id": "puja_saraswati_puja",
+      "festivalId": "fest_saraswati_puja",
+      "name": {
+        "en": "Saraswati Puja",
+        "hi": "सरस्वती पूजन"
+      },
+      "alternateNames": {
+        "en": [
+          "Vasant Panchami Puja",
+          "Saraswati Jayanti"
+        ],
+        "hi": [
+          "वसंत पंचमी पूजन",
+          "सरस्वती जयंती"
+        ]
+      },
+      "category": "festival",
+      "regions": [
+        "pan_india"
+      ],
+      "summary": {
+        "en": "Worship of Goddess Saraswati, the deity of knowledge, learning, and the arts. Seeks her blessings for intellectual growth and academic success.",
+        "hi": "ज्ञान, शिक्षा और कलाओं की देवी सरस्वती की पूजा। बुद्धिमत्ता विकास और शैक्षणिक सफलता के लिए उनका आशीर्वाद माँगना।"
+      },
+      "significance": {
+        "en": "Saraswati Puja celebrates Goddess Saraswati, the embodiment of wisdom, learning, and creativity. The puja is particularly important for students, scholars, artists, and teachers. It marks the beginning of spring and is believed to enhance knowledge, creativity, and intellectual abilities.",
+        "hi": "सरस्वती पूजा देवी सरस्वती, ज्ञान, सीखने और रचनात्मकता का प्रतीक का जश्न है। यह पूजा विशेष रूप से छात्रों, विद्वानों, कलाकारों और शिक्षकों के लिए महत्वपूर्ण है। यह वसंत की शुरुआत का प्रतीक है और ज्ञान, रचनात्मकता और बौद्धिक क्षमताओं को बढ़ाने में मदद करता है।"
+      },
+      "samagri": [
+        {
+          "samagriId": "sm_saraswati_idol",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "To represent and worship Goddess Saraswati",
+            "hi": "देवी सरस्वती का प्रतिनिधित्व और पूजा करने के लिए"
+          },
+          "sortOrder": 1
+        },
+        {
+          "samagriId": "sm_yellow_flowers",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "To offer to the goddess, yellow symbolizes knowledge and wisdom",
+            "hi": "देवी को चढ़ाने के लिए, पीला रंग ज्ञान और बुद्धिमत्ता का प्रतीक है"
+          },
+          "quantityGuidance": {
+            "en": "as needed"
+          },
+          "sortOrder": 2
+        },
+        {
+          "samagriId": "sm_book",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "To offer books representing knowledge and wisdom",
+            "hi": "ज्ञान और बुद्धिमत्ता का प्रतिनिधित्व करने वाली किताबें चढ़ाने के लिए"
+          },
+          "sortOrder": 3
+        },
+        {
+          "samagriId": "sm_musical_instrument",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "To offer musical instruments representing the arts and creativity",
+            "hi": "कला और रचनात्मकता का प्रतिनिधित्व करने वाले वाद्य यंत्र चढ़ाने के लिए"
+          },
+          "sortOrder": 4
+        },
+        {
+          "samagriId": "sm_diya",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "To light as a symbol of knowledge dispelling ignorance",
+            "hi": "ज्ञान से अज्ञानता को दूर करने का प्रतीक"
+          },
+          "sortOrder": 5
+        },
+        {
+          "samagriId": "sm_oil",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "To fuel the diya",
+            "hi": "दीये को जलाने के लिए"
+          },
+          "quantityGuidance": {
+            "en": "as needed"
+          },
+          "sortOrder": 6
+        },
+        {
+          "samagriId": "sm_incense",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "To purify the space and enhance concentration for learning",
+            "hi": "स्थान को शुद्ध करने और सीखने के लिए ध्यान बढ़ाने के लिए"
+          },
+          "sortOrder": 7
+        },
+        {
+          "samagriId": "sm_turmeric",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "For applying tilak on the deity and self",
+            "hi": "देवी और स्वयं पर तिलक लगाने के लिए"
+          },
+          "sortOrder": 8
+        },
+        {
+          "samagriId": "sm_vermillion",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "For tilak and ritual offerings",
+            "hi": "तिलक और पूजा के लिए"
+          },
+          "sortOrder": 9
+        },
+        {
+          "samagriId": "sm_rice",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "To offer along with flowers and prayers",
+            "hi": "फूलों और प्रार्थनाओं के साथ चढ़ाने के लिए"
+          },
+          "quantityGuidance": {
+            "en": "as needed"
+          },
+          "sortOrder": 10
+        },
+        {
+          "samagriId": "sm_sweets",
+          "classification": "OPTIONAL",
+          "purpose": {
+            "en": "To offer as bhog and distribute as prasad",
+            "hi": "भोग के रूप में चढ़ाने और प्रसाद के रूप में वितरित करने के लिए"
+          },
+          "sortOrder": 11
+        },
+        {
+          "samagriId": "sm_water",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "For ritual bathing and washing of the deity",
+            "hi": "देवी को नहलाने और धोने के लिए"
+          },
+          "sortOrder": 12
+        }
+      ],
+      "steps": [
+        {
+          "id": "step_sp_1",
+          "stepNumber": 1,
+          "title": {
+            "en": "Purification and Setup",
+            "hi": "शुद्धिकरण और तैयारी"
+          },
+          "description": {
+            "en": "Clean the puja space and decorate it with yellow flowers. Arrange the Saraswati idol, books, and musical instruments on the altar. Light the diya to symbolize the illumination of knowledge.",
+            "hi": "पूजा के स्थान को साफ करें और पीले फूलों से सजाएं। सरस्वती मूर्ति, किताबें और वाद्य यंत्रों को वेदी पर व्यवस्थित करें। ज्ञान के प्रकाश का प्रतीक देने के लिए दीया जलाएं।"
+          },
+          "relatedSamagriIds": [
+            "sm_saraswati_idol",
+            "sm_yellow_flowers",
+            "sm_book",
+            "sm_diya",
+            "sm_oil"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_sp_2",
+          "stepNumber": 2,
+          "title": {
+            "en": "Invocation of the Goddess",
+            "hi": "देवी का आह्वान"
+          },
+          "description": {
+            "en": "Begin by offering yellow flowers and rice grains at the feet of the Saraswati idol. Invoke the goddess to bless you with knowledge, wisdom, and creative abilities. Recite prayers or mantras as per your tradition.",
+            "hi": "सरस्वती मूर्ति के पैरों में पीले फूल और चावल के दाने चढ़ा कर शुरू करें। देवी को ज्ञान, बुद्धिमत्ता और रचनात्मक क्षमताओं से आशीर्वादित करने के लिए आह्वान करें। अपनी परंपरा के अनुसार प्रार्थना या मंत्र दोहराएं।"
+          },
+          "relatedSamagriIds": [
+            "sm_yellow_flowers",
+            "sm_rice"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_sp_3",
+          "stepNumber": 3,
+          "title": {
+            "en": "Apply Tilak",
+            "hi": "तिलक लगाएं"
+          },
+          "description": {
+            "en": "Apply turmeric and vermillion tilak on the idol and on yourself. This marks the sacred nature of the ritual and your dedication to learning.",
+            "hi": "मूर्ति पर और अपने माथे पर हल्दी और सिंदूर का तिलक लगाएं। यह पूजा की पवित्र प्रकृति और सीखने में आपकी भक्ति को दर्शाता है।"
+          },
+          "relatedSamagriIds": [
+            "sm_turmeric",
+            "sm_vermillion"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_sp_4",
+          "stepNumber": 4,
+          "title": {
+            "en": "Burn Incense",
+            "hi": "अगरबत्ती जलाएं"
+          },
+          "description": {
+            "en": "Light incense and move it in circles in front of the idol. The fragrance is believed to enhance clarity of thought and concentration.",
+            "hi": "अगरबत्ती जलाएं और इसे मूर्ति के सामने गोलाकार गति में लें। सुगंध सोच की स्पष्टता और ध्यान को बढ़ाने में मदद करती है।"
+          },
+          "relatedSamagriIds": [
+            "sm_incense"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_sp_5",
+          "stepNumber": 5,
+          "title": {
+            "en": "Meditation and Prayers",
+            "hi": "ध्यान और प्रार्थना"
+          },
+          "description": {
+            "en": "Sit in quiet meditation and focus on Saraswati. Silently offer prayers for intellectual growth, clarity of mind, and the ability to pursue your chosen field of knowledge or art. Visualize yourself gaining wisdom and achieving your academic or creative goals.",
+            "hi": "शांत ध्यान में बैठें और सरस्वती पर ध्यान केंद्रित करें। बौद्धिक विकास, मन की स्पष्टता और ज्ञान या कला के अपने चुने हुए क्षेत्र को आगे बढ़ाने की क्षमता के लिए मन ही मन में प्रार्थना करें। अपने को ज्ञान प्राप्त करते हुए और अपने शैक्षणिक या रचनात्मक लक्ष्यों को प्राप्त करते हुए की कल्पना करें।"
+          },
+          "relatedSamagriIds": [],
+          "isOptional": false
+        },
+        {
+          "id": "step_sp_6",
+          "stepNumber": 6,
+          "title": {
+            "en": "Offer Books and Instruments",
+            "hi": "किताबें और वाद्य यंत्र चढ़ाएं"
+          },
+          "description": {
+            "en": "Place books and musical instruments at the feet of the idol as symbolic offerings. Books represent the pursuit of knowledge and instruments represent creativity and the arts. Some families touch their pens and educational materials to the altar for blessings.",
+            "hi": "किताबें और वाद्य यंत्रों को मूर्ति के पैरों में प्रतीकात्मक भोग के रूप में रखें। किताबें ज्ञान की खोज का प्रतिनिधित्व करती हैं और वाद्य यंत्र रचनात्मकता और कलाओं का प्रतिनिधित्व करते हैं। कुछ परिवार आशीर्वाद के लिए अपनी कलम और शैक्षणिक सामग्री को वेदी से छुआते हैं।"
+          },
+          "relatedSamagriIds": [
+            "sm_book",
+            "sm_musical_instrument"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_sp_7",
+          "stepNumber": 7,
+          "title": {
+            "en": "Aarti",
+            "hi": "आरती"
+          },
+          "description": {
+            "en": "Perform aarti by waving the lamp in front of the idol in a circular motion. The light of the aarti represents the dispelling of ignorance and the illumination of knowledge.",
+            "hi": "दीये को मूर्ति के सामने गोलाकार गति में लहरा कर आरती करें। आरती का प्रकाश अज्ञानता को दूर करने और ज्ञान के प्रकाश को दर्शाता है।"
+          },
+          "relatedSamagriIds": [
+            "sm_diya"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_sp_8",
+          "stepNumber": 8,
+          "title": {
+            "en": "Seek Blessings",
+            "hi": "आशीर्वाद लें"
+          },
+          "description": {
+            "en": "Respectfully bow to the idol and seek Saraswati's blessings for academic success, intellectual growth, and creative excellence. Touch your head to the altar to receive her blessings.",
+            "hi": "मूर्ति को सम्मान पूर्वक नमस्कार करें और शैक्षणिक सफलता, बौद्धिक विकास और रचनात्मक उत्कृष्टता के लिए सरस्वती का आशीर्वाद लें। उनका आशीर्वाद प्राप्त करने के लिए अपने सिर को वेदी से छुएं।"
+          },
+          "relatedSamagriIds": [],
+          "isOptional": false
+        },
+        {
+          "id": "step_sp_9",
+          "stepNumber": 9,
+          "title": {
+            "en": "Distribute Prasad",
+            "hi": "प्रसाद वितरण"
+          },
+          "description": {
+            "en": "Distribute the offered sweets and other items as prasad to family members and guests, particularly students. Prasad carries Saraswati's blessings for knowledge and wisdom.",
+            "hi": "चढ़ाई गई मिठाई और अन्य चीजों को परिवार के सदस्यों और मेहमानों को, विशेष रूप से छात्रों को प्रसाद के रूप में वितरित करें। प्रसाद ज्ञान और बुद्धिमत्ता के लिए सरस्वती का आशीर्वाद लाता है।"
+          },
+          "relatedSamagriIds": [
+            "sm_sweets"
+          ],
+          "isOptional": false
+        }
+      ],
+      "variations": [
+        {
+          "id": "var_sp_eastern",
+          "regions": [
+            "east"
+          ],
+          "title": {
+            "en": "Eastern India Tradition",
+            "hi": "पूर्वी भारतीय परंपरा"
+          },
+          "description": {
+            "en": "In Eastern India, particularly in Bengal, Saraswati Puja is a major festival with grand celebrations. Yellow flowers (especially marigold) are extensively used, and the puja is often performed with elaborate rituals and community involvement. Students place their books and pens on the altar for blessings.",
+            "hi": "पूर्वी भारत में, विशेष रूप से बंगाल में, सरस्वती पूजा एक प्रमुख त्योहार है जिसमें भव्य उत्सव होते हैं। पीले फूलों (विशेष रूप से गेंदा) का व्यापक उपयोग किया जाता है, और पूजा अक्सर विस्तृत अनुष्ठानों और सामुदायिक भागीदारी के साथ की जाती है। छात्र आशीर्वाद के लिए अपनी किताबें और कलम को वेदी पर रखते हैं।"
+          },
+          "affectsStepIds": [
+            "step_sp_6"
+          ],
+          "affectsSamagriIds": [
+            "sm_yellow_flowers",
+            "sm_book"
+          ]
+        }
+      ],
+      "preparationChecklist": [],
+      "disclaimer": {
+        "en": "This is a general guide to Saraswati Puja. Regional practices and family traditions may vary. Please follow your family's practices and consult a local priest for proper rituals and timings.",
+        "hi": "यह सरस्वती पूजा का एक सामान्य मार्गदर्शन है। क्षेत्रीय प्रथाएं और पारिवारिक परंपराएं भिन्न हो सकती हैं। कृपया अपनी पारिवारिक परंपराओं का पालन करें और उचित अनुष्ठानों और समय के लिए एक स्थानीय पुजारी से परामर्श लें।"
+      },
+      "reviewStatus": "ai_drafted",
+      "sourceNote": {
+        "en": "AI-drafted general guide based on widely documented Saraswati Puja practices across India. Not yet verified by a pandit. Regional variations require consultation with a qualified priest.",
+        "hi": "भारत भर में व्यापक रूप से प्रलेखित सरस्वती पूजा प्रथाओं के आधार पर AI द्वारा तैयार सामान्य मार्गदर्शन। अभी तक किसी पंडित द्वारा सत्यापित नहीं। क्षेत्रीय भिन्नताओं के लिए एक योग्य पुजारी से परामर्श आवश्यक है।"
+      },
+      "contentVersion": 1,
+      "status": "active"
+    },
+    {
+      "id": "puja_satyanarayan_puja",
+      "festivalId": "fest_satyanarayan",
+      "name": {
+        "en": "Satyanarayan Puja",
+        "hi": "सत्यनारायण पूजन"
+      },
+      "alternateNames": {
+        "en": [
+          "Satyanarayana Puja",
+          "Satya Narayan Puja"
+        ],
+        "hi": [
+          "सत्यनारायण पूजा"
+        ]
+      },
+      "category": "household",
+      "regions": [
+        "pan_india"
+      ],
+      "summary": {
+        "en": "Puja performed for family welfare, prosperity, and fulfillment of wishes. Dedicated to Lord Satyanarayan, a form of Lord Vishnu.",
+        "hi": "पारिवारिक कल्याण, समृद्धि और इच्छा की पूर्ति के लिए की जाने वाली पूजा। भगवान विष्णु के एक रूप सत्यनारायण को समर्पित।"
+      },
+      "significance": {
+        "en": "Satyanarayan Puja is performed to seek the blessings of Lord Satyanarayan for family prosperity, good health, and the fulfillment of desires. It is believed that this puja removes obstacles, brings good fortune, and ensures the welfare of the entire household. The puja can be performed on any auspicious day and is often done when seeking specific blessings or thanking the deity for favors received.",
+        "hi": "सत्यनारायण पूजा परिवार की समृद्धि, अच्छे स्वास्थ्य और इच्छाओं की पूर्ति के लिए भगवान सत्यनारायण का आशीर्वाद पाने के लिए की जाती है। माना जाता है कि यह पूजा बाधाओं को दूर करती है, सुख लाती है और पूरे घर के कल्याण को सुनिश्चित करती है। पूजा किसी भी शुभ दिन पर की जा सकती है और अक्सर विशिष्ट आशीर्वाद माँगते समय या देवता द्वारा की गई कृपा के लिए धन्यवाद करते समय की जाती है।"
+      },
+      "samagri": [
+        {
+          "samagriId": "sm_deity_idol",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "To represent Lord Satyanarayan or any form of Vishnu",
+            "hi": "भगवान सत्यनारायण या विष्णु के किसी भी रूप का प्रतिनिधित्व करने के लिए"
+          },
+          "sortOrder": 1
+        },
+        {
+          "samagriId": "sm_kalash",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Sacred pot representing cosmic energy and abundance",
+            "hi": "ब्रह्मांडीय ऊर्जा और प्रचुरता का प्रतिनिधित्व करने वाला पवित्र कलश"
+          },
+          "sortOrder": 2
+        },
+        {
+          "samagriId": "sm_water",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "For ritual bathing of the deity and filling the kalash",
+            "hi": "देवता को नहलाने और कलश भरने के लिए"
+          },
+          "sortOrder": 3
+        },
+        {
+          "samagriId": "sm_flowers",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "To offer to the deity as an expression of devotion",
+            "hi": "भक्ति की अभिव्यक्ति के रूप में देवता को चढ़ाने के लिए"
+          },
+          "quantityGuidance": {
+            "en": "as needed"
+          },
+          "sortOrder": 4
+        },
+        {
+          "samagriId": "sm_incense",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "To purify the space and create a sacred atmosphere",
+            "hi": "स्थान को शुद्ध करने और पवित्र वातावरण बनाने के लिए"
+          },
+          "sortOrder": 5
+        },
+        {
+          "samagriId": "sm_diya",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "To light as an offering and symbol of divine light",
+            "hi": "चढ़ावे के रूप में और दिव्य प्रकाश का प्रतीक"
+          },
+          "sortOrder": 6
+        },
+        {
+          "samagriId": "sm_oil",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "To fuel the diya",
+            "hi": "दीये को जलाने के लिए"
+          },
+          "quantityGuidance": {
+            "en": "as needed"
+          },
+          "sortOrder": 7
+        },
+        {
+          "samagriId": "sm_wheat_flour",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "To make halwa (sweet pudding) as bhog offering",
+            "hi": "भोग के रूप में हलवा (मीठा हलुआ) बनाने के लिए"
+          },
+          "sortOrder": 8
+        },
+        {
+          "samagriId": "sm_jaggery",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "To make halwa sweet",
+            "hi": "हलवा को मीठा बनाने के लिए"
+          },
+          "sortOrder": 9
+        },
+        {
+          "samagriId": "sm_ghee",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "To cook halwa and for ritual purposes",
+            "hi": "हलवा पकाने और अनुष्ठान के लिए"
+          },
+          "sortOrder": 10
+        },
+        {
+          "samagriId": "sm_dry_fruits",
+          "classification": "OPTIONAL",
+          "purpose": {
+            "en": "To add to halwa or offer as enriched bhog",
+            "hi": "हलवा में मिलाने या समृद्ध भोग के रूप में चढ़ाने के लिए"
+          },
+          "sortOrder": 11
+        },
+        {
+          "samagriId": "sm_banana",
+          "classification": "OPTIONAL",
+          "purpose": {
+            "en": "To offer as fruit bhog",
+            "hi": "फल भोग के रूप में चढ़ाने के लिए"
+          },
+          "sortOrder": 12
+        },
+        {
+          "samagriId": "sm_turmeric",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "For applying tilak",
+            "hi": "तिलक लगाने के लिए"
+          },
+          "sortOrder": 13
+        },
+        {
+          "samagriId": "sm_vermillion",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "For tilak and ritual offerings",
+            "hi": "तिलक और पूजा के लिए"
+          },
+          "sortOrder": 14
+        }
+      ],
+      "steps": [
+        {
+          "id": "step_snp_1",
+          "stepNumber": 1,
+          "title": {
+            "en": "Purification and Setup",
+            "hi": "शुद्धिकरण और तैयारी"
+          },
+          "description": {
+            "en": "Clean and prepare the puja space. Arrange the deity idol or symbol of Satyanarayan on the altar. Fill the kalash with water and place it beside or in front of the idol. Light the diya.",
+            "hi": "पूजा के स्थान को साफ करें और तैयार करें। वेदी पर सत्यनारायण की मूर्ति या प्रतीक को व्यवस्थित करें। कलश को जल से भरें और इसे मूर्ति के बगल में या सामने रखें। दीया जलाएं।"
+          },
+          "relatedSamagriIds": [
+            "sm_deity_idol",
+            "sm_kalash",
+            "sm_water",
+            "sm_diya",
+            "sm_oil"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_snp_2",
+          "stepNumber": 2,
+          "title": {
+            "en": "Invocation and Offerings",
+            "hi": "आह्वान और भोग"
+          },
+          "description": {
+            "en": "Offer flowers and prayers to invoke Lord Satyanarayan. Offer rice grains, flowers, and water from the kalash. Speak your intentions and wishes for your family's welfare.",
+            "hi": "भगवान सत्यनारायण को आमंत्रित करने के लिए फूल और प्रार्थना चढ़ाएं। चावल, फूल और कलश का जल चढ़ाएं। अपने परिवार के कल्याण के लिए अपनी मंशा और इच्छाओं को व्यक्त करें।"
+          },
+          "relatedSamagriIds": [
+            "sm_flowers"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_snp_3",
+          "stepNumber": 3,
+          "title": {
+            "en": "Apply Tilak",
+            "hi": "तिलक लगाएं"
+          },
+          "description": {
+            "en": "Apply turmeric and vermillion tilak on the idol and on yourself, marking the sacred nature of the ritual.",
+            "hi": "मूर्ति पर और अपने माथे पर हल्दी और सिंदूर का तिलक लगाएं, पूजा की पवित्र प्रकृति को दर्शाते हुए।"
+          },
+          "relatedSamagriIds": [
+            "sm_turmeric",
+            "sm_vermillion"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_snp_4",
+          "stepNumber": 4,
+          "title": {
+            "en": "Burn Incense",
+            "hi": "अगरबत्ती जलाएं"
+          },
+          "description": {
+            "en": "Light incense and move it in circles in front of the idol, purifying the space and creating a sacred environment.",
+            "hi": "अगरबत्ती जलाएं और इसे मूर्ति के सामने गोलाकार गति में लें, स्थान को शुद्ध करते हुए और एक पवित्र वातावरण बनाते हुए।"
+          },
+          "relatedSamagriIds": [
+            "sm_incense"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_snp_5",
+          "stepNumber": 5,
+          "title": {
+            "en": "Meditation and Prayers",
+            "hi": "ध्यान और प्रार्थना"
+          },
+          "description": {
+            "en": "Sit in meditation and focus on Lord Satyanarayan. Silently offer your prayers for family prosperity, health, and the fulfillment of your righteous wishes. Recite prayers or mantras as per your tradition.",
+            "hi": "ध्यान में बैठें और भगवान सत्यनारायण पर ध्यान केंद्रित करें। परिवार की समृद्धि, स्वास्थ्य और आपकी धार्मिक इच्छाओं की पूर्ति के लिए मन ही मन प्रार्थना करें। अपनी परंपरा के अनुसार प्रार्थना या मंत्र दोहराएं।"
+          },
+          "relatedSamagriIds": [],
+          "isOptional": false
+        },
+        {
+          "id": "step_snp_6",
+          "stepNumber": 6,
+          "title": {
+            "en": "Prepare and Offer Halwa",
+            "hi": "हलवा तैयार करें और चढ़ाएं"
+          },
+          "description": {
+            "en": "Prepare halwa (wheat flour pudding cooked in ghee and jaggery) as the main bhog offering. Offer the hot halwa at the feet of the idol along with dry fruits if available. Halwa symbolizes sweetness and prosperity.",
+            "hi": "हलवा (घी और गुड़ में पकाया गया गेहूं का आटा) तैयार करें मुख्य भोग के रूप में। मूर्ति के पैरों में गर्म हलवा चढ़ाएं, साथ में सूखे मेवे भी यदि उपलब्ध हों। हलवा मिठास और समृद्धि का प्रतीक है।"
+          },
+          "relatedSamagriIds": [
+            "sm_wheat_flour",
+            "sm_jaggery",
+            "sm_ghee",
+            "sm_dry_fruits"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_snp_7",
+          "stepNumber": 7,
+          "title": {
+            "en": "Aarti",
+            "hi": "आरती"
+          },
+          "description": {
+            "en": "Perform aarti by waving the lamp in front of the idol in a circular motion. The aarti signifies the completion of the puja and your gratitude to the deity.",
+            "hi": "दीये को मूर्ति के सामने गोलाकार गति में लहरा कर आरती करें। आरती पूजा की समाप्ति और देवता के प्रति आपकी कृतज्ञता को दर्शाती है।"
+          },
+          "relatedSamagriIds": [
+            "sm_diya"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_snp_8",
+          "stepNumber": 8,
+          "title": {
+            "en": "Seek Blessings",
+            "hi": "आशीर्वाद लें"
+          },
+          "description": {
+            "en": "Respectfully bow to the idol and seek Satyanarayan's blessings for your family. Touch your head to receive the blessings, and then pass the blessed water from the kalash or halwa to family members.",
+            "hi": "मूर्ति को सम्मान पूर्वक नमस्कार करें और अपने परिवार के लिए सत्यनारायण का आशीर्वाद लें। आशीर्वाद प्राप्त करने के लिए अपने सिर को छुएं, और फिर कलश का या हलवा को परिवार के सदस्यों को दें।"
+          },
+          "relatedSamagriIds": [],
+          "isOptional": false
+        },
+        {
+          "id": "step_snp_9",
+          "stepNumber": 9,
+          "title": {
+            "en": "Distribute Prasad",
+            "hi": "प्रसाद वितरण"
+          },
+          "description": {
+            "en": "Distribute the halwa as prasad to all family members and guests. Everyone should taste the prasad to receive the deity's blessings. Some families share the katha (story) of Satyanarayan during this time.",
+            "hi": "सभी परिवार के सदस्यों और मेहमानों को हलवा प्रसाद के रूप में वितरित करें। हर किसी को देवता का आशीर्वाद पाने के लिए प्रसाद का स्वाद लेना चाहिए। कुछ परिवार इस समय सत्यनारायण की कथा साझा करते हैं।"
+          },
+          "relatedSamagriIds": [
+            "sm_wheat_flour"
+          ],
+          "isOptional": false
+        }
+      ],
+      "variations": [
+        {
+          "id": "var_snp_occasions",
+          "regions": [
+            "pan_india"
+          ],
+          "title": {
+            "en": "Occasion-based Variations",
+            "hi": "अवसर-आधारित भिन्नताएं"
+          },
+          "description": {
+            "en": "Satyanarayan Puja is often performed on specific occasions such as birthdays, anniversaries, new beginnings, recovery from illness, or after achieving success. The puja structure remains the same, but the intention and prayers are adjusted based on the specific occasion.",
+            "hi": "सत्यनारायण पूजा अक्सर विशिष्ट अवसरों पर की जाती है जैसे जन्मदिन, वर्षगांठ, नई शुरुआत, बीमारी से ठीक होना, या सफलता प्राप्त करने के बाद। पूजा की संरचना समान रहती है, लेकिन विशिष्ट अवसर के आधार पर इरादा और प्रार्थनाएं बदल जाती हैं।"
+          },
+          "affectsStepIds": [
+            "step_snp_5"
+          ],
+          "affectsSamagriIds": []
+        }
+      ],
+      "preparationChecklist": [],
+      "disclaimer": {
+        "en": "This is a general guide to Satyanarayan Puja. Regional practices, family traditions, and the involvement of a qualified priest may vary. Please follow your family's practices and consult a local priest for proper rituals.",
+        "hi": "यह सत्यनारायण पूजा का एक सामान्य मार्गदर्शन है। क्षेत्रीय प्रथाएं, पारिवारिक परंपराएं, और एक योग्य पुजारी की भागीदारी भिन्न हो सकती है। कृपया अपनी पारिवारिक परंपराओं का पालन करें और उचित अनुष्ठानों के लिए एक स्थानीय पुजारी से परामर्श लें।"
+      },
+      "reviewStatus": "ai_drafted",
+      "sourceNote": {
+        "en": "AI-drafted general guide based on widely documented Satyanarayan Puja practices. Not yet verified by a pandit. Specific variations for different occasions require consultation with a qualified priest.",
+        "hi": "व्यापक रूप से प्रलेखित सत्यनारायण पूजा प्रथाओं के आधार पर AI द्वारा तैयार सामान्य मार्गदर्शन। अभी तक किसी पंडित द्वारा सत्यापित नहीं। विभिन्न अवसरों के लिए विशिष्ट भिन्नताओं के लिए एक योग्य पुजारी से परामर्श आवश्यक है।"
+      },
+      "contentVersion": 1,
+      "status": "active"
+    }
+  ],
+  "samagri": [
+    {
+      "id": "sm_aarti_lamp",
+      "name": {
+        "en": "Aarti lamp",
+        "hi": "आरती का दीया"
+      },
+      "description": {
+        "en": "Multi-wick lamp for aarti ritual",
+        "hi": "आरती की परंपरा के लिए बहु-बत्ती दीया"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_banana",
+      "name": {
+        "en": "Banana",
+        "hi": "केला"
+      },
+      "description": {
+        "en": "Fresh banana",
+        "hi": "ताजा केला"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_barley",
+      "name": {
+        "en": "Barley seeds/jau",
+        "hi": "जौ"
+      },
+      "description": {
+        "en": "Barley seeds for sprouting",
+        "hi": "अंकुरित करने के लिए जौ के बीज"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_bell",
+      "name": {
+        "en": "Bell",
+        "hi": "घंटी"
+      },
+      "description": {
+        "en": "Bell for ringing during prayers",
+        "hi": "प्रार्थना के दौरान बजाने के लिए घंटी"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_besan",
+      "name": {
+        "en": "Besan/gram flour",
+        "hi": "बेसन"
+      },
+      "description": {
+        "en": "Ground chickpea flour",
+        "hi": "पीसा हुआ चना का आटा"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_bilva_leaves",
+      "name": {
+        "en": "Bilva leaves",
+        "hi": "बेलपत्र"
+      },
+      "alternateNames": {
+        "en": [
+          "bael leaves",
+          "wood apple leaves"
+        ],
+        "hi": [
+          "बेल की पत्तियां"
+        ]
+      },
+      "description": {
+        "en": "Leaves of the bilva tree, sacred to Shiva",
+        "hi": "बेल के पेड़ की पत्तियां, शिव को समर्पित"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_book",
+      "name": {
+        "en": "Book/manuscript",
+        "hi": "किताब"
+      },
+      "description": {
+        "en": "Books representing knowledge",
+        "hi": "ज्ञान का प्रतीक किताब"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_butter",
+      "name": {
+        "en": "Butter",
+        "hi": "मक्खन"
+      },
+      "description": {
+        "en": "Fresh butter or makhan",
+        "hi": "ताजा मक्खन"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_camphor",
+      "name": {
+        "en": "Camphor",
+        "hi": "कपूर"
+      },
+      "description": {
+        "en": "Camphor for aarti or offering",
+        "hi": "आरती या पूजा के लिए कपूर"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_coconut",
+      "name": {
+        "en": "Coconut",
+        "hi": "नारियल"
+      },
+      "description": {
+        "en": "Fresh coconut",
+        "hi": "ताजी नारियल"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_coins",
+      "name": {
+        "en": "Coins",
+        "hi": "सिक्के"
+      },
+      "description": {
+        "en": "Coins as symbolic offering to Lakshmi",
+        "hi": "लक्ष्मी को प्रतीकात्मक चढ़ावा"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_conch",
+      "name": {
+        "en": "Conch",
+        "hi": "शंख"
+      },
+      "description": {
+        "en": "Conch shell for puja rituals",
+        "hi": "पूजा की परंपरा के लिए शंख"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_deity_idol",
+      "name": {
+        "en": "Deity idol/murti",
+        "hi": "देवता की मूर्ति"
+      },
+      "description": {
+        "en": "Statue or idol representing the deity being worshipped",
+        "hi": "पूजे जाने वाले देवता का मूर्ति या प्रतिमा"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_diya",
+      "name": {
+        "en": "Diya/lamp",
+        "hi": "दीया"
+      },
+      "description": {
+        "en": "Oil lamp for lighting",
+        "hi": "प्रकाश के लिए तेल का दीया"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_dry_fruits",
+      "name": {
+        "en": "Dry fruits",
+        "hi": "सूखे मेवे"
+      },
+      "description": {
+        "en": "Dried fruits and nuts",
+        "hi": "सूखे फल और मेवे"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_durga_idol",
+      "name": {
+        "en": "Durga idol",
+        "hi": "दुर्गा मूर्ति"
+      },
+      "description": {
+        "en": "Idol of Goddess Durga",
+        "hi": "देवी दुर्गा की मूर्ति"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_flowers",
+      "name": {
+        "en": "Flowers",
+        "hi": "फूल"
+      },
+      "description": {
+        "en": "Fresh flowers for offering",
+        "hi": "पूजा के लिए ताजे फूल"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_fruit",
+      "name": {
+        "en": "Fruit",
+        "hi": "फल"
+      },
+      "description": {
+        "en": "Fresh fruit for offering",
+        "hi": "पूजा के लिए ताजा फल"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_ganesh_idol",
+      "name": {
+        "en": "Ganesh idol",
+        "hi": "गणेश मूर्ति"
+      },
+      "description": {
+        "en": "Idol of Lord Ganesh",
+        "hi": "भगवान गणेश की मूर्ति"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_ghee",
+      "name": {
+        "en": "Ghee",
+        "hi": "घी"
+      },
+      "description": {
+        "en": "Clarified butter",
+        "hi": "शुद्ध घी"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_hanuman_idol",
+      "name": {
+        "en": "Hanuman idol",
+        "hi": "हनुमान मूर्ति"
+      },
+      "description": {
+        "en": "Idol of Lord Hanuman",
+        "hi": "भगवान हनुमान की मूर्ति"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_honey",
+      "name": {
+        "en": "Honey",
+        "hi": "शहद"
+      },
+      "description": {
+        "en": "Pure honey",
+        "hi": "शुद्ध शहद"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_incense",
+      "name": {
+        "en": "Incense/agarbatti",
+        "hi": "अगरबत्ती"
+      },
+      "description": {
+        "en": "Aromatic incense sticks",
+        "hi": "सुगंधित अगरबत्ती"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_jaggery",
+      "name": {
+        "en": "Jaggery",
+        "hi": "गुड़"
+      },
+      "description": {
+        "en": "Unrefined sugar made from sugarcane",
+        "hi": "गन्ने से बना अपरिष्कृत शक्कर"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_kalash",
+      "name": {
+        "en": "Kalash",
+        "hi": "कलश"
+      },
+      "description": {
+        "en": "Pot or vessel for ritual worship",
+        "hi": "पूजा के लिए बर्तन या कलश"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_krishna_idol",
+      "name": {
+        "en": "Krishna idol",
+        "hi": "कृष्ण मूर्ति"
+      },
+      "description": {
+        "en": "Idol of Lord Krishna",
+        "hi": "भगवान कृष्ण की मूर्ति"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_lakshmi_idol",
+      "name": {
+        "en": "Lakshmi idol",
+        "hi": "लक्ष्मी मूर्ति"
+      },
+      "alternateNames": {
+        "en": [
+          "Laxmi idol"
+        ],
+        "hi": [
+          "लक्षमी मूर्ति"
+        ]
+      },
+      "description": {
+        "en": "Idol of Goddess Lakshmi",
+        "hi": "देवी लक्ष्मी की मूर्ति"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_marigold",
+      "name": {
+        "en": "Marigold",
+        "hi": "गेंदा"
+      },
+      "description": {
+        "en": "Marigold flowers",
+        "hi": "गेंदे के फूल"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_milk",
+      "name": {
+        "en": "Milk",
+        "hi": "दूध"
+      },
+      "description": {
+        "en": "Fresh milk",
+        "hi": "ताजा दूध"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_modak",
+      "name": {
+        "en": "Modak",
+        "hi": "मोदक"
+      },
+      "description": {
+        "en": "Sweet dumpling made of rice and jaggery",
+        "hi": "चावल और गुड़ से बना मीठा दुम्पलिंग"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_musical_instrument",
+      "name": {
+        "en": "Musical instrument",
+        "hi": "वाद्य यंत्र"
+      },
+      "description": {
+        "en": "Any musical instrument like sitar or veena",
+        "hi": "कोई भी वाद्य यंत्र जैसे सितार या वीणा"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_oil",
+      "name": {
+        "en": "Oil",
+        "hi": "तेल"
+      },
+      "description": {
+        "en": "Oil for the lamp, typically sesame or coconut oil",
+        "hi": "दीये के लिए तेल, आमतौर पर तिल या नारियल का तेल"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_red_cloth",
+      "name": {
+        "en": "Red cloth",
+        "hi": "लाल कपड़ा"
+      },
+      "description": {
+        "en": "Red fabric for ritual use",
+        "hi": "पूजा के लिए लाल कपड़ा"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_red_flowers",
+      "name": {
+        "en": "Red flowers",
+        "hi": "लाल फूल"
+      },
+      "description": {
+        "en": "Red flowers for offering",
+        "hi": "चढ़ाने के लिए लाल फूल"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_rice",
+      "name": {
+        "en": "Rice",
+        "hi": "चावल"
+      },
+      "description": {
+        "en": "Uncooked rice grains",
+        "hi": "कच्चे चावल के दाने"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_saraswati_idol",
+      "name": {
+        "en": "Saraswati idol",
+        "hi": "सरस्वती मूर्ति"
+      },
+      "description": {
+        "en": "Idol of Goddess Saraswati",
+        "hi": "देवी सरस्वती की मूर्ति"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_shiva_lingam",
+      "name": {
+        "en": "Shiva lingam",
+        "hi": "शिव लिंग"
+      },
+      "description": {
+        "en": "Symbol of Lord Shiva in puja",
+        "hi": "पूजा में भगवान शिव का प्रतीक"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_soil",
+      "name": {
+        "en": "Soil/earth",
+        "hi": "मिट्टी"
+      },
+      "description": {
+        "en": "Holy earth or soil from auspicious place",
+        "hi": "पवित्र मिट्टी या मंदिर से मिट्टी"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_sweets",
+      "name": {
+        "en": "Sweets",
+        "hi": "मिठाई"
+      },
+      "description": {
+        "en": "Traditional sweets for offering",
+        "hi": "पूजा के लिए पारंपरिक मिठाई"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_turmeric",
+      "name": {
+        "en": "Turmeric",
+        "hi": "हल्दी"
+      },
+      "description": {
+        "en": "Turmeric powder",
+        "hi": "हल्दी का पाउडर"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_turmeric_powder",
+      "name": {
+        "en": "Turmeric powder",
+        "hi": "हल्दी पाउडर"
+      },
+      "description": {
+        "en": "Ground turmeric for tilak and offering",
+        "hi": "तिलक और पूजा के लिए हल्दी पाउडर"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_vermillion",
+      "name": {
+        "en": "Vermillion/sindoor",
+        "hi": "सिंदूर"
+      },
+      "description": {
+        "en": "Red powder for tilak and offering",
+        "hi": "तिलक और पूजा के लिए लाल पाउडर"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_water",
+      "name": {
+        "en": "Water",
+        "hi": "जल"
+      },
+      "description": {
+        "en": "Clean water",
+        "hi": "स्वच्छ जल"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_wheat_flour",
+      "name": {
+        "en": "Wheat flour",
+        "hi": "गेहूं का आटा"
+      },
+      "description": {
+        "en": "Ground wheat flour",
+        "hi": "पीसा हुआ गेहूं का आटा"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_yellow_flowers",
+      "name": {
+        "en": "Yellow flowers",
+        "hi": "पीले फूल"
+      },
+      "description": {
+        "en": "Yellow flowers, preferably marigold or chrysanthemum",
+        "hi": "पीले फूल, अधिमानतः गेंदा या गुलदाउदी"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_yogurt",
+      "name": {
+        "en": "Yogurt",
+        "hi": "दही"
+      },
+      "description": {
+        "en": "Curd or yogurt",
+        "hi": "दही"
+      },
+      "status": "active"
+    }
+  ],
   "calendar": []
 }

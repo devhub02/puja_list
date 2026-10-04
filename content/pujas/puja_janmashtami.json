@@ -1,0 +1,197 @@
+{
+  "id": "puja_janmashtami",
+  "festivalId": "fest_janmashtami",
+  "name": { "en": "Janmashtami Puja", "hi": "जन्माष्टमी पूजन" },
+  "alternateNames": { "en": ["Krishna Janmashtami", "Gokulashtami", "Krishna Jayanti"], "hi": ["कृष्ण जन्माष्टमी", "गोकुलाष्टमी"] },
+  "category": "festival",
+  "regions": ["pan_india"],
+  "summary": { "en": "Celebration of the birth of Lord Krishna, the eighth avatar of Vishnu. The puja is marked by devotional singing, playing with butter, and midnight celebrations when Krishna is believed to be born.", "hi": "भगवान कृष्ण के जन्म का जश्न, विष्णु के आठवें अवतार। पूजा भक्ति गीत, मक्खन के साथ खेलने और आधी रात के समारोहों से चिह्नित है जब कृष्ण का जन्म माना जाता है।" },
+  "significance": { "en": "Janmashtami celebrates the birth of Lord Krishna, the eighth avatar of Lord Vishnu. Krishna is revered for his divine wisdom, unconditional love, compassion, and his role in the Mahabharata and Bhagavad Gita. The puja is an expression of joy and devotion. Many temples organize grand celebrations with cultural performances, devotional songs, and enactments of Krishna's life.", "hi": "जन्माष्टमी भगवान विष्णु के आठवें अवतार भगवान कृष्ण के जन्म का जश्न है। कृष्ण को उनकी दिव्य बुद्धिमत्ता, निःशर्त प्रेम, करुणा और महाभारत व भगवद् गीता में उनकी भूमिका के लिए पूजा जाता है। पूजा आनंद और भक्ति की अभिव्यक्ति है। कई मंदिर सांस्कृतिक कार्यक्रमों, भक्ति गीतों और कृष्ण के जीवन की प्रस्तुतियों के साथ भव्य समारोहों का आयोजन करते हैं।" },
+  "samagri": [
+    {
+      "samagriId": "sm_krishna_idol",
+      "classification": "REQUIRED",
+      "purpose": { "en": "To represent and worship Lord Krishna", "hi": "भगवान कृष्ण का प्रतिनिधित्व और पूजा करने के लिए" },
+      "sortOrder": 1
+    },
+    {
+      "samagriId": "sm_flowers",
+      "classification": "COMMON",
+      "purpose": { "en": "To offer to Krishna as a mark of devotion", "hi": "भक्ति का प्रतीक के रूप में कृष्ण को चढ़ाने के लिए" },
+      "quantityGuidance": { "en": "as needed" },
+      "sortOrder": 2
+    },
+    {
+      "samagriId": "sm_diya",
+      "classification": "REQUIRED",
+      "purpose": { "en": "To light especially at midnight when Krishna is believed to be born", "hi": "आधी रात को जलाने के लिए जब कृष्ण का जन्म माना जाता है" },
+      "sortOrder": 3
+    },
+    {
+      "samagriId": "sm_oil",
+      "classification": "REQUIRED",
+      "purpose": { "en": "To fuel the diyas", "hi": "दीयों को जलाने के लिए" },
+      "quantityGuidance": { "en": "as needed" },
+      "sortOrder": 4
+    },
+    {
+      "samagriId": "sm_incense",
+      "classification": "COMMON",
+      "purpose": { "en": "To purify the space and create a sacred atmosphere", "hi": "स्थान को शुद्ध करने और पवित्र वातावरण बनाने के लिए" },
+      "sortOrder": 5
+    },
+    {
+      "samagriId": "sm_butter",
+      "classification": "COMMON",
+      "purpose": { "en": "Offering to Krishna, his beloved food (Makhan), and playfully offered", "hi": "कृष्ण को भोग, उनका पसंदीदा खाना (मक्खन), और खेल-खेल में चढ़ाया जाता है" },
+      "sortOrder": 6
+    },
+    {
+      "samagriId": "sm_milk",
+      "classification": "COMMON",
+      "purpose": { "en": "For ritual purposes and offerings", "hi": "अनुष्ठान और भोग के लिए" },
+      "sortOrder": 7
+    },
+    {
+      "samagriId": "sm_yogurt",
+      "classification": "OPTIONAL",
+      "purpose": { "en": "As an offering to Krishna", "hi": "कृष्ण को भोग के रूप में" },
+      "sortOrder": 8
+    },
+    {
+      "samagriId": "sm_honey",
+      "classification": "OPTIONAL",
+      "purpose": { "en": "As part of offerings", "hi": "भोग के रूप में" },
+      "sortOrder": 9
+    },
+    {
+      "samagriId": "sm_sweets",
+      "classification": "COMMON",
+      "purpose": { "en": "To offer and distribute as prasad", "hi": "भोग के रूप में चढ़ाने और प्रसाद वितरित करने के लिए" },
+      "sortOrder": 10
+    },
+    {
+      "samagriId": "sm_fruit",
+      "classification": "OPTIONAL",
+      "purpose": { "en": "To offer as fruit bhog", "hi": "फल भोग के रूप में" },
+      "sortOrder": 11
+    },
+    {
+      "samagriId": "sm_turmeric",
+      "classification": "COMMON",
+      "purpose": { "en": "For applying tilak", "hi": "तिलक लगाने के लिए" },
+      "sortOrder": 12
+    },
+    {
+      "samagriId": "sm_vermillion",
+      "classification": "COMMON",
+      "purpose": { "en": "For tilak and ritual offerings", "hi": "तिलक और पूजा के लिए" },
+      "sortOrder": 13
+    }
+  ],
+  "steps": [
+    {
+      "id": "step_j_1",
+      "stepNumber": 1,
+      "title": { "en": "Purification and Setup", "hi": "शुद्धिकरण और तैयारी" },
+      "description": { "en": "Clean and decorate the puja space with flowers and festive decorations. Arrange the Krishna idol on the altar, preferably in a cradle or crib (to symbolize his birth). Light diyas around the space to create a festive and sacred atmosphere.", "hi": "पूजा के स्थान को फूलों और त्योहार की सजावट से सजाएं। कृष्ण की मूर्ति को वेदी पर व्यवस्थित करें, अधिमानतः पालने में (जन्म का प्रतीक)। स्थान के चारों ओर दीये जलाएं।" },
+      "relatedSamagriIds": ["sm_krishna_idol", "sm_flowers", "sm_diya", "sm_oil"],
+      "isOptional": false
+    },
+    {
+      "id": "step_j_2",
+      "stepNumber": 2,
+      "title": { "en": "Apply Tilak", "hi": "तिलक लगाएं" },
+      "description": { "en": "Apply turmeric and vermillion tilak on your forehead and on the idol, marking the sacred celebration.", "hi": "अपने माथे पर और मूर्ति पर हल्दी और सिंदूर का तिलक लगाएं, पवित्र जश्न को दर्शाते हुए।" },
+      "relatedSamagriIds": ["sm_turmeric", "sm_vermillion"],
+      "isOptional": false
+    },
+    {
+      "id": "step_j_3",
+      "stepNumber": 3,
+      "title": { "en": "Burn Incense", "hi": "अगरबत्ती जलाएं" },
+      "description": { "en": "Light incense and move it in circles before the idol, creating a sacred and fragrant space for the celebration.", "hi": "अगरबत्ती जलाएं और इसे मूर्ति के सामने गोलाकार गति में लें, जश्न के लिए एक पवित्र और सुगंधित स्थान बनाते हुए।" },
+      "relatedSamagriIds": ["sm_incense"],
+      "isOptional": false
+    },
+    {
+      "id": "step_j_4",
+      "stepNumber": 4,
+      "title": { "en": "Offer Flowers and Prayers", "hi": "फूल और प्रार्थना चढ़ाएं" },
+      "description": { "en": "Offer flowers and prayers to Lord Krishna. Speak your intentions and seek his blessings for love, joy, wisdom, and divine grace. Recite prayers or mantras as per your family tradition.", "hi": "भगवान कृष्ण को फूल और प्रार्थना चढ़ाएं। अपनी मंशा व्यक्त करें और प्रेम, आनंद, बुद्धिमत्ता और दिव्य कृपा के लिए उनका आशीर्वाद माँगें।" },
+      "relatedSamagriIds": ["sm_flowers"],
+      "isOptional": false
+    },
+    {
+      "id": "step_j_5",
+      "stepNumber": 5,
+      "title": { "en": "Meditation and Devotional Singing", "hi": "ध्यान और भक्ति गीत" },
+      "description": { "en": "Sit in meditation before the idol. Visualize Lord Krishna in your heart. Sing devotional songs (bhajans) about Krishna's life, his divine plays (leelas), and his teachings. Devotional music and singing are central to Janmashtami celebrations.", "hi": "मूर्ति के सामने ध्यान करें। कृष्ण को अपने हृदय में देखें। कृष्ण के जीवन, उनकी दिव्य लीलाओं और उनकी शिक्षाओं के बारे में भक्ति गीत गाएं। भक्ति संगीत जन्माष्टमी के जश्न का केंद्र है।" },
+      "relatedSamagriIds": [],
+      "isOptional": false
+    },
+    {
+      "id": "step_j_6",
+      "stepNumber": 6,
+      "title": { "en": "Midnight Celebration (if possible)", "hi": "आधी रात का समारोह (यदि संभव हो)" },
+      "description": { "en": "If timing allows, perform the main puja at midnight, as Krishna is believed to be born at midnight. At this time, offer special prayers, light more diyas, and perform the aarti. If midnight is not possible, perform the puja during the day with equal devotion.", "hi": "यदि समय की अनुमति हो, तो आधी रात को मुख्य पूजा करें, क्योंकि कृष्ण का जन्म आधी रात को माना जाता है। इस समय विशेष प्रार्थना करें, और आरती करें। यदि आधी रात संभव नहीं है, तो दिन में समान भक्ति के साथ पूजा करें।" },
+      "relatedSamagriIds": ["sm_diya"],
+      "isOptional": true
+    },
+    {
+      "id": "step_j_7",
+      "stepNumber": 7,
+      "title": { "en": "Offer Butter and Sweets", "hi": "मक्खन और मिठाई चढ़ाएं" },
+      "description": { "en": "Offer butter (makhan) and sweets to Krishna. Butter is Krishna's favorite food, and offering it playfully (as children do) is a cherished part of Janmashtami. Place butter and sweets at the feet of the idol, and some devotees playfully feed butter to the idol.", "hi": "कृष्ण को मक्खन (मक्खन) और मिठाई चढ़ाएं। मक्खन कृष्ण का पसंदीदा भोजन है, और इसे खेल-खेल में चढ़ाना (जैसे बच्चे करते हैं) जन्माष्टमी का एक प्रिय हिस्सा है। मक्खन और मिठाई को मूर्ति के पैरों में रखें।" },
+      "relatedSamagriIds": ["sm_butter", "sm_sweets"],
+      "isOptional": false
+    },
+    {
+      "id": "step_j_8",
+      "stepNumber": 8,
+      "title": { "en": "Aarti", "hi": "आरती" },
+      "description": { "en": "Perform aarti by waving the lamp in front of the idol in a circular motion. The aarti expresses gratitude for Krishna's birth and the joy he brings to the world.", "hi": "दीये को मूर्ति के सामने गोलाकार गति में लहरा कर आरती करें। आरती कृष्ण के जन्म और दुनिया में लाई गई खुशियों के लिए कृतज्ञता व्यक्त करती है।" },
+      "relatedSamagriIds": ["sm_diya"],
+      "isOptional": false
+    },
+    {
+      "id": "step_j_9",
+      "stepNumber": 9,
+      "title": { "en": "Seek Blessings", "hi": "आशीर्वाद लें" },
+      "description": { "en": "Respectfully bow to the idol and seek Krishna's blessings for love, joy, spiritual growth, and protection. Touch your forehead to receive his blessings.", "hi": "मूर्ति को सम्मान पूर्वक नमस्कार करें और प्रेम, आनंद, आध्यात्मिक विकास और सुरक्षा के लिए कृष्ण का आशीर्वाद लें।" },
+      "relatedSamagriIds": [],
+      "isOptional": false
+    },
+    {
+      "id": "step_j_10",
+      "stepNumber": 10,
+      "title": { "en": "Distribute Prasad", "hi": "प्रसाद वितरण" },
+      "description": { "en": "Distribute the butter and sweets as prasad to all family members and guests. Prasad carries Krishna's blessings and is believed to bring joy and divine grace. The distribution is done in celebration of Krishna's birth.", "hi": "मक्खन और मिठाई को सभी परिवार के सदस्यों और मेहमानों को प्रसाद के रूप में वितरित करें। प्रसाद कृष्ण का आशीर्वाद लाता है। वितरण कृष्ण के जन्म का जश्न मनाने के लिए किया जाता है।" },
+      "relatedSamagriIds": ["sm_butter", "sm_sweets"],
+      "isOptional": false
+    }
+  ],
+  "variations": [
+    {
+      "id": "var_j_mathura",
+      "regions": ["north"],
+      "title": { "en": "Mathura and Brindavan Tradition", "hi": "मथुरा और ब्रندावन परंपरा" },
+      "description": { "en": "In Mathura and Brindavan, Krishna's birthplace and childhood home, Janmashtami is celebrated with grand processions, elaborate decorations, and community feasts. The temples organize special midnight prayers and enactments of Krishna's birth story.", "hi": "मथुरा और ब्रंदावन, कृष्ण के जन्मस्थान और बचपन के घर में, जन्माष्टमी को भव्य जुलूसों, विस्तृत सजावट और सामुदायिक भोजों के साथ मनाया जाता है।" },
+      "affectsSamagriIds": ["sm_butter", "sm_sweets"],
+      "affectsStepIds": []
+    },
+    {
+      "id": "var_j_raas_leela",
+      "regions": ["pan_india"],
+      "title": { "en": "Raas Leela Celebrations", "hi": "राास लीला समारोह" },
+      "description": { "en": "In some regions, particularly in North India, Janmashtami includes Raas Leela (the cosmic dance) performances where devotees enact Krishna's divine love story with Gopis (milkmaids). These theatrical presentations are forms of devotional expression.", "hi": "कुछ क्षेत्रों में, विशेष रूप से उत्तर भारत में, जन्माष्टमी में राास लीला (ब्रह्मांडीय नृत्य) प्रस्तुतियां शामिल हैं जहां भक्त कृष्ण की गोपियों के साथ दिव्य प्रेम की कहानी को नाटकीय रूप देते हैं।" },
+      "affectsSamagriIds": [],
+      "affectsStepIds": []
+    }
+  ],
+  "disclaimer": { "en": "This is a general guide to Janmashtami Puja. Regional practices, family traditions, and the exact timing (based on lunar calendar) may vary. Please follow your family's practices and consult a local priest for specific rituals and timing.", "hi": "यह जन्माष्टमी पूजा का एक सामान्य मार्गदर्शन है। क्षेत्रीय प्रथाएं, पारिवारिक परंपराएं, और सटीक समय (चंद्र पंचांग के आधार पर) भिन्न हो सकते हैं। कृपया अपनी पारिवारिक परंपराओं का पालन करें और विशिष्ट अनुष्ठानों के लिए एक स्थानीय पुजारी से परामर्श लें।" },
+  "reviewStatus": "ai_drafted",
+  "sourceNote": { "en": "AI-drafted general guide based on widely documented Janmashtami practices. Not yet verified by a pandit. The exact date and timing should be determined from the lunar calendar in consultation with a priest.", "hi": "व्यापक रूप से प्रलेखित जन्माष्टमी प्रथाओं के आधार पर AI द्वारा तैयार सामान्य मार्गदर्शन। अभी तक किसी पंडित द्वारा सत्यापित नहीं। सटीक तारीख और समय को एक पुजारी से परामर्श लेकर चंद्र पंचांग से निर्धारित किया जाना चाहिए।" },
+  "contentVersion": 1,
+  "status": "active"
+}

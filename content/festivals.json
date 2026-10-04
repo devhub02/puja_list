@@ -1,1 +1,82 @@
-[]
+[
+  {
+    "id": "fest_ganesh_chaturthi",
+    "name": { "en": "Ganesh Chaturthi", "hi": "गणेश चतुर्थी" },
+    "alternateNames": { "en": ["Ganesh Jayanti", "Vinayaka Chaturthi"], "hi": ["गणेश जयंती", "विनायक चतुर्थी"] },
+    "description": { "en": "Festival celebrating the birth of Lord Ganesh, the remover of obstacles.", "hi": "बाधाओं को दूर करने वाले भगवान गणेश के जन्म का त्योहार।" },
+    "significance": { "en": "Ganesh Chaturthi celebrates the wisdom and prosperity of Lord Ganesh. He is worshipped at the beginning of all auspicious endeavors as the remover of obstacles.", "hi": "गणेश चतुर्थी भगवान गणेश की बुद्धिमत्ता और समृद्धि का जश्न है। सभी शुभ कार्यों की शुरुआत में उन्हें बाधा निवारण के रूप में पूजा जाता है।" },
+    "regions": ["pan_india"],
+    "pujaIds": ["puja_ganesh_chaturthi"],
+    "status": "active"
+  },
+  {
+    "id": "fest_diwali",
+    "name": { "en": "Diwali", "hi": "दिवाली" },
+    "alternateNames": { "en": ["Deepavali", "Festival of Lights"], "hi": ["दीपावली", "प्रकाश का पर्व"] },
+    "description": { "en": "Festival of lights celebrating the victory of light over darkness and good over evil.", "hi": "प्रकाश पर अंधकार और अच्छाई पर बुराई की जीत का उत्सव।" },
+    "significance": { "en": "Diwali is the most significant festival in the Hindu calendar, symbolizing the triumph of good over evil, knowledge over ignorance, and hope over despair. Lakshmi, the goddess of wealth and prosperity, is worshipped during Diwali.", "hi": "दिवाली हिंदू पंचांग का सबसे महत्वपूर्ण त्योहार है, जो अच्छाई पर बुराई, ज्ञान पर अज्ञानता और आशा पर निराशा की जीत का प्रतीक है। दिवाली के दौरान संपत्ति और समृद्धि की देवी लक्ष्मी की पूजा की जाती है।" },
+    "regions": ["pan_india"],
+    "pujaIds": ["puja_diwali_lakshmi_puja"],
+    "status": "active"
+  },
+  {
+    "id": "fest_saraswati_puja",
+    "name": { "en": "Saraswati Puja", "hi": "सरस्वती पूजन" },
+    "alternateNames": { "en": ["Vasant Panchami", "Saraswati Jayanti"], "hi": ["वसंत पंचमी", "सरस्वती जयंती"] },
+    "description": { "en": "Festival dedicated to Goddess Saraswati, the deity of knowledge, learning, and the arts.", "hi": "ज्ञान, शिक्षा और कलाओं की देवी सरस्वती को समर्पित त्योहार।" },
+    "significance": { "en": "Saraswati Puja is celebrated to invoke the blessings of Goddess Saraswati for wisdom, learning, and intellectual growth. It marks the beginning of spring and is particularly important for students and scholars.", "hi": "सरस्वती पूजन ज्ञान, शिक्षा और बौद्धिक विकास के लिए देवी सरस्वती का आशीर्वाद पाने के लिए मनाया जाता है। यह वसंत की शुरुआत का प्रतीक है और छात्रों और विद्वानों के लिए विशेष रूप से महत्वपूर्ण है।" },
+    "regions": ["pan_india"],
+    "pujaIds": ["puja_saraswati_puja"],
+    "status": "active"
+  },
+  {
+    "id": "fest_satyanarayan",
+    "name": { "en": "Satyanarayan Puja", "hi": "सत्यनारायण पूजन" },
+    "alternateNames": { "en": ["Satyanarayana Puja"], "hi": ["सत्यनारायण पूजा"] },
+    "description": { "en": "Puja dedicated to Lord Satyanarayan, an avatar of Vishnu, performed for family welfare and prosperity.", "hi": "भगवान सत्यनारायण, विष्णु के अवतार को समर्पित पूजा, जो पारिवारिक कल्याण और समृद्धि के लिए की जाती है।" },
+    "significance": { "en": "Satyanarayan Puja is performed to seek blessings for family prosperity, good health, and the fulfillment of wishes. It is believed that this puja removes obstacles and brings good fortune to the household.", "hi": "सत्यनारायण पूजन परिवार की समृद्धि, अच्छे स्वास्थ्य और इच्छाओं की पूर्ति के लिए किया जाता है। माना जाता है कि यह पूजा बाधाओं को दूर करता है और घर में खुशहाली लाता है।" },
+    "regions": ["pan_india"],
+    "pujaIds": ["puja_satyanarayan_puja"],
+    "status": "active"
+  },
+  {
+    "id": "fest_maha_shivratri",
+    "name": { "en": "Maha Shivratri", "hi": "महा शिवरात्रि" },
+    "alternateNames": { "en": ["Shivaratri", "Shivratri"], "hi": ["शिवरात्रि"] },
+    "description": { "en": "Festival celebrating Lord Shiva, observed on the 14th night of the dark fortnight of Phalgun.", "hi": "फाल्गुन के कृष्ण पक्ष की चतुर्दशी रात को भगवान शिव को समर्पित त्योहार।" },
+    "significance": { "en": "Maha Shivratri celebrates the power and divinity of Lord Shiva. It is believed that on this night, Shiva performed the cosmic dance. Devotees fast and meditate to seek Shiva's blessings.", "hi": "महा शिवरात्रि भगवान शिव की शक्ति और दिव्यता का जश्न है। माना जाता है कि इसी रात को शिव ने कॉस्मिक नृत्य किया था। भक्त शिव का आशीर्वाद पाने के लिए व्रत रखते और ध्यान करते हैं।" },
+    "regions": ["pan_india"],
+    "pujaIds": ["puja_maha_shivratri"],
+    "status": "active"
+  },
+  {
+    "id": "fest_navratri",
+    "name": { "en": "Navratri", "hi": "नवरात्रि" },
+    "alternateNames": { "en": ["Dasara", "Durga Puja", "Navaratri"], "hi": ["दशहरा", "दुर्गा पूजन", "नवरात्र"] },
+    "description": { "en": "Nine-day festival celebrating Goddess Durga and her victory over evil.", "hi": "देवी दुर्गा और बुराई पर उनकी जीत का नौ दिनों का त्योहार।" },
+    "significance": { "en": "Navratri celebrates the nine forms of Goddess Durga. Each day represents a different aspect of the divine feminine power. The festival culminates in Dussehra, celebrating the victory of good over evil.", "hi": "नवरात्रि देवी दुर्गा के नौ रूपों का जश्न है। हर दिन दिव्य स्त्री शक्ति के एक अलग पहलू का प्रतिनिधित्व करता है। त्योहार दशहरे में समाप्त होता है, जो अच्छाई की बुराई पर जीत का जश्न है।" },
+    "regions": ["pan_india"],
+    "pujaIds": ["puja_navratri_durga_puja"],
+    "status": "active"
+  },
+  {
+    "id": "fest_janmashtami",
+    "name": { "en": "Janmashtami", "hi": "जन्माष्टमी" },
+    "alternateNames": { "en": ["Krishna Janmashtami", "Gokulashtami"], "hi": ["कृष्ण जन्माष्टमी", "गोकुलाष्टमी"] },
+    "description": { "en": "Festival celebrating the birth of Lord Krishna.", "hi": "भगवान कृष्ण के जन्म का त्योहार।" },
+    "significance": { "en": "Janmashtami celebrates the birth of Lord Krishna, the eighth avatar of Vishnu. Krishna is revered for his wisdom, divine love, and role in the Mahabharata. Devotees celebrate with devotional singing, dancing, and butter-based offerings.", "hi": "जन्माष्टमी विष्णु के आठवें अवतार भगवान कृष्ण के जन्म का जश्न है। कृष्ण को उनकी बुद्धिमत्ता, दिव्य प्रेम और महाभारत में उनकी भूमिका के लिए पूजा जाता है। भक्त भक्ति गीत, नृत्य और मक्खन पर आधारित चढ़ावे के साथ मनाते हैं।" },
+    "regions": ["pan_india"],
+    "pujaIds": ["puja_janmashtami"],
+    "status": "active"
+  },
+  {
+    "id": "fest_hanuman_puja",
+    "name": { "en": "Hanuman Puja", "hi": "हनुमान पूजन" },
+    "alternateNames": { "en": ["Hanuman Jayanti"], "hi": ["हनुमान जयंती"] },
+    "description": { "en": "Puja dedicated to Lord Hanuman, the devoted follower of Lord Rama.", "hi": "भगवान राम के परमभक्त हनुमान को समर्पित पूजा।" },
+    "significance": { "en": "Hanuman Puja celebrates the devotion, strength, and courage of Lord Hanuman. Hanuman is worshipped as the embodiment of loyalty, courage, and righteousness. His puja is believed to bring strength and protection.", "hi": "हनुमान पूजन भगवान हनुमान की भक्ति, शक्ति और साहस का जश्न है। हनुमान को भक्ति, साहस और धार्मिकता का प्रतीक माना जाता है। उनकी पूजा शक्ति और सुरक्षा लाने के लिए मानी जाती है।" },
+    "regions": ["pan_india"],
+    "pujaIds": ["puja_hanuman_puja"],
+    "status": "active"
+  }
+]

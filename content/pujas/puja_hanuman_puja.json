@@ -1,0 +1,199 @@
+{
+  "id": "puja_hanuman_puja",
+  "festivalId": "fest_hanuman_puja",
+  "name": { "en": "Hanuman Puja", "hi": "हनुमान पूजन" },
+  "alternateNames": { "en": ["Hanuman Jayanti", "Hanuman Chalisa"], "hi": ["हनुमान जयंती", "हनुमान चालीसा"] },
+  "category": "household",
+  "regions": ["pan_india"],
+  "summary": { "en": "Worship of Lord Hanuman, the devoted follower of Lord Rama, seeking his blessings for strength, courage, protection, and spiritual growth. Hanuman is one of the most widely worshipped deities in Hinduism.", "hi": "भगवान राम के परमभक्त हनुमान की पूजा, शक्ति, साहस, सुरक्षा और आध्यात्मिक विकास के लिए उनका आशीर्वाद माँगना। हनुमान हिंदू धर्म में सबसे अधिक पूजे जाने वाले देवताओं में से एक हैं।" },
+  "significance": { "en": "Hanuman Puja celebrates the strength, courage, loyalty, and devotion of Lord Hanuman. Hanuman is worshipped as the embodiment of discipline, righteousness, and selfless service. He is believed to be the greatest devotee of Lord Rama and his life exemplifies dedication to the divine. Devotees seek Hanuman's blessings for physical strength, mental clarity, protection from negative forces, and spiritual enlightenment.", "hi": "हनुमान पूजा भगवान हनुमान की शक्ति, साहस, वफादारी और भक्ति का जश्न है। हनुमान को अनुशासन, धार्मिकता और निःस्वार्थ सेवा का प्रतीक माना जाता है। वह भगवान राम के महानतम भक्त माने जाते हैं और उनका जीवन दिव्य के प्रति समर्पण का उदाहरण है। भक्त शारीरिक शक्ति, मानसिक स्पष्टता, नकारात्मक शक्तियों से सुरक्षा और आध्यात्मिक ज्ञान के लिए हनुमान का आशीर्वाद माँगते हैं।" },
+  "samagri": [
+    {
+      "samagriId": "sm_hanuman_idol",
+      "classification": "REQUIRED",
+      "purpose": { "en": "To represent and worship Lord Hanuman", "hi": "भगवान हनुमान का प्रतिनिधित्व और पूजा करने के लिए" },
+      "sortOrder": 1
+    },
+    {
+      "samagriId": "sm_vermillion",
+      "classification": "COMMON",
+      "purpose": { "en": "For tilak and anointing the idol, red color is sacred to Hanuman", "hi": "तिलक और मूर्ति को रंगने के लिए, लाल रंग हनुमान को पवित्र है" },
+      "sortOrder": 2
+    },
+    {
+      "samagriId": "sm_marigold",
+      "classification": "COMMON",
+      "purpose": { "en": "Marigold flowers for offering to Hanuman", "hi": "हनुमान को चढ़ाने के लिए गेंदे के फूल" },
+      "quantityGuidance": { "en": "as needed" },
+      "sortOrder": 3
+    },
+    {
+      "samagriId": "sm_flowers",
+      "classification": "COMMON",
+      "purpose": { "en": "Various flowers for offering", "hi": "चढ़ाने के लिए विभिन्न फूल" },
+      "quantityGuidance": { "en": "as needed" },
+      "sortOrder": 4
+    },
+    {
+      "samagriId": "sm_incense",
+      "classification": "COMMON",
+      "purpose": { "en": "To purify the space", "hi": "स्थान को शुद्ध करने के लिए" },
+      "sortOrder": 5
+    },
+    {
+      "samagriId": "sm_diya",
+      "classification": "REQUIRED",
+      "purpose": { "en": "To light as an offering of light and energy", "hi": "प्रकाश और ऊर्जा के भोग के रूप में" },
+      "sortOrder": 6
+    },
+    {
+      "samagriId": "sm_oil",
+      "classification": "REQUIRED",
+      "purpose": { "en": "To fuel the diyas", "hi": "दीयों को जलाने के लिए" },
+      "quantityGuidance": { "en": "as needed" },
+      "sortOrder": 7
+    },
+    {
+      "samagriId": "sm_besan",
+      "classification": "OPTIONAL",
+      "purpose": { "en": "To make laddoos (sweets) as offering", "hi": "भोग के लिए लड्डू बनाने के लिए" },
+      "sortOrder": 8
+    },
+    {
+      "samagriId": "sm_jaggery",
+      "classification": "OPTIONAL",
+      "purpose": { "en": "Ingredient for making sweets", "hi": "मिठाई बनाने के लिए सामग्री" },
+      "sortOrder": 9
+    },
+    {
+      "samagriId": "sm_sweets",
+      "classification": "COMMON",
+      "purpose": { "en": "To offer and distribute as prasad", "hi": "भोग के रूप में चढ़ाने और प्रसाद वितरित करने के लिए" },
+      "sortOrder": 10
+    },
+    {
+      "samagriId": "sm_turmeric",
+      "classification": "COMMON",
+      "purpose": { "en": "For tilak", "hi": "तिलक के लिए" },
+      "sortOrder": 11
+    },
+    {
+      "samagriId": "sm_rice",
+      "classification": "COMMON",
+      "purpose": { "en": "To offer along with flowers", "hi": "फूलों के साथ चढ़ाने के लिए" },
+      "quantityGuidance": { "en": "as needed" },
+      "sortOrder": 12
+    },
+    {
+      "samagriId": "sm_water",
+      "classification": "REQUIRED",
+      "purpose": { "en": "For ritual bathing and washing", "hi": "पूजा के लिए जल" },
+      "sortOrder": 13
+    }
+  ],
+  "steps": [
+    {
+      "id": "step_hp_1",
+      "stepNumber": 1,
+      "title": { "en": "Purification and Setup", "hi": "शुद्धिकरण और तैयारी" },
+      "description": { "en": "Clean and prepare the puja space. Arrange the Hanuman idol on the altar. Decorate with red cloth or flowers as red is the sacred color for Hanuman. Light diyas around the altar. Sit in a comfortable position facing the idol.", "hi": "पूजा के स्थान को साफ करें और तैयार करें। हनुमान की मूर्ति को वेदी पर व्यवस्थित करें। लाल कपड़े या फूलों से सजाएं क्योंकि लाल हनुमान का पवित्र रंग है। वेदी के चारों ओर दीये जलाएं।" },
+      "relatedSamagriIds": ["sm_hanuman_idol", "sm_diya", "sm_oil"],
+      "isOptional": false
+    },
+    {
+      "id": "step_hp_2",
+      "stepNumber": 2,
+      "title": { "en": "Apply Tilak", "hi": "तिलक लगाएं" },
+      "description": { "en": "Apply turmeric and vermillion tilak on your forehead and on the idol. Vermillion is particularly sacred to Hanuman, so it is applied generously on his form.", "hi": "अपने माथे पर और मूर्ति पर हल्दी और सिंदूर का तिलक लगाएं। सिंदूर विशेष रूप से हनुमान को पवित्र है।" },
+      "relatedSamagriIds": ["sm_turmeric", "sm_vermillion"],
+      "isOptional": false
+    },
+    {
+      "id": "step_hp_3",
+      "stepNumber": 3,
+      "title": { "en": "Burn Incense", "hi": "अगरबत्ती जलाएं" },
+      "description": { "en": "Light incense and move it in circles in front of the idol. The fragrance purifies the space and creates a sacred environment for worship.", "hi": "अगरबत्ती जलाएं और इसे मूर्ति के सामने गोलाकार गति में लें।" },
+      "relatedSamagriIds": ["sm_incense"],
+      "isOptional": false
+    },
+    {
+      "id": "step_hp_4",
+      "stepNumber": 4,
+      "title": { "en": "Offer Flowers", "hi": "फूल चढ़ाएं" },
+      "description": { "en": "Offer marigold and other flowers at the feet of Hanuman. Flowers represent devotion and beauty. The offering of flowers is a traditional way to honor the deity.", "hi": "हनुमान के पैरों में गेंदे और अन्य फूल चढ़ाएं। फूल भक्ति और सौंदर्य का प्रतिनिधित्व करते हैं।" },
+      "relatedSamagriIds": ["sm_marigold", "sm_flowers"],
+      "isOptional": false
+    },
+    {
+      "id": "step_hp_5",
+      "stepNumber": 5,
+      "title": { "en": "Meditation and Prayers", "hi": "ध्यान और प्रार्थना" },
+      "description": { "en": "Sit in quiet meditation and focus on Hanuman. Visualize his divine form—powerful, courageous, and devoted. Silently offer prayers seeking his blessings for strength, protection, courage, and spiritual guidance. Recite the Hanuman Chalisa or other prayers as per your tradition.", "hi": "शांति से ध्यान करें और हनुमान पर ध्यान केंद्रित करें। शक्ति, सुरक्षा, साहस और आध्यात्मिक मार्गदर्शन के लिए प्रार्थना करें। हनुमान चालीसा या अन्य प्रार्थना दोहराएं।" },
+      "relatedSamagriIds": [],
+      "isOptional": false
+    },
+    {
+      "id": "step_hp_6",
+      "stepNumber": 6,
+      "title": { "en": "Offer Rice and Vermillion", "hi": "चावल और सिंदूर चढ़ाएं" },
+      "description": { "en": "Offer rice grains mixed with vermillion at the feet of the idol. This is a traditional offering that symbolizes respect and devotion to Hanuman.", "hi": "सिंदूर के साथ मिले चावल को मूर्ति के पैरों में चढ़ाएं। यह एक पारंपरिक भोग है जो हनुमान के प्रति सम्मान और भक्ति का प्रतीक है।" },
+      "relatedSamagriIds": ["sm_rice", "sm_vermillion"],
+      "isOptional": false
+    },
+    {
+      "id": "step_hp_7",
+      "stepNumber": 7,
+      "title": { "en": "Offer Sweets", "hi": "मिठाई चढ़ाएं" },
+      "description": { "en": "Offer sweets or laddoos at the feet of Hanuman as a mark of devotion and celebration. Sweets symbolize the sweetness of divine presence and blessing.", "hi": "भक्ति और पूजा के चिन्ह के रूप में हनुमान के पैरों में मिठाई या लड्डू चढ़ाएं।" },
+      "relatedSamagriIds": ["sm_sweets"],
+      "isOptional": false
+    },
+    {
+      "id": "step_hp_8",
+      "stepNumber": 8,
+      "title": { "en": "Aarti", "hi": "आरती" },
+      "description": { "en": "Perform aarti by waving the lamp in front of the idol in a circular motion. The aarti expresses gratitude to Hanuman for his strength, protection, and guidance.", "hi": "दीये को मूर्ति के सामने गोलाकार गति में लहरा कर आरती करें। आरती हनुमान के शक्ति, सुरक्षा और मार्गदर्शन के लिए कृतज्ञता व्यक्त करती है।" },
+      "relatedSamagriIds": ["sm_diya"],
+      "isOptional": false
+    },
+    {
+      "id": "step_hp_9",
+      "stepNumber": 9,
+      "title": { "en": "Seek Blessings", "hi": "आशीर्वाद लें" },
+      "description": { "en": "Respectfully bow to the idol and seek Hanuman's blessings. Touch your forehead to show complete dedication and receive his grace. Ask for strength of body and mind, courage to face challenges, and protection from harm.", "hi": "मूर्ति को सम्मान पूर्वक नमस्कार करें और हनुमान का आशीर्वाद लें। शरीर और मन की शक्ति, चुनौतियों का सामना करने का साहस, और नुकसान से सुरक्षा माँगें।" },
+      "relatedSamagriIds": [],
+      "isOptional": false
+    },
+    {
+      "id": "step_hp_10",
+      "stepNumber": 10,
+      "title": { "en": "Distribute Prasad", "hi": "प्रसाद वितरण" },
+      "description": { "en": "Distribute the offered sweets as prasad to family members and guests. Prasad carries Hanuman's blessings and is believed to grant strength and protection to all who partake. The distribution is an important part of completing the puja.", "hi": "मिठाई को प्रसाद के रूप में परिवार के सदस्यों और मेहमानों को वितरित करें। प्रसाद हनुमान का आशीर्वाद लाता है।" },
+      "relatedSamagriIds": ["sm_sweets"],
+      "isOptional": false
+    }
+  ],
+  "variations": [
+    {
+      "id": "var_hp_tuesday",
+      "regions": ["pan_india"],
+      "title": { "en": "Tuesday Worship", "hi": "मंगलवार की पूजा" },
+      "description": { "en": "Tuesday is considered the most auspicious day for Hanuman Puja, as it is believed to be associated with Hanuman's powers. Many devotees observe a special puja on Tuesdays, often fasting or performing additional rituals. Hanuman Puja on Tuesday is believed to bring greater benefits and blessings.", "hi": "मंगलवार को हनुमान पूजा के लिए सबसे शुभ दिन माना जाता है, क्योंकि यह हनुमान की शक्तियों से जुड़ा माना जाता है। कई भक्त मंगलवार को विशेष पूजा करते हैं।" },
+      "affectsSamagriIds": [],
+      "affectsStepIds": []
+    },
+    {
+      "id": "var_hp_hanuman_chalisa",
+      "regions": ["pan_india"],
+      "title": { "en": "Hanuman Chalisa Recitation", "hi": "हनुमान चालीसा का पाठ" },
+      "description": { "en": "Many devotees recite the Hanuman Chalisa (40 verses in praise of Hanuman) during the puja. The Chalisa is a powerful devotional prayer that praises Hanuman's qualities and seeks his blessings. Reciting the Chalisa is believed to bring protection and strength.", "hi": "कई भक्त पूजा के दौरान हनुमान चालीसा (हनुमान की प्रशंसा में 40 श्लोक) का पाठ करते हैं। चालीसा एक शक्तिशाली भक्ति प्रार्थना है जो हनुमान की गुणों की प्रशंसा करती है।" },
+      "affectsSamagriIds": [],
+      "affectsStepIds": ["step_hp_5"]
+    }
+  ],
+  "disclaimer": { "en": "This is a general guide to Hanuman Puja. Regional practices and family traditions may vary. The recitation of Hanuman Chalisa or specific mantras should be done as per your family tradition or with guidance from a qualified priest. Please follow your family's practices for the most authentic experience.", "hi": "यह हनुमान पूजा का एक सामान्य मार्गदर्शन है। क्षेत्रीय प्रथाएं और पारिवारिक परंपराएं भिन्न हो सकती हैं। कृपया अपनी पारिवारिक परंपराओं का पालन करें और सबसे प्रामाणिक अनुभव के लिए एक योग्य पुजारी से सलाह लें।" },
+  "reviewStatus": "ai_drafted",
+  "sourceNote": { "en": "AI-drafted general guide based on widely documented Hanuman Puja practices. Not yet verified by a pandit. The Hanuman Chalisa text and specific mantras should be obtained from reliable sources or a qualified priest.", "hi": "व्यापक रूप से प्रलेखित हनुमान पूजा प्रथाओं के आधार पर AI द्वारा तैयार सामान्य मार्गदर्शन। अभी तक किसी पंडित द्वारा सत्यापित नहीं। हनुमान चालीसा पाठ और विशिष्ट मंत्रों को विश्वसनीय स्रोतों या एक योग्य पुजारी से प्राप्त किया जाना चाहिए।" },
+  "contentVersion": 1,
+  "status": "active"
+}
