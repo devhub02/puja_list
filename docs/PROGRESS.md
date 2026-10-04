@@ -8,8 +8,10 @@ Phases are defined in the project plan; this checklist tracks their status. Stat
 - [x] **Phase 3, Batch 1 — Bundled puja content, pan-India core pujas** (merged to main)
 - [x] **Phase 3, Batch 2 — Bundled puja content, East India and festival-family pujas** (done on branch `phase-3-batch-2`, not pushed)
 - [x] **Phase 4 — Home, Library, Search, Puja details** (done on branch `phase-4-browse`, not pushed; **not yet checked on a device or emulator**)
-- [ ] Phase 5
-- [ ] Phase 6
+- [x] **Phase 5 — Samagri checklist, Vidhi steps and My Preparation** (see its section below)
+- [x] **Phase 6A — Festival catalog and calendar-date import pipeline** (merged to main)
+- [x] **Phase 6B — Calendar tab, Home upcoming festivals, next-date display** (done on branch `phase-6b-calendar`, not pushed; **not yet checked on a device or emulator**)
+- [ ] Phase 6C (reminders, settings reset, share: not started)
 - [ ] Phase 7
 - [ ] Phase 8
 - [ ] Phase 9
@@ -318,4 +320,74 @@ Not verified:
 - `calendar_dates.csv` now has `festival_id, festival_name_en, year, date, end_date, certainty`. The template and importer use it; `region` is always `all` in the generated year files and no `source` is written. Duplicate rule: one filled row per festival and year. Legacy `region`/`source_note` columns are ignored if present.
 - Schema: `CalendarEntry.source` is optional. Mobile: `source` is optional in the types; the seed stores a missing source as `''` (the column is NOT NULL, no migration) and the repository returns it as `undefined`; a missing `region` is stored as `all`.
 - The filled CSV uses certainty values `high`/`medium`/`low`/`regional_variation`, which are not in the `DateCertainty` enum (`confirmed`, `provisional`, `varies_by_region`), so the import rejects those 25 rows. No value was remapped.
+
+
+## Phase 6B status — Calendar tab, Home upcoming festivals, next-date display
+
+### Data decision (made by you, applied by me)
+`content/calendar/calendar_dates.csv` used certainty values outside the schema enum, so the import rejected all 25 filled rows. **You decided this mapping** (the schema enum was NOT changed) and I applied it to the `certainty` column only (date, end_date, festival_id and year were not touched; checked row by row against `git show HEAD:...`):
+
+| In the CSV before | Now | Rows |
+|---|---|---|
+| `high` | `confirmed` | 16 (18 `high` rows, 2 overridden below) |
+| `medium`, `low` | `provisional` | 6 (5 `medium` + 1 `low`) |
+| `regional_variation` | `varies_by_region` | 1 (`fest_durga_puja`) |
+| `high` overridden to `provisional` | `provisional` | 2 |
+
+**Overridden rows** (your rule: if the mapped value conflicts with the guide, use the more conservative `provisional` and list it). Section 4 of `CALENDAR_DATA_GUIDE.md` says a festival that is kept on different days in different regions, and festivals without a single annual date, should not be presented as a plain confirmed date:
+- `fest_karthigai_deepam` (2026-11-24): `high` -> `provisional`, because its catalog `dateType` is `regional` (set by a regional calendar).
+- `fest_tulsi_vivah` (2026-11-21): `high` -> `provisional`, because its catalog `dateType` is `variable` (no single annual rule; the guide says such festivals "often have no single date").
+
+Not a conflict, but you should know: the guide defines `confirmed` as "checked against a named authoritative source". The repository stores no source (by design), so I could not check that for any of the 16 `confirmed` rows; that rests on your decision that `high` means that. Several `confirmed` rows are for `lunar` festivals that some regions keep on another day (for example `fest_mysuru_dasara`, `fest_navratri`, `fest_dussehra`); if you know any of them differs by region, change that cell to `varies_by_region` or `provisional` and re-run the import.
+
+Import result: **25 dates imported, all in 2026; none in 2027** (the 2027 rows are empty). Month range with data: **October 2026 (first date 2026-10-11) to December 2026 (last date 2026-12-23)**; by start month: October 7, November 15, December 3 (dates entered by you, not checked by me). `contentVersion` bumped 5 -> 6 (manifest `calendarYears` is now `[2026]`). Certainty in the bundle: 16 `confirmed`, 8 `provisional`, 1 `varies_by_region`.
+
+### Done
+- **Date utilities** (`src/utils/dateUtils.ts`, pure): `isLeapYear`, `daysInMonth`, `parseIso`/`toIso`, `weekdayOf` (UTC arithmetic, no time zone), `localIsoDate` (the one place the device clock is read), `addMonths` (year boundaries both ways), `monthGrid` (whole weeks, configurable week start, neighbour padding), `lastDay`/`isInRange`/`isMultiDay`/`rangeLength` (`end_date` equal to `date` or missing = one day). Nothing computes a festival date or tithi.
+- **Repositories** (`src/db/repositories/calendarRepository.ts`): `listDatesForMonth` (includes a festival that started in the previous month), `listUpcomingFestivals` / `listNextDates` (one entry per festival, ongoing ones included, deprecated ones never), `getNextDate`, `listFestivalsWithoutDate(year)`.
+- **Calendar tab** (5th tab, between Library and My Preparation): Month view (7-column grid, dot per single-day festival, a bar through every day of a multi-day festival, ring on today, filled selected day, month arrows, "Today" button that also selects today, tap a day to list its festivals, tap it again to go back to the month list) and **All festivals** view (grouped by month of the shown year, with year arrows, plus a "Date not available" section with every festival that has no date that year). Region chips (All India + only regions present in the catalog) and category chips; "Clear filters"; a visible translated panchang note; the shared `SearchBar` searches English and Hindi names and alternate spellings, in both views.
+- **Festival rows** (`FestivalRow`): name, date or range, a visible certainty label, the review badge, "Mainly observed in: ..." (from `festival.regions`), "Ongoing" for a multi-day festival that is on now. One linked active puja opens that puja; no puja (calendar-only) **or several linked pujas** open the new **Festival Details** screen (`app/festival/[id].tsx`: description, significance, observance wording, bundled dates with certainty, regions and states, linked pujas, review badge and explanation, source note, standard disclaimer).
+- **Home**: "Upcoming festivals" (next 5 festivals from today's device date, ongoing included, with date/range and certainty label) and a "See calendar" link; the whole section is hidden when there is no upcoming bundled date (also while loading or on error).
+- **Puja Details**: "Next date" with certainty label only when the linked festival has an upcoming or ongoing bundled date; otherwise nothing about dates. The old "When is it observed? / Date not available" block was **removed** (that is what your brief asks for, and it changed one earlier test).
+- **Library cards**: a light caption "Next: 8 Nov 2026 · Date confirmed" when the puja's festival has an upcoming date.
+- **Certainty labels**: `src/utils/certainty.ts` is the single mapping from the schema values to translated labels; any other value gets the neutral label "Certainty not stated" / "निश्चितता का उल्लेख नहीं" (tested with an invented value and with `constructor`/`__proto__`).
+- **Strings**: English and Hindi (`calendar.*`, `festival.*`, `festivalRegions.*`, `festivalCategories.*`, Home and Library keys). Month and day names come from `Intl` in the selected language. Hindi uses "तारीख़" for dates (as in the earlier phases).
+- Refactors: `ChipRow` moved out of the Library screen into a shared component; `useDbQuery` is a small keyed async-read hook (no setState inside effects) used by the new hooks.
+
+### Decisions to know about
+- Regional scope comes only from the festival catalog; dates carry no region and none is invented.
+- Days of the neighbouring months are left blank in the grid (the bundle is queried per month, so they would wrongly look like "no festival").
+- "Date not available" section and the month-has-no-data note are separate: the note says the bundle has no date in that month at all (before any filter); an empty list under a filter says "No festivals match" instead.
+- The year of the All view follows the month navigation (arrows change the year), so every year is reachable but only 2026 has data.
+- Week starts on Sunday (the grid takes a week-start parameter; there is no setting for it yet).
+- Today's date is read when the screen opens and again when the app returns to the foreground; a screen left open past midnight is not refreshed until then.
+- Tests that depend on "today" mock `localIsoDate` (`testing/dateMock.ts`); fixtures are in `testing/calendarFixture.ts` (2031 dates, labelled TEST FIXTURE, not real dates).
+
+### Changes to earlier tests (all other earlier tests unchanged and passing)
+- `pujaDetails.test.tsx`: the assertion that "Date not available" is shown now asserts "Next date" with a fixture date, and two new tests check that nothing about dates is shown with no/over dates (the brief changed that behaviour).
+- `libraryScreen.test.tsx`: the Home test that checked "no Upcoming section" now seeds with `calendar: []` (the shared fixture contains a 2031 date, so Home would legitimately show it).
+- `tabs.test.tsx`: five tabs instead of four, plus a test that the Calendar tab opens.
+
+### Verified (run for real in this phase; Node v22.22.0)
+- backend: `pytest` **139 passed**; `scripts/import_calendar_dates.py` OK (25 dates, wrote `calendar/2026.json`); `scripts/validate_content.py` OK (contentVersion 6, 103 festivals, 16 pujas, 53 samagri, 1 calendar year); `scripts/export_content.py` OK.
+- mobile: `npx tsc --noEmit` clean; `npm run lint` clean; `npm run format:check` clean; `npm test` **33 suites / 501 tests passed** (was 27 / 405; new: dateUtils, calendarRepository, calendarLogic, calendarScreen incl. Festival Details, homeUpcoming incl. Library next date, calendar.realContent); `npx expo export --platform android` OK (4.3 MB hbc).
+- Real-content tests (exported `content.json`): 25 dates in 2026 only, Diwali on 2026-11-08, Chhath 2026-11-13 to 2026-11-16 (rendered in the grid with a bar on the 13th to 16th), 78 festivals "Date not available" for 2026 and all 103 for 2027, Calendar/Festival Details/Home/Puja Details render in English and Hindi.
+- dev server: `CI=1 npx expo start --clear`, `curl` of `expo-router/entry.bundle?platform=android&dev=true&minify=false` returned **HTTP 200** (1816 modules, 9.5 MB, 18 s). The only line containing "ERROR" in the server log is React Native DevTools failing to install ("Running as root without --no-sandbox"), which is a sandbox limitation, not a bundling error. `npm ls metro @expo/metro-config`: `metro@0.84.5`, `@expo/metro-config@57.0.12`; no `metro*` in package.json.
+- The first full `npm test` run right after `npm ci` had 3 failures in the Samagri/Puja suites (while npm was still busy); the same tests passed on every later run, including the final one.
+
+### Not verified
+- `npx expo-doctor`: 19 of 21 checks pass; the two failures (Expo config schema, React Native Directory) are "Host not in allowlist" from the sandbox proxy, the same as in earlier phases.
+- Nothing was run on an emulator or device. Specifically unverified: the grid at 360 dp (a day cell is 48dp tall but only about 47dp wide: seven columns inside the 16dp gutters; the touch target is a hair under 48dp wide), five tab labels at 360 dp ("My Preparation" is the longest), the largest OS font size, Hindi month/weekday names from Hermes `Intl` (tests ran on Node's full ICU, Android may abbreviate differently), scroll smoothness of the lists on a low-end phone, TalkBack reading of the day cells.
+
+### What to verify by hand on the emulator / phone
+1. Calendar tab: opens on the current month. Go to **November 2026**: dots/bars appear; Diwali on the 8th (also Kali Puja), Dhanteras 6th, Bhai Dooj and Chitragupta Puja on the 11th, **Chhath is a bar from the 13th to the 16th**; tap the 14th: only Chhath is listed; tap it again: whole month. October and December have data; **April 2026 and every month of 2027 show "Dates for this month are not available in this version" with the grid still visible**.
+2. "Today" jumps back to the current month and selects today. Month arrows work across December -> January.
+3. Region chips: choose South India: pan-India festivals still show, North-only ones go away. Category chips. "Clear filters" restores everything. Search "diwali", "दीवाली" or a Hindi name; clear it.
+4. **All festivals**: 2026 shows months October to December and a long "Date not available" list; arrow to 2027: the "not available in this version" note and every festival in "Date not available". Nothing is hidden.
+5. Row details: certainty label wording (confirmed / provisional / varies by region), "AI draft" badge, "Mainly observed in". Tap a festival with a puja guide (for example Diwali -> opens the puja); tap one without (opens Festival Details: description, regions, dates, disclaimer, back button).
+6. Home: "Upcoming festivals" with at most 5 rows and "See calendar" (opens the Calendar tab). **Change the phone's date to after 23 December 2026 and reopen: the section must disappear completely.** Puja Details of a puja whose festival has a date shows "Next date"; others show nothing about dates. Library cards show "Next: ...".
+7. Hindi and English, light and dark, largest text size, at 360 dp: the grid numbers, the five tab labels, long festival names, Devanagari not clipped in the search field.
+8. TalkBack: a day announces its date, number of festivals and "today"; the month title is announced when it changes; rows read name, date and certainty.
+9. Airplane mode: everything works (no network use was added).
+10. Check the two overridden rows and the 16 `confirmed` rows in `calendar_dates.csv` against your sources.
 

@@ -1,5 +1,5 @@
 festival_id,festival_name_en,year,date,end_date,certainty
-fest_ahoi_ashtami,Ahoi Ashtami,2026,2026-11-01,2026-11-01,medium
+fest_ahoi_ashtami,Ahoi Ashtami,2026,2026-11-01,2026-11-01,provisional
 fest_ahoi_ashtami,Ahoi Ashtami,2027,,,
 fest_akshaya_tritiya,Akshaya Tritiya,2026,,,
 fest_akshaya_tritiya,Akshaya Tritiya,2027,,,
@@ -9,7 +9,7 @@ fest_ambubachi_mela,Ambubachi Mela,2026,,,
 fest_ambubachi_mela,Ambubachi Mela,2027,,,
 fest_anant_chaturdashi,Anant Chaturdashi,2026,,,
 fest_anant_chaturdashi,Anant Chaturdashi,2027,,,
-fest_ayudha_puja,Ayudha Puja,2026,2026-10-20,2026-10-20,medium
+fest_ayudha_puja,Ayudha Puja,2026,2026-10-20,2026-10-20,provisional
 fest_ayudha_puja,Ayudha Puja,2027,,,
 fest_bahuda_yatra,Bahuda Yatra,2026,,,
 fest_bahuda_yatra,Bahuda Yatra,2027,,,
@@ -19,7 +19,7 @@ fest_bathukamma,Bathukamma,2026,,,
 fest_bathukamma,Bathukamma,2027,,,
 fest_bhagoria,Bhagoria Haat,2026,,,
 fest_bhagoria,Bhagoria Haat,2027,,,
-fest_bhai_dooj,Bhai Dooj,2026,2026-11-11,2026-11-11,high
+fest_bhai_dooj,Bhai Dooj,2026,2026-11-11,2026-11-11,confirmed
 fest_bhai_dooj,Bhai Dooj,2027,,,
 fest_bihu_bohag,Bohag Bihu (Rongali Bihu),2026,,,
 fest_bihu_bohag,Bohag Bihu (Rongali Bihu),2027,,,
@@ -35,25 +35,25 @@ fest_chaitra_navratri,Chaitra Navratri,2026,,,
 fest_chaitra_navratri,Chaitra Navratri,2027,,,
 fest_cheti_chand,Cheti Chand,2026,,,
 fest_cheti_chand,Cheti Chand,2027,,,
-fest_chhath,Chhath Puja,2026,2026-11-13,2026-11-16,high
+fest_chhath,Chhath Puja,2026,2026-11-13,2026-11-16,confirmed
 fest_chhath,Chhath Puja,2027,,,
-fest_chitragupta_puja,Chitragupta Puja,2026,2026-11-11,2026-11-11,low
+fest_chitragupta_puja,Chitragupta Puja,2026,2026-11-11,2026-11-11,provisional
 fest_chitragupta_puja,Chitragupta Puja,2027,,,
-fest_dattatreya_jayanti,Dattatreya Jayanti,2026,2026-12-23,2026-12-23,high
+fest_dattatreya_jayanti,Dattatreya Jayanti,2026,2026-12-23,2026-12-23,confirmed
 fest_dattatreya_jayanti,Dattatreya Jayanti,2027,,,
-fest_dev_uthani_ekadashi,Dev Uthani Ekadashi (Prabodhini Ekadashi),2026,2026-11-20,2026-11-20,high
+fest_dev_uthani_ekadashi,Dev Uthani Ekadashi (Prabodhini Ekadashi),2026,2026-11-20,2026-11-20,confirmed
 fest_dev_uthani_ekadashi,Dev Uthani Ekadashi (Prabodhini Ekadashi),2027,,,
 fest_devshayani_ekadashi,Devshayani Ekadashi,2026,,,
 fest_devshayani_ekadashi,Devshayani Ekadashi,2027,,,
-fest_dhanteras,Dhanteras,2026,2026-11-06,2026-11-06,high
+fest_dhanteras,Dhanteras,2026,2026-11-06,2026-11-06,confirmed
 fest_dhanteras,Dhanteras,2027,,,
-fest_diwali,Diwali,2026,2026-11-08,2026-11-08,high
+fest_diwali,Diwali,2026,2026-11-08,2026-11-08,confirmed
 fest_diwali,Diwali,2027,,,
 fest_dol_jatra,Dol Jatra (Dol Purnima),2026,,,
 fest_dol_jatra,Dol Jatra (Dol Purnima),2027,,,
-fest_durga_puja,Durga Puja,2026,2026-10-17,2026-10-21,regional_variation
+fest_durga_puja,Durga Puja,2026,2026-10-17,2026-10-21,varies_by_region
 fest_durga_puja,Durga Puja,2027,,,
-fest_dussehra,Dussehra (Vijayadashami),2026,2026-10-20,2026-10-20,high
+fest_dussehra,Dussehra (Vijayadashami),2026,2026-10-20,2026-10-20,confirmed
 fest_dussehra,Dussehra (Vijayadashami),2027,,,
 fest_ganesh_chaturthi,Ganesh Chaturthi,2026,,,
 fest_ganesh_chaturthi,Ganesh Chaturthi,2027,,,
@@ -61,11 +61,11 @@ fest_ganga_dussehra,Ganga Dussehra,2026,,,
 fest_ganga_dussehra,Ganga Dussehra,2027,,,
 fest_gangaur,Gangaur,2026,,,
 fest_gangaur,Gangaur,2027,,,
-fest_geeta_jayanti,Geeta Jayanti,2026,2026-12-20,2026-12-20,high
+fest_geeta_jayanti,Geeta Jayanti,2026,2026-12-20,2026-12-20,confirmed
 fest_geeta_jayanti,Geeta Jayanti,2027,,,
-fest_gopashtami,Gopashtami,2026,2026-11-17,2026-11-17,high
+fest_gopashtami,Gopashtami,2026,2026-11-17,2026-11-17,confirmed
 fest_gopashtami,Gopashtami,2027,,,
-fest_govardhan,Govardhan Puja,2026,2026-11-10,2026-11-10,high
+fest_govardhan,Govardhan Puja,2026,2026-11-10,2026-11-10,confirmed
 fest_govardhan,Govardhan Puja,2027,,,
 fest_gowri_habba,Gowri Habba (Swarna Gauri Vrata),2026,,,
 fest_gowri_habba,Gowri Habba (Swarna Gauri Vrata),2027,,,
@@ -95,17 +95,17 @@ fest_jhulan_yatra,Jhulan Yatra,2026,,,
 fest_jhulan_yatra,Jhulan Yatra,2027,,,
 fest_jitiya,Jitiya Vrat,2026,,,
 fest_jitiya,Jitiya Vrat,2027,,,
-fest_kali_puja,Kali Puja,2026,2026-11-08,2026-11-08,medium
+fest_kali_puja,Kali Puja,2026,2026-11-08,2026-11-08,provisional
 fest_kali_puja,Kali Puja,2027,,,
 fest_kanwar_yatra,Kanwar Yatra,2026,,,
 fest_kanwar_yatra,Kanwar Yatra,2027,,,
 fest_karma_puja,Karma Puja (Karam Parv),2026,,,
 fest_karma_puja,Karma Puja (Karam Parv),2027,,,
-fest_karthigai_deepam,Karthigai Deepam,2026,2026-11-24,2026-11-24,high
+fest_karthigai_deepam,Karthigai Deepam,2026,2026-11-24,2026-11-24,provisional
 fest_karthigai_deepam,Karthigai Deepam,2027,,,
-fest_kartik_purnima,Kartik Purnima (Dev Deepawali),2026,2026-11-24,2026-11-24,high
+fest_kartik_purnima,Kartik Purnima (Dev Deepawali),2026,2026-11-24,2026-11-24,confirmed
 fest_kartik_purnima,Kartik Purnima (Dev Deepawali),2027,,,
-fest_karwa_chauth,Karwa Chauth,2026,2026-10-29,2026-10-29,high
+fest_karwa_chauth,Karwa Chauth,2026,2026-10-29,2026-10-29,confirmed
 fest_karwa_chauth,Karwa Chauth,2027,,,
 fest_kharchi_puja,Kharchi Puja,2026,,,
 fest_kharchi_puja,Kharchi Puja,2027,,,
@@ -121,15 +121,15 @@ fest_makar_sankranti,Makar Sankranti,2026,,,
 fest_makar_sankranti,Makar Sankranti,2027,,,
 fest_mauni_amavasya,Mauni Amavasya,2026,,,
 fest_mauni_amavasya,Mauni Amavasya,2027,,,
-fest_mysuru_dasara,Mysuru Dasara,2026,2026-10-11,2026-10-21,high
+fest_mysuru_dasara,Mysuru Dasara,2026,2026-10-11,2026-10-21,confirmed
 fest_mysuru_dasara,Mysuru Dasara,2027,,,
 fest_nag_panchami,Nag Panchami,2026,,,
 fest_nag_panchami,Nag Panchami,2027,,,
-fest_naraka_chaturdashi,Naraka Chaturdashi (Choti Diwali),2026,2026-11-07,2026-11-07,medium
+fest_naraka_chaturdashi,Naraka Chaturdashi (Choti Diwali),2026,2026-11-07,2026-11-07,provisional
 fest_naraka_chaturdashi,Naraka Chaturdashi (Choti Diwali),2027,,,
 fest_narasimha_jayanti,Narasimha Jayanti,2026,,,
 fest_narasimha_jayanti,Narasimha Jayanti,2027,,,
-fest_navratri,Sharad Navratri,2026,2026-10-11,2026-10-20,high
+fest_navratri,Sharad Navratri,2026,2026-10-11,2026-10-20,confirmed
 fest_navratri,Sharad Navratri,2027,,,
 fest_navreh,Navreh,2026,,,
 fest_navreh,Navreh,2027,,,
@@ -171,25 +171,25 @@ fest_sarhul,Sarhul,2026,,,
 fest_sarhul,Sarhul,2027,,,
 fest_satyanarayan,Satyanarayan Puja,2026,,,
 fest_satyanarayan,Satyanarayan Puja,2027,,,
-fest_sharad_purnima,Sharad Purnima,2026,2026-10-25,2026-10-25,high
+fest_sharad_purnima,Sharad Purnima,2026,2026-10-25,2026-10-25,confirmed
 fest_sharad_purnima,Sharad Purnima,2027,,,
 fest_sheetala_ashtami,Sheetala Ashtami (Basoda),2026,,,
 fest_sheetala_ashtami,Sheetala Ashtami (Basoda),2027,,,
 fest_shigmo,Shigmo (Shigmotsav),2026,,,
 fest_shigmo,Shigmo (Shigmotsav),2027,,,
-fest_skanda_shashthi,Skanda Shashthi (Soorasamharam),2026,2026-11-15,2026-11-15,high
+fest_skanda_shashthi,Skanda Shashthi (Soorasamharam),2026,2026-11-15,2026-11-15,confirmed
 fest_skanda_shashthi,Skanda Shashthi (Soorasamharam),2027,,,
 fest_snana_yatra,Snana Yatra (Snana Purnima),2026,,,
 fest_snana_yatra,Snana Yatra (Snana Purnima),2027,,,
 fest_thaipusam,Thaipusam,2026,,,
 fest_thaipusam,Thaipusam,2027,,,
-fest_tulsi_vivah,Tulsi Vivah,2026,2026-11-21,2026-11-21,high
+fest_tulsi_vivah,Tulsi Vivah,2026,2026-11-21,2026-11-21,provisional
 fest_tulsi_vivah,Tulsi Vivah,2027,,,
 fest_tusu_parab,Tusu Parab,2026,,,
 fest_tusu_parab,Tusu Parab,2027,,,
 fest_ugadi,Ugadi,2026,,,
 fest_ugadi,Ugadi,2027,,,
-fest_vaikuntha_ekadashi,Vaikuntha Ekadashi,2026,2026-12-20,2026-12-20,medium
+fest_vaikuntha_ekadashi,Vaikuntha Ekadashi,2026,2026-12-20,2026-12-20,provisional
 fest_vaikuntha_ekadashi,Vaikuntha Ekadashi,2027,,,
 fest_varalakshmi_vratam,Varalakshmi Vratam,2026,,,
 fest_varalakshmi_vratam,Varalakshmi Vratam,2027,,,

@@ -6,11 +6,14 @@ import { listSavedPujas, recordView, savePuja } from '@/db/repositories';
 import { seedContentIfNeeded } from '@/db/seed';
 import { resetUserStateStore } from '@/store/userStateStore';
 
+import type { ContentBundle } from '@/db/types';
 import { makeFixtureBundle } from '../testing/contentFixture';
 import { createMigratedDb } from '../testing/nodeSqlDb';
 import { navigate, push, resetRouterMock, setParams } from '../testing/routerMock';
 import { renderWithDb, resetSettings } from '../testing/utils';
 
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+jest.mock('@/utils/dateUtils', () => require('../testing/dateMock').dateMock);
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 jest.mock('expo-router', () => require('../testing/routerMock').routerMock);
 
@@ -20,9 +23,9 @@ beforeEach(async () => {
   await resetSettings('en');
 });
 
-async function fixtureDb() {
+async function fixtureDb(overrides: Partial<ContentBundle> = {}) {
   const db = createMigratedDb();
-  await seedContentIfNeeded(db, makeFixtureBundle());
+  await seedContentIfNeeded(db, makeFixtureBundle(overrides));
   return db;
 }
 
@@ -141,7 +144,7 @@ describe('Library tab', () => {
 
 describe('Home tab', () => {
   it('shows brand, today, search launcher, featured, six categories, empty saved/recent hints', async () => {
-    await renderWithDb(<HomeScreen />, await fixtureDb());
+    await renderWithDb(<HomeScreen />, await fixtureDb({ calendar: [] }));
     expect(await screen.findByText('Puja Saathi')).toBeTruthy();
     expect(screen.getByText('Har Puja Ki Samagri, Vidhi Aur Taiyari')).toBeTruthy();
     expect(screen.getByTestId('home-date').props.children).toMatch(/2\d{3}/);
@@ -152,7 +155,7 @@ describe('Home tab', () => {
     }
     expect(screen.getByText('Tap the heart on any puja to keep it here.')).toBeTruthy();
     expect(screen.getByText('Pujas you open will appear here.')).toBeTruthy();
-    // no calendar data -> no fake "Upcoming festivals" section
+    // no bundled dates -> the "Upcoming festivals" section is hidden completely (no fake dates)
     expect(screen.queryByText(/upcoming/i)).toBeNull();
   });
 

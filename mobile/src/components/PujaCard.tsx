@@ -20,6 +20,8 @@ type Props = {
   saved: boolean;
   /** e.g. "Contains: Diya/lamp" when the puja matched a samagri search. */
   hint?: string;
+  /** e.g. "Next: 8 Nov 2026 · Date confirmed"; only when the linked festival has a bundled upcoming date. */
+  nextDate?: string;
   onOpen: (pujaId: string) => void;
   onToggleSaved: (pujaId: string) => void;
 };
@@ -28,7 +30,7 @@ type Props = {
  * Library row: artwork, name (+ the other language), category, review label, heart. Memoised and free of
  * per-render work so long lists stay smooth. The heart is a sibling of the row button, never nested in it.
  */
-function PujaCardBase({ puja, language, saved, hint, onOpen, onToggleSaved }: Props) {
+function PujaCardBase({ puja, language, saved, hint, nextDate, onOpen, onToggleSaved }: Props) {
   const { t } = useTranslation();
   const { colors, shadow } = useTheme();
   const name = localize(puja.name, language);
@@ -63,6 +65,16 @@ function PujaCardBase({ puja, language, saved, hint, onOpen, onToggleSaved }: Pr
           <AppText variant="caption" color="goldText" numberOfLines={1}>
             {t(`categories.${puja.category}`)}
           </AppText>
+          {nextDate ? (
+            <AppText
+              variant="caption"
+              color="textSecondary"
+              numberOfLines={2}
+              testID={`next-date-${puja.id}`}
+            >
+              {nextDate}
+            </AppText>
+          ) : null}
           {hint ? (
             <AppText variant="caption" color="textSecondary" numberOfLines={2}>
               {hint}

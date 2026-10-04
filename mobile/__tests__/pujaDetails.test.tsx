@@ -9,10 +9,12 @@ import {
   setItemChecked,
 } from '@/db/repositories';
 import { seedContentIfNeeded } from '@/db/seed';
+import type { ContentBundle } from '@/db/types';
 import { resetPreparationStore } from '@/store/preparationStore';
 import { resetUserStateStore } from '@/store/userStateStore';
 
 import { makeFixtureBundle } from '../testing/contentFixture';
+import { setToday } from '../testing/dateMock';
 import { createMigratedDb } from '../testing/nodeSqlDb';
 import { RICH_ID, makePreparationBundle } from '../testing/preparationFixture';
 import { back, navigate, push, resetRouterMock, setParams } from '../testing/routerMock';
@@ -20,17 +22,20 @@ import { renderWithDb, resetSettings } from '../testing/utils';
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 jest.mock('expo-router', () => require('../testing/routerMock').routerMock);
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+jest.mock('@/utils/dateUtils', () => require('../testing/dateMock').dateMock);
 
 beforeEach(async () => {
   resetRouterMock();
   resetPreparationStore();
   resetUserStateStore();
   await resetSettings('en');
+  setToday('2026-10-04');
 });
 
-async function fixtureDb() {
+async function fixtureDb(overrides: Partial<ContentBundle> = {}) {
   const db = createMigratedDb();
-  await seedContentIfNeeded(db, makeFixtureBundle());
+  await seedContentIfNeeded(db, makeFixtureBundle(overrides));
   return db;
 }
 
@@ -68,13 +73,32 @@ describe('Puja details', () => {
     expect(screen.getByTestId('open-vidhi')).toBeTruthy();
     expect(screen.queryByTestId('my-progress')).toBeNull();
 
-    // the date is never invented
-    expect(screen.getByTestId('date-unavailable').props.children).toMatch(/Date not available/);
+    // the linked festival has a (fixture) upcoming date, so "Next date" shows it with its certainty label
+    expect(screen.getByText('Next date')).toBeTruthy();
+    expect(screen.getByTestId('next-date').props.children).toBe('30 Oct – 2 Nov 2031');
+    expect(screen.getByTestId('next-date-certainty').props.children).toBe('Provisional date');
 
     // standard disclaimer
     expect(
       screen.getByText(/Vidhi and samagri can differ by region, family tradition/),
     ).toBeTruthy();
+  });
+
+  it('says nothing about dates when the festival has no upcoming date (never a guess)', async () => {
+    setParams({ id: 'puja_test_lakshmi' });
+    await renderWithDb(<PujaDetailsScreen />, await fixtureDb({ calendar: [] }));
+    expect(await screen.findByTestId('details-name')).toBeTruthy();
+    expect(screen.queryByText('Next date')).toBeNull();
+    expect(screen.queryByTestId('next-date')).toBeNull();
+    expect(screen.queryByText(/Date not available/)).toBeNull();
+  });
+
+  it('says nothing about dates when the only bundled date is already over', async () => {
+    setToday('2031-11-03');
+    setParams({ id: 'puja_test_lakshmi' });
+    await renderWithDb(<PujaDetailsScreen />, await fixtureDb());
+    expect(await screen.findByTestId('details-name')).toBeTruthy();
+    expect(screen.queryByTestId('next-date')).toBeNull();
   });
 
   it('does not show a verification warning for an expert-verified puja', async () => {

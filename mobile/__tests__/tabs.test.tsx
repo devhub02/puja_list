@@ -4,6 +4,7 @@ import { renderRouter, screen } from 'expo-router/testing-library';
 
 import TabsLayout from '../app/(tabs)/_layout';
 import HomeScreen from '../app/(tabs)/index';
+import CalendarScreen from '../app/(tabs)/calendar';
 import LibraryScreen from '../app/(tabs)/library';
 import PreparationScreen from '../app/(tabs)/preparation';
 import SettingsScreen from '../app/(tabs)/settings';
@@ -33,23 +34,24 @@ const routes = {
   '(tabs)/_layout': TabsLayout,
   '(tabs)/index': HomeScreen,
   '(tabs)/library': LibraryScreen,
+  '(tabs)/calendar': CalendarScreen,
   '(tabs)/preparation': PreparationScreen,
   '(tabs)/settings': SettingsScreen,
 };
 
 describe('bottom tabs', () => {
-  it('renders four tabs with English titles', async () => {
+  it('renders five tabs with English titles', async () => {
     await resetSettings('en');
     await renderRouter(routes, { initialUrl: '/' });
-    for (const title of ['Home', 'Library', 'My Preparation', 'Settings']) {
+    for (const title of ['Home', 'Library', 'Calendar', 'My Preparation', 'Settings']) {
       expect(await screen.findByLabelText(title)).toBeTruthy();
     }
   });
 
-  it('renders four tabs with Hindi titles', async () => {
+  it('renders five tabs with Hindi titles', async () => {
     await resetSettings('hi');
     await renderRouter(routes, { initialUrl: '/' });
-    for (const title of ['होम', 'लाइब्रेरी', 'मेरी तैयारी', 'सेटिंग्स']) {
+    for (const title of ['होम', 'लाइब्रेरी', 'कैलेंडर', 'मेरी तैयारी', 'सेटिंग्स']) {
       expect(await screen.findByLabelText(title)).toBeTruthy();
     }
   });
@@ -61,5 +63,14 @@ describe('bottom tabs', () => {
     await fireEvent.press(await screen.findByLabelText('Library'));
     expect(await screen.findByTestId('library-count')).toBeTruthy();
     expect(await screen.findByTestId('puja-card-puja_test_lakshmi')).toBeTruthy();
+  });
+
+  it('opens the Calendar tab', async () => {
+    await seeded;
+    await resetSettings('en');
+    await renderRouter(routes, { initialUrl: '/' });
+    await fireEvent.press(await screen.findByLabelText('Calendar'));
+    expect(await screen.findByTestId('month-grid')).toBeTruthy();
+    expect(screen.getByTestId('date-note')).toBeTruthy();
   });
 });

@@ -256,3 +256,40 @@ adaptive icon crop, and the splash screen. See the checklist in `docs/PROGRESS.m
 ## Phase 5 UI review
 
 Verified by code/tests: roles, labels and states, 48 dp targets (set in styles), light/dark colours only from tokens, Hindi and English text for every screen (including all 16 real pujas), line-height ratio in Hindi, text-size scaling in the reader, disabled states, dialog confirmation flows. **Not verifiable here (no emulator):** keyboard behaviour in the dialogs (whether the Save button stays visible above the keyboard), rendering at 360 dp with the largest OS font, scroll-to-item smoothness after tapping a related-samagri chip, how the bottom bar sits above the gesture bar, the toast, and keep-awake. See `docs/PROGRESS.md`.
+
+
+---
+
+# Phase 6B additions: Calendar tab, Festival Details, Home upcoming festivals
+
+`ui-ux-pro-max` (`.agents/skills/ui-ux-pro-max/`) was used again by reading its `SKILL.md`, running `search.py` (`--stack react-native` for list virtualisation and memoised rows; the `ux` domain for the calendar/date query returned no match, so the rules below come from the skill's existing touch-target, empty-state, "don't rely on colour alone" and `pro-rules.md` checklist guidance, labelled as a fallback) and the pre-delivery checklist in `references/pro-rules.md`. It is not registered with the Skill tool in this environment. As before, CLAUDE.md's palette wins (React Native, not web); no new colour token was added.
+
+| Skill guidance | Decision |
+|---|---|
+| Touch targets 48dp, 8dp between targets | Day cell 48dp tall (about 47dp wide at 360dp: seven columns in 16dp gutters, a known tiny shortfall), month arrows `IconButton` 48x48, Today button 48, chips 48, festival row min 64. |
+| Virtualised lists, memoised rows, stable keys | Month view = `FlatList` (header holds filters, grid, note), All festivals = `SectionList`; `FestivalRow` and `DayCell` are `React.memo`; keys are `festivalId:dateId`. `initialNumToRender` 6 (month) and 12 (All: each section counts its header and footer as cells). |
+| Don't rely on colour alone | Today = ring **and** "today" in the accessibility label; selected = fill **and** `selected` state; certainty = icon + text label, never colour; a multi-day festival is a bar shape, not just a hue. |
+| Empty / loading / error states never blank | `LoadingState`, `ErrorState` (retry), `EmptyState` with "Clear filters" / "Open All festivals", a month-without-data note (the grid stays), a year-without-data note, an empty-day card. |
+| Icon-only buttons need labels; decorative icons hidden | Month/year arrows have labels ("Previous month"); icons inside rows and cells are hidden from the accessibility tree. |
+| Disabled/absent data is explained, not hidden | Festivals without a date are listed under "Date not available" with a hint; they are never dropped or guessed. |
+
+## New components (`mobile/src/components`)
+
+- **`MonthGrid`**: weekday header (short names, long names as labels) and a 7-column grid of `DayCell`s. Markers: up to 3 dots (6dp) for single-day festivals, a 4dp bar through the days of a multi-day festival (rounded only at its first and last day, flush across week breaks and cell borders). Today = 2dp primary ring, selected = primary fill with `onPrimary` number and markers, days of neighbouring months are blank. Each cell is a `button` labelled "Sunday, 8 November 2026, 2 festivals, today" with `selected` state; the markers are `no-hide-descendants` because the label says it all. Markers use `primary` on surface (5.9:1 light) and `onPrimary` on the filled cell.
+- **`FestivalRow`**: the one row used by the Calendar (month and All views) and Home: name (subheading, 2 lines), calendar icon + date or range, certainty icon + label (`bodySmall`, `textSecondary`), "Mainly observed in: ..." caption (hidden with `compact`, used on Home), `ReviewBadge` when not expert verified, "Ongoing" label (gold text) for a multi-day festival that includes today, chevron. The whole card is one button whose accessibility label is "name. date. certainty. Ongoing". A row without a date reads "Date not available" in `textSecondary` and has no certainty line.
+- **`ChipRow`**: the labelled, horizontally scrolling chip group (moved out of the Library screen; unchanged look).
+- Certainty icons: confirmed `check-circle-outline`, provisional `help-circle-outline`, varies by region `map-marker-multiple-outline`, unknown `information-outline` (one family, outline style at this level).
+
+## Screen rules
+
+- **Calendar tab**: fixed top: title, `SearchBar` (festival names, English and Hindi), segmented control "Month | All festivals". Below, one list. Month view order: Region chips (All India first), Category chips, Clear filters (only when something is active), month arrows with the month title (live region), Today button, grid, "month has no data" card when the bundle has no date in the month, the panchang note (always), list title ("Festivals in November 2026" or "Festivals on <date>"), count, and "Show the whole month" or the hint to tap a day. All view order: filters, year arrows, "year has no data" card, panchang note, count, then month sections and a final "Date not available" section with its own hint.
+- Filters: a festival with several regions matches any of them; `pan_india` festivals always match a region filter; the category filter is exact. Chips are generated only from the catalog, so none leads to nothing.
+- **Festival Details**: back button, name (+ other language), category, review badge and, when not expert verified, the review explanation; About, Significance, "When is it observed?" (observance wording, then each bundled date with its certainty label, or "no date is available in this version"), "Mainly observed in" (regions, states), Puja guides (buttons to open each linked puja, or a card saying there is none yet), how the entry was prepared, the standard disclaimer in the selected language.
+- **Home**: "Upcoming festivals" sits between the search launcher and Featured; at most 5 rows, then a 48dp "See calendar" link. The whole section is absent when there is nothing upcoming.
+- **Puja Details**: a "Next date" card (date or range, certainty label, the panchang note) between About/Significance and Safety, only when the linked festival has an upcoming or ongoing bundled date.
+- **Library card**: one extra caption line "Next: <date> · <certainty label>" under the category line when available.
+
+## Phase 6B UI review
+
+Verified by code/tests: roles, labels and selected states, labels for every day cell, Hindi and English strings and `Intl` month/day names, empty/loading/error states, filter logic, virtualised lists, colours only from tokens. **Not verifiable here (no emulator):** 360dp rendering of the grid (cell width about 47dp) and of five tab labels, the largest OS font size, Hindi weekday/month abbreviations on Hermes, scroll smoothness on a low-end phone, TalkBack reading of the grid. See `docs/PROGRESS.md`.
+

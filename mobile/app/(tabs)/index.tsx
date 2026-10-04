@@ -1,12 +1,14 @@
 import { useRouter } from 'expo-router';
 import { useMemo } from 'react';
-import { Image, ScrollView, StyleSheet, View } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Image, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import { AppText } from '@/components/AppText';
 import { Card } from '@/components/Card';
 import { CategoryCard } from '@/components/CategoryCard';
 import { EmptyState } from '@/components/EmptyState';
+import { FestivalRow } from '@/components/FestivalRow';
 import { PujaTile } from '@/components/PujaTile';
 import { ScreenContainer } from '@/components/ScreenContainer';
 import { SearchBar } from '@/components/SearchBar';
@@ -14,14 +16,18 @@ import { SectionHeader } from '@/components/SectionHeader';
 import { ErrorState, LoadingState } from '@/components/StateViews';
 import { useDatabase } from '@/db/DatabaseProvider';
 import type { PujaCategory, PujaSummary } from '@/db/types';
+import { useUpcomingFestivals, useTodayIso } from '@/hooks/useCalendar';
 import { useCatalog } from '@/hooks/useCatalog';
+import { useOpenFestival } from '@/hooks/useOpenFestival';
 import { useUserState } from '@/hooks/useUserState';
 import { formatToday } from '@/i18n/format';
 import { useSettingsStore } from '@/store/settingsStore';
 import { appIconImage } from '@/theme/images';
-import { radius, spacing } from '@/theme/tokens';
+import { iconSize, minTouchTarget, radius, spacing } from '@/theme/tokens';
 import { useTheme } from '@/theme';
 import { categoryOrder, pickFeatured } from '@/utils/pujaDisplay';
+
+const UPCOMING_LIMIT = 5;
 
 export default function HomeScreen() {
   const { t } = useTranslation();
@@ -31,6 +37,9 @@ export default function HomeScreen() {
   const language = useSettingsStore((s) => s.language);
   const catalog = useCatalog();
   const { savedIds, recentIds, toggleSaved } = useUserState();
+  const today = useTodayIso();
+  const upcoming = useUpcomingFestivals(UPCOMING_LIMIT);
+  const openFestival = useOpenFestival();
 
   const byId = useMemo(() => new Map(catalog.pujas.map((p) => [p.id, p])), [catalog.pujas]);
   const featured = useMemo(() => pickFeatured(catalog.pujas), [catalog.pujas]);
@@ -112,6 +121,46 @@ export default function HomeScreen() {
         onPress={() => router.push('/search')}
       />
 
+      {/* Only real bundled dates; with none (or while loading / on error) the whole section is hidden. */}
+      {upcoming.status === 'ready' && upcoming.data.length > 0 ? (
+        <View style={styles.section} testID="upcoming-section">
+          <SectionHeader
+            title={t('home.upcomingTitle')}
+            description={t('home.upcomingDescription')}
+          />
+          {upcoming.data.map(({ festival, date }) => (
+            <FestivalRow
+              key={`${festival.id}:${date.id}`}
+              festival={festival}
+              date={date}
+              language={language}
+              today={today}
+              compact
+              onOpen={openFestival}
+              testID={`upcoming-${festival.id}`}
+            />
+          ))}
+          <Pressable
+            testID="see-calendar"
+            accessibilityRole="link"
+            accessibilityLabel={t('home.seeCalendarA11y')}
+            onPress={() => router.navigate('/calendar')}
+            android_ripple={{ color: colors.pressed }}
+            style={styles.link}
+          >
+            <AppText color="primary" style={styles.linkText}>
+              {t('home.seeCalendar')}
+            </AppText>
+            <MaterialCommunityIcons
+              name="arrow-right"
+              size={iconSize.md}
+              color={colors.primary}
+              importantForAccessibility="no"
+            />
+          </Pressable>
+        </View>
+      ) : null}
+
       {catalog.status === 'loading' ? <LoadingState /> : null}
       {catalog.status === 'error' ? <ErrorState onRetry={catalog.retry} /> : null}
       {catalog.status === 'ready' && catalog.pujas.length === 0 ? (
@@ -179,5 +228,14 @@ const styles = StyleSheet.create({
   row: { gap: spacing.sm, paddingHorizontal: spacing.md, paddingBottom: spacing.xs },
   rowBleed: { marginHorizontal: -spacing.md },
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm },
+  link: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'flex-start',
+    gap: spacing.xs,
+    minHeight: minTouchTarget,
+    paddingHorizontal: spacing.xs,
+  },
+  linkText: { textDecorationLine: 'underline', fontWeight: '600' },
   gridCell: { width: '47.5%', flexGrow: 1 },
 });
