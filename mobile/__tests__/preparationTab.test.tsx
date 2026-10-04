@@ -59,8 +59,8 @@ describe('My Preparation: empty', () => {
     expect(screen.getByText(/tap “Start preparation”/)).toBeTruthy();
     await fireEvent.press(screen.getByText('Open library'));
     expect(navigate).toHaveBeenCalledWith('/library');
-    // no fake reminder controls in this phase
-    expect(screen.queryByText(/remind/i)).toBeNull();
+    // nothing to remind about yet: no per-checklist reminder buttons (only the Manage reminders link)
+    expect(screen.queryByTestId(/^prep-remind-/)).toBeNull();
   });
 
   it('shows the same helpful state in the Shopping list view', async () => {

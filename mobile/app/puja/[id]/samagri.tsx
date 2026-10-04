@@ -14,7 +14,9 @@ import type { RowDetail } from '@/components/ChecklistRow';
 import { Dialog } from '@/components/Dialog';
 import { IconButton } from '@/components/IconButton';
 import { ProgressBar } from '@/components/ProgressBar';
+import { ReminderSheet } from '@/components/ReminderSheet';
 import { ReviewBadge } from '@/components/ReviewBadge';
+import { ShareChecklistDialog } from '@/components/ShareChecklistDialog';
 import { ErrorState, LoadingState } from '@/components/StateViews';
 import { TextField } from '@/components/TextField';
 import { useDatabase } from '@/db/DatabaseProvider';
@@ -70,7 +72,9 @@ type Dialogs =
   | { kind: 'add' }
   | { kind: 'edit'; entry: Extract<Entry, { kind: 'custom' }> }
   | { kind: 'delete'; entry: Extract<Entry, { kind: 'custom' }> }
-  | { kind: 'reset' };
+  | { kind: 'reset' }
+  | { kind: 'remind' }
+  | { kind: 'share' };
 
 const first = (value: string | string[] | undefined): string | undefined =>
   Array.isArray(value) ? value[0] : value;
@@ -202,6 +206,17 @@ export default function SamagriScreen() {
     },
     [db, pujaId, state],
   );
+
+  /** The preparation for a reminder: the one in use, or the default created now (first save only). */
+  const getPreparationId = useCallback(async (): Promise<string> => {
+    if (state) return state.preparation.id;
+    if (!pujaId) throw new Error('No puja');
+    return writeAndRefresh(async () => {
+      const id = (await ensureDefaultPreparation(db, pujaId)).id;
+      setPrepId(id);
+      return id;
+    });
+  }, [db, pujaId, state]);
 
   const entryByKey = useCallback(
     (key: string) => entries.find((e) => entryKey(e) === key),
@@ -630,8 +645,67 @@ export default function SamagriScreen() {
           accessibilityLabel={t('a11y.goBack')}
           onPress={goBack}
         />
+        {puja ? (
+          <View style={styles.barActions}>
+            <Pressable
+              testID="remind-me"
+              accessibilityRole="button"
+              accessibilityLabel={t('reminders.remindMeFor', {
+                name: localize(puja.name, language),
+              })}
+              onPress={() => setDialog({ kind: 'remind' })}
+              android_ripple={{ color: colors.pressed }}
+              style={({ pressed }) => [
+                styles.remindButton,
+                {
+                  borderColor: colors.primary,
+                  backgroundColor: pressed ? colors.pressed : 'transparent',
+                },
+              ]}
+            >
+              <MaterialCommunityIcons
+                name="bell-plus-outline"
+                size={iconSize.md}
+                color={colors.primary}
+                importantForAccessibility="no"
+              />
+              <AppText variant="bodySmall" color="primary" style={styles.remindLabel}>
+                {t('reminders.remindMe')}
+              </AppText>
+            </Pressable>
+            <IconButton
+              testID="share-checklist"
+              icon="share-variant-outline"
+              color="primary"
+              accessibilityLabel={t('share.actionFor', { name: localize(puja.name, language) })}
+              onPress={() => setDialog({ kind: 'share' })}
+            />
+          </View>
+        ) : null}
       </View>
       {body}
+
+      {puja ? (
+        <>
+          <ReminderSheet
+            visible={dialog.kind === 'remind'}
+            onClose={closeDialog}
+            title={[localize(puja.name, language), state?.preparation.title]
+              .filter(Boolean)
+              .join(', ')}
+            pujaId={puja.id}
+            preparationId={state?.preparation.id ?? null}
+            getPreparationId={getPreparationId}
+          />
+          <ShareChecklistDialog
+            visible={dialog.kind === 'share'}
+            onClose={closeDialog}
+            pujaName={puja.name}
+            label={state?.preparation.title ?? null}
+            entries={entries}
+          />
+        </>
+      ) : null}
 
       <Dialog
         testID="item-dialog"
@@ -770,7 +844,21 @@ function SectionHeader({
 const styles = StyleSheet.create({
   screen: { flex: 1 },
   flex: { flex: 1 },
+  barActions: { flexDirection: 'row', alignItems: 'center', gap: spacing.xs },
+  remindButton: {
+    minHeight: minTouchTarget,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.xxs,
+    paddingHorizontal: spacing.sm,
+    borderRadius: 999,
+    borderWidth: 1.5,
+  },
+  remindLabel: { flexShrink: 1 },
   bar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     paddingHorizontal: spacing.xs,
     paddingVertical: spacing.xxs,
     width: '100%',

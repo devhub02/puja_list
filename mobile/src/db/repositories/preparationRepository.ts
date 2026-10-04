@@ -215,6 +215,7 @@ export async function duplicatePreparation(
 export async function deletePreparation(db: SqlDb, id: string): Promise<void> {
   await withTransaction(db, async () => {
     // Explicit deletes as well as ON DELETE CASCADE, so this stays correct if foreign keys are off.
+    await db.run('DELETE FROM reminder WHERE preparation_id = ?', [id]);
     await db.run('DELETE FROM vidhi_progress WHERE preparation_id = ?', [id]);
     await db.run('DELETE FROM checklist_progress WHERE preparation_id = ?', [id]);
     await db.run('DELETE FROM custom_samagri WHERE preparation_id = ?', [id]);

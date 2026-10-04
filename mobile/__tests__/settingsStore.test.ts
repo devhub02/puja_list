@@ -33,7 +33,12 @@ describe('settings store', () => {
     const raw = await AsyncStorage.getItem(SETTINGS_STORAGE_KEY);
     expect(raw).not.toBeNull();
     const saved = JSON.parse(raw as string);
-    expect(saved.state).toEqual({ language: 'hi', themeMode: 'dark', textSize: 'medium' });
+    expect(saved.state).toEqual({
+      language: 'hi',
+      themeMode: 'dark',
+      textSize: 'medium',
+      notificationsEnabled: true,
+    });
   });
 
   it('restores persisted settings on rehydrate', async () => {
@@ -77,5 +82,29 @@ describe('default language detection', () => {
     expect(pickSupportedLanguage(['ta', 'fr'])).toBe('en');
     expect(pickSupportedLanguage([null, undefined])).toBe('en');
     expect(pickSupportedLanguage([])).toBe('en');
+  });
+});
+
+describe('notifications switch', () => {
+  it('defaults to on, is persisted, and ignores a non-boolean saved value', async () => {
+    expect(useSettingsStore.getState().notificationsEnabled).toBe(true);
+    useSettingsStore.getState().setNotificationsEnabled(false);
+    const raw = await AsyncStorage.getItem(SETTINGS_STORAGE_KEY);
+    expect(JSON.parse(raw as string).state.notificationsEnabled).toBe(false);
+
+    await AsyncStorage.setItem(
+      SETTINGS_STORAGE_KEY,
+      JSON.stringify({ state: { language: 'en', notificationsEnabled: 'yes' }, version: 1 }),
+    );
+    useSettingsStore.getState().setNotificationsEnabled(true);
+    await useSettingsStore.persist.rehydrate();
+    expect(useSettingsStore.getState().notificationsEnabled).toBe(true);
+
+    await AsyncStorage.setItem(
+      SETTINGS_STORAGE_KEY,
+      JSON.stringify({ state: { language: 'en', notificationsEnabled: false }, version: 1 }),
+    );
+    await useSettingsStore.persist.rehydrate();
+    expect(useSettingsStore.getState().notificationsEnabled).toBe(false);
   });
 });

@@ -1,6 +1,6 @@
 # Phone Database Schema (design only)
 
-Status: designed in Phase 0, implemented in Phase 2 (`mobile/src/db/schema.ts`, migrations in `mobile/drizzle/`); the preparation tables were redesigned in Phase 5 (§3.1); the `festival` table and `calendar_date.region` changed in Phase 6A (migration `0003_festival_catalog`, §7). `expo-sqlite` with Drizzle ORM (FTS5 for search). The database lives on the phone only.
+Status: designed in Phase 0, implemented in Phase 2 (`mobile/src/db/schema.ts`, migrations in `mobile/drizzle/`); the preparation tables were redesigned in Phase 5 (§3.1); the `festival` table and `calendar_date.region` changed in Phase 6A (migration `0003_festival_catalog`, §7); the `reminder` table was redesigned in Phase 6C (migration `0004_reminders`, §7.2, convention in §3.2). `expo-sqlite` with Drizzle ORM (FTS5 for search). The database lives on the phone only.
 
 ## 1. Principles
 
@@ -27,7 +27,7 @@ Content tables may use real foreign keys **among themselves** (for example `vidh
 
 ## 3. User-data tables (never touched by seeding)
 
-None of these has a foreign key to a content table. The three tables that belong to a preparation (`checklist_progress`, `custom_samagri`, `vidhi_progress`) have a foreign key to `preparation` only.
+None of these has a foreign key to a content table. The four tables that belong to a preparation (`checklist_progress`, `custom_samagri`, `vidhi_progress`, `reminder`) have a foreign key to `preparation` only.
 
 | Table | Columns | Notes |
 |-------|---------|-------|
@@ -36,12 +36,12 @@ None of these has a foreign key to a content table. The three tables that belong
 | `checklist_progress` | `preparation_id` (FK -> `preparation`, ON DELETE CASCADE), `item_kind` (`samagri`/`custom`), `item_ref` (samagri id or custom item id), `checked` INTEGER, `updated_at` INTEGER; PK (`preparation_id`, `item_kind`, `item_ref`) | ticks of one preparation; **no row = not checked** |
 | `custom_samagri` | `id` PK (generated, prefix `usr_`), `preparation_id` (FK -> `preparation`, ON DELETE CASCADE), `name`, `note` (nullable), `created_at` INTEGER | free-text items of one preparation; plain text, not locale maps |
 | `vidhi_progress` | `preparation_id` PK (FK -> `preparation`, ON DELETE CASCADE), `last_step_number` INTEGER, `completed_at` INTEGER (nullable), `updated_at` INTEGER | reading position in the vidhi, one row per preparation |
-| `reminder` | `id` PK (generated), `puja_id` (nullable), `festival_id` (nullable), `title`, `fire_at` INTEGER, `notification_id` (nullable, from expo-notifications), `created_at` INTEGER | local notifications, inexact |
+| `reminder` | `id` PK (generated, prefix `rem_`), `preparation_id` (FK -> `preparation`, ON DELETE CASCADE), `scheduled_at` TEXT (local `YYYY-MM-DDTHH:mm`, §3.2), `enabled` INTEGER (default 1), `notification_id` (nullable, the OS id), `label` (nullable, max 60), `paused_reason` (nullable: `global_off` / `no_permission` / `schedule_failed`), `completed_at` INTEGER (nullable), `created_at`, `updated_at` INTEGER; UNIQUE (`preparation_id`, `scheduled_at`) | local notification of one preparation (Phase 6C), inexact, one-time |
 | `recent_view` | `puja_id` PK, `viewed_at` INTEGER | upserted on view; trimmed to the latest N |
 | `recent_search` | `query` PK, `searched_at` INTEGER | trimmed to the latest N |
 | `app_setting` | `key` PK, `value` | **not created**: settings live in AsyncStorage (Phase 1). Add it by a migration only if that changes. |
 
-Implemented in Phase 4 (repositories in `mobile/src/db/repositories/`): `saved_puja` (save / unsave / list), `recent_view` (record / list, newest 20 kept) and `recent_search` (record / list / clear, newest 10 kept, one row per search ignoring case and extra spaces). Implemented in Phase 5: `preparation`, `checklist_progress`, `custom_samagri` and `vidhi_progress` (§3.1). `reminder` still has no repository (Phase 6).
+Implemented in Phase 4 (repositories in `mobile/src/db/repositories/`): `saved_puja` (save / unsave / list), `recent_view` (record / list, newest 20 kept) and `recent_search` (record / list / clear, newest 10 kept, one row per search ignoring case and extra spaces). Implemented in Phase 5: `preparation`, `checklist_progress`, `custom_samagri` and `vidhi_progress` (§3.1). Implemented in Phase 6C: `reminder` (§3.2).
 
 ### 3.1 Preparations (Phase 5 design)
 
@@ -75,6 +75,24 @@ Rules:
 - Deleting or replacing a content row never deletes rows here.
 - The `usr_` prefix keeps user-generated ids from ever colliding with content ids.
 
+### 3.2 Reminders (Phase 6C)
+
+Reminders belong to a **preparation** (a checklist), not to a puja or festival. They are local notifications only: no push, no token, no server.
+
+**Time convention.** `scheduled_at` is a LOCAL wall-clock date-time string `YYYY-MM-DDTHH:mm` (minutes, no seconds, no zone). "8:00 on 8 Nov 2026" means 8:00 on the phone's clock wherever the phone is, exactly like the plain calendar dates of Phase 6B. Strings in this format sort like the moments they name, so "in the past" is a string comparison with the current local minute (`utils/reminderTime.ts`); the OS gets `new Date(y, m-1, d, h, min)` built from the local fields. Epoch milliseconds were not used because they would silently move the reminder if the phone's zone changes. (The other timestamps in this schema stay epoch milliseconds: `created_at`, `updated_at`, `completed_at`.)
+
+**Columns beyond the brief.** `paused_reason` records why an enabled, future reminder is not scheduled (global switch off, notification permission missing, or the OS refused); the UI shows it and reconcile clears it. `completed_at` is set when a one-time reminder's time has passed (it never fires). `enabled` is only the user's own on/off switch for the reminder.
+
+**Limits and uniqueness.** At most 5 reminders per preparation (`MAX_REMINDERS_PER_PREPARATION`, enforced in `notifications/reminderService.ts` with a translated message), and the same preparation + time cannot exist twice (UNIQUE index, checked first so the user gets a translated message). A time that is not strictly after the current minute is rejected.
+
+**Reconcile** (`reconcileReminders`, run after the first frame at app start and whenever the app returns to the foreground, for example from the system settings screen; idempotent; serialised with every other reminder operation by one lock):
+1. Read the OS list of scheduled notifications. If that fails, do nothing (never cancel or schedule blindly).
+2. For each reminder, in order: (a) time passed and not yet done -> mark done (`completed_at`), cancel its OS notification, clear `notification_id`; (b) already done -> make sure nothing is scheduled; (c) user switched it off -> cancel, clear id; (d) global switch off, or permission not granted -> cancel, clear id, set `paused_reason` (`global_off` / `no_permission`), the row is kept; (e) otherwise, if its stored OS id exists in the OS list at the right time -> keep (clear `paused_reason`); else cancel the stale id, schedule a new notification and store the new id (an OS refusal sets `paused_reason = 'schedule_failed'` and the next reconcile retries).
+3. Cancel every OS notification that no reminder points to.
+Create/update/enable always cancel the stored `notification_id` before scheduling, so a reminder never owns two OS notifications. Deleting a preparation removes its reminders (cascade) and then reconciles, which cancels their OS notifications. Content re-seeding never touches this table; a reminder whose puja has disappeared from the content is kept (the notification uses a generic title).
+
+**Reset local data** (`services/resetLocalData.ts`): ONE transaction deletes `reminder`, `vidhi_progress`, `checklist_progress`, `custom_samagri`, `preparation`, `saved_puja`, `recent_view`, `recent_search` (children first). Content tables, `content_meta`, the FTS index and the settings (AsyncStorage) are never touched. After the commit all scheduled notifications are cancelled; if the transaction fails, nothing is deleted and no notification is cancelled.
+
 ## 4. Indexes
 
 Content:
@@ -91,7 +109,7 @@ User data:
 - `checklist_progress(preparation_id)`
 - `custom_samagri(preparation_id)`
 - `vidhi_progress`: primary key `preparation_id`
-- `reminder(fire_at)`, `reminder(puja_id)`
+- `reminder(scheduled_at)`, UNIQUE `reminder(preparation_id, scheduled_at)`
 - `recent_view(viewed_at)`, `recent_search(searched_at)`
 
 ## 5. Search (FTS5, Hindi + English)
@@ -167,6 +185,12 @@ Changes: the `festival` table gets the new festival columns (§2; `description_j
 - Because `content_meta` is deleted, the seed runs on the very next start, and the seed loader now reads `schemaVersion` 2 content (`SUPPORTED_SCHEMA_VERSION = 2`).
 - `getContentInfo` also returns `festivalCount` (every row of `festival`, like `pujaCount` for `puja`), shown in Settings > About.
 - `calendar_date.source` stays `NOT NULL`. A bundled calendar entry without a `source` is stored as the empty string and read back as "no source" (`undefined`); an entry without `region` is stored as `all`. No migration was needed for this.
+
+### 7.2 `0004_reminders` (Phase 6C, a user-data-table change)
+
+Replaces the Phase 2 `reminder` table (`puja_id`, `festival_id`, `title`, `fire_at`, `notification_id`, `created_at`) with the preparation-owned shape of §3.2.
+- Generated by `drizzle-kit generate` (answer "create column" to every question), then **the SQL body was rewritten by hand**: the generated SQL adds `NOT NULL` columns without a default with `ALTER TABLE ... ADD`, which SQLite rejects. The hand-written version drops the two old indexes and the old table, then creates the new table, the UNIQUE index and the time index. The Drizzle snapshot is the generated one, so `drizzle-kit generate` reports "No schema changes".
+- **What is lost, and why that is safe:** rows of the old `reminder` table. No code ever wrote to that table (reminders arrive in Phase 6C) and an old-shape row has no preparation to belong to, so there is nothing to migrate. Every other user table (`saved_puja`, `preparation`, `checklist_progress`, `custom_samagri`, `vidhi_progress`, `recent_view`, `recent_search`) and every content table plus `content_meta` keeps all its rows, so no re-seed is triggered. `mobile/__tests__/db.migration0004.test.ts` builds a Phase 6B database with seeded content and a row in every user table, applies the migration and compares the other tables row for row.
 
 ## 8. Calendar reads (Phase 6B, no schema change)
 

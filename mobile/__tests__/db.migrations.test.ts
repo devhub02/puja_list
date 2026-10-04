@@ -62,8 +62,8 @@ describe('migrations on a fresh install', () => {
         'preparation_puja_id_idx',
         'preparation_last_opened_at_idx',
         'custom_samagri_preparation_id_idx',
-        'reminder_fire_at_idx',
-        'reminder_puja_id_idx',
+        'reminder_preparation_time_uq',
+        'reminder_scheduled_at_idx',
         'recent_view_viewed_at_idx',
         'recent_search_searched_at_idx',
       ]),
@@ -84,7 +84,7 @@ describe('migrations on a fresh install', () => {
       const fks = await db.all<{ table: string; on_delete: string }>(
         `SELECT * FROM pragma_foreign_key_list('${table}')`,
       );
-      if (['checklist_progress', 'custom_samagri', 'vidhi_progress'].includes(table)) {
+      if (['checklist_progress', 'custom_samagri', 'vidhi_progress', 'reminder'].includes(table)) {
         expect(fks.map((fk) => [fk.table, fk.on_delete])).toEqual([['preparation', 'CASCADE']]);
       } else {
         expect(fks).toEqual([]);

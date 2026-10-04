@@ -10,10 +10,13 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { StartupError } from '@/components/StartupError';
 import { initializeDatabase } from '@/db/database';
 import { DatabaseProvider, useDatabaseInit } from '@/db/DatabaseProvider';
+import { installNotifications } from '@/notifications/install';
+import { NotificationRouter } from '@/notifications/NotificationRouter';
 import { useSettingsHydrated } from '@/store/settingsStore';
 import { ThemeProvider, useAppFonts, useTheme } from '@/theme';
 
 void SplashScreen.preventAutoHideAsync();
+installNotifications();
 
 function ThemedShell() {
   const { colors, isDark } = useTheme();
@@ -50,6 +53,7 @@ export default function RootLayout() {
         {database.status === 'ready' ? (
           <DatabaseProvider db={database.db}>
             <ThemedShell />
+            <NotificationRouter />
           </DatabaseProvider>
         ) : (
           <StartupError onRetry={database.retry} busy={database.status === 'loading'} />

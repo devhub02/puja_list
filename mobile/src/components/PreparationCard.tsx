@@ -21,6 +21,7 @@ type Props = {
   onOpenChecklist: (id: string) => void;
   onOpenVidhi: (id: string) => void;
   onMore: (id: string) => void;
+  onRemind: (id: string) => void;
 };
 
 /** One of the user's checklists: puja, label, progress (required first), vidhi position, actions. */
@@ -31,6 +32,7 @@ function PreparationCardBase({
   onOpenChecklist,
   onOpenVidhi,
   onMore,
+  onRemind,
 }: Props) {
   const { t } = useTranslation();
   const { progress, vidhi } = summary;
@@ -115,6 +117,15 @@ function PreparationCardBase({
         ) : (
           <View style={styles.cell} />
         )}
+        {available ? (
+          <IconButton
+            testID={`prep-remind-${summary.id}`}
+            icon="bell-plus-outline"
+            color="primary"
+            accessibilityLabel={t('reminders.remindMeFor', { name: label })}
+            onPress={() => onRemind(summary.id)}
+          />
+        ) : null}
         <IconButton
           testID={`prep-more-${summary.id}`}
           icon="dots-vertical"

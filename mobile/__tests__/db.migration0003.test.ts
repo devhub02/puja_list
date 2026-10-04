@@ -99,6 +99,7 @@ async function phase5Database() {
     'INSERT INTO vidhi_progress (preparation_id, last_step_number, completed_at, updated_at) VALUES (?, ?, ?, ?)',
     ['prep_1', 3, null, 150],
   );
+  // The Phase 2 reminder shape (no code ever wrote this table; migration 0004 replaces it).
   await run(
     'INSERT INTO reminder (id, puja_id, festival_id, title, fire_at, notification_id, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)',
     ['usr_r1', 'puja_test_lakshmi', 'fest_test_lamps', 'Remind me', 5000, 'n1', 160],
@@ -123,19 +124,19 @@ describe('migration 0003 (festival catalog) on a Phase 5 database', () => {
     const db = await phase5Database();
     const before = await snapshotUserData(db);
     for (const table of USER_TABLES) expect(before[table].length).toBeGreaterThan(0);
-    applyMigrations(db, { from: 3 });
+    applyMigrations(db, { from: 3, to: 4 });
     expect(await snapshotUserData(db)).toEqual(before);
   });
 
   it('empties the content tables and content_meta so the seed refills them', async () => {
     const db = await phase5Database();
-    applyMigrations(db, { from: 3 });
+    applyMigrations(db, { from: 3, to: 4 });
     for (const table of [...CONTENT_TABLES, 'search_index']) expect(await count(db, table)).toBe(0);
   });
 
   it('gives festival its new columns and calendar_date a region that defaults to "all"', async () => {
     const db = await phase5Database();
-    applyMigrations(db, { from: 3 });
+    applyMigrations(db, { from: 3, to: 4 });
     const columns = async (table: string) =>
       (await db.all<{ name: string }>(`SELECT name FROM pragma_table_info('${table}')`))
         .map((c) => c.name)
@@ -178,7 +179,7 @@ describe('migration 0003 (festival catalog) on a Phase 5 database', () => {
 
   it('re-seeds with the new content on the next start and user data still resolves', async () => {
     const db = await phase5Database();
-    applyMigrations(db, { from: 3 });
+    applyMigrations(db, { from: 3, to: 4 });
     const before = await snapshotUserData(db);
     expect(await seedContentIfNeeded(db, makeFixtureBundle({ contentVersion: 5 }))).toBe('seeded');
     expect(await snapshotUserData(db)).toEqual(before);

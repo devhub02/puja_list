@@ -14,6 +14,7 @@ export type DialogAction = {
   variant?: ComponentProps<typeof Button>['variant'];
   icon?: ComponentProps<typeof Button>['icon'];
   testID?: string;
+  disabled?: boolean;
 };
 
 type Props = {
@@ -84,6 +85,7 @@ export function Dialog({ visible, title, onClose, message, children, actions, te
                   variant={action.variant ?? 'outline'}
                   icon={action.icon}
                   testID={action.testID}
+                  disabled={action.disabled}
                   onPress={action.onPress}
                 />
               ))}
