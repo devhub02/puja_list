@@ -1,3 +1,11 @@
+export {
+  getNextDate,
+  listDatesForMonth,
+  listFestivalsWithoutDate,
+  listNextDates,
+  listUpcomingFestivals,
+} from './calendarRepository';
+export type { FestivalOccurrence } from './calendarRepository';
 export { getContentInfo } from './contentInfoRepository';
 export { getFestival, listFestivals } from './festivalRepository';
 export type { FestivalFilter } from './festivalRepository';

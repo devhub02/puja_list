@@ -15,7 +15,7 @@ import type {
 } from '../types';
 import { parseJson, parseOptionalJson } from './json';
 
-type FestivalRow = {
+export type FestivalRow = {
   id: string;
   name_json: string;
   alt_names_json: string | null;
@@ -32,7 +32,7 @@ type FestivalRow = {
   status: EntityStatus;
 };
 
-type CalendarRow = {
+export type CalendarRow = {
   id: string;
   festival_id: string;
   year: number;
@@ -44,7 +44,7 @@ type CalendarRow = {
   source: string;
 };
 
-function toFestival(row: FestivalRow): Festival {
+export function toFestival(row: FestivalRow): Festival {
   return {
     id: row.id,
     name: parseJson<LocaleMap>(row.name_json),
@@ -63,7 +63,7 @@ function toFestival(row: FestivalRow): Festival {
   };
 }
 
-function toCalendarDate(row: CalendarRow): CalendarDate {
+export function toCalendarDate(row: CalendarRow): CalendarDate {
   return {
     id: row.id,
     festivalId: row.festival_id,

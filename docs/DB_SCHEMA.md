@@ -167,3 +167,15 @@ Changes: the `festival` table gets the new festival columns (§2; `description_j
 - Because `content_meta` is deleted, the seed runs on the very next start, and the seed loader now reads `schemaVersion` 2 content (`SUPPORTED_SCHEMA_VERSION = 2`).
 - `getContentInfo` also returns `festivalCount` (every row of `festival`, like `pujaCount` for `puja`), shown in Settings > About.
 - `calendar_date.source` stays `NOT NULL`. A bundled calendar entry without a `source` is stored as the empty string and read back as "no source" (`undefined`); an entry without `region` is stored as `all`. No migration was needed for this.
+
+## 8. Calendar reads (Phase 6B, no schema change)
+
+No table or migration changed. `mobile/src/db/repositories/calendarRepository.ts` reads `calendar_date` joined to active `festival` rows (the `calendar_date(year, date)` and `(festival_id, year)` indexes cover these):
+
+- `listDatesForMonth(year, month)`: rows with `date <= month end AND COALESCE(end_date, date) >= month start` (so a festival that began in the previous month is included), by start date then English name.
+- `listNextDates(today)` / `listUpcomingFestivals(today, limit)`: rows with `COALESCE(end_date, date) >= today` (an ongoing festival has `date <= today <= end_date` and is included), one row per festival (its earliest remaining date), soonest first.
+- `getNextDate(festivalId, today)`: the first such row of one festival, or null.
+- `listFestivalsWithoutDate(year)`: active festivals with no `calendar_date` row in that year.
+
+`today` is the device-local date as `YYYY-MM-DD` (`localIsoDate`). Dates are compared as strings (the format sorts like a date) and are never converted through a time zone. `end_date` equal to `date`, or null, means a single-day festival. Deprecated festivals never appear.
+

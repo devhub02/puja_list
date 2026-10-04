@@ -28,6 +28,11 @@ export default function TabsLayout() {
       icon: tabIcon('book-open-page-variant', 'book-open-page-variant-outline'),
     },
     {
+      name: 'calendar',
+      title: t('tabs.calendar'),
+      icon: tabIcon('calendar-month', 'calendar-month-outline'),
+    },
+    {
       name: 'preparation',
       title: t('tabs.preparation'),
       icon: tabIcon('clipboard-check-multiple', 'clipboard-check-multiple-outline'),
@@ -43,7 +48,7 @@ export default function TabsLayout() {
         tabBarInactiveTintColor: colors.textSecondary,
         tabBarStyle: { backgroundColor: colors.tabBar, borderTopColor: colors.border },
         tabBarLabelStyle: { fontFamily: label.fontFamily, fontSize: 12 },
-        // Navigation chrome keeps a fixed size so four labels always fit on a 360dp screen.
+        // Navigation chrome keeps a fixed size so five labels always fit on a 360dp screen.
         tabBarAllowFontScaling: false,
         sceneStyle: { backgroundColor: colors.background },
       }}

@@ -1,12 +1,12 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useCallback, useMemo, useState } from 'react';
-import type { ReactNode } from 'react';
-import { FlatList, ScrollView, StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { AppText } from '@/components/AppText';
 import { Button } from '@/components/Button';
+import { ChipRow } from '@/components/ChipRow';
 import { Chip } from '@/components/Chip';
 import { EmptyState } from '@/components/EmptyState';
 import { PujaCard } from '@/components/PujaCard';
@@ -14,6 +14,7 @@ import { SearchBar } from '@/components/SearchBar';
 import { ErrorState, LoadingState } from '@/components/StateViews';
 import { useDatabase } from '@/db/DatabaseProvider';
 import type { PujaCategory } from '@/db/types';
+import { useNextDates } from '@/hooks/useCalendar';
 import { useCatalog } from '@/hooks/useCatalog';
 import { usePujaSearch } from '@/hooks/usePujaSearch';
 import { useUserState } from '@/hooks/useUserState';
@@ -21,6 +22,8 @@ import { localize } from '@/i18n/localeMap';
 import { useSettingsStore } from '@/store/settingsStore';
 import { spacing } from '@/theme/tokens';
 import { useTheme } from '@/theme';
+import { formatCalendarEntry } from '@/utils/calendarDisplay';
+import { certaintyLabelKey } from '@/utils/certainty';
 import { buildLibraryItems, emptyFilters, hasActiveFilters } from '@/utils/libraryFilter';
 import type { LibraryFilters, LibraryItem } from '@/utils/libraryFilter';
 import { categoryOrder } from '@/utils/pujaDisplay';
@@ -35,6 +38,7 @@ export default function LibraryScreen() {
   const insets = useSafeAreaInsets();
   const language = useSettingsStore((s) => s.language);
   const catalog = useCatalog();
+  const nextDates = useNextDates();
   const { savedIds, recentIds, toggleSaved, noteSearch } = useUserState();
   const params = useLocalSearchParams<{ category?: string; nonce?: string }>();
 
@@ -88,12 +92,24 @@ export default function LibraryScreen() {
   );
   const toggle = useCallback((id: string) => void toggleSaved(db, id), [db, toggleSaved]);
 
+  // Light "Next: <date>" line, only from a bundled date of the puja's festival (never a guess).
+  const nextDateText = useCallback(
+    (festivalId: string | undefined) => {
+      if (!festivalId || nextDates.status !== 'ready') return undefined;
+      const date = nextDates.data.get(festivalId);
+      if (!date) return undefined;
+      return `${t('library.nextDate', { date: formatCalendarEntry(date, language, t) })} · ${t(certaintyLabelKey(date.certainty))}`;
+    },
+    [nextDates, language, t],
+  );
+
   const renderItem = useCallback(
     ({ item }: { item: LibraryItem }) => (
       <PujaCard
         puja={item.puja}
         language={language}
         saved={savedSet.has(item.puja.id)}
+        nextDate={nextDateText(item.puja.festivalId)}
         hint={
           item.matchedSamagri.length > 0
             ? t('library.contains', {
@@ -105,7 +121,7 @@ export default function LibraryScreen() {
         onToggleSaved={toggle}
       />
     ),
-    [language, savedSet, open, toggle, t],
+    [language, savedSet, open, toggle, nextDateText, t],
   );
 
   const header = (
@@ -264,37 +280,6 @@ function Separator() {
   return <View style={styles.separator} />;
 }
 
-function ChipRow({
-  label,
-  radio = true,
-  children,
-}: {
-  label: string;
-  radio?: boolean;
-  children: ReactNode;
-}) {
-  const { t } = useTranslation();
-  return (
-    <View
-      style={styles.chipGroup}
-      accessibilityRole={radio ? 'radiogroup' : undefined}
-      accessibilityLabel={t('a11y.filterGroup', { name: label })}
-    >
-      <AppText variant="label" color="goldText">
-        {label}
-      </AppText>
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        keyboardShouldPersistTaps="handled"
-        contentContainerStyle={styles.chips}
-      >
-        {children}
-      </ScrollView>
-    </View>
-  );
-}
-
 const styles = StyleSheet.create({
   screen: { flex: 1 },
   top: {
@@ -313,8 +298,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   filters: { gap: spacing.sm, paddingBottom: spacing.md },
-  chipGroup: { gap: spacing.xxs },
-  chips: { gap: spacing.xs, paddingVertical: 2, paddingRight: spacing.md },
   summary: {
     flexDirection: 'row',
     flexWrap: 'wrap',

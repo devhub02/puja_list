@@ -1,6 +1,6 @@
 {
-  "contentVersion": 5,
+  "contentVersion": 6,
   "schemaVersion": 2,
   "languages": ["en", "hi"],
-  "calendarYears": []
+  "calendarYears": [2026]
 }

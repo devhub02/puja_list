@@ -1,7 +1,7 @@
 {
-  "checksum": "sha256:7596b5502e7d06bb46774453dcddb02d6b65095391df00c9e1ad9763b5872f98",
+  "checksum": "sha256:3a8bc223ed749415e228e1465865b40c8a33012c6f6dccc44bb2138958cc6124",
   "schemaVersion": 2,
-  "contentVersion": 5,
+  "contentVersion": 6,
   "languages": [
     "en",
     "hi"
@@ -10192,5 +10192,211 @@
       "status": "active"
     }
   ],
-  "calendar": []
+  "calendar": [
+    {
+      "year": 2026,
+      "entries": [
+        {
+          "id": "cal_2026_mysuru_dasara",
+          "festivalId": "fest_mysuru_dasara",
+          "date": "2026-10-11",
+          "endDate": "2026-10-21",
+          "region": "all",
+          "certainty": "confirmed"
+        },
+        {
+          "id": "cal_2026_navratri",
+          "festivalId": "fest_navratri",
+          "date": "2026-10-11",
+          "endDate": "2026-10-20",
+          "region": "all",
+          "certainty": "confirmed"
+        },
+        {
+          "id": "cal_2026_durga_puja",
+          "festivalId": "fest_durga_puja",
+          "date": "2026-10-17",
+          "endDate": "2026-10-21",
+          "region": "all",
+          "certainty": "varies_by_region"
+        },
+        {
+          "id": "cal_2026_ayudha_puja",
+          "festivalId": "fest_ayudha_puja",
+          "date": "2026-10-20",
+          "endDate": "2026-10-20",
+          "region": "all",
+          "certainty": "provisional"
+        },
+        {
+          "id": "cal_2026_dussehra",
+          "festivalId": "fest_dussehra",
+          "date": "2026-10-20",
+          "endDate": "2026-10-20",
+          "region": "all",
+          "certainty": "confirmed"
+        },
+        {
+          "id": "cal_2026_sharad_purnima",
+          "festivalId": "fest_sharad_purnima",
+          "date": "2026-10-25",
+          "endDate": "2026-10-25",
+          "region": "all",
+          "certainty": "confirmed"
+        },
+        {
+          "id": "cal_2026_karwa_chauth",
+          "festivalId": "fest_karwa_chauth",
+          "date": "2026-10-29",
+          "endDate": "2026-10-29",
+          "region": "all",
+          "certainty": "confirmed"
+        },
+        {
+          "id": "cal_2026_ahoi_ashtami",
+          "festivalId": "fest_ahoi_ashtami",
+          "date": "2026-11-01",
+          "endDate": "2026-11-01",
+          "region": "all",
+          "certainty": "provisional"
+        },
+        {
+          "id": "cal_2026_dhanteras",
+          "festivalId": "fest_dhanteras",
+          "date": "2026-11-06",
+          "endDate": "2026-11-06",
+          "region": "all",
+          "certainty": "confirmed"
+        },
+        {
+          "id": "cal_2026_naraka_chaturdashi",
+          "festivalId": "fest_naraka_chaturdashi",
+          "date": "2026-11-07",
+          "endDate": "2026-11-07",
+          "region": "all",
+          "certainty": "provisional"
+        },
+        {
+          "id": "cal_2026_diwali",
+          "festivalId": "fest_diwali",
+          "date": "2026-11-08",
+          "endDate": "2026-11-08",
+          "region": "all",
+          "certainty": "confirmed"
+        },
+        {
+          "id": "cal_2026_kali_puja",
+          "festivalId": "fest_kali_puja",
+          "date": "2026-11-08",
+          "endDate": "2026-11-08",
+          "region": "all",
+          "certainty": "provisional"
+        },
+        {
+          "id": "cal_2026_govardhan",
+          "festivalId": "fest_govardhan",
+          "date": "2026-11-10",
+          "endDate": "2026-11-10",
+          "region": "all",
+          "certainty": "confirmed"
+        },
+        {
+          "id": "cal_2026_bhai_dooj",
+          "festivalId": "fest_bhai_dooj",
+          "date": "2026-11-11",
+          "endDate": "2026-11-11",
+          "region": "all",
+          "certainty": "confirmed"
+        },
+        {
+          "id": "cal_2026_chitragupta_puja",
+          "festivalId": "fest_chitragupta_puja",
+          "date": "2026-11-11",
+          "endDate": "2026-11-11",
+          "region": "all",
+          "certainty": "provisional"
+        },
+        {
+          "id": "cal_2026_chhath",
+          "festivalId": "fest_chhath",
+          "date": "2026-11-13",
+          "endDate": "2026-11-16",
+          "region": "all",
+          "certainty": "confirmed"
+        },
+        {
+          "id": "cal_2026_skanda_shashthi",
+          "festivalId": "fest_skanda_shashthi",
+          "date": "2026-11-15",
+          "endDate": "2026-11-15",
+          "region": "all",
+          "certainty": "confirmed"
+        },
+        {
+          "id": "cal_2026_gopashtami",
+          "festivalId": "fest_gopashtami",
+          "date": "2026-11-17",
+          "endDate": "2026-11-17",
+          "region": "all",
+          "certainty": "confirmed"
+        },
+        {
+          "id": "cal_2026_dev_uthani_ekadashi",
+          "festivalId": "fest_dev_uthani_ekadashi",
+          "date": "2026-11-20",
+          "endDate": "2026-11-20",
+          "region": "all",
+          "certainty": "confirmed"
+        },
+        {
+          "id": "cal_2026_tulsi_vivah",
+          "festivalId": "fest_tulsi_vivah",
+          "date": "2026-11-21",
+          "endDate": "2026-11-21",
+          "region": "all",
+          "certainty": "provisional"
+        },
+        {
+          "id": "cal_2026_karthigai_deepam",
+          "festivalId": "fest_karthigai_deepam",
+          "date": "2026-11-24",
+          "endDate": "2026-11-24",
+          "region": "all",
+          "certainty": "provisional"
+        },
+        {
+          "id": "cal_2026_kartik_purnima",
+          "festivalId": "fest_kartik_purnima",
+          "date": "2026-11-24",
+          "endDate": "2026-11-24",
+          "region": "all",
+          "certainty": "confirmed"
+        },
+        {
+          "id": "cal_2026_geeta_jayanti",
+          "festivalId": "fest_geeta_jayanti",
+          "date": "2026-12-20",
+          "endDate": "2026-12-20",
+          "region": "all",
+          "certainty": "confirmed"
+        },
+        {
+          "id": "cal_2026_vaikuntha_ekadashi",
+          "festivalId": "fest_vaikuntha_ekadashi",
+          "date": "2026-12-20",
+          "endDate": "2026-12-20",
+          "region": "all",
+          "certainty": "provisional"
+        },
+        {
+          "id": "cal_2026_dattatreya_jayanti",
+          "festivalId": "fest_dattatreya_jayanti",
+          "date": "2026-12-23",
+          "endDate": "2026-12-23",
+          "region": "all",
+          "certainty": "confirmed"
+        }
+      ]
+    }
+  ]
 }

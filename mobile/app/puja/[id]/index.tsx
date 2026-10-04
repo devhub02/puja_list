@@ -20,6 +20,7 @@ import { useDatabase } from '@/db/DatabaseProvider';
 import { createPreparation, getPuja } from '@/db/repositories';
 import type { PujaDetail } from '@/db/types';
 import { usePreparationSummaries } from '@/hooks/usePreparation';
+import { useNextDate } from '@/hooks/useCalendar';
 import { useUserState } from '@/hooks/useUserState';
 import { localize } from '@/i18n/localeMap';
 import { writeAndRefresh } from '@/store/preparationStore';
@@ -27,6 +28,8 @@ import { useSettingsStore } from '@/store/settingsStore';
 import { useUserStateStore } from '@/store/userStateStore';
 import { iconSize, radius, spacing } from '@/theme/tokens';
 import { useTheme } from '@/theme';
+import { formatCalendarEntry } from '@/utils/calendarDisplay';
+import { certaintyLabelKey } from '@/utils/certainty';
 import { countByClassification, extractSafetyNotes, secondaryName } from '@/utils/pujaDisplay';
 
 type State =
@@ -60,6 +63,9 @@ export default function PujaDetailsScreen() {
     : loaded?.key === key
       ? loaded.result
       : { status: 'loading' };
+
+  // Only a bundled date is ever shown; with none (or while loading) the screen says nothing about dates.
+  const nextDate = useNextDate(state.status === 'ready' ? state.puja.festivalId : undefined);
 
   useEffect(() => {
     if (!id) return;
@@ -246,11 +252,19 @@ export default function PujaDetailsScreen() {
           <AppText>{localize(puja.significance, language)}</AppText>
         </Section>
 
-        <Section title={t('details.whenTitle')}>
-          <AppText color="textSecondary" testID="date-unavailable">
-            {t('details.dateUnavailable')}
-          </AppText>
-        </Section>
+        {nextDate.status === 'ready' && nextDate.data ? (
+          <Section title={t('details.nextDate')}>
+            <AppText variant="subheading" testID="next-date">
+              {formatCalendarEntry(nextDate.data, language, t)}
+            </AppText>
+            <AppText variant="bodySmall" color="textSecondary" testID="next-date-certainty">
+              {t(certaintyLabelKey(nextDate.data.certainty))}
+            </AppText>
+            <AppText variant="caption" color="textSecondary">
+              {t('calendar.dateNote')}
+            </AppText>
+          </Section>
+        ) : null}
 
         {safety.length > 0 ? (
           <Card
