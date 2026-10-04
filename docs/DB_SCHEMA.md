@@ -39,6 +39,8 @@ None of these has a foreign key to a content table.
 | `recent_search` | `query` PK, `searched_at` INTEGER | trimmed to the latest N |
 | `app_setting` | `key` PK, `value` | **not created**: settings live in AsyncStorage (Phase 1). Add it by a migration only if that changes. |
 
+Implemented in Phase 4 (repositories in `mobile/src/db/repositories/`): `saved_puja` (save / unsave / list), `recent_view` (record / list, newest 20 kept) and `recent_search` (record / list / clear, newest 10 kept, one row per search ignoring case and extra spaces). `checklist_progress`, `custom_samagri` and `reminder` still have no repository (Phases 5 to 7).
+
 Rules:
 - `puja_id`, `festival_id`, `item_ref` are plain strings holding stable content ids.
 - Deleting or replacing a content row never deletes rows here.
@@ -81,6 +83,8 @@ Hindi/English specifics:
 - A user query becomes `"word1"* "word2"*`: every word is a prefix term and all must match. User input is stripped of FTS syntax characters before use.
 - Deprecated entities are kept in the content tables but get no search row. A puja's `extra` contains the names **and alternate spellings** of its samagri.
 - Ranking: `bm25` with column weights favouring `names` over `alt_names` over `extra`.
+
+Puja-centred search (`searchPujas`, Phase 4): a puja matches when the query hits its names/alternate spellings (FTS column filter `{names alt_names}`), its festival's name, a category the caller resolved from the UI's translated category names (category names are UI strings, not indexed), or a samagri item it uses (`samagri` rows joined to `puja_samagri`, so the UI can say "found in: <puja>").
 
 FTS5 availability: `expo-sqlite`'s Android build compiles SQLite with `-DSQLITE_ENABLE_FTS5=1` (verified in `node_modules/expo-sqlite/android/build.gradle`, SQLite 3.50.x), and the migration creates the table at startup, so a build without FTS5 would fail loudly at the first launch rather than silently mis-search. Behaviour of the tokenizer was verified in unit tests on Node's SQLite 3.50.x; confirming it on a real Android device is still a manual step. There is deliberately no `LIKE` fallback code.
 

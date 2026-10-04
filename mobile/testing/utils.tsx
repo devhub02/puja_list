@@ -3,6 +3,8 @@ import { render } from '@testing-library/react-native';
 import type { ReactElement, ReactNode } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import { DatabaseProvider } from '@/db/DatabaseProvider';
+import type { SqlDb } from '@/db/sqlDb';
 import i18n from '@/i18n';
 import { defaultSettings, useSettingsStore } from '@/store/settingsStore';
 import { ThemeProvider } from '@/theme';
@@ -29,4 +31,13 @@ export function TestProviders({ children }: { children: ReactNode }) {
 
 export function renderThemed(ui: ReactElement) {
   return render(<TestProviders>{ui}</TestProviders>);
+}
+
+/** Renders a screen the way the app does: theme + safe area + a ready, seeded database. */
+export function renderWithDb(ui: ReactElement, db: SqlDb) {
+  return render(
+    <TestProviders>
+      <DatabaseProvider db={db}>{ui}</DatabaseProvider>
+    </TestProviders>,
+  );
 }

@@ -127,3 +127,83 @@ touch-target size, roles/labels, Hindi line height, text-size scaling, offline f
 **Not verifiable in this environment (no device/emulator):** real rendering on a 360dp phone, visual check at the
 largest OS font size, landscape, tablet, gesture-bar/safe-area bottom behaviour, and whether four tab labels fit in
 Hindi/English at 360dp. These must be checked on a real Android phone.
+
+
+---
+
+# Phase 4 additions: browse screens (Home, Library, Search, Puja details)
+
+The `ui-ux-pro-max` skill was used again (`.agents/skills/ui-ux-pro-max/`: the `ux` and `icons` rules, the
+`references/pro-rules.md` checklist, and its React Native stack notes). As in Phase 1, its suggested style and palette were
+**not** adopted; CLAUDE.md's palette wins. Rules that were applied:
+
+| Skill guidance | Decision |
+|---|---|
+| Touch targets 44-48 dp, 8 dp between targets | Every tappable thing is >= 48 dp: chips (48), icon buttons (48 x 48), buttons (48), search bar (52), result rows (64). Heart is a separate 48 dp button next to the row, never nested inside the row's button. |
+| Search UX: show recents on empty focus, instant suggestions, clear button, helpful no-results text | Search screen: recents + "Try searching for" chips when empty; up to 6 instant suggestions while typing; "See all results" and the keyboard search key open the full list; X clears and keeps focus; no-results explains what to try. |
+| Empty / loading / error states must never be blank | `LoadingState`, `ErrorState` (retry), `EmptyState` (optional recovery action) on every screen; each is translated. |
+| Performance: lazy lists, WebP, reserve image space | Library is a virtualised `FlatList` (memoised rows, `windowSize 7`, `removeClippedSubviews`); all artwork is WebP <= 80 KB with fixed sizes, so nothing shifts while images load. |
+| Decorative images hidden from screen readers | `PujaImage` is hidden from the accessibility tree; the name next to it carries the meaning. |
+| Icon-only buttons need labels | `IconButton` requires `accessibilityLabel`; the heart says what pressing it does ("Add X to favorites" / "Remove X from favorites"). |
+| Don't rely on colour alone | Selected chips are filled **and** exposed as `selected`/`checked`; review status is text + icon, not just colour. |
+
+## New components (all in `mobile/src/components`)
+
+- **`SearchBar`**: the ONE search field. Three uses: Home (`onPress` = launcher: looks identical but is a button that opens
+  the Search screen, so the keyboard never pops up on Home), Library (filters the list in place, sits above the list so it
+  stays reachable), Search screen (live results). 52 dp tall, 2 dp border that turns `focusRing` on focus, X button only when
+  there is text, `returnKeyType="search"`. No explicit `lineHeight` on the input (it clips Devanagari matras on Android).
+- **`Chip`**: 48 dp filter pill. `role="radio"` for single-choice groups (category, type), `role="checkbox"` for on/off
+  shortcuts (Favorites, Recently viewed). Selected = saffron fill with `onPrimary` text.
+- **`PujaCard`** (Library row): 88 dp artwork, name (2 lines max), other-language name, category, review badge, optional
+  "Contains: ..." line, heart. `React.memo`; no per-render work.
+- **`PujaTile`** (Home rows): 220 dp wide, 124 dp artwork, name, heart.
+- **`CategoryCard`**: two per row on Home; category artwork or icon fallback, name, "N pujas" (or "More coming soon" when the
+  category has none yet).
+- **`PujaImage`**: puja artwork -> category artwork -> vector icon on a `primaryTint` halo. Never throws; `onError` falls back.
+- **`ReviewBadge`**: pill with icon + label (`AI draft`, `Cross-checked`, `Expert verified`) on `surfaceAlt`. Shown on every card and on
+  Details for anything that is not `expert_verified`.
+- **`Button`** (primary / outline, optional icon, `selected` state), **`IconButton`**, **`FavoriteButton`**, **`SearchResultRow`**,
+  **`LoadingState` / `ErrorState`**.
+
+## Screen rules
+
+- **Home**: logo + name + tagline, today (Gregorian only), search launcher, Featured, six categories, Saved, Recently viewed.
+  Featured rule: the content has no `isFeatured` flag, so Home shows the first six active pujas by id (stable, not date- or
+  language-dependent). **No "Upcoming festivals" section**: the calendar has no dates, and dates are never faked or computed.
+- **Library**: title, search bar, then a list whose header holds filters: shortcuts (Favorites, Recently viewed), Category,
+  Type (festival / household), result count and "Clear filters". Only categories that contain pujas get a chip. **No month
+  filter**: the content has no month field and the calendar is empty, so a month filter would have to guess. Order:
+  alphabetical in the selected language (`Intl.Collator`, so Devanagari sorts in dictionary order); best match first while
+  searching; newest first under "Recently viewed".
+- **Search**: back button + bar (auto-focus). Empty: recents (with Clear all) + suggestions. Typing: <= 6 suggestions. A
+  samagri-only match is shown as the item with "Found in: <puja>" and opens that puja. A search is recorded only when a result
+  is opened or the user submits, never per keystroke.
+- **Puja details**: hero artwork, name + other-language line, category, review badge, Save button, review-status card
+  (explains `ai_drafted`/`cross_checked`), About, Significance, "When is it observed?" ("Date not available" until the
+  calendar phase), Safety and health (when the puja has such notes), Regional and family variations (labelled as practices of
+  some regions/families), Preparation at a glance (samagri counts + step count, read-only), how the guide was prepared
+  (`sourceNote`), and the standard disclaimer plus the puja's own disclaimer if it has one. **No Samagri / Vidhi / Start
+  buttons** (Phase 5).
+- Content fields the screens would like but the schema does not have yet (not invented, not shown): `generalDateDescription`,
+  common traditions, a structured safety field, `isFeatured`, festival month.
+
+## Safety notes (stop-gap)
+
+Safety/health notes are authored as vidhi steps titled "Safety Note: ...", "Health Note: ..." or "Health and Safety Note ...".
+`extractSafetyNotes` (`src/utils/pujaDisplay.ts`) finds them by that English title pattern and shows them in a highlighted card.
+This is a deliberate stop-gap; the proper fix is a structured `safetyNotes` field in the content schema.
+
+## Images
+
+Brand, category and puja artwork live in `mobile/assets/images/{brand,categories,pujas}` as WebP (PNG for the three brand files),
+all under 150 KB. `src/theme/images.ts` is the only id -> image mapping. Cards use the image 88 dp wide; Details uses it full
+width at 16:9. The splash uses the cream background in dark mode too, because the logo's maroon text is unreadable on the dark
+background.
+
+## Phase 4 UI review
+
+Verified by code/tests: 48 dp targets and labels, selected states, Hindi + English rendering of every screen, no-results and
+error states, light/dark colours come only from tokens. **Not verifiable here (no emulator):** rendering at 360 dp with the
+largest font, Hindi line clipping in the search field and cards, scroll smoothness of the Library on a low-end phone, the
+adaptive icon crop, and the splash screen. See the checklist in `docs/PROGRESS.md`.

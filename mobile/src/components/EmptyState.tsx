@@ -6,6 +6,7 @@ import { iconSize, radius, spacing } from '@/theme/tokens';
 import { useTheme } from '@/theme/ThemeProvider';
 
 import { AppText } from './AppText';
+import { Button } from './Button';
 import { Card } from './Card';
 
 type Props = {
@@ -13,10 +14,12 @@ type Props = {
   title: string;
   body: string;
   badge?: string;
+  /** Optional recovery action, e.g. "Clear filters". */
+  action?: { label: string; onPress: () => void };
 };
 
-/** Honest placeholder for a section whose feature arrives in a later phase. */
-export function EmptyState({ icon, title, body, badge }: Props) {
+/** Centered message card for "nothing here" states, with an optional recovery action. */
+export function EmptyState({ icon, title, body, badge, action }: Props) {
   const { colors } = useTheme();
   return (
     <Card style={styles.card}>
@@ -40,6 +43,7 @@ export function EmptyState({ icon, title, body, badge }: Props) {
       <AppText color="textSecondary" style={styles.centered}>
         {body}
       </AppText>
+      {action ? <Button variant="outline" label={action.label} onPress={action.onPress} /> : null}
     </Card>
   );
 }

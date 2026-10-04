@@ -4,7 +4,7 @@
     "slug": "puja-saathi",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/brand/app-icon.png",
     "scheme": "pujasaathi",
     "userInterfaceStyle": "automatic",
     "backgroundColor": "#FFF8EC",
@@ -13,9 +13,7 @@
       "package": "com.pujasaathi.app",
       "adaptiveIcon": {
         "backgroundColor": "#FFF8EC",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+        "foregroundImage": "./assets/images/brand/adaptive-foreground.png"
       },
       "predictiveBackGestureEnabled": false
     },
@@ -25,11 +23,11 @@
         "expo-splash-screen",
         {
           "backgroundColor": "#FFF8EC",
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 76,
+          "image": "./assets/images/brand/splash-icon.png",
+          "imageWidth": 200,
           "dark": {
-            "backgroundColor": "#1C1411",
-            "image": "./assets/images/splash-icon.png"
+            "backgroundColor": "#FFF8EC",
+            "image": "./assets/images/brand/splash-icon.png"
           }
         }
       ]

@@ -81,6 +81,7 @@
   {
     "id": "sm_diya",
     "name": { "en": "Diya/lamp", "hi": "दीया" },
+    "alternateNames": { "en": ["Deepak", "Deepam"], "hi": ["दीपक", "दिया"] },
     "description": { "en": "Oil lamp for lighting", "hi": "प्रकाश के लिए तेल का दीया" },
     "status": "active"
   },

@@ -7,7 +7,7 @@ Phases are defined in the project plan; this checklist tracks their status. Stat
 - [x] **Phase 2 — Content schema validation, export pipeline, phone database** (done on branch `phase-2-data-layer`, not pushed)
 - [x] **Phase 3, Batch 1 — Bundled puja content, pan-India core pujas** (merged to main)
 - [x] **Phase 3, Batch 2 — Bundled puja content, East India and festival-family pujas** (done on branch `phase-3-batch-2`, not pushed)
-- [ ] Phase 4
+- [x] **Phase 4 — Home, Library, Search, Puja details** (done on branch `phase-4-browse`, not pushed; **not yet checked on a device or emulator**)
 - [ ] Phase 5
 - [ ] Phase 6
 - [ ] Phase 7
@@ -188,3 +188,47 @@ Omitted details (where unsure):
 - Precise astronomical calculations for Chhath or Karwa Chauth moon-sighting (app will show "date not available" when calendar dates are added in a later phase)
 
 Deferred on purpose: Library/Details screens (Phase 4), actual pandit review/verification (Phase 3 follow-ups), calendar year dates (separate phase), user data repositories (Phases 4+).
+
+
+## Phase 4 status — Home, Library, Search and Puja details
+
+Done:
+- **Images**: 22 original images from the owner's `PujaSaathi-Assets/` optimized into `mobile/assets/images/{brand,categories,pujas}` (16 puja WebP, 3 category WebP, 3 brand PNG; 1.3 MB total, largest file 103 KB). One id -> image mapping in `src/theme/images.ts` (puja -> category -> icon, never throws). app.json now uses the brand icon, splash and an adaptive-icon foreground on the cream background. `docs/ASSET_CREDITS.md` written.
+- **User-state repositories**: `saved_puja`, `recent_view` (last 20), `recent_search` (last 10, no duplicates ignoring case/spacing). Tests include a real close-and-reopen of a file database and a content re-seed that removes a puja.
+- **Search**: one `SearchBar` used on Home (launcher), Library (filters in place, sticky above the list) and the Search screen. New `searchPujas` repository function (names, alternate spellings, festival names, category names, samagri names; a samagri match reports which puja contains it). 200 ms debounce; recents + suggestions on empty; <= 6 instant suggestions while typing; keyboard search opens the full list; clear (X); translated no-results; a search is recorded only on submit or when a result is opened.
+- **Screens**: Home, Library, Search (`app/search.tsx`), Puja details (`app/puja/[id].tsx`), all English + Hindi, with loading / empty / error states, accessibility labels and 48 dp targets.
+- **Content (small)**: added search aliases to the `sm_diya` samagri (`Deepak`, `Deepam`, `दीपक`, `दिया`) so the requested search "दीपक" works; `contentVersion` 3 -> 4 and the bundle re-exported. No puja text was changed.
+
+Decisions where the data did not support a feature:
+- **Month filter: not built.** The content has no festival month field and the calendar has no dates. A puja cannot be placed in a month without guessing, and dates are never computed. Library has category, festival/household type, Favorites and Recently viewed filters instead.
+- **Featured pujas**: no `isFeatured` field exists, so Home shows the first six active pujas by id (stable; not date or popularity based).
+- **Upcoming festivals**: not shown (no calendar dates).
+- **Details sections**: "When is it observed?" shows "Date not available" (no `generalDateDescription` exists); "Common traditions" is omitted (no such field); "Preparation overview" is a read-only summary built from real data (samagri counts, step count) because no overview text exists; **safety notes** are found by the title pattern "Safety Note / Health Note / Health and Safety Note" on vidhi steps (stop-gap until the schema gets a structured field). Puja `puja_govardhan` involves open flames but has no safety step in its content, so it shows no safety card; that is a content gap to fill, not something the app should invent.
+- **"Festival vs household" filter**: derived from the category (`household` and `life_cycle` = household; everything else = festival), because every puja is linked to a festival.
+- **Category images**: only 3 of 6 categories have artwork (see the image report in the phase summary); the others use a vector icon.
+
+Verified (run for real in this phase):
+- backend: `pytest` 89 passed; `scripts/validate_content.py` OK (contentVersion 4, 16 pujas)
+- mobile: `npx tsc --noEmit` clean; `npm run lint` clean; `npm run format:check` clean; `npm test` 18 suites / 213 tests passed; `npx expo export --platform android` OK (1590 modules, 4 MB hbc); `npx expo prebuild --platform android --no-install` OK (icons/splash resolved; generated `android/` folder deleted again)
+- dev server: `npx expo start --clear` + request for the Android bundle returned **HTTP 200** (1785 modules, ~9 MB dev bundle, 17 s). The only error in the server log was React Native DevTools failing to start (Electron refuses to run as root in this sandbox); no Metro/bundling error.
+- Node v22.22.0; `metro@0.84.5`, `@expo/metro-config@57.0.12` (no `metro*` package in package.json)
+
+Not verified:
+- `npx expo-doctor`: 19 of 21 checks pass; the two that fail (Expo config schema, React Native Directory) need network servers this sandbox cannot reach (same as earlier phases). It reported no local problem.
+- Nothing was run on an emulator or real device.
+- `Intl.Collator('hi-IN')` ordering is tested on Node only; it relies on Hermes' Intl support on Android.
+
+Housekeeping:
+- `mobile/package-lock.json` was out of sync with `package.json` (`npm ci` failed on missing `@react-native/jest-preset`, `react-native-gesture-handler`, `react-native-reanimated`, `react-native-worklets`); it was regenerated with `npm install`. `package.json` itself did not change.
+- The old Home placeholder test (`home.test.tsx`) was removed because the placeholder no longer exists; the Home tests moved to `libraryScreen.test.tsx` and `browse.realContent.test.tsx`. `tabs.test.tsx` now provides a seeded database and checks the real Library list.
+- `PujaSaathi-Assets/` was **tracked in git on `main`** (commit `38f5f02`, 24 files, 39 MB), so it was removed with `git rm` in this branch's commit. The raw originals stay in `main`'s history.
+
+### What to verify by hand on the emulator / phone
+1. Cold start: splash (cream background in light **and** dark), then Home. App icon on the launcher (adaptive icon: logo not cropped on round and square masks).
+2. Home: logo, date, six category cards, six featured tiles scroll sideways, heart toggles on a tile, search bar opens Search with the keyboard up.
+3. Search: type `ganesh`, `गणेश`, `laxmi`, `लक्ष्मी`, `chhath`, `छठ`, `diya`, `दीया`, `दीपक`. Check the list appears about 0.2 s after you stop typing, "Found in: ..." shows for samagri, X clears, keyboard search opens the full list, text is kept when the keyboard closes, recents appear only when the field is empty, Clear all works, a nonsense word shows the no-results text.
+4. Library: scroll all 16 (smooth on a low-end phone?), category and type chips, Favorites, Recently viewed, Clear filters, type in the bar while a filter is on, Hindi order (language Hindi: names should be in Devanagari dictionary order), heart on cards.
+5. Details: open every puja; check the review badge and explanation, the disclaimer, safety card on Chhath / Karwa Chauth / Jitiya / Hartalika Teej / Vishwakarma, regional variations, save/unsave, back button and the Android back gesture.
+6. Settings: switch Hindi/English, Light/Dark/System and the largest text size on every screen above; check at 360 dp width that nothing is clipped, especially Devanagari in the search field and on cards, chips and the two-column category grid.
+7. Kill the app and reopen: saved pujas, recently viewed and recent searches are still there.
+8. Airplane mode: everything still works.
