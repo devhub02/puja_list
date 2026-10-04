@@ -1,11 +1,11 @@
 # Phone Database Schema (design only)
 
-Status: designed in Phase 0, implemented in Phase 2 (`mobile/src/db/schema.ts`, migrations in `mobile/drizzle/`). `expo-sqlite` with Drizzle ORM (FTS5 for search). The database lives on the phone only.
+Status: designed in Phase 0, implemented in Phase 2 (`mobile/src/db/schema.ts`, migrations in `mobile/drizzle/`); the preparation tables were redesigned in Phase 5 (§3.1). `expo-sqlite` with Drizzle ORM (FTS5 for search). The database lives on the phone only.
 
 ## 1. Principles
 
 1. **Content tables and user-data tables are separate.** Content tables are rebuilt from the bundled JSON. User-data tables are never touched by seeding.
-2. **User data references content by stable string id, with no foreign keys to content tables and no cascading deletes.** If a content row is removed or replaced during re-seeding, user rows stay intact. The app resolves ids at read time and handles "content no longer exists" gracefully (see §6).
+2. **User data references content by stable string id, with no foreign keys to content tables and no cascading deletes from content.** (User-data tables that belong to a preparation do have a foreign key to `preparation`, with cascade, so deleting a preparation deletes its own rows and nothing else; see §3.1.) If a content row is removed or replaced during re-seeding, user rows stay intact. The app resolves ids at read time and handles "content no longer exists" gracefully (see §6).
 3. All user-visible content text is stored as locale-map JSON (text columns holding `{"en": "...", "hi": "..."}`). Language selection and the fallback to `en` happen in app code, so adding a language needs no schema change.
 4. Primary keys of content tables are the stable ids from `CONTENT_SCHEMA.md`.
 5. Timestamps are integer epoch milliseconds (UTC).
@@ -27,19 +27,48 @@ Content tables may use real foreign keys **among themselves** (for example `vidh
 
 ## 3. User-data tables (never touched by seeding)
 
-None of these has a foreign key to a content table.
+None of these has a foreign key to a content table. The three tables that belong to a preparation (`checklist_progress`, `custom_samagri`, `vidhi_progress`) have a foreign key to `preparation` only.
 
 | Table | Columns | Notes |
 |-------|---------|-------|
 | `saved_puja` | `puja_id` PK, `saved_at` INTEGER | bookmark |
-| `checklist_progress` | `puja_id`, `item_ref` (samagri id, checklist-template id, or custom-samagri id), `item_kind` (`samagri`/`template`/`custom`), `checked` INTEGER, `updated_at` INTEGER; PK (`puja_id`, `item_kind`, `item_ref`) | progress per puja |
-| `custom_samagri` | `id` PK (generated uuid, prefix `usr_`), `puja_id`, `name`, `note` (nullable), `created_at` INTEGER | free-text user items; plain text, not locale maps |
+| `preparation` | `id` PK (generated, prefix `prep_`), `puja_id` (content id, no FK), `title` (nullable user label), `created_at`, `updated_at`, `last_opened_at` INTEGER | one checklist for one puja and occasion; a puja can have several (Phase 5) |
+| `checklist_progress` | `preparation_id` (FK -> `preparation`, ON DELETE CASCADE), `item_kind` (`samagri`/`custom`), `item_ref` (samagri id or custom item id), `checked` INTEGER, `updated_at` INTEGER; PK (`preparation_id`, `item_kind`, `item_ref`) | ticks of one preparation; **no row = not checked** |
+| `custom_samagri` | `id` PK (generated, prefix `usr_`), `preparation_id` (FK -> `preparation`, ON DELETE CASCADE), `name`, `note` (nullable), `created_at` INTEGER | free-text items of one preparation; plain text, not locale maps |
+| `vidhi_progress` | `preparation_id` PK (FK -> `preparation`, ON DELETE CASCADE), `last_step_number` INTEGER, `completed_at` INTEGER (nullable), `updated_at` INTEGER | reading position in the vidhi, one row per preparation |
 | `reminder` | `id` PK (generated), `puja_id` (nullable), `festival_id` (nullable), `title`, `fire_at` INTEGER, `notification_id` (nullable, from expo-notifications), `created_at` INTEGER | local notifications, inexact |
 | `recent_view` | `puja_id` PK, `viewed_at` INTEGER | upserted on view; trimmed to the latest N |
 | `recent_search` | `query` PK, `searched_at` INTEGER | trimmed to the latest N |
 | `app_setting` | `key` PK, `value` | **not created**: settings live in AsyncStorage (Phase 1). Add it by a migration only if that changes. |
 
-Implemented in Phase 4 (repositories in `mobile/src/db/repositories/`): `saved_puja` (save / unsave / list), `recent_view` (record / list, newest 20 kept) and `recent_search` (record / list / clear, newest 10 kept, one row per search ignoring case and extra spaces). `checklist_progress`, `custom_samagri` and `reminder` still have no repository (Phases 5 to 7).
+Implemented in Phase 4 (repositories in `mobile/src/db/repositories/`): `saved_puja` (save / unsave / list), `recent_view` (record / list, newest 20 kept) and `recent_search` (record / list / clear, newest 10 kept, one row per search ignoring case and extra spaces). Implemented in Phase 5: `preparation`, `checklist_progress`, `custom_samagri` and `vidhi_progress` (§3.1). `reminder` still has no repository (Phase 6).
+
+### 3.1 Preparations (Phase 5 design)
+
+The product needs several checklists per puja (for example one for Diwali at home and one for a sister's home), duplicating a checklist, custom items, per-checklist progress and a saved reading position. The model:
+
+```
+preparation 1 --- * checklist_progress   (ticks; no row = unchecked)
+            1 --- * custom_samagri       (the user's own items)
+            1 --- 0..1 vidhi_progress    (resume step, completion)
+```
+
+- `preparation.puja_id` is a plain content id with **no foreign key and no cascade from content**. Re-seeding never touches a preparation.
+- Everything owned by a preparation is deleted with it (`ON DELETE CASCADE`, and the repository also deletes explicitly inside one transaction so it stays correct if foreign keys were off). Deleting one preparation never touches another preparation of the same puja, `saved_puja`, `recent_view` or `recent_search`.
+- A custom item's tick lives in `checklist_progress` (`item_kind = 'custom'`), so one toggle function serves both kinds. Deleting a custom item deletes its tick in the same transaction.
+- `lastOpenedAt` orders "most recent first" everywhere; `updated_at` changes with every edit; opening a screen only touches `last_opened_at`.
+- Ids: `prep_` / `usr_` + time + counter + random digits (no crypto dependency). The prefixes keep user ids from ever colliding with content ids.
+- Limits enforced in the repository: label 60 characters, custom item name 80, note 200. Text is trimmed; an empty label is stored as NULL; an empty item name is rejected.
+
+**Changes from the proposed model** (and why):
+1. `item_kind` is `samagri` | `custom` only. The Phase 2 enum also allowed `template` (the content's day-by-day `preparationChecklist`); Phase 5 does not use it and an unused value would be a stub. Adding it later needs no migration (the column is plain text with no CHECK constraint).
+2. "Not checked" is the **absence** of a row, and Reset deletes the rows. The `checked` column can still hold 0 (a row that was ticked and then unticked), so the code reads `checked = 1`.
+3. Existing Phase 2 rows are migrated, not dropped (§7): each distinct `puja_id` becomes a default preparation `prep_migrated_<puja_id>`.
+4. Writes that touch more than one row run in one transaction, and `withTransaction` now queues transactions per connection, so two taps in quick succession cannot interleave (a second `BEGIN` on the same connection would fail, and one caller's statements would land inside the other's transaction).
+
+**Lazy creation.** A preparation is created only by an action, never by viewing: the first tick or custom item in the Samagri screen, the first move past step 1 (or finishing) in the Vidhi screen, or "Start preparation". `ensureDefaultPreparation(pujaId)` returns the most recently opened preparation of the puja, or creates one inside a transaction (two simultaneous calls create one row).
+
+**Progress** is computed in pure functions (`mobile/src/utils/preparationProgress.ts`), never stored: per group (REQUIRED, COMMON, OPTIONAL, custom) `checked/total`; overall = checked / total of all four groups; "required items done" is REQUIRED only. Nothing is ever auto-checked or promoted: an optional item cannot raise the required count.
 
 Rules:
 - `puja_id`, `festival_id`, `item_ref` are plain strings holding stable content ids.
@@ -58,8 +87,10 @@ Content:
 
 User data:
 - `saved_puja(saved_at)`
-- `checklist_progress(puja_id)`
-- `custom_samagri(puja_id)`
+- `preparation(puja_id)`, `preparation(last_opened_at)`
+- `checklist_progress(preparation_id)`
+- `custom_samagri(preparation_id)`
+- `vidhi_progress`: primary key `preparation_id`
 - `reminder(fire_at)`, `reminder(puja_id)`
 - `recent_view(viewed_at)`, `recent_search(searched_at)`
 
@@ -103,6 +134,10 @@ Steps (all inside one SQLite transaction):
 
 User-data tables are not part of the transaction's writes. After seeding, orphan handling is read-time only:
 - A saved/checked/reminder row whose content id no longer exists is shown as "no longer available" (or hidden), never deleted automatically.
+- **Preparations after a content update (Phase 5):**
+  - *A samagri id a preparation ticked is no longer in the puja's list* (removed from the puja, or the item was deprecated and dropped from it): the tick row is kept. The Samagri screen shows it under "No longer in the guide" (with its catalogue name if that still exists, else "Removed item") and lets the user remove it. It counts for nothing: it is not in the total and not in the checked count. `replacedBy` is **not** followed: the `samagri` content table has no `replaced_by` column, so a replacement cannot be known on the phone, and silently moving a tick to a different item could be wrong. (If that is wanted later it needs a content-schema and content-table change first.)
+  - *The puja itself disappears or is deprecated*: the preparation stays. My Preparation shows it as "This puja is no longer available" (progress hidden; rename, duplicate and delete still work; opening is disabled), and the Shopping list says its items cannot be shown.
+  - *A step disappears or the vidhi gets shorter*: the saved step number is matched against the current steps; if it no longer exists the reader starts from the beginning (the safety notes if the puja has any, else step 1).
 - Because ids are never reused or renamed (`CONTENT_SCHEMA.md` §1.2), an old id never silently points at different content.
 
 The bundle is a single JSON file (CONTENT_SCHEMA.md §2.2) read into memory at once; revisit if it grows to many megabytes. The seed does not use the network.
@@ -114,10 +149,11 @@ Two kinds of change, handled differently:
 **Content-table changes** (new column, new table):
 - Content tables are disposable. A schema change is a normal migration that drops and recreates the affected content tables **and deletes the `content_meta` rows**, so the seed runs again right after (the missing meta triggers it). No data migration is needed.
 
-**User-data-table changes**:
+**User-data-table changes** (`0002_preparations`, Phase 5, is the worked example):
 - Use versioned, forward-only migrations (Drizzle migrations generated at build time with `npx drizzle-kit generate`, committed in `mobile/drizzle/`, applied at app start before seeding). Drizzle's own `__drizzle_migrations` table tracks what was applied; `PRAGMA user_version` is not used. Raw SQL (such as the FTS5 table) goes in a `drizzle-kit generate --custom` migration.
 - Migrations only `ALTER TABLE ... ADD COLUMN` or create new tables when possible; destructive changes copy data to a new table inside a transaction first.
 - Each migration runs in a transaction; on failure it rolls back and the app shows a recoverable error rather than losing data.
 - Every migration is covered by a test that opens a database at the previous version with sample user data and checks that the data survives.
+- `0002_preparations` was generated by `drizzle-kit generate`, then the SQL body was **rewritten by hand**: the generated SQL added a `NOT NULL` column to a table that might hold rows and copied columns that did not exist yet, which fails or loses data on a database with rows. The hand-written version creates `preparation` and `vidhi_progress`, renames the two old tables, creates one default preparation per distinct `puja_id` found in them, copies their rows into the new tables, and drops the old ones. The Drizzle snapshot is the generated one, so `drizzle-kit generate` reports "No schema changes". `saved_puja`, `recent_view`, `recent_search` and `reminder` are not touched; the migration test checks that saved pujas, recent views and recent searches survive (there is no `reminder` row in that test because nothing writes reminders yet).
 
 Order at startup: run user-data migrations -> check `contentVersion` -> seed content if needed.

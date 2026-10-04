@@ -15,6 +15,13 @@
       "when": 1791115716837,
       "tag": "0001_fts_search_index",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1791130198666,
+      "tag": "0002_preparations",
+      "breakpoints": true
     }
   ]
 }

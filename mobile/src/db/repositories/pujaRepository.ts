@@ -171,3 +171,21 @@ export async function getPuja(db: SqlDb, id: string): Promise<PujaDetail | null>
     checklist,
   };
 }
+
+/**
+ * Names of samagri catalogue entries by id (for items a preparation still remembers but a puja's list no
+ * longer contains). Ids that are not in the catalogue are simply absent from the result.
+ */
+export async function getSamagriNames(
+  db: SqlDb,
+  ids: readonly string[],
+): Promise<Map<string, LocaleMap>> {
+  const names = new Map<string, LocaleMap>();
+  if (ids.length === 0) return names;
+  const rows = await db.all<{ id: string; name_json: string }>(
+    `SELECT id, name_json FROM samagri WHERE id IN (${ids.map(() => '?').join(', ')})`,
+    [...ids],
+  );
+  for (const row of rows) names.set(row.id, parseJson<LocaleMap>(row.name_json));
+  return names;
+}

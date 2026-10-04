@@ -164,18 +164,45 @@ export const savedPuja = sqliteTable(
   (t) => [index('saved_puja_saved_at_idx').on(t.savedAt)],
 );
 
+/**
+ * One checklist per (puja, occasion). A puja can have several. `puja_id` is a plain content id: NO foreign
+ * key to a content table, so re-seeding can never touch or cascade into a preparation.
+ */
+export const preparation = sqliteTable(
+  'preparation',
+  {
+    id: text('id').primaryKey(),
+    pujaId: text('puja_id').notNull(),
+    /** Optional user label, e.g. "Diwali 2026" or "At my sister's home". */
+    title: text('title'),
+    createdAt: integer('created_at').notNull(),
+    updatedAt: integer('updated_at').notNull(),
+    lastOpenedAt: integer('last_opened_at').notNull(),
+  },
+  (t) => [
+    index('preparation_puja_id_idx').on(t.pujaId),
+    index('preparation_last_opened_at_idx').on(t.lastOpenedAt),
+  ],
+);
+
+/**
+ * Checked state of one item of one preparation. No row means "not checked". `item_ref` is a samagri id
+ * (kind `samagri`) or a custom item id (kind `custom`). Rows belong to their preparation (cascade).
+ */
 export const checklistProgress = sqliteTable(
   'checklist_progress',
   {
-    pujaId: text('puja_id').notNull(),
+    preparationId: text('preparation_id')
+      .notNull()
+      .references(() => preparation.id, { onDelete: 'cascade' }),
+    itemKind: text('item_kind', { enum: ['samagri', 'custom'] }).notNull(),
     itemRef: text('item_ref').notNull(),
-    itemKind: text('item_kind', { enum: ['samagri', 'template', 'custom'] }).notNull(),
     checked: integer('checked').notNull(),
     updatedAt: integer('updated_at').notNull(),
   },
   (t) => [
-    primaryKey({ columns: [t.pujaId, t.itemKind, t.itemRef] }),
-    index('checklist_progress_puja_id_idx').on(t.pujaId),
+    primaryKey({ columns: [t.preparationId, t.itemKind, t.itemRef] }),
+    index('checklist_progress_preparation_id_idx').on(t.preparationId),
   ],
 );
 
@@ -183,13 +210,25 @@ export const customSamagri = sqliteTable(
   'custom_samagri',
   {
     id: text('id').primaryKey(),
-    pujaId: text('puja_id').notNull(),
+    preparationId: text('preparation_id')
+      .notNull()
+      .references(() => preparation.id, { onDelete: 'cascade' }),
     name: text('name').notNull(),
     note: text('note'),
     createdAt: integer('created_at').notNull(),
   },
-  (t) => [index('custom_samagri_puja_id_idx').on(t.pujaId)],
+  (t) => [index('custom_samagri_preparation_id_idx').on(t.preparationId)],
 );
+
+/** Reading position in the vidhi, one row per preparation. `completed_at` null = not finished. */
+export const vidhiProgress = sqliteTable('vidhi_progress', {
+  preparationId: text('preparation_id')
+    .primaryKey()
+    .references(() => preparation.id, { onDelete: 'cascade' }),
+  lastStepNumber: integer('last_step_number').notNull(),
+  completedAt: integer('completed_at'),
+  updatedAt: integer('updated_at').notNull(),
+});
 
 export const reminder = sqliteTable(
   'reminder',

@@ -15,12 +15,20 @@ async function insertUserData(db: TestSqlDb) {
     100,
   ]);
   await db.run(
-    'INSERT INTO checklist_progress (puja_id, item_ref, item_kind, checked, updated_at) VALUES (?, ?, ?, ?, ?)',
-    ['puja_test_lakshmi', 'sm_test_lamp', 'samagri', 1, 101],
+    'INSERT INTO preparation (id, puja_id, title, created_at, updated_at, last_opened_at) VALUES (?, ?, ?, ?, ?, ?)',
+    ['prep_1', 'puja_test_lakshmi', null, 100, 100, 100],
   );
   await db.run(
-    'INSERT INTO custom_samagri (id, puja_id, name, note, created_at) VALUES (?, ?, ?, ?, ?)',
-    ['usr_1', 'puja_test_lakshmi', 'My own item', null, 102],
+    'INSERT INTO checklist_progress (preparation_id, item_ref, item_kind, checked, updated_at) VALUES (?, ?, ?, ?, ?)',
+    ['prep_1', 'sm_test_lamp', 'samagri', 1, 101],
+  );
+  await db.run(
+    'INSERT INTO custom_samagri (id, preparation_id, name, note, created_at) VALUES (?, ?, ?, ?, ?)',
+    ['usr_1', 'prep_1', 'My own item', null, 102],
+  );
+  await db.run(
+    'INSERT INTO vidhi_progress (preparation_id, last_step_number, completed_at, updated_at) VALUES (?, ?, ?, ?)',
+    ['prep_1', 2, null, 103],
   );
   await db.run(
     'INSERT INTO reminder (id, puja_id, festival_id, title, fire_at, notification_id, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)',
@@ -35,6 +43,8 @@ async function insertUserData(db: TestSqlDb) {
 
 const USER_TABLES = [
   'saved_puja',
+  'preparation',
+  'vidhi_progress',
   'checklist_progress',
   'custom_samagri',
   'reminder',

@@ -9,8 +9,8 @@ type Props = {
   label: string;
   selected: boolean;
   onPress: () => void;
-  /** radio = one of a group (category, type); checkbox = an on/off shortcut. */
-  role?: 'radio' | 'checkbox';
+  /** radio = one of a group (category, type); checkbox = an on/off shortcut; button = opens something. */
+  role?: 'radio' | 'checkbox' | 'button';
   testID?: string;
 };
 
@@ -23,7 +23,11 @@ export function Chip({ label, selected, onPress, role = 'radio', testID }: Props
       accessibilityRole={role}
       accessibilityLabel={label}
       accessibilityState={
-        role === 'radio' ? { selected, checked: selected } : { checked: selected }
+        role === 'radio'
+          ? { selected, checked: selected }
+          : role === 'checkbox'
+            ? { checked: selected }
+            : undefined
       }
       onPress={onPress}
       android_ripple={{ color: colors.pressed }}
