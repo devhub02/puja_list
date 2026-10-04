@@ -1,0 +1,192 @@
+{
+  "id": "puja_ganesh_chaturthi",
+  "festivalId": "fest_ganesh_chaturthi",
+  "name": { "en": "Ganesh Chaturthi Puja", "hi": "गणेश चतुर्थी पूजन" },
+  "alternateNames": { "en": ["Ganesh Jayanti Puja", "Vinayaka Chaturthi Puja"], "hi": ["गणेश जयंती पूजन"] },
+  "category": "festival",
+  "regions": ["pan_india"],
+  "summary": { "en": "Worship ritual for Lord Ganesh on his birthday, seeking blessings for the removal of obstacles and the success of new endeavors.", "hi": "भगवान गणेश के जन्मदिन पर पूजा, बाधाओं को दूर करने और नए कार्यों की सफलता के लिए आशीर्वाद माँगना।" },
+  "significance": { "en": "Ganesh Chaturthi celebrates the birth of Lord Ganesh, the most widely worshipped deity in Hinduism. Ganesh is invoked at the beginning of all auspicious rituals as the remover of obstacles (Vighnaharta). This puja seeks his blessings for wisdom, success, and the removal of all impediments from life.", "hi": "गणेश चतुर्थी हिंदू धर्म के सबसे व्यापक रूप से पूजे जाने वाले देवता भगवान गणेश के जन्म का जश्न है। गणेश को सभी शुभ कार्यों की शुरुआत में बाधा निवारक (विघ्नहर्ता) के रूप में आमंत्रित किया जाता है। यह पूजा उनका आशीर्वाद माँगती है ज्ञान, सफलता और जीवन से सभी बाधाओं को दूर करने के लिए।" },
+  "samagri": [
+    {
+      "samagriId": "sm_ganesh_idol",
+      "classification": "REQUIRED",
+      "purpose": { "en": "To represent and worship Lord Ganesh", "hi": "भगवान गणेश का प्रतिनिधित्व और पूजा करने के लिए" },
+      "sortOrder": 1
+    },
+    {
+      "samagriId": "sm_flowers",
+      "classification": "COMMON",
+      "purpose": { "en": "To offer to the deity as a mark of devotion", "hi": "भक्ति का प्रतीक के रूप में देवता को चढ़ाने के लिए" },
+      "quantityGuidance": { "en": "as needed" },
+      "sortOrder": 2
+    },
+    {
+      "samagriId": "sm_incense",
+      "classification": "COMMON",
+      "purpose": { "en": "To purify the space and create a sacred atmosphere", "hi": "स्थान को शुद्ध करने और पवित्र वातावरण बनाने के लिए" },
+      "sortOrder": 3
+    },
+    {
+      "samagriId": "sm_diya",
+      "classification": "REQUIRED",
+      "purpose": { "en": "To light as an offering and to symbolize the light of knowledge", "hi": "चढ़ावे के रूप में प्रकाश करने और ज्ञान के प्रकाश का प्रतीक" },
+      "sortOrder": 4
+    },
+    {
+      "samagriId": "sm_oil",
+      "classification": "REQUIRED",
+      "purpose": { "en": "To fuel the diya", "hi": "दीये को जलाने के लिए" },
+      "quantityGuidance": { "en": "as needed" },
+      "sortOrder": 5
+    },
+    {
+      "samagriId": "sm_modak",
+      "classification": "COMMON",
+      "purpose": { "en": "Traditional sweet offering to Lord Ganesh, his favorite food", "hi": "भगवान गणेश को पारंपरिक मीठा भोग, उनका पसंदीदा भोजन" },
+      "sortOrder": 6
+    },
+    {
+      "samagriId": "sm_coconut",
+      "classification": "COMMON",
+      "purpose": { "en": "To offer as a fruit offering", "hi": "फल भोग के रूप में चढ़ाने के लिए" },
+      "sortOrder": 7
+    },
+    {
+      "samagriId": "sm_turmeric",
+      "classification": "COMMON",
+      "purpose": { "en": "For applying tilak on the deity and self", "hi": "देवता और स्वयं पर तिलक लगाने के लिए" },
+      "sortOrder": 8
+    },
+    {
+      "samagriId": "sm_vermillion",
+      "classification": "COMMON",
+      "purpose": { "en": "For tilak and offering", "hi": "तिलक और पूजा के लिए" },
+      "sortOrder": 9
+    },
+    {
+      "samagriId": "sm_rice",
+      "classification": "COMMON",
+      "purpose": { "en": "To offer along with flowers as an offering", "hi": "फूलों के साथ चढ़ावे के रूप में" },
+      "quantityGuidance": { "en": "as needed" },
+      "sortOrder": 10
+    },
+    {
+      "samagriId": "sm_water",
+      "classification": "REQUIRED",
+      "purpose": { "en": "For ritual bathing of the deity and washing", "hi": "देवता को नहलाने और धोने के लिए" },
+      "sortOrder": 11
+    },
+    {
+      "samagriId": "sm_camphor",
+      "classification": "OPTIONAL",
+      "purpose": { "en": "For aarti offering at the end of the puja", "hi": "पूजा के अंत में आरती के लिए" },
+      "sortOrder": 12
+    }
+  ],
+  "steps": [
+    {
+      "id": "step_gc_1",
+      "stepNumber": 1,
+      "title": { "en": "Purification and Setup", "hi": "शुद्धिकरण और तैयारी" },
+      "description": { "en": "Clean and prepare the puja space. Arrange the Ganesh idol and samagri items on the altar. Sit in a comfortable position facing the idol.", "hi": "पूजा के स्थान को साफ करें और तैयार करें। गणेश मूर्ति और सभी सामग्री को वेदी पर व्यवस्थित करें। मूर्ति के सामने आरामदायक मुद्रा में बैठें।" },
+      "relatedSamagriIds": ["sm_ganesh_idol", "sm_water"],
+      "isOptional": false
+    },
+    {
+      "id": "step_gc_2",
+      "stepNumber": 2,
+      "title": { "en": "Light the Diya", "hi": "दीया जलाएं" },
+      "description": { "en": "Light the diya using oil and set it in front of the altar. The lamp symbolizes divine knowledge and dispels darkness.", "hi": "तेल का उपयोग करके दीया जलाएं और इसे वेदी के सामने रखें। दीया दिव्य ज्ञान का प्रतीक है और अंधकार को दूर करता है।" },
+      "relatedSamagriIds": ["sm_diya", "sm_oil"],
+      "isOptional": false
+    },
+    {
+      "id": "step_gc_3",
+      "stepNumber": 3,
+      "title": { "en": "Offer Flowers and Rice", "hi": "फूल और चावल चढ़ाएं" },
+      "description": { "en": "Offer fresh flowers and rice grains at the feet of the Ganesh idol, expressing devotion and respect.", "hi": "गणेश मूर्ति के पैरों में ताजे फूल और चावल के दाने चढ़ाएं, भक्ति और सम्मान व्यक्त करते हुए।" },
+      "relatedSamagriIds": ["sm_flowers", "sm_rice"],
+      "isOptional": false
+    },
+    {
+      "id": "step_gc_4",
+      "stepNumber": 4,
+      "title": { "en": "Apply Tilak", "hi": "तिलक लगाएं" },
+      "description": { "en": "Apply turmeric and vermillion tilak on the idol's forehead and on yourself. This marks the sacred nature of the ritual.", "hi": "मूर्ति के माथे पर और अपने माथे पर हल्दी और सिंदूर का तिलक लगाएं। यह पूजा की पवित्र प्रकृति को दर्शाता है।" },
+      "relatedSamagriIds": ["sm_turmeric", "sm_vermillion"],
+      "isOptional": false
+    },
+    {
+      "id": "step_gc_5",
+      "stepNumber": 5,
+      "title": { "en": "Burn Incense", "hi": "अगरबत्ती जलाएं" },
+      "description": { "en": "Light agarbatti (incense) and move it in circles in front of the idol. The fragrance purifies the space and aids concentration.", "hi": "अगरबत्ती जलाएं और इसे मूर्ति के सामने गोलाकार गति में लें। सुगंध स्थान को शुद्ध करती है और ध्यान में मदद करती है।" },
+      "relatedSamagriIds": ["sm_incense"],
+      "isOptional": false
+    },
+    {
+      "id": "step_gc_6",
+      "stepNumber": 6,
+      "title": { "en": "Meditation and Prayers", "hi": "ध्यान और प्रार्थना" },
+      "description": { "en": "Sit quietly and meditate on Lord Ganesh. Offer prayers seeking his blessings for wisdom, success, and the removal of obstacles. Recite mantras or prayers as per your family tradition.", "hi": "भगवान गणेश पर ध्यान करते हुए शांति से बैठें। बुद्धिमत्ता, सफलता और बाधाओं को दूर करने के लिए उनका आशीर्वाद माँगने के लिए प्रार्थना करें। अपनी पारिवारिक परंपरा के अनुसार मंत्र या प्रार्थना दोहराएं।" },
+      "relatedSamagriIds": [],
+      "isOptional": false
+    },
+    {
+      "id": "step_gc_7",
+      "stepNumber": 7,
+      "title": { "en": "Offer Modak", "hi": "मोदक चढ़ाएं" },
+      "description": { "en": "Offer modak and other sweets at the feet of the idol. Modak is Ganesh's favorite offering and symbolizes sweetness and joy.", "hi": "मूर्ति के पैरों में मोदक और अन्य मिठाइयां चढ़ाएं। मोदक गणेश का पसंदीदा भोग है और मिठास और आनंद का प्रतीक है।" },
+      "relatedSamagriIds": ["sm_modak"],
+      "isOptional": false
+    },
+    {
+      "id": "step_gc_8",
+      "stepNumber": 8,
+      "title": { "en": "Aarti", "hi": "आरती" },
+      "description": { "en": "Perform aarti by waving the lamp or camphor flame in front of the idol in a circular motion. This signifies the completion of the puja and gratitude to the deity.", "hi": "दीये या कपूर की लपट को मूर्ति के सामने गोलाकार गति में लहरा कर आरती करें। यह पूजा की समाप्ति और देवता के प्रति कृतज्ञता को दर्शाता है।" },
+      "relatedSamagriIds": ["sm_diya", "sm_camphor"],
+      "isOptional": false
+    },
+    {
+      "id": "step_gc_9",
+      "stepNumber": 9,
+      "title": { "en": "Seek Blessings", "hi": "आशीर्वाद लें" },
+      "description": { "en": "Respectfully bow to the idol and seek Ganesh's blessings. Touch the altar and then your forehead as a gesture of receiving blessings.", "hi": "मूर्ति को सम्मान पूर्वक नमस्कार करें और गणेश का आशीर्वाद लें। वेदी को छुएं और फिर अपने माथे को छुएं, आशीर्वाद प्राप्त करने का संकेत।" },
+      "relatedSamagriIds": [],
+      "isOptional": false
+    },
+    {
+      "id": "step_gc_10",
+      "stepNumber": 10,
+      "title": { "en": "Distribute Prasad", "hi": "प्रसाद वितरण" },
+      "description": { "en": "Distribute the offered food (modak, sweets, coconut) as prasad among family members and guests. Prasad carries the blessings of the deity.", "hi": "चढ़ाई गई मिठाइयों (मोदक, मिठाई, नारियल) को परिवार के सदस्यों और मेहमानों में प्रसाद के रूप में वितरित करें। प्रसाद देवता का आशीर्वाद ले कर आता है।" },
+      "relatedSamagriIds": ["sm_modak", "sm_coconut"],
+      "isOptional": false
+    }
+  ],
+  "variations": [
+    {
+      "id": "var_gc_maharashtra",
+      "regions": ["west"],
+      "title": { "en": "Maharashtra Tradition", "hi": "महाराष्ट्र परंपरा" },
+      "description": { "en": "In Maharashtra, the puja is followed by a 10-day celebration. On the final day (Anant Chaturdashi), the idol is immersed in water (Ganesh Visarjan). Modak is the main offering throughout the festival.", "hi": "महाराष्ट्र में, पूजा के बाद 10 दिनों का उत्सव होता है। अंतिम दिन (अनंत चतुर्दशी) को मूर्ति को जल में विसर्जित किया जाता है (गणेश विसर्जन)। पूरे त्योहार के दौरान मोदक मुख्य भोग है।" },
+      "affectsSamagriIds": ["sm_modak"],
+      "affectsStepIds": []
+    },
+    {
+      "id": "var_gc_south",
+      "regions": ["south"],
+      "title": { "en": "South Indian Tradition", "hi": "दक्षिण भारतीय परंपरा" },
+      "description": { "en": "In South India, the puja includes the preparation of neyyappam (sweet preparations) and the application of kumkum (vermillion) is more prominent. The festival duration may vary by region and local customs.", "hi": "दक्षिण भारत में, पूजा में नेय्यप्पम (मीठी तैयारी) की तैयारी शामिल है और कुमकुम (सिंदूर) का प्रयोग अधिक प्रमुख है। त्योहार की अवधि क्षेत्र और स्थानीय रीति-रिवाजों में भिन्न हो सकती है।" },
+      "affectsSamagriIds": ["sm_vermillion"],
+      "affectsStepIds": []
+    }
+  ],
+  "disclaimer": { "en": "This is a general guide to Ganesh Chaturthi puja. Regional practices and family traditions may vary. The ritual sequence and methods may differ based on your sampradaya (tradition) and local customs. Please follow your family's practices and consult a local priest if you are unfamiliar with the ritual.", "hi": "यह गणेश चतुर्थी पूजा का एक सामान्य मार्गदर्शन है। क्षेत्रीय प्रथाएं और पारिवारिक परंपराएं भिन्न हो सकती हैं। अनुष्ठान का क्रम और विधि आपकी संप्रदाय (परंपरा) और स्थानीय रीति-रिवाजों के आधार पर भिन्न हो सकती है। कृपया अपनी पारिवारिक परंपराओं का पालन करें और यदि आप इस अनुष्ठान से परिचित नहीं हैं तो किसी स्थानीय पंडित से परामर्श लें।" },
+  "reviewStatus": "ai_drafted",
+  "sourceNote": { "en": "AI-drafted general guide based on widely documented Ganesh Chaturthi puja practices. Not yet verified by a pandit. Details such as exact timings and mantra texts require consultation with a qualified priest.", "hi": "व्यापक रूप से प्रलेखित गणेश चतुर्थी पूजा प्रथाओं के आधार पर AI द्वारा तैयार सामान्य मार्गदर्शन। अभी तक किसी पंडित द्वारा सत्यापित नहीं। सटीक समय और मंत्र पाठ जैसे विवरण के लिए एक योग्य पुजारी से सलाह लेनी चाहिए।" },
+  "contentVersion": 1,
+  "status": "active"
+}

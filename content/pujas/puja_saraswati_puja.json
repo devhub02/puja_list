@@ -1,0 +1,176 @@
+{
+  "id": "puja_saraswati_puja",
+  "festivalId": "fest_saraswati_puja",
+  "name": { "en": "Saraswati Puja", "hi": "सरस्वती पूजन" },
+  "alternateNames": { "en": ["Vasant Panchami Puja", "Saraswati Jayanti"], "hi": ["वसंत पंचमी पूजन", "सरस्वती जयंती"] },
+  "category": "festival",
+  "regions": ["pan_india"],
+  "summary": { "en": "Worship of Goddess Saraswati, the deity of knowledge, learning, and the arts. Seeks her blessings for intellectual growth and academic success.", "hi": "ज्ञान, शिक्षा और कलाओं की देवी सरस्वती की पूजा। बुद्धिमत्ता विकास और शैक्षणिक सफलता के लिए उनका आशीर्वाद माँगना।" },
+  "significance": { "en": "Saraswati Puja celebrates Goddess Saraswati, the embodiment of wisdom, learning, and creativity. The puja is particularly important for students, scholars, artists, and teachers. It marks the beginning of spring and is believed to enhance knowledge, creativity, and intellectual abilities.", "hi": "सरस्वती पूजा देवी सरस्वती, ज्ञान, सीखने और रचनात्मकता का प्रतीक का जश्न है। यह पूजा विशेष रूप से छात्रों, विद्वानों, कलाकारों और शिक्षकों के लिए महत्वपूर्ण है। यह वसंत की शुरुआत का प्रतीक है और ज्ञान, रचनात्मकता और बौद्धिक क्षमताओं को बढ़ाने में मदद करता है।" },
+  "samagri": [
+    {
+      "samagriId": "sm_saraswati_idol",
+      "classification": "REQUIRED",
+      "purpose": { "en": "To represent and worship Goddess Saraswati", "hi": "देवी सरस्वती का प्रतिनिधित्व और पूजा करने के लिए" },
+      "sortOrder": 1
+    },
+    {
+      "samagriId": "sm_yellow_flowers",
+      "classification": "COMMON",
+      "purpose": { "en": "To offer to the goddess, yellow symbolizes knowledge and wisdom", "hi": "देवी को चढ़ाने के लिए, पीला रंग ज्ञान और बुद्धिमत्ता का प्रतीक है" },
+      "quantityGuidance": { "en": "as needed" },
+      "sortOrder": 2
+    },
+    {
+      "samagriId": "sm_book",
+      "classification": "REQUIRED",
+      "purpose": { "en": "To offer books representing knowledge and wisdom", "hi": "ज्ञान और बुद्धिमत्ता का प्रतिनिधित्व करने वाली किताबें चढ़ाने के लिए" },
+      "sortOrder": 3
+    },
+    {
+      "samagriId": "sm_musical_instrument",
+      "classification": "COMMON",
+      "purpose": { "en": "To offer musical instruments representing the arts and creativity", "hi": "कला और रचनात्मकता का प्रतिनिधित्व करने वाले वाद्य यंत्र चढ़ाने के लिए" },
+      "sortOrder": 4
+    },
+    {
+      "samagriId": "sm_diya",
+      "classification": "REQUIRED",
+      "purpose": { "en": "To light as a symbol of knowledge dispelling ignorance", "hi": "ज्ञान से अज्ञानता को दूर करने का प्रतीक" },
+      "sortOrder": 5
+    },
+    {
+      "samagriId": "sm_oil",
+      "classification": "REQUIRED",
+      "purpose": { "en": "To fuel the diya", "hi": "दीये को जलाने के लिए" },
+      "quantityGuidance": { "en": "as needed" },
+      "sortOrder": 6
+    },
+    {
+      "samagriId": "sm_incense",
+      "classification": "COMMON",
+      "purpose": { "en": "To purify the space and enhance concentration for learning", "hi": "स्थान को शुद्ध करने और सीखने के लिए ध्यान बढ़ाने के लिए" },
+      "sortOrder": 7
+    },
+    {
+      "samagriId": "sm_turmeric",
+      "classification": "COMMON",
+      "purpose": { "en": "For applying tilak on the deity and self", "hi": "देवी और स्वयं पर तिलक लगाने के लिए" },
+      "sortOrder": 8
+    },
+    {
+      "samagriId": "sm_vermillion",
+      "classification": "COMMON",
+      "purpose": { "en": "For tilak and ritual offerings", "hi": "तिलक और पूजा के लिए" },
+      "sortOrder": 9
+    },
+    {
+      "samagriId": "sm_rice",
+      "classification": "COMMON",
+      "purpose": { "en": "To offer along with flowers and prayers", "hi": "फूलों और प्रार्थनाओं के साथ चढ़ाने के लिए" },
+      "quantityGuidance": { "en": "as needed" },
+      "sortOrder": 10
+    },
+    {
+      "samagriId": "sm_sweets",
+      "classification": "OPTIONAL",
+      "purpose": { "en": "To offer as bhog and distribute as prasad", "hi": "भोग के रूप में चढ़ाने और प्रसाद के रूप में वितरित करने के लिए" },
+      "sortOrder": 11
+    },
+    {
+      "samagriId": "sm_water",
+      "classification": "REQUIRED",
+      "purpose": { "en": "For ritual bathing and washing of the deity", "hi": "देवी को नहलाने और धोने के लिए" },
+      "sortOrder": 12
+    }
+  ],
+  "steps": [
+    {
+      "id": "step_sp_1",
+      "stepNumber": 1,
+      "title": { "en": "Purification and Setup", "hi": "शुद्धिकरण और तैयारी" },
+      "description": { "en": "Clean the puja space and decorate it with yellow flowers. Arrange the Saraswati idol, books, and musical instruments on the altar. Light the diya to symbolize the illumination of knowledge.", "hi": "पूजा के स्थान को साफ करें और पीले फूलों से सजाएं। सरस्वती मूर्ति, किताबें और वाद्य यंत्रों को वेदी पर व्यवस्थित करें। ज्ञान के प्रकाश का प्रतीक देने के लिए दीया जलाएं।" },
+      "relatedSamagriIds": ["sm_saraswati_idol", "sm_yellow_flowers", "sm_book", "sm_diya", "sm_oil"],
+      "isOptional": false
+    },
+    {
+      "id": "step_sp_2",
+      "stepNumber": 2,
+      "title": { "en": "Invocation of the Goddess", "hi": "देवी का आह्वान" },
+      "description": { "en": "Begin by offering yellow flowers and rice grains at the feet of the Saraswati idol. Invoke the goddess to bless you with knowledge, wisdom, and creative abilities. Recite prayers or mantras as per your tradition.", "hi": "सरस्वती मूर्ति के पैरों में पीले फूल और चावल के दाने चढ़ा कर शुरू करें। देवी को ज्ञान, बुद्धिमत्ता और रचनात्मक क्षमताओं से आशीर्वादित करने के लिए आह्वान करें। अपनी परंपरा के अनुसार प्रार्थना या मंत्र दोहराएं।" },
+      "relatedSamagriIds": ["sm_yellow_flowers", "sm_rice"],
+      "isOptional": false
+    },
+    {
+      "id": "step_sp_3",
+      "stepNumber": 3,
+      "title": { "en": "Apply Tilak", "hi": "तिलक लगाएं" },
+      "description": { "en": "Apply turmeric and vermillion tilak on the idol and on yourself. This marks the sacred nature of the ritual and your dedication to learning.", "hi": "मूर्ति पर और अपने माथे पर हल्दी और सिंदूर का तिलक लगाएं। यह पूजा की पवित्र प्रकृति और सीखने में आपकी भक्ति को दर्शाता है।" },
+      "relatedSamagriIds": ["sm_turmeric", "sm_vermillion"],
+      "isOptional": false
+    },
+    {
+      "id": "step_sp_4",
+      "stepNumber": 4,
+      "title": { "en": "Burn Incense", "hi": "अगरबत्ती जलाएं" },
+      "description": { "en": "Light incense and move it in circles in front of the idol. The fragrance is believed to enhance clarity of thought and concentration.", "hi": "अगरबत्ती जलाएं और इसे मूर्ति के सामने गोलाकार गति में लें। सुगंध सोच की स्पष्टता और ध्यान को बढ़ाने में मदद करती है।" },
+      "relatedSamagriIds": ["sm_incense"],
+      "isOptional": false
+    },
+    {
+      "id": "step_sp_5",
+      "stepNumber": 5,
+      "title": { "en": "Meditation and Prayers", "hi": "ध्यान और प्रार्थना" },
+      "description": { "en": "Sit in quiet meditation and focus on Saraswati. Silently offer prayers for intellectual growth, clarity of mind, and the ability to pursue your chosen field of knowledge or art. Visualize yourself gaining wisdom and achieving your academic or creative goals.", "hi": "शांत ध्यान में बैठें और सरस्वती पर ध्यान केंद्रित करें। बौद्धिक विकास, मन की स्पष्टता और ज्ञान या कला के अपने चुने हुए क्षेत्र को आगे बढ़ाने की क्षमता के लिए मन ही मन में प्रार्थना करें। अपने को ज्ञान प्राप्त करते हुए और अपने शैक्षणिक या रचनात्मक लक्ष्यों को प्राप्त करते हुए की कल्पना करें।" },
+      "relatedSamagriIds": [],
+      "isOptional": false
+    },
+    {
+      "id": "step_sp_6",
+      "stepNumber": 6,
+      "title": { "en": "Offer Books and Instruments", "hi": "किताबें और वाद्य यंत्र चढ़ाएं" },
+      "description": { "en": "Place books and musical instruments at the feet of the idol as symbolic offerings. Books represent the pursuit of knowledge and instruments represent creativity and the arts. Some families touch their pens and educational materials to the altar for blessings.", "hi": "किताबें और वाद्य यंत्रों को मूर्ति के पैरों में प्रतीकात्मक भोग के रूप में रखें। किताबें ज्ञान की खोज का प्रतिनिधित्व करती हैं और वाद्य यंत्र रचनात्मकता और कलाओं का प्रतिनिधित्व करते हैं। कुछ परिवार आशीर्वाद के लिए अपनी कलम और शैक्षणिक सामग्री को वेदी से छुआते हैं।" },
+      "relatedSamagriIds": ["sm_book", "sm_musical_instrument"],
+      "isOptional": false
+    },
+    {
+      "id": "step_sp_7",
+      "stepNumber": 7,
+      "title": { "en": "Aarti", "hi": "आरती" },
+      "description": { "en": "Perform aarti by waving the lamp in front of the idol in a circular motion. The light of the aarti represents the dispelling of ignorance and the illumination of knowledge.", "hi": "दीये को मूर्ति के सामने गोलाकार गति में लहरा कर आरती करें। आरती का प्रकाश अज्ञानता को दूर करने और ज्ञान के प्रकाश को दर्शाता है।" },
+      "relatedSamagriIds": ["sm_diya"],
+      "isOptional": false
+    },
+    {
+      "id": "step_sp_8",
+      "stepNumber": 8,
+      "title": { "en": "Seek Blessings", "hi": "आशीर्वाद लें" },
+      "description": { "en": "Respectfully bow to the idol and seek Saraswati's blessings for academic success, intellectual growth, and creative excellence. Touch your head to the altar to receive her blessings.", "hi": "मूर्ति को सम्मान पूर्वक नमस्कार करें और शैक्षणिक सफलता, बौद्धिक विकास और रचनात्मक उत्कृष्टता के लिए सरस्वती का आशीर्वाद लें। उनका आशीर्वाद प्राप्त करने के लिए अपने सिर को वेदी से छुएं।" },
+      "relatedSamagriIds": [],
+      "isOptional": false
+    },
+    {
+      "id": "step_sp_9",
+      "stepNumber": 9,
+      "title": { "en": "Distribute Prasad", "hi": "प्रसाद वितरण" },
+      "description": { "en": "Distribute the offered sweets and other items as prasad to family members and guests, particularly students. Prasad carries Saraswati's blessings for knowledge and wisdom.", "hi": "चढ़ाई गई मिठाई और अन्य चीजों को परिवार के सदस्यों और मेहमानों को, विशेष रूप से छात्रों को प्रसाद के रूप में वितरित करें। प्रसाद ज्ञान और बुद्धिमत्ता के लिए सरस्वती का आशीर्वाद लाता है।" },
+      "relatedSamagriIds": ["sm_sweets"],
+      "isOptional": false
+    }
+  ],
+  "variations": [
+    {
+      "id": "var_sp_eastern",
+      "regions": ["east"],
+      "title": { "en": "Eastern India Tradition", "hi": "पूर्वी भारतीय परंपरा" },
+      "description": { "en": "In Eastern India, particularly in Bengal, Saraswati Puja is a major festival with grand celebrations. Yellow flowers (especially marigold) are extensively used, and the puja is often performed with elaborate rituals and community involvement. Students place their books and pens on the altar for blessings.", "hi": "पूर्वी भारत में, विशेष रूप से बंगाल में, सरस्वती पूजा एक प्रमुख त्योहार है जिसमें भव्य उत्सव होते हैं। पीले फूलों (विशेष रूप से गेंदा) का व्यापक उपयोग किया जाता है, और पूजा अक्सर विस्तृत अनुष्ठानों और सामुदायिक भागीदारी के साथ की जाती है। छात्र आशीर्वाद के लिए अपनी किताबें और कलम को वेदी पर रखते हैं।" },
+      "affectsSamagriIds": ["sm_yellow_flowers", "sm_book"],
+      "affectsStepIds": ["step_sp_6"]
+    }
+  ],
+  "disclaimer": { "en": "This is a general guide to Saraswati Puja. Regional practices and family traditions may vary. Please follow your family's practices and consult a local priest for proper rituals and timings.", "hi": "यह सरस्वती पूजा का एक सामान्य मार्गदर्शन है। क्षेत्रीय प्रथाएं और पारिवारिक परंपराएं भिन्न हो सकती हैं। कृपया अपनी पारिवारिक परंपराओं का पालन करें और उचित अनुष्ठानों और समय के लिए एक स्थानीय पुजारी से परामर्श लें।" },
+  "reviewStatus": "ai_drafted",
+  "sourceNote": { "en": "AI-drafted general guide based on widely documented Saraswati Puja practices across India. Not yet verified by a pandit. Regional variations require consultation with a qualified priest.", "hi": "भारत भर में व्यापक रूप से प्रलेखित सरस्वती पूजा प्रथाओं के आधार पर AI द्वारा तैयार सामान्य मार्गदर्शन। अभी तक किसी पंडित द्वारा सत्यापित नहीं। क्षेत्रीय भिन्नताओं के लिए एक योग्य पुजारी से परामर्श आवश्यक है।" },
+  "contentVersion": 1,
+  "status": "active"
+}

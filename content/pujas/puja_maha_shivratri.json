@@ -1,0 +1,199 @@
+{
+  "id": "puja_maha_shivratri",
+  "festivalId": "fest_maha_shivratri",
+  "name": { "en": "Maha Shivratri Puja", "hi": "महा शिवरात्रि पूजन" },
+  "alternateNames": { "en": ["Shivaratri Puja", "Mahashivratri"], "hi": ["शिवरात्रि पूजा", "महाशिवरात्रि"] },
+  "category": "festival",
+  "regions": ["pan_india"],
+  "summary": { "en": "Night-long worship of Lord Shiva celebrated on the 14th night of the dark fortnight of Phalgun. Seeks blessings for spiritual growth and protection.", "hi": "फाल्गुन के कृष्ण पक्ष की 14वीं रात को भगवान शिव की रात भर की पूजा। आध्यात्मिक विकास और सुरक्षा के लिए आशीर्वाद माँगना।" },
+  "significance": { "en": "Maha Shivratri celebrates the power and glory of Lord Shiva, the supreme being in Hindu philosophy. It is believed that on this night, Shiva performed the cosmic dance (Tandava). The puja involves all-night vigil, meditation, and fasting. Devotees seek Shiva's blessings for spiritual awakening, destruction of ego, and ultimate liberation.", "hi": "महा शिवरात्रि भगवान शिव की शक्ति और महिमा का जश्न है, जो हिंदू दर्शन में सर्वोच्च हैं। माना जाता है कि इसी रात को शिव ने ब्रह्मांडीय नृत्य (तांडव) किया था। पूजा में रात भर की विगिल, ध्यान और व्रत शामिल हैं। भक्त आध्यात्मिक जागृति, अहंकार के विनाश और अंतिम मुक्ति के लिए शिव का आशीर्वाद माँगते हैं।" },
+  "samagri": [
+    {
+      "samagriId": "sm_shiva_lingam",
+      "classification": "REQUIRED",
+      "purpose": { "en": "To represent Lord Shiva in the puja", "hi": "पूजा में भगवान शिव का प्रतिनिधित्व करने के लिए" },
+      "sortOrder": 1
+    },
+    {
+      "samagriId": "sm_bilva_leaves",
+      "classification": "REQUIRED",
+      "purpose": { "en": "Sacred leaves for offering to Shiva, considered essential for the puja", "hi": "शिव को चढ़ाने के लिए पवित्र पत्तियां, पूजा के लिए आवश्यक माने जाते हैं" },
+      "quantityGuidance": { "en": "as available" },
+      "sortOrder": 2
+    },
+    {
+      "samagriId": "sm_flowers",
+      "classification": "COMMON",
+      "purpose": { "en": "To offer to the deity as a mark of devotion", "hi": "भक्ति का प्रतीक के रूप में देवता को चढ़ाने के लिए" },
+      "quantityGuidance": { "en": "as needed" },
+      "sortOrder": 3
+    },
+    {
+      "samagriId": "sm_milk",
+      "classification": "COMMON",
+      "purpose": { "en": "For ritual bathing and abhisheka of the Shiva lingam", "hi": "शिव लिंग को नहलाने और अभिषेक के लिए" },
+      "sortOrder": 4
+    },
+    {
+      "samagriId": "sm_yogurt",
+      "classification": "COMMON",
+      "purpose": { "en": "For ritual bathing of the lingam", "hi": "लिंग को नहलाने के लिए" },
+      "sortOrder": 5
+    },
+    {
+      "samagriId": "sm_ghee",
+      "classification": "COMMON",
+      "purpose": { "en": "For ritual bathing of the lingam and offering", "hi": "लिंग को नहलाने और भोग के लिए" },
+      "sortOrder": 6
+    },
+    {
+      "samagriId": "sm_honey",
+      "classification": "COMMON",
+      "purpose": { "en": "For ritual bathing of the lingam", "hi": "लिंग को नहलाने के लिए" },
+      "sortOrder": 7
+    },
+    {
+      "samagriId": "sm_water",
+      "classification": "REQUIRED",
+      "purpose": { "en": "For ritual bathing and washing of the lingam", "hi": "लिंग को नहलाने और धोने के लिए" },
+      "sortOrder": 8
+    },
+    {
+      "samagriId": "sm_incense",
+      "classification": "COMMON",
+      "purpose": { "en": "To purify the space during the all-night vigil", "hi": "रात भर की पूजा के दौरान स्थान को शुद्ध करने के लिए" },
+      "sortOrder": 9
+    },
+    {
+      "samagriId": "sm_diya",
+      "classification": "REQUIRED",
+      "purpose": { "en": "To light during the all-night vigil, symbolizing divine light", "hi": "रात भर की पूजा के दौरान दीया जलाने के लिए, दिव्य प्रकाश का प्रतीक" },
+      "sortOrder": 10
+    },
+    {
+      "samagriId": "sm_oil",
+      "classification": "REQUIRED",
+      "purpose": { "en": "To fuel the diyas throughout the night", "hi": "पूरी रात दीयों को जलाने के लिए" },
+      "quantityGuidance": { "en": "more quantity needed for all-night vigil" },
+      "sortOrder": 11
+    },
+    {
+      "samagriId": "sm_turmeric",
+      "classification": "COMMON",
+      "purpose": { "en": "For tilak", "hi": "तिलक लगाने के लिए" },
+      "sortOrder": 12
+    },
+    {
+      "samagriId": "sm_vermillion",
+      "classification": "COMMON",
+      "purpose": { "en": "For tilak and ritual purposes", "hi": "तिलक और पूजा के लिए" },
+      "sortOrder": 13
+    }
+  ],
+  "steps": [
+    {
+      "id": "step_ms_1",
+      "stepNumber": 1,
+      "title": { "en": "Purification and Setup", "hi": "शुद्धिकरण और तैयारी" },
+      "description": { "en": "Clean and prepare the puja space. Set up the Shiva lingam on an altar with a base (usually a stone or metal container). Arrange all samagri items around the lingam. Light the diya and incense. Sit in a comfortable meditation posture facing the lingam.", "hi": "पूजा के स्थान को साफ करें और तैयार करें। शिव लिंग को आधार के साथ (आमतौर पर पत्थर या धातु का कंटेनर) वेदी पर स्थापित करें। सभी सामग्री को लिंग के चारों ओर व्यवस्थित करें। दीया और अगरबत्ती जलाएं। लिंग के सामने एक आरामदायक ध्यान मुद्रा में बैठें।" },
+      "relatedSamagriIds": ["sm_shiva_lingam", "sm_diya", "sm_oil", "sm_incense"],
+      "isOptional": false
+    },
+    {
+      "id": "step_ms_2",
+      "stepNumber": 2,
+      "title": { "en": "Ritual Bathing of the Lingam", "hi": "लिंग का अभिषेक" },
+      "description": { "en": "Perform the ritual bathing (abhisheka) of the Shiva lingam. Begin by bathing it with water, followed by milk, yogurt, ghee, and honey in sequence. Each bathing is a form of worship and purification. Rinse with water at the end.", "hi": "शिव लिंग का अभिषेक (नहलाना) करें। पहले जल से नहलाएं, फिर दूध, दही, घी और शहद का क्रमानुसार प्रयोग करें। हर नहलाना पूजा और शुद्धिकरण का एक रूप है। अंत में जल से धो लें।" },
+      "relatedSamagriIds": ["sm_water", "sm_milk", "sm_yogurt", "sm_ghee", "sm_honey"],
+      "isOptional": false
+    },
+    {
+      "id": "step_ms_3",
+      "stepNumber": 3,
+      "title": { "en": "Apply Tilak", "hi": "तिलक लगाएं" },
+      "description": { "en": "Apply turmeric and vermillion tilak on yourself as a mark of participation in the sacred ritual. This signifies your dedication to Lord Shiva.", "hi": "पवित्र अनुष्ठान में भागीदारी के निशान के रूप में अपने माथे पर हल्दी और सिंदूर का तिलक लगाएं। यह भगवान शिव के प्रति आपकी भक्ति को दर्शाता है।" },
+      "relatedSamagriIds": ["sm_turmeric", "sm_vermillion"],
+      "isOptional": false
+    },
+    {
+      "id": "step_ms_4",
+      "stepNumber": 4,
+      "title": { "en": "Offer Bilva Leaves", "hi": "बेलपत्र चढ़ाएं" },
+      "description": { "en": "Offer fresh bilva leaves on the lingam. Bilva leaves are sacred to Shiva and are considered the most important offering. Offer them with devotion and prayers. The leaves can be offered in groups of three (representing the three aspects of Shiva) or as individual leaves.", "hi": "लिंग पर ताजी बेलपत्र चढ़ाएं। बेलपत्र शिव को पवित्र हैं और सबसे महत्वपूर्ण भोग माने जाते हैं। उन्हें भक्ति और प्रार्थना के साथ चढ़ाएं। पत्तियों को तीन के समूह में (शिव के तीन पहलुओं का प्रतिनिधित्व) या व्यक्तिगत पत्तियों के रूप में चढ़ाया जा सकता है।" },
+      "relatedSamagriIds": ["sm_bilva_leaves"],
+      "isOptional": false
+    },
+    {
+      "id": "step_ms_5",
+      "stepNumber": 5,
+      "title": { "en": "Offer Flowers", "hi": "फूल चढ़ाएं" },
+      "description": { "en": "Offer flowers at the base of the lingam as a symbol of devotion and beauty. Flowers represent the beauty of creation and the divine.", "hi": "भक्ति और सौंदर्य का प्रतीक के रूप में लिंग के आधार पर फूल चढ़ाएं। फूल सृष्टि की सुंदरता और दिव्य प्रतिनिधित्व करते हैं।" },
+      "relatedSamagriIds": ["sm_flowers"],
+      "isOptional": true
+    },
+    {
+      "id": "step_ms_6",
+      "stepNumber": 6,
+      "title": { "en": "All-Night Vigil and Meditation", "hi": "रात भर की विगिल और ध्यान" },
+      "description": { "en": "Engage in an all-night vigil dedicated to Lord Shiva. Spend the night in meditation, chanting, or silent prayer. Keep the diyas lit throughout the night. Some devotees recite scriptures, particularly the Shiva Purana or Shiva Chalisa. Maintain focus on spiritual practices and avoid sleep to honor Shiva.", "hi": "भगवान शिव के लिए समर्पित रात भर की विगिल में लगे रहें। रात को ध्यान, जाप या मौन प्रार्थना में बिताएं। पूरी रात दीये जलाए रखें। कुछ भक्त शास्त्रों को पढ़ते हैं, विशेष रूप से शिव पुराण या शिव चालीसा। आध्यात्मिक प्रथाओं पर ध्यान केंद्रित करें और शिव का सम्मान करने के लिए नींद से बचें।" },
+      "relatedSamagriIds": ["sm_diya"],
+      "isOptional": false,
+      "importantNote": { "en": "An all-night vigil can be physically demanding. If fasting or staying awake all night is not possible, perform the puja during the day with the same devotion. Adjust the duration based on your physical capacity.", "hi": "रात भर की विगिल शारीरिक रूप से कठिन हो सकती है। यदि व्रत रखना या पूरी रात जागना संभव नहीं है, तो उसी भक्ति के साथ दिन में पूजा करें। अपनी शारीरिक क्षमता के आधार पर अवधि को समायोजित करें।" }
+    },
+    {
+      "id": "step_ms_7",
+      "stepNumber": 7,
+      "title": { "en": "Renewal of Offerings", "hi": "भोग का नवीनीकरण" },
+      "description": { "en": "During the night, periodically offer fresh bilva leaves and other offerings to the lingam. This can be done at midnight or during the early morning hours. Each offering is a gesture of continuous devotion.", "hi": "रात के दौरान, समय-समय पर लिंग को ताजी बेलपत्र और अन्य भोग चढ़ाएं। यह आधी रात या सुबह के शुरुआती घंटों में किया जा सकता है। हर भोग निरंतर भक्ति का एक संकेत है।" },
+      "relatedSamagriIds": ["sm_bilva_leaves", "sm_flowers"],
+      "isOptional": true
+    },
+    {
+      "id": "step_ms_8",
+      "stepNumber": 8,
+      "title": { "en": "Aarti at Dawn", "hi": "भोर में आरती" },
+      "description": { "en": "As dawn approaches, perform the aarti by waving the lamp in front of the lingam in a circular motion. The aarti marks the completion of the all-night vigil and gratitude to Lord Shiva. This is the main aarti of the puja.", "hi": "जैसे-जैसे भोर निकट आती है, लिंग के सामने दीये को गोलाकार गति में लहरा कर आरती करें। आरती रात भर की विगिल की समाप्ति और भगवान शिव के प्रति कृतज्ञता को दर्शाती है। यह पूजा की मुख्य आरती है।" },
+      "relatedSamagriIds": ["sm_diya"],
+      "isOptional": false
+    },
+    {
+      "id": "step_ms_9",
+      "stepNumber": 9,
+      "title": { "en": "Seek Blessings", "hi": "आशीर्वाद लें" },
+      "description": { "en": "Respectfully bow to the lingam and seek Shiva's blessings for spiritual growth, protection, and liberation. Touch your forehead to the ground as a gesture of complete surrender and devotion.", "hi": "लिंग को सम्मान पूर्वक नमस्कार करें और आध्यात्मिक विकास, सुरक्षा और मुक्ति के लिए शिव का आशीर्वाद लें। पूर्ण समर्पण और भक्ति के संकेत के रूप में अपने माथे को जमीन से छुएं।" },
+      "relatedSamagriIds": [],
+      "isOptional": false
+    },
+    {
+      "id": "step_ms_10",
+      "stepNumber": 10,
+      "title": { "en": "Prasad Distribution", "hi": "प्रसाद वितरण" },
+      "description": { "en": "Distribute prasad (blessed offerings) to family members and others. Traditionally, fruit, milk-based sweets, or simple offerings are distributed. Prasad carries Shiva's blessings to all who partake.", "hi": "परिवार के सदस्यों और अन्य लोगों को प्रसाद वितरित करें। परंपरागत रूप से, फल, दूध-आधारित मिठाई, या सरल भोग वितरित किए जाते हैं। प्रसाद सभी को शिव का आशीर्वाद लाता है।" },
+      "relatedSamagriIds": [],
+      "isOptional": true
+    }
+  ],
+  "variations": [
+    {
+      "id": "var_ms_fasting",
+      "regions": ["pan_india"],
+      "title": { "en": "Fasting Tradition", "hi": "व्रत परंपरा" },
+      "description": { "en": "Many devotees observe a fast (vrat) on Maha Shivratri. There are different types of fasts: complete abstinence from food, consuming only fruits and milk, or consuming specific foods. People with health conditions, pregnant women, or those on medication should consult a doctor before fasting. Breaking the fast should be done after the puja is complete.", "hi": "कई भक्त महा शिवरात्रि पर व्रत (उपवास) रखते हैं। विभिन्न प्रकार के व्रत हैं: भोजन से पूर्ण परहेज, केवल फल और दूध का सेवन, या विशिष्ट भोजन का सेवन। स्वास्थ्य स्थितियों वाले लोग, गर्भवती महिलाएं, या दवाई ले रहे लोगों को व्रत रखने से पहले डॉक्टर से परामर्श करना चाहिए। पूजा पूरी होने के बाद व्रत तोड़ना चाहिए।" },
+      "affectsSamagriIds": [],
+      "affectsStepIds": ["step_ms_6"]
+    },
+    {
+      "id": "var_ms_north",
+      "regions": ["north"],
+      "title": { "en": "North Indian Tradition", "hi": "उत्तर भारतीय परंपरा" },
+      "description": { "en": "In North India, particularly in Uttar Pradesh and the Himalayas, Maha Shivratri is celebrated with grand processions and community gatherings at Shiva temples. The worship of the lingam remains central, and large bonfires (havan) are often lit during the night.", "hi": "उत्तर भारत में, विशेष रूप से उत्तर प्रदेश और हिमालयी क्षेत्रों में, महा शिवरात्रि भव्य जुलूस और शिव मंदिरों में सामुदायिक समारोहों के साथ मनाई जाती है। लिंग की पूजा केंद्रीय रहती है, और रात के दौरान बड़ी अलाइन (हवन) अक्सर जलाई जाती हैं।" },
+      "affectsSamagriIds": [],
+      "affectsStepIds": []
+    }
+  ],
+  "disclaimer": { "en": "This is a general guide to Maha Shivratri Puja. People with health conditions, pregnant women, nursing mothers, or those on medications should consult their doctor before fasting or performing all-night vigils. Regional practices and family traditions may vary. Please follow your family's practices and consult a local priest for proper rituals.", "hi": "यह महा शिवरात्रि पूजा का एक सामान्य मार्गदर्शन है। स्वास्थ्य स्थितियों वाले लोग, गर्भवती महिलाएं, दूध पिलाने वाली माताएं, या दवाई ले रहे लोगों को व्रत रखने या रात भर की विगिल करने से पहले अपने डॉक्टर से परामर्श करना चाहिए। क्षेत्रीय प्रथाएं और पारिवारिक परंपराएं भिन्न हो सकती हैं। कृपया अपनी पारिवारिक परंपराओं का पालन करें और उचित अनुष्ठानों के लिए एक स्थानीय पुजारी से परामर्श लें।" },
+  "reviewStatus": "ai_drafted",
+  "sourceNote": { "en": "AI-drafted general guide based on widely documented Maha Shivratri puja practices. Not yet verified by a pandit. Fasting guidance should be personalized based on individual health conditions.", "hi": "व्यापक रूप से प्रलेखित महा शिवरात्रि पूजा प्रथाओं के आधार पर AI द्वारा तैयार सामान्य मार्गदर्शन। अभी तक किसी पंडित द्वारा सत्यापित नहीं। व्रत का मार्गदर्शन व्यक्तिगत स्वास्थ्य स्थितियों के आधार पर व्यक्तिगत होना चाहिए।" },
+  "contentVersion": 1,
+  "status": "active"
+}

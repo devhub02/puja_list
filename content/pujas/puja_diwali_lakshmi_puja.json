@@ -1,0 +1,193 @@
+{
+  "id": "puja_diwali_lakshmi_puja",
+  "festivalId": "fest_diwali",
+  "name": { "en": "Diwali Lakshmi Puja", "hi": "दिवाली लक्ष्मी पूजन" },
+  "alternateNames": { "en": ["Lakshmi Puja", "Lakshmi Pooja"], "hi": ["लक्ष्मी पूजा", "लक्ष्मी पूजन"] },
+  "category": "festival",
+  "regions": ["pan_india"],
+  "summary": { "en": "Worship of Goddess Lakshmi on Diwali, seeking her blessings for prosperity, wealth, and good fortune for the household.", "hi": "दिवाली पर देवी लक्ष्मी की पूजा, घर के लिए समृद्धि, धन और सुख-समृद्धि का आशीर्वाद माँगना।" },
+  "significance": { "en": "Lakshmi Puja during Diwali is one of the most important rituals in the Hindu calendar. Lakshmi is the goddess of wealth, prosperity, and abundance. The puja is performed to invite Lakshmi into the home and life, ensuring financial stability, success, and overall well-being of the family.", "hi": "दिवाली के दौरान लक्ष्मी पूजा हिंदू पंचांग में सबसे महत्वपूर्ण अनुष्ठानों में से एक है। लक्ष्मी धन, समृद्धि और प्रचुरता की देवी हैं। पूजा घर और जीवन में लक्ष्मी को आमंत्रित करने के लिए की जाती है, जिससे परिवार की आर्थिक स्थिरता, सफलता और समग्र कल्याण सुनिश्चित हो।" },
+  "samagri": [
+    {
+      "samagriId": "sm_lakshmi_idol",
+      "classification": "REQUIRED",
+      "purpose": { "en": "To represent and worship Goddess Lakshmi", "hi": "देवी लक्ष्मी का प्रतिनिधित्व और पूजा करने के लिए" },
+      "sortOrder": 1
+    },
+    {
+      "samagriId": "sm_diya",
+      "classification": "REQUIRED",
+      "purpose": { "en": "To light as a symbol of prosperity and to illuminate the home", "hi": "समृद्धि का प्रतीक और घर को रोशन करने के लिए" },
+      "quantityGuidance": { "en": "multiple diyas recommended" },
+      "sortOrder": 2
+    },
+    {
+      "samagriId": "sm_oil",
+      "classification": "REQUIRED",
+      "purpose": { "en": "To fuel the diyas", "hi": "दीयों को जलाने के लिए" },
+      "quantityGuidance": { "en": "as needed" },
+      "sortOrder": 3
+    },
+    {
+      "samagriId": "sm_flowers",
+      "classification": "COMMON",
+      "purpose": { "en": "To offer to the goddess as an expression of devotion", "hi": "देवी को भक्ति का प्रकटीकरण के रूप में चढ़ाने के लिए" },
+      "quantityGuidance": { "en": "as needed" },
+      "sortOrder": 4
+    },
+    {
+      "samagriId": "sm_incense",
+      "classification": "COMMON",
+      "purpose": { "en": "To purify the space and create a sacred atmosphere", "hi": "स्थान को शुद्ध करने और पवित्र वातावरण बनाने के लिए" },
+      "sortOrder": 5
+    },
+    {
+      "samagriId": "sm_turmeric",
+      "classification": "COMMON",
+      "purpose": { "en": "For applying tilak to the deity and self", "hi": "देवी और स्वयं पर तिलक लगाने के लिए" },
+      "sortOrder": 6
+    },
+    {
+      "samagriId": "sm_vermillion",
+      "classification": "COMMON",
+      "purpose": { "en": "For tilak and ritual offerings", "hi": "तिलक और पूजा के लिए" },
+      "sortOrder": 7
+    },
+    {
+      "samagriId": "sm_rice",
+      "classification": "COMMON",
+      "purpose": { "en": "To offer along with flowers and prayers", "hi": "फूलों और प्रार्थनाओं के साथ चढ़ाने के लिए" },
+      "quantityGuidance": { "en": "as needed" },
+      "sortOrder": 8
+    },
+    {
+      "samagriId": "sm_sweets",
+      "classification": "COMMON",
+      "purpose": { "en": "To offer as bhog to the goddess and distribute as prasad", "hi": "देवी को भोग के रूप में चढ़ाने और प्रसाद के रूप में वितरित करने के लिए" },
+      "sortOrder": 9
+    },
+    {
+      "samagriId": "sm_dry_fruits",
+      "classification": "OPTIONAL",
+      "purpose": { "en": "To offer as an enriched bhog", "hi": "समृद्ध भोग के रूप में चढ़ाने के लिए" },
+      "sortOrder": 10
+    },
+    {
+      "samagriId": "sm_coins",
+      "classification": "OPTIONAL",
+      "purpose": { "en": "Symbolic offering of wealth and prosperity", "hi": "धन और समृद्धि का प्रतीकात्मक भोग" },
+      "sortOrder": 11
+    },
+    {
+      "samagriId": "sm_water",
+      "classification": "REQUIRED",
+      "purpose": { "en": "For ritual bathing and washing of the deity", "hi": "देवी को नहलाने और धोने के लिए" },
+      "sortOrder": 12
+    }
+  ],
+  "steps": [
+    {
+      "id": "step_dlp_1",
+      "stepNumber": 1,
+      "title": { "en": "Purification and Setup", "hi": "शुद्धिकरण और तैयारी" },
+      "description": { "en": "Clean and decorate the puja space. Arrange the Lakshmi idol on a raised altar. Light multiple diyas around the space to symbolize the victory of light over darkness.", "hi": "पूजा के स्थान को साफ करें और सजाएं। लक्ष्मी मूर्ति को एक ऊँची वेदी पर व्यवस्थित करें। प्रकाश पर अंधकार की जीत का प्रतीक देने के लिए स्थान के चारों ओर कई दीये जलाएं।" },
+      "relatedSamagriIds": ["sm_lakshmi_idol", "sm_diya", "sm_oil"],
+      "isOptional": false
+    },
+    {
+      "id": "step_dlp_2",
+      "stepNumber": 2,
+      "title": { "en": "Invocation of the Goddess", "hi": "देवी का आह्वान" },
+      "description": { "en": "Begin the puja by offering flowers and rice at the feet of the Lakshmi idol. Invoke the goddess to bless your home with prosperity and abundance. Recite prayers or mantras as per your family tradition.", "hi": "लक्ष्मी मूर्ति के पैरों में फूल और चावल चढ़ा कर पूजा शुरू करें। देवी को अपने घर को समृद्धि और प्रचुरता से आशीर्वादित करने के लिए आह्वान करें। अपनी पारिवारिक परंपरा के अनुसार प्रार्थना या मंत्र दोहराएं।" },
+      "relatedSamagriIds": ["sm_flowers", "sm_rice"],
+      "isOptional": false
+    },
+    {
+      "id": "step_dlp_3",
+      "stepNumber": 3,
+      "title": { "en": "Apply Tilak", "hi": "तिलक लगाएं" },
+      "description": { "en": "Apply turmeric and vermillion tilak on the idol's forehead and on your forehead. This marks the sacred nature of the ritual and your dedication.", "hi": "मूर्ति के माथे पर और अपने माथे पर हल्दी और सिंदूर का तिलक लगाएं। यह पूजा की पवित्र प्रकृति और आपकी भक्ति को दर्शाता है।" },
+      "relatedSamagriIds": ["sm_turmeric", "sm_vermillion"],
+      "isOptional": false
+    },
+    {
+      "id": "step_dlp_4",
+      "stepNumber": 4,
+      "title": { "en": "Burn Incense", "hi": "अगरबत्ती जलाएं" },
+      "description": { "en": "Light incense and move it in circles in front of the idol. The fragrance symbolizes the presence of the goddess and purifies the environment.", "hi": "अगरबत्ती जलाएं और इसे मूर्ति के सामने गोलाकार गति में लें। सुगंध देवी की उपस्थिति का प्रतीक है और पर्यावरण को शुद्ध करती है।" },
+      "relatedSamagriIds": ["sm_incense"],
+      "isOptional": false
+    },
+    {
+      "id": "step_dlp_5",
+      "stepNumber": 5,
+      "title": { "en": "Meditation and Prayers", "hi": "ध्यान और प्रार्थना" },
+      "description": { "en": "Sit in meditation and focus on the idol. Silently offer prayers to Lakshmi for prosperity, wealth, health, and the well-being of your family. Visualize abundance flowing into your life and home.", "hi": "ध्यान में बैठें और मूर्ति पर ध्यान केंद्रित करें। मन ही मन में लक्ष्मी से समृद्धि, धन, स्वास्थ्य और आपके परिवार के कल्याण के लिए प्रार्थना करें। अपने जीवन और घर में प्रचुरता के प्रवाह की कल्पना करें।" },
+      "relatedSamagriIds": [],
+      "isOptional": false
+    },
+    {
+      "id": "step_dlp_6",
+      "stepNumber": 6,
+      "title": { "en": "Symbolic Offerings", "hi": "प्रतीकात्मक भोग" },
+      "description": { "en": "Offer coins or symbolic representations of wealth at the feet of the goddess. This is a symbolic offering of your acknowledgment of her as the source of all prosperity.", "hi": "देवी के पैरों में सिक्के या धन के प्रतीकात्मक प्रतिनिधित्व चढ़ाएं। यह समृद्धि के सभी स्रोत के रूप में देवी की स्वीकृति का एक प्रतीकात्मक भोग है।" },
+      "relatedSamagriIds": ["sm_coins"],
+      "isOptional": true
+    },
+    {
+      "id": "step_dlp_7",
+      "stepNumber": 7,
+      "title": { "en": "Offer Sweets and Fruits", "hi": "मिठाई और फल चढ़ाएं" },
+      "description": { "en": "Offer sweets, dry fruits, and other delicacies at the feet of the idol. Sweets symbolize the sweetness of life and prosperity.", "hi": "मूर्ति के पैरों में मिठाई, सूखे मेवे और अन्य व्यंजन चढ़ाएं। मिठाई जीवन की मिठास और समृद्धि का प्रतीक है।" },
+      "relatedSamagriIds": ["sm_sweets", "sm_dry_fruits"],
+      "isOptional": false
+    },
+    {
+      "id": "step_dlp_8",
+      "stepNumber": 8,
+      "title": { "en": "Aarti", "hi": "आरती" },
+      "description": { "en": "Perform aarti by waving the lamp in front of the idol in a circular motion, expressing gratitude and completing the worship. The light of the aarti symbolizes the divine grace of the goddess.", "hi": "दीये को मूर्ति के सामने गोलाकार गति में लहरा कर आरती करें, कृतज्ञता व्यक्त करते हुए और पूजा को पूरा करते हुए। आरती का प्रकाश देवी की दिव्य कृपा का प्रतीक है।" },
+      "relatedSamagriIds": ["sm_diya"],
+      "isOptional": false
+    },
+    {
+      "id": "step_dlp_9",
+      "stepNumber": 9,
+      "title": { "en": "Seek Blessings", "hi": "आशीर्वाद लें" },
+      "description": { "en": "Respectfully bow to the idol and seek Lakshmi's blessings for your household. Touch the altar and then your heart as a gesture of accepting her blessings into your life.", "hi": "मूर्ति को सम्मान पूर्वक नमस्कार करें और अपने घर के लिए लक्ष्मी का आशीर्वाद लें। वेदी को छुएं और फिर अपने हृदय को छुएं, आशीर्वाद को अपने जीवन में स्वीकार करने का संकेत।" },
+      "relatedSamagriIds": [],
+      "isOptional": false
+    },
+    {
+      "id": "step_dlp_10",
+      "stepNumber": 10,
+      "title": { "en": "Distribute Prasad", "hi": "प्रसाद वितरण" },
+      "description": { "en": "Distribute the sweets and offerings as prasad to family members and guests. Prasad carries the blessings of the goddess and is believed to bring prosperity to all who partake in it.", "hi": "मिठाई और भोग को प्रसाद के रूप में परिवार के सदस्यों और मेहमानों में वितरित करें। प्रसाद देवी का आशीर्वाद लाता है और ऐसा माना जाता है कि यह सभी को समृद्धि लाता है।" },
+      "relatedSamagriIds": ["sm_sweets"],
+      "isOptional": false
+    }
+  ],
+  "variations": [
+    {
+      "id": "var_dlp_north",
+      "regions": ["north"],
+      "title": { "en": "North Indian Tradition", "hi": "उत्तर भारतीय परंपरा" },
+      "description": { "en": "In North India, particularly in Delhi and surrounding areas, Lakshmi Puja is often performed with the lighting of Lakshmi Chowki (sacred square) and the placement of rice grains in specific patterns. The puja may include offerings of wheat and barley.", "hi": "उत्तर भारत में, विशेष रूप से दिल्ली और आस-पास के क्षेत्रों में, लक्ष्मी पूजा अक्सर लक्ष्मी चौकी (पवित्र वर्ग) को प्रकाश देने और विशेष पैटर्न में चावल के दाने रखने के साथ की जाती है। पूजा में गेहूं और जौ का भोग शामिल हो सकता है।" },
+      "affectsSamagriIds": [],
+      "affectsStepIds": []
+    },
+    {
+      "id": "var_dlp_south",
+      "regions": ["south"],
+      "title": { "en": "South Indian Tradition", "hi": "दक्षिण भारतीय परंपरा" },
+      "description": { "en": "In South India, Lakshmi Puja often includes the making of Kolam (decorative patterns on the ground) and is sometimes combined with the worship of other deities. The offering of banana and other local fruits is common.", "hi": "दक्षिण भारत में, लक्ष्मी पूजा में अक्सर कोलम (जमीन पर सजावटी पैटर्न) बनाना शामिल है और कभी-कभी अन्य देवताओं की पूजा के साथ मिलाया जाता है। केला और अन्य स्थानीय फलों का भोग आम है।" },
+      "affectsSamagriIds": [],
+      "affectsStepIds": []
+    }
+  ],
+  "disclaimer": { "en": "This is a general guide to Lakshmi Puja. Regional practices, family traditions, and the involvement of a qualified priest may vary. Please follow your family's practices and consult a local priest for proper rituals.", "hi": "यह लक्ष्मी पूजा का एक सामान्य मार्गदर्शन है। क्षेत्रीय प्रथाएं, पारिवारिक परंपराएं, और एक योग्य पुजारी की भागीदारी भिन्न हो सकती है। कृपया अपनी पारिवारिक परंपराओं का पालन करें और उचित अनुष्ठानों के लिए एक स्थानीय पुजारी से परामर्श लें।" },
+  "reviewStatus": "ai_drafted",
+  "sourceNote": { "en": "AI-drafted general guide based on widely documented Diwali Lakshmi Puja practices. Not yet verified by a pandit. Regional variations and specific family traditions require consultation with a qualified priest.", "hi": "व्यापक रूप से प्रलेखित दिवाली लक्ष्मी पूजा प्रथाओं के आधार पर AI द्वारा तैयार सामान्य मार्गदर्शन। अभी तक किसी पंडित द्वारा सत्यापित नहीं। क्षेत्रीय भिन्नताएं और विशिष्ट पारिवारिक परंपराओं के लिए एक योग्य पुजारी से परामर्श आवश्यक है।" },
+  "contentVersion": 1,
+  "status": "active"
+}
