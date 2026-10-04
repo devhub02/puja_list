@@ -5,10 +5,13 @@ import type {
   AltNames,
   CalendarDate,
   DateCertainty,
+  DateType,
   EntityStatus,
   Festival,
+  FestivalCategory,
+  FestivalRegion,
   FestivalWithDates,
-  Region,
+  ReviewStatus,
 } from '../types';
 import { parseJson, parseOptionalJson } from './json';
 
@@ -16,9 +19,16 @@ type FestivalRow = {
   id: string;
   name_json: string;
   alt_names_json: string | null;
-  description_json: string;
-  significance_json: string;
+  short_description_json: string;
+  significance_json: string | null;
   regions_json: string;
+  states_json: string | null;
+  category: FestivalCategory;
+  date_type: DateType;
+  observance_json: string | null;
+  linked_puja_ids_json: string;
+  review_status: ReviewStatus;
+  source_note_json: string;
   status: EntityStatus;
 };
 
@@ -28,6 +38,7 @@ type CalendarRow = {
   year: number;
   date: string;
   end_date: string | null;
+  region: string;
   certainty: DateCertainty;
   region_note_json: string | null;
   source: string;
@@ -38,9 +49,16 @@ function toFestival(row: FestivalRow): Festival {
     id: row.id,
     name: parseJson<LocaleMap>(row.name_json),
     alternateNames: parseOptionalJson<AltNames>(row.alt_names_json),
-    description: parseJson<LocaleMap>(row.description_json),
-    significance: parseJson<LocaleMap>(row.significance_json),
-    regions: parseJson<Region[]>(row.regions_json),
+    shortDescription: parseJson<LocaleMap>(row.short_description_json),
+    significance: parseOptionalJson<LocaleMap>(row.significance_json),
+    regions: parseJson<FestivalRegion[]>(row.regions_json),
+    states: parseOptionalJson<LocaleMap[]>(row.states_json) ?? [],
+    category: row.category,
+    dateType: row.date_type,
+    observanceDescription: parseOptionalJson<LocaleMap>(row.observance_json),
+    linkedPujaIds: parseJson<string[]>(row.linked_puja_ids_json),
+    reviewStatus: row.review_status,
+    sourceNote: parseJson<LocaleMap>(row.source_note_json),
     status: row.status,
   };
 }
@@ -52,6 +70,7 @@ function toCalendarDate(row: CalendarRow): CalendarDate {
     year: row.year,
     date: row.date,
     endDate: row.end_date ?? undefined,
+    region: row.region,
     certainty: row.certainty,
     regionNote: parseOptionalJson<LocaleMap>(row.region_note_json),
     source: row.source,

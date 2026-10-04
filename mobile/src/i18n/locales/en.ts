@@ -344,6 +344,7 @@ const en = {
       version: 'App version',
       contentVersion: 'Content version',
       pujaCount: 'Pujas in this version',
+      festivalCount: 'Festivals in this version',
       contentUnavailable: 'Not loaded',
       description:
         'Puja Saathi helps you prepare for pujas and festivals across India: significance, samagri, step-by-step vidhi and checklists.',

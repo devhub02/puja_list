@@ -22,6 +22,13 @@
       "when": 1791130198666,
       "tag": "0002_preparations",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1791139153335,
+      "tag": "0003_festival_catalog",
+      "breakpoints": true
     }
   ]
 }

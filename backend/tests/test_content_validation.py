@@ -45,7 +45,7 @@ def test_bundle_model_accepts_valid_and_runs_cross_checks():
     content = make_valid_content()
     bundle = ContentBundle.model_validate(
         {
-            "schemaVersion": 1,
+            "schemaVersion": 2,
             "contentVersion": 3,
             "languages": ["en", "hi"],
             "festivals": content["festivals"],
@@ -278,15 +278,74 @@ def test_puja_festival_must_exist(load_mutated):
 
 
 def test_festival_puja_ids_must_exist(load_mutated):
-    r = load_mutated(lambda c: c["festivals"][0].update(pujaIds=["puja_test_one", "puja_missing"]))
+    r = load_mutated(lambda c: c["festivals"][0].update(linkedPujaIds=["puja_test_one", "puja_missing"]))
     assert "puja 'puja_missing' does not exist" in messages(r)
 
 
-def test_festival_and_puja_links_must_agree(load_mutated):
-    r = load_mutated(lambda c: c["festivals"][0].update(pujaIds=[]))
-    assert "does not list this puja in pujaIds" in messages(r)
-    r = load_mutated(lambda c: c["festivals"][0].update(pujaIds=["puja_test_one", "puja_test_two"]))
-    assert "does not point back to this festival" in messages(r)
+def test_puja_festival_must_list_the_puja(load_mutated):
+    r = load_mutated(lambda c: c["festivals"][0].update(linkedPujaIds=[]))
+    assert "does not list this puja in linkedPujaIds" in messages(r)
+
+
+def test_festival_may_link_a_puja_that_names_another_festival(load_mutated):
+    assert load_mutated(lambda c: c["festivals"][1].update(linkedPujaIds=["puja_test_one"])).ok
+
+
+def test_festival_without_linked_puja_is_valid(load_mutated):
+    r = load_mutated(lambda c: c["festivals"][1].pop("linkedPujaIds", None))
+    assert r.ok
+
+
+def test_festival_duplicate_linked_puja(load_mutated):
+    r = load_mutated(lambda c: c["festivals"][0].update(linkedPujaIds=["puja_test_one", "puja_test_one"]))
+    assert "duplicate" in messages(r)
+
+
+# ---- Rules 18 / 19: festival fields ----------------------------------------------------------
+
+
+@pytest.mark.parametrize("field", ["name", "shortDescription", "sourceNote"])
+def test_festival_text_needs_hindi(load_mutated, field):
+    r = load_mutated(lambda c: c["festivals"][0].update({field: {"en": "only english"}}))
+    assert f"{field} needs an 'hi' entry" in messages(r)
+
+
+def test_festival_observance_needs_hindi_and_panchang(load_mutated):
+    r = load_mutated(lambda c: c["festivals"][0].update(observanceDescription={"en": "check a local panchang"}))
+    assert "observanceDescription needs an 'hi' entry" in messages(r)
+    r = load_mutated(lambda c: c["festivals"][0].update(
+        observanceDescription={"en": "Some month.", "hi": "कोई महीना। स्थानीय पंचांग देखें।"}))
+    assert "check a local panchang" in messages(r)
+    r = load_mutated(lambda c: c["festivals"][0].update(
+        observanceDescription={"en": "Some month; check a local panchang.", "hi": "कोई महीना।"}))
+    assert "पंचांग" in messages(r)
+
+
+@pytest.mark.parametrize("field, bad", [("category", "party"), ("dateType", "daily"), ("reviewStatus", "approved")])
+def test_festival_enums_are_closed(load_mutated, field, bad):
+    r = load_mutated(lambda c: c["festivals"][0].update({field: bad}))
+    assert field in messages(r)
+
+
+def test_festival_requires_new_fields(load_mutated):
+    for field in ("shortDescription", "category", "dateType", "reviewStatus", "sourceNote"):
+        r = load_mutated(lambda c, f=field: c["festivals"][0].pop(f))
+        assert field in messages(r), field
+
+
+def test_festival_regions_use_the_fixed_list(load_mutated):
+    assert load_mutated(lambda c: c["festivals"][0].update(regions=["himalayan", "tribal", "north_east"])).ok
+    assert "regions[0]" in messages(load_mutated(lambda c: c["festivals"][0].update(regions=["tribal_regional"])))
+
+
+def test_festival_state_names_need_hindi(load_mutated):
+    r = load_mutated(lambda c: c["festivals"][0].update(states=[{"en": "Somewhere"}]))
+    assert "states[0] needs an 'hi' entry" in messages(r)
+
+
+def test_old_festival_field_names_are_rejected(load_mutated):
+    assert "Extra inputs are not permitted" in messages(load_mutated(lambda c: c["festivals"][0].update(pujaIds=[])))
+    assert "Extra inputs are not permitted" in messages(load_mutated(lambda c: c["festivals"][0].update(description={"en": "x", "hi": "y"})))
 
 
 def test_replaced_by_must_exist(load_mutated):
@@ -342,12 +401,25 @@ def test_calendar_end_date_not_before_date(load_mutated):
     assert "is before date" in messages(r)
 
 
-def test_calendar_one_entry_per_festival_per_date(load_mutated):
+def test_calendar_one_entry_per_festival_per_region(load_mutated):
     def m(c):
         e = c["calendar"]["2031"]["entries"]
-        e.append(dict(e[0], id="cal_test_2031_beta"))
+        e.append(dict(e[0], id="cal_test_2031_alpha_again", date="2031-06-01", endDate=None))
 
-    assert "already has an entry on 2031-05-04" in messages(load_mutated(m))
+    assert "already has an entry for region 'all' in 2031" in messages(load_mutated(m))
+
+
+def test_calendar_same_festival_may_have_regional_entries(load_mutated):
+    def m(c):
+        e = c["calendar"]["2031"]["entries"]
+        e.append(dict(e[0], id="cal_test_2031_alpha_south", region="south", date="2031-05-06", endDate=None))
+
+    assert load_mutated(m).ok
+
+
+def test_calendar_region_must_be_known(load_mutated):
+    r = load_mutated(lambda c: c["calendar"]["2031"]["entries"][0].update(region="mars"))
+    assert "region 'mars' is not one of" in messages(r)
 
 
 def test_calendar_file_name_must_match_year(tmp_path):
@@ -400,7 +472,7 @@ def test_missing_required_files_and_missing_directory(tmp_path):
 
 
 def test_unsupported_schema_version(load_mutated):
-    r = load_mutated(lambda c: c["manifest"].update(schemaVersion=2))
+    r = load_mutated(lambda c: c["manifest"].update(schemaVersion=1))
     assert "schemaVersion" in messages(r)
 
 

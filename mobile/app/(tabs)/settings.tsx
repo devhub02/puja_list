@@ -116,6 +116,14 @@ export default function SettingsScreen() {
               {contentInfo ? contentInfo.pujaCount : t('settings.about.contentUnavailable')}
             </AppText>
           </View>
+          <View style={styles.versionRow}>
+            <AppText variant="bodySmall" color="textSecondary">
+              {t('settings.about.festivalCount')}
+            </AppText>
+            <AppText variant="subheading" testID="festival-count">
+              {contentInfo ? contentInfo.festivalCount : t('settings.about.contentUnavailable')}
+            </AppText>
+          </View>
           <AppText>{t('settings.about.description')}</AppText>
           <AppText variant="bodySmall" color="textSecondary">
             {t('settings.about.offline')}

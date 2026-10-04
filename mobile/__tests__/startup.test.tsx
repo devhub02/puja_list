@@ -84,8 +84,10 @@ describe('Settings > About content info', () => {
     );
     await waitFor(() => expect(screen.getByTestId('content-version').props.children).toBe(7));
     expect(screen.getByTestId('puja-count').props.children).toBe(3);
+    expect(screen.getByTestId('festival-count').props.children).toBe(2);
     expect(screen.getByText('Content version')).toBeTruthy();
     expect(screen.getByText('Pujas in this version')).toBeTruthy();
+    expect(screen.getByText('Festivals in this version')).toBeTruthy();
   });
 
   it('shows 0 pujas for the empty Phase 2 bundle', async () => {
@@ -105,9 +107,9 @@ describe('Settings > About content info', () => {
 
   it('shows "Not loaded" (translated) when there is no database', async () => {
     await renderThemed(<SettingsScreen />);
-    expect(screen.getAllByText('Not loaded')).toHaveLength(2);
+    expect(screen.getAllByText('Not loaded')).toHaveLength(3);
     await fireEvent.press(screen.getByTestId('language-hi'));
-    expect(screen.getAllByText('लोड नहीं हुआ')).toHaveLength(2);
+    expect(screen.getAllByText('लोड नहीं हुआ')).toHaveLength(3);
     expect(screen.getByText('कंटेंट वर्ज़न')).toBeTruthy();
   });
 });

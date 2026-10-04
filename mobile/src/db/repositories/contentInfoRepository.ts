@@ -8,11 +8,13 @@ export async function getContentInfo(db: SqlDb): Promise<ContentInfo> {
     const found = meta.find((row) => row.key === key);
     return found ? Number(found.value) : null;
   };
-  const [count] = await db.all<{ n: number }>('SELECT COUNT(*) AS n FROM puja');
+  const [pujas] = await db.all<{ n: number }>('SELECT COUNT(*) AS n FROM puja');
+  const [festivals] = await db.all<{ n: number }>('SELECT COUNT(*) AS n FROM festival');
   return {
     contentVersion: get('content_version'),
     schemaVersion: get('schema_version'),
-    pujaCount: count?.n ?? 0,
+    pujaCount: pujas?.n ?? 0,
+    festivalCount: festivals?.n ?? 0,
     seededAt: get('seeded_at'),
   };
 }

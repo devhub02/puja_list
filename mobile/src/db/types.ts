@@ -9,6 +9,26 @@ export type DateCertainty = 'confirmed' | 'provisional' | 'varies_by_region';
 export type EntityStatus = 'active' | 'deprecated';
 export type Region =
   'north' | 'east' | 'south' | 'west' | 'central' | 'north_east' | 'tribal_regional' | 'pan_india';
+/** Fixed region list for festivals (docs/CONTENT_SCHEMA.md section 1.3). */
+export type FestivalRegion =
+  | 'pan_india'
+  | 'north'
+  | 'east'
+  | 'west'
+  | 'south'
+  | 'central'
+  | 'north_east'
+  | 'himalayan'
+  | 'tribal';
+export type FestivalCategory =
+  | 'deity_festival'
+  | 'harvest_seasonal'
+  | 'new_year'
+  | 'vrat_fasting'
+  | 'family_bond'
+  | 'nature_ritual'
+  | 'yatra_mela';
+export type DateType = 'fixed_gregorian' | 'solar' | 'lunar' | 'regional' | 'variable';
 export type PujaCategory = 'festival' | 'vrat' | 'household' | 'life_cycle' | 'regional' | 'tribal';
 
 export type PujaSummary = {
@@ -79,18 +99,30 @@ export type CalendarDate = {
   /** ISO YYYY-MM-DD, exactly as bundled and verified. Never computed. */
   date: string;
   endDate?: string;
+  /** "all" or a FestivalRegion value. */
+  region: string;
   certainty: DateCertainty;
   regionNote?: LocaleMap;
   source: string;
 };
 
+/** A festival; it may have no puja guide (calendar-only), in which case `linkedPujaIds` is empty. */
 export type Festival = {
   id: string;
   name: LocaleMap;
   alternateNames?: AltNames;
-  description: LocaleMap;
-  significance: LocaleMap;
-  regions: Region[];
+  shortDescription: LocaleMap;
+  significance?: LocaleMap;
+  regions: FestivalRegion[];
+  /** Optional state names, shown to users, so they are locale maps. */
+  states: LocaleMap[];
+  category: FestivalCategory;
+  dateType: DateType;
+  /** Lunar month/tithi or season in words; absent when not known with confidence. Never a date. */
+  observanceDescription?: LocaleMap;
+  linkedPujaIds: string[];
+  reviewStatus: ReviewStatus;
+  sourceNote: LocaleMap;
   status: EntityStatus;
 };
 
@@ -111,6 +143,7 @@ export type ContentInfo = {
   contentVersion: number | null;
   schemaVersion: number | null;
   pujaCount: number;
+  festivalCount: number;
   seededAt: number | null;
 };
 
@@ -126,7 +159,11 @@ export type ContentBundle = {
   calendar: { year: number; entries: BundleCalendarEntry[] }[];
 };
 
-export type BundleFestival = Festival & { alternateNames?: AltNames; pujaIds: string[] };
+/** Festival as exported: `states` and `linkedPujaIds` are omitted by the exporter only when absent. */
+export type BundleFestival = Omit<Festival, 'states' | 'linkedPujaIds'> & {
+  states?: LocaleMap[];
+  linkedPujaIds?: string[];
+};
 export type BundleSamagri = {
   id: string;
   name: LocaleMap;
@@ -166,6 +203,7 @@ export type BundleCalendarEntry = {
   festivalId: string;
   date: string;
   endDate?: string;
+  region?: string;
   certainty: DateCertainty;
   regionNote?: LocaleMap;
   source: string;

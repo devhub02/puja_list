@@ -22,7 +22,7 @@ def make_valid_content() -> dict[str, Any]:
     return {
         "manifest": {
             "contentVersion": 3,
-            "schemaVersion": 1,
+            "schemaVersion": 2,
             "languages": ["en", "hi"],
             "calendarYears": [2031],
         },
@@ -31,10 +31,29 @@ def make_valid_content() -> dict[str, Any]:
                 "id": "fest_test_alpha",
                 "name": {"en": "Test Festival Alpha", "hi": "परीक्षण पर्व अल्फ़ा"},
                 "alternateNames": {"en": ["Test Fest Alfa"]},
-                "description": {"en": "TEST FIXTURE, not real content."},
-                "significance": {"en": "TEST FIXTURE, not real content."},
+                "shortDescription": {"en": "TEST FIXTURE, not real content.", "hi": "परीक्षण, असली सामग्री नहीं।"},
                 "regions": ["pan_india"],
-                "pujaIds": ["puja_test_one"],
+                "states": [{"en": "Test State", "hi": "परीक्षण राज्य"}],
+                "category": "deity_festival",
+                "dateType": "lunar",
+                "observanceDescription": {
+                    "en": "TEST FIXTURE: check a local panchang for the exact date.",
+                    "hi": "परीक्षण: सही तिथि के लिए स्थानीय पंचांग देखें।",
+                },
+                "linkedPujaIds": ["puja_test_one"],
+                "reviewStatus": "ai_drafted",
+                "sourceNote": {"en": "TEST FIXTURE, not real content.", "hi": "परीक्षण, असली सामग्री नहीं।"},
+            },
+            {
+                # calendar-only festival: no linked puja guide
+                "id": "fest_test_beta",
+                "name": {"en": "Test Festival Beta", "hi": "परीक्षण पर्व बीटा"},
+                "shortDescription": {"en": "TEST FIXTURE, not real content.", "hi": "परीक्षण, असली सामग्री नहीं।"},
+                "regions": ["south", "tribal"],
+                "category": "harvest_seasonal",
+                "dateType": "solar",
+                "reviewStatus": "ai_drafted",
+                "sourceNote": {"en": "TEST FIXTURE, not real content.", "hi": "परीक्षण, असली सामग्री नहीं।"},
             }
         ],
         "samagri": [

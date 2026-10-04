@@ -25,14 +25,14 @@ def test_export_writes_bundle_with_versions_and_checksum(tmp_path):
     src = write_content_dir(tmp_path / "src", make_valid_content())
     result = export_content(src, tmp_path / "out")
     data = exported(tmp_path / "out")
-    assert data["schemaVersion"] == 1
+    assert data["schemaVersion"] == 2
     assert data["contentVersion"] == 3
     assert data["languages"] == ["en", "hi"]
     assert data["checksum"] == result.checksum
     assert [p["id"] for p in data["pujas"]] == ["puja_test_one", "puja_test_two"]
     assert data["pujas"][0]["samagri"][0]["classification"] == "REQUIRED"
     assert data["calendar"][0]["year"] == 2031
-    assert result.counts == {"festivals": 1, "pujas": 2, "samagri": 3, "calendar": 1}
+    assert result.counts == {"festivals": 2, "pujas": 2, "samagri": 3, "calendar": 1}
 
 
 def test_checksum_matches_payload_and_hindi_is_not_escaped(tmp_path):

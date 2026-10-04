@@ -124,16 +124,13 @@ def cross_validate(bundle: ContentBundle) -> list[ContentIssue]:
                     f"festival {puja.festival_id!r} does not exist")
             else:
                 festival = next(f for f in bundle.festivals if f.id == puja.festival_id)
-                if puja.id not in festival.puja_ids:
+                if puja.id not in festival.linked_puja_ids:
                     add(puja_file(puja.id), puja.id, "festivalId",
-                        f"festival {festival.id!r} does not list this puja in pujaIds")
+                        f"festival {festival.id!r} does not list this puja in linkedPujaIds")
     for festival in bundle.festivals:
-        for pid in festival.puja_ids:
+        for pid in festival.linked_puja_ids:
             if pid not in puja_ids:
-                add(FESTIVALS_FILE, festival.id, "pujaIds", f"puja {pid!r} does not exist")
-            elif puja_by_id[pid].festival_id != festival.id:
-                add(FESTIVALS_FILE, festival.id, "pujaIds",
-                    f"puja {pid!r} does not point back to this festival via festivalId")
+                add(FESTIVALS_FILE, festival.id, "linkedPujaIds", f"puja {pid!r} does not exist")
 
     # replacedBy points at an existing entity of the same type.
     for kind, entities, known, file_of in (
@@ -209,10 +206,10 @@ def cross_validate(bundle: ContentBundle) -> list[ContentIssue]:
                 if int(entry.end_date[:4]) != cal.year:
                     add(file, entry.id, "endDate",
                         f"{entry.end_date} is not in the file's year {cal.year}")
-            key = (entry.festival_id, entry.date)
+            key = (entry.festival_id, entry.region)
             if key in seen:
-                add(file, entry.id, "date",
-                    f"festival {entry.festival_id!r} already has an entry on {entry.date}")
+                add(file, entry.id, "region",
+                    f"festival {entry.festival_id!r} already has an entry for region {entry.region!r} in {cal.year}")
             seen.add(key)
     for dup in sorted(duplicates(calendar_ids)):
         add("calendar", dup, "id", "duplicate calendar entry id")
