@@ -150,7 +150,7 @@ class CalendarEntry(ContentModel):
     region: str = CALENDAR_ALL_REGIONS
     certainty: DateCertainty
     region_note: LocaleMap | None = None
-    source: Annotated[str, Field(min_length=1)]
+    source: Annotated[str, Field(min_length=1)] | None = None
 
 
     @model_validator(mode="after")

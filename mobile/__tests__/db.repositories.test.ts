@@ -153,6 +153,44 @@ describe('festival repository', () => {
     expect(festival.dates).toEqual([]);
   });
 
+  it('seeds a calendar entry with no region and no source (6-column CSV) safely', async () => {
+    const db = createMigratedDb();
+    const base = makeFixtureBundle();
+    await seedContentIfNeeded(
+      db,
+      makeFixtureBundle({
+        calendar: [
+          {
+            year: 2031,
+            entries: [
+              {
+                id: 'cal_test_2031_lamps',
+                festivalId: 'fest_test_lamps',
+                date: '2031-10-30',
+                certainty: 'provisional',
+              },
+            ],
+          },
+        ],
+        festivals: base.festivals,
+      }),
+    );
+    const festival = await getFestival(db, 'fest_test_lamps');
+    expect(festival?.dates).toEqual([
+      {
+        id: 'cal_test_2031_lamps',
+        festivalId: 'fest_test_lamps',
+        year: 2031,
+        date: '2031-10-30',
+        endDate: undefined,
+        region: 'all',
+        certainty: 'provisional',
+        regionNote: undefined,
+        source: undefined,
+      },
+    ]);
+  });
+
   it('gets one festival with all dates, or null', async () => {
     const db = await seeded();
     expect((await getFestival(db, 'fest_test_lamps'))?.dates).toHaveLength(1);

@@ -1,6 +1,6 @@
 """Calendar-date pipeline tests (template merge, CSV import, export).
 
-TEST FIXTURE, not real dates: every date, source and certainty below is made up to exercise the code. The
+TEST FIXTURE, not real dates: every date and certainty below is made up to exercise the code. The
 fixtures live in tmp dirs and are never written to content/ or the mobile bundle.
 """
 
@@ -27,7 +27,6 @@ from app.services.content_loader import load_content
 from conftest import make_valid_content, write_content_dir
 
 REPO = Path(__file__).resolve().parents[2]
-FIXTURE_SOURCE = "TEST FIXTURE, not a real source"
 
 
 def content_dir(tmp_path: Path) -> Path:
@@ -45,9 +44,7 @@ def row(**kw: str) -> dict[str, str]:
         "year": "2031",
         "date": "",
         "end_date": "",
-        "region": "all",
         "certainty": "",
-        "source_note": "",
     }
     base.update(kw)
     return base
@@ -64,7 +61,7 @@ def write_csv(root: Path, rows: list[dict[str, str]]) -> Path:
 
 
 def filled(**kw: str) -> dict[str, str]:
-    base = {"date": "2031-05-04", "certainty": "provisional", "source_note": FIXTURE_SOURCE}
+    base = {"date": "2031-05-04", "certainty": "provisional"}
     base.update(kw)
     return row(**base)
 
@@ -90,8 +87,7 @@ def test_template_has_one_empty_row_per_festival_per_supported_year(tmp_path):
         (f, str(y)) for f in ("fest_test_alpha", "fest_test_beta") for y in SUPPORTED_YEARS
     }
     for r in rows:  # nothing is ever filled by the tool
-        assert r["date"] == r["end_date"] == r["certainty"] == r["source_note"] == ""
-        assert r["region"] == "all"
+        assert r["date"] == r["end_date"] == r["certainty"] == ""
     assert {r["festival_name_en"] for r in rows} == {"Test Festival Alpha", "Test Festival Beta"}
 
 
@@ -101,7 +97,7 @@ def test_template_merge_never_overwrites_filled_rows_and_adds_new_festivals_only
     rows = list(csv.DictReader(csv_path(root).open(encoding="utf-8", newline="")))
     for r in rows:
         if (r["festival_id"], r["year"]) == ("fest_test_alpha", "2026"):
-            r.update(date="2026-03-03", end_date="2026-03-04", certainty="confirmed", source_note=FIXTURE_SOURCE,
+            r.update(date="2026-03-03", end_date="2026-03-04", certainty="confirmed",
                      festival_name_en="Hand edited name, keep me")
     write_csv(root, rows)
     before = csv_path(root).read_text(encoding="utf-8")
@@ -119,25 +115,16 @@ def test_template_merge_never_overwrites_filled_rows_and_adds_new_festivals_only
     assert merged.added_rows == len(SUPPORTED_YEARS)
     after = csv_path(root).read_text(encoding="utf-8")
     assert after.startswith(before)  # old rows are byte-for-byte what the person left
-    assert "2026-03-03,2026-03-04,all,confirmed" in after
+    assert "2026-03-03,2026-03-04,confirmed" in after
     assert "Hand edited name, keep me" in after
     assert after.count("fest_test_gamma") == len(SUPPORTED_YEARS)
-
-
-def test_template_merge_keeps_a_regional_row_without_adding_an_all_row(tmp_path):
-    root = content_dir(tmp_path)
-    write_csv(root, [filled(region="south", year="2026", date="2026-04-01")])
-    export_template(root)
-    rows = list(csv.DictReader(csv_path(root).open(encoding="utf-8", newline="")))
-    alpha_2026 = [r for r in rows if r["festival_id"] == "fest_test_alpha" and r["year"] == "2026"]
-    assert [r["region"] for r in alpha_2026] == ["south"]
 
 
 def test_template_reads_a_file_saved_by_excel_with_bom_and_crlf(tmp_path):
     root = content_dir(tmp_path)
     csv_path(root).parent.mkdir(parents=True, exist_ok=True)
     text = ",".join(CSV_COLUMNS) + "\r\n" + ",".join(
-        ["fest_test_alpha", "Test Festival Alpha", "2026", "2026-03-03", "", "all", "confirmed", FIXTURE_SOURCE]) + "\r\n"
+        ["fest_test_alpha", "Test Festival Alpha", "2026", "2026-03-03", "", "confirmed"]) + "\r\n"
     csv_path(root).write_bytes(b"\xef\xbb\xbf" + text.encode("utf-8"))
     export_template(root)
     assert import_dates(root).ok
@@ -158,24 +145,22 @@ def test_empty_csv_still_succeeds_with_zero_dates(tmp_path):
 def test_valid_import_writes_the_calendar_format_and_stays_valid(tmp_path):
     root = content_dir(tmp_path)
     write_csv(root, [
-        row(date="2031-05-04", end_date="2031-05-05", certainty="confirmed", source_note=FIXTURE_SOURCE),
-        row(region="south", date="2031-05-06", certainty="varies_by_region", source_note=FIXTURE_SOURCE),
+        row(date="2031-05-04", end_date="2031-05-05", certainty="confirmed"),
         row(festival_id="fest_test_beta", festival_name_en="Test Festival Beta", date="2031-01-20",
-            certainty="provisional", source_note=FIXTURE_SOURCE),
+            certainty="provisional"),
         row(festival_id="fest_test_beta", festival_name_en="Test Festival Beta", year="2032"),  # no date: ignored
     ])
     result = import_dates(root)
-    assert result.ok and result.dated_rows == 3 and result.ignored_rows == 1 and result.years_written == [2031]
+    assert result.ok and result.dated_rows == 2 and result.ignored_rows == 1 and result.years_written == [2031]
     data = json.loads((root / "calendar" / "2031.json").read_text(encoding="utf-8"))
+    # region defaults to "all"; there is no source (it is not in the CSV)
     assert data == {
         "year": 2031,
         "entries": [
             {"id": "cal_2031_test_beta", "festivalId": "fest_test_beta", "date": "2031-01-20", "region": "all",
-             "certainty": "provisional", "source": FIXTURE_SOURCE},
+             "certainty": "provisional"},
             {"id": "cal_2031_test_alpha", "festivalId": "fest_test_alpha", "date": "2031-05-04",
-             "endDate": "2031-05-05", "region": "all", "certainty": "confirmed", "source": FIXTURE_SOURCE},
-            {"id": "cal_2031_test_alpha_south", "festivalId": "fest_test_alpha", "date": "2031-05-06",
-             "region": "south", "certainty": "varies_by_region", "source": FIXTURE_SOURCE},
+             "endDate": "2031-05-05", "region": "all", "certainty": "confirmed"},
         ],
     }
     assert not (root / "calendar" / "2032.json").exists()
@@ -196,10 +181,10 @@ def test_import_is_idempotent_and_copies_dates_verbatim(tmp_path):
 
 def test_year_without_dates_removes_its_generated_file_but_other_years_stay(tmp_path):
     root = content_dir(tmp_path)
-    write_csv(root, [filled(), row(year="2032", date="2032-02-02", certainty="provisional", source_note=FIXTURE_SOURCE)])
+    write_csv(root, [filled(), row(year="2032", date="2032-02-02", certainty="provisional")])
     import_dates(root)
     assert (root / "calendar" / "2031.json").exists() and (root / "calendar" / "2032.json").exists()
-    write_csv(root, [row(), row(year="2032", date="2032-02-02", certainty="provisional", source_note=FIXTURE_SOURCE)])
+    write_csv(root, [row(), row(year="2032", date="2032-02-02", certainty="provisional")])
     result = import_dates(root)
     assert result.files_removed == [2031]
     assert not (root / "calendar" / "2031.json").exists() and (root / "calendar" / "2032.json").exists()
@@ -266,17 +251,6 @@ def test_end_date_must_stay_in_the_year(tmp_path):
     check_fails(tmp_path, [filled(date="2031-12-31", end_date="2032-01-02")], "is not in 2031")
 
 
-def test_invalid_region(tmp_path):
-    check_fails(tmp_path, [filled(region="mars")], "region 'mars' is not one of all, pan_india")
-
-
-def test_blank_region_means_all(tmp_path):
-    root = content_dir(tmp_path)
-    write_csv(root, [filled(region="")])
-    assert import_dates(root).ok
-    assert json.loads((root / "calendar" / "2031.json").read_text(encoding="utf-8"))["entries"][0]["region"] == "all"
-
-
 def test_certainty_required_when_date_present(tmp_path):
     check_fails(tmp_path, [filled(certainty="")], "certainty is required when a date is given")
 
@@ -285,19 +259,29 @@ def test_certainty_must_be_an_enum_value(tmp_path):
     check_fails(tmp_path, [filled(certainty="sure")], "certainty 'sure' is not one of confirmed, provisional, varies_by_region")
 
 
-def test_source_note_required_when_date_present(tmp_path):
-    check_fails(tmp_path, [filled(source_note="")], "source_note is required when a date is given")
-
-
-def test_duplicate_festival_year_region(tmp_path):
-    check_fails(tmp_path, [filled(), filled(date="2031-06-01")],
-                "duplicate festival/year/region: fest_test_alpha 2031 'all' already filled on line 2", line=3)
-
-
-def test_same_festival_year_with_different_regions_is_not_a_duplicate(tmp_path):
+def test_source_note_is_not_required_and_not_imported(tmp_path):
     root = content_dir(tmp_path)
-    write_csv(root, [filled(), filled(region="north", date="2031-06-01")])
+    write_csv(root, [filled()])
     assert import_dates(root).ok
+    entry = json.loads((root / "calendar" / "2031.json").read_text(encoding="utf-8"))["entries"][0]
+    assert "source" not in entry
+
+
+def test_legacy_region_and_source_columns_are_ignored(tmp_path):
+    root = content_dir(tmp_path)
+    csv_path(root).parent.mkdir(parents=True, exist_ok=True)
+    csv_path(root).write_text(
+        "festival_id,festival_name_en,year,date,end_date,region,certainty,source_note\n"
+        "fest_test_alpha,Test Festival Alpha,2031,2031-05-04,,south,provisional,TEST FIXTURE\n",
+        encoding="utf-8")
+    assert import_dates(root).ok
+    entry = json.loads((root / "calendar" / "2031.json").read_text(encoding="utf-8"))["entries"][0]
+    assert entry["region"] == "all" and "source" not in entry
+
+
+def test_duplicate_festival_year(tmp_path):
+    check_fails(tmp_path, [filled(), filled(date="2031-06-01")],
+                "duplicate festival/year: fest_test_alpha 2031 already filled on line 2", line=3)
 
 
 def test_all_problems_are_reported_with_their_line_numbers(tmp_path):
@@ -309,7 +293,7 @@ def test_all_problems_are_reported_with_their_line_numbers(tmp_path):
 
 def test_filling_only_certainty_without_a_date_is_ignored(tmp_path):
     root = content_dir(tmp_path)
-    write_csv(root, [row(certainty="confirmed", source_note="half filled")])
+    write_csv(root, [row(certainty="confirmed")])
     result = import_dates(root)
     assert result.ok and result.dated_rows == 0 and result.ignored_rows == 1
 
@@ -327,7 +311,7 @@ def test_a_stray_comma_is_reported(tmp_path):
     root = content_dir(tmp_path)
     export_template(root)
     with csv_path(root).open("a", encoding="utf-8") as handle:
-        handle.write(f"fest_test_alpha,Name,2031,2031-05-04,,all,confirmed,{FIXTURE_SOURCE},extra\n")
+        handle.write("fest_test_alpha,Name,2031,2031-05-04,,confirmed,extra\n")
     assert "more cells than the header" in errors(root)
 
 
@@ -347,7 +331,7 @@ def test_scripts_end_to_end_on_fixture_content(tmp_path):
     assert empty.returncode == 0 and "0 date(s) imported" in empty.stdout
 
     rows = list(csv.DictReader(csv_path(root).open(encoding="utf-8", newline="")))
-    rows[0].update(date=f"{rows[0]['year']}-02-02", certainty="provisional", source_note=FIXTURE_SOURCE)
+    rows[0].update(date=f"{rows[0]['year']}-02-02", certainty="provisional")
     write_csv(root, rows)
     ok = _run("import_calendar_dates.py", "--content", str(root))
     assert ok.returncode == 0 and "1 date(s) imported" in ok.stdout and "bump contentVersion" in ok.stdout

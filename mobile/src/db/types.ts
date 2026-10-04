@@ -103,7 +103,8 @@ export type CalendarDate = {
   region: string;
   certainty: DateCertainty;
   regionNote?: LocaleMap;
-  source: string;
+  /** Absent when the bundled entry has no source (the calendar CSV no longer carries one). */
+  source?: string;
 };
 
 /** A festival; it may have no puja guide (calendar-only), in which case `linkedPujaIds` is empty. */
@@ -206,5 +207,5 @@ export type BundleCalendarEntry = {
   region?: string;
   certainty: DateCertainty;
   regionNote?: LocaleMap;
-  source: string;
+  source?: string;
 };

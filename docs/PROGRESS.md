@@ -314,3 +314,8 @@ Not verified:
 5. Airplane mode: everything still works.
 6. Read `docs/review/festivals.md` and mark entries you doubt; then fill `calendar_dates.csv` as in `docs/CALENDAR_DATA_GUIDE.md`.
 
+### Phase 6A follow-up: 6-column calendar CSV (`phase-6a-csv-simplify`)
+- `calendar_dates.csv` now has `festival_id, festival_name_en, year, date, end_date, certainty`. The template and importer use it; `region` is always `all` in the generated year files and no `source` is written. Duplicate rule: one filled row per festival and year. Legacy `region`/`source_note` columns are ignored if present.
+- Schema: `CalendarEntry.source` is optional. Mobile: `source` is optional in the types; the seed stores a missing source as `''` (the column is NOT NULL, no migration) and the repository returns it as `undefined`; a missing `region` is stored as `all`.
+- The filled CSV uses certainty values `high`/`medium`/`low`/`regional_variation`, which are not in the `DateCertainty` enum (`confirmed`, `provisional`, `varies_by_region`), so the import rejects those 25 rows. No value was remapped.
+
