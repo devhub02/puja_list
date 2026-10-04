@@ -293,3 +293,11 @@ Verified by code/tests: roles, labels and states, 48 dp targets (set in styles),
 
 Verified by code/tests: roles, labels and selected states, labels for every day cell, Hindi and English strings and `Intl` month/day names, empty/loading/error states, filter logic, virtualised lists, colours only from tokens. **Not verifiable here (no emulator):** 360dp rendering of the grid (cell width about 47dp) and of five tab labels, the largest OS font size, Hindi weekday/month abbreviations on Hermes, scroll smoothness on a low-end phone, TalkBack reading of the grid. See `docs/PROGRESS.md`.
 
+## Home "Next festival" (Phase 6B follow-up)
+
+`ui-ux-pro-max` (`ux` search for hero/compact cards returned only unrelated animation and badge rules; the pre-delivery checklist in `references/pro-rules.md` was applied). Rules recorded:
+- Home shows **one** upcoming festival as a hero, never a list; the full list lives in the Calendar tab. Any contradiction-prone detail (overlapping ranges of other festivals) is therefore not shown on Home.
+- **`NextFestivalCard`**: surface card with a 1.5dp gold border (decoration), label "Next festival" in `goldText`, a countdown pill (`surfaceAlt` fill, `primary` bold text, 5.2:1 light / 5.9:1 dark), name (`heading`, 2 lines), date or range (body), certainty label (`bodySmall`, `textSecondary`), chevron. It carries no review badge: that stays on detail screens and lists. Countdown is text (never colour only).
+- **See calendar row**: a 48dp-min link under the card: "See calendar" (primary, underlined, semibold) with an optional second line "N more in the next 30 days" (`textSecondary`) and an arrow; the count line is absent when it would be 0.
+- Hindi uses "तारीख़" for dates and the countdown wording `आज से शुरू`, `N दिन में`, `चल रहा है`.
+

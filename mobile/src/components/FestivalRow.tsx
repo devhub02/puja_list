@@ -31,17 +31,15 @@ type Props = {
   language: LanguageCode;
   /** Device-local date; only used to mark a multi-day festival that is on now. */
   today?: string;
-  /** Hide the regions line (e.g. on Home, where space is tight). */
-  compact?: boolean;
   onOpen: (festival: Festival) => void;
   testID?: string;
 };
 
 /**
- * One festival in the calendar and on Home: name, date or range, a visible certainty label, the review status
+ * One festival in the calendar: name, date or range, a visible certainty label, the review status
  * and the regions from the catalog. The whole card is one 48dp+ button. Memoised for long lists.
  */
-function FestivalRowBase({ festival, date, language, today, compact, onOpen, testID }: Props) {
+function FestivalRowBase({ festival, date, language, today, onOpen, testID }: Props) {
   const { t } = useTranslation();
   const { colors, shadow } = useTheme();
   const rowId = testID ?? `festival-row-${festival.id}`;
@@ -111,11 +109,9 @@ function FestivalRowBase({ festival, date, language, today, compact, onOpen, tes
             </AppText>
           </View>
         ) : null}
-        {!compact ? (
-          <AppText variant="caption" color="textSecondary">
-            {t('calendar.observedIn', { regions })}
-          </AppText>
-        ) : null}
+        <AppText variant="caption" color="textSecondary">
+          {t('calendar.observedIn', { regions })}
+        </AppText>
         {festival.reviewStatus !== 'expert_verified' ? (
           <ReviewBadge status={festival.reviewStatus} />
         ) : null}

@@ -7,7 +7,6 @@ import {
   listFestivals,
   listFestivalsWithoutDate,
   listNextDates,
-  listUpcomingFestivals,
 } from '@/db/repositories';
 import { localIsoDate } from '@/utils/dateUtils';
 import type { CalendarItem } from '@/utils/calendarLogic';
@@ -50,9 +49,10 @@ export function useFestivalCatalog() {
   return useDbQuery((db) => listFestivals(db), 'festival-catalog');
 }
 
-export function useUpcomingFestivals(limit: number) {
+/** One entry per festival (its next or ongoing date from today), soonest first. */
+export function useUpcomingFestivals() {
   const today = useTodayIso();
-  return useDbQuery((db) => listUpcomingFestivals(db, today, limit), `upcoming:${today}:${limit}`);
+  return useDbQuery((db) => listNextDates(db, today), `upcoming:${today}`);
 }
 
 /** Next (or ongoing) date of every festival that has one; keyed by festival id. */

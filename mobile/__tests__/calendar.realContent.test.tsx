@@ -161,13 +161,28 @@ describe('Festival Details on the real content', () => {
 });
 
 describe('Home and Puja Details on the real content', () => {
-  it('Home shows the upcoming festivals from the real dates, with the ongoing one first', async () => {
+  it('Home features Sharad Navratri (not Mysuru Dasara) on 2026-10-05, though both start on 2026-10-11', async () => {
+    setToday('2026-10-05');
+    expect(entryOf('fest_navratri')?.date).toBe('2026-10-11');
+    expect(entryOf('fest_mysuru_dasara')?.date).toBe('2026-10-11');
+    await renderWithDb(<HomeScreen />, await realDb());
+    expect(await screen.findByTestId('next-festival-card')).toBeTruthy();
+    expect(screen.getByTestId('next-festival-name').props.children).toBe('Sharad Navratri');
+    expect(screen.getByTestId('next-festival-date').props.children).toBe('11 Oct – 20 Oct 2026');
+    expect(screen.getByTestId('next-festival-countdown').props.children).toBe('In 6 days');
+    expect(screen.queryByText('AI draft')).toBeNull();
+    expect(screen.queryByText('Mysuru Dasara')).toBeNull();
+    // the count is real: other festivals with a date in 2026-10-05 .. 2026-11-04, each once
+    expect(screen.getByTestId('more-soon').props.children).toMatch(
+      /^\d+ more in the next 30 days$/,
+    );
+  });
+
+  it('Home features the festival that is on right now, and shows "Ongoing"', async () => {
     setToday('2026-11-14');
     await renderWithDb(<HomeScreen />, await realDb());
-    expect(await screen.findByTestId('upcoming-section')).toBeTruthy();
-    expect(screen.getByTestId('upcoming-fest_chhath')).toBeTruthy(); // 13th to 16th: ongoing on the 14th
-    expect(screen.getByText('Ongoing')).toBeTruthy();
-    expect(screen.queryByTestId('upcoming-fest_diwali')).toBeNull(); // 8 Nov is over
+    expect(await screen.findByTestId('next-festival-card')).toBeTruthy();
+    expect(screen.getByTestId('next-festival-countdown').props.children).toBe('Ongoing');
     expect(screen.getByTestId('see-calendar')).toBeTruthy();
   });
 

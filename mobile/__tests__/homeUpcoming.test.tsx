@@ -1,4 +1,4 @@
-import { fireEvent, screen } from '@testing-library/react-native';
+import { fireEvent, screen, within } from '@testing-library/react-native';
 
 import HomeScreen from '../app/(tabs)/index';
 import LibraryScreen from '../app/(tabs)/library';
@@ -30,12 +30,12 @@ async function db(overrides: Partial<ContentBundle> = {}) {
   return database;
 }
 
-describe('Home: upcoming festivals', () => {
+describe('Home: next festival hero', () => {
   it('is hidden completely when no date is bundled', async () => {
     await renderWithDb(<HomeScreen />, await db({ calendar: [] }));
     expect(await screen.findByText('Featured pujas')).toBeTruthy();
     expect(screen.queryByTestId('upcoming-section')).toBeNull();
-    expect(screen.queryByText('Upcoming festivals')).toBeNull();
+    expect(screen.queryByTestId('next-festival-card')).toBeNull();
     expect(screen.queryByTestId('see-calendar')).toBeNull();
   });
 
@@ -46,107 +46,122 @@ describe('Home: upcoming festivals', () => {
     expect(screen.queryByTestId('upcoming-section')).toBeNull();
   });
 
-  it('shows the next festivals from today with date or range, certainty label and a See calendar link', async () => {
+  it('shows ONE card with name, range, countdown and certainty, and no review badge', async () => {
     await renderWithDb(<HomeScreen />, await db());
-    expect(await screen.findByTestId('upcoming-section')).toBeTruthy();
-    expect(screen.getByText('Upcoming festivals')).toBeTruthy();
-    const ids = screen
-      .getAllByTestId(/^upcoming-fest_[a-z_]+$/)
-      .map((n) => n.props.testID as string);
-    expect(ids).toEqual([
-      'upcoming-fest_cal_beta',
-      'upcoming-fest_cal_alpha',
-      'upcoming-fest_cal_gamma',
-      'upcoming-fest_test_lamps',
-    ]);
-    expect(screen.getByTestId('upcoming-fest_cal_alpha-date').props.children).toBe('14 Mar 2031');
-    expect(screen.getByTestId('upcoming-fest_cal_beta-date').props.children).toBe(
-      '12 Mar – 16 Mar 2031',
+    expect(await screen.findByTestId('next-festival-card')).toBeTruthy();
+    expect(screen.getAllByTestId('next-festival-card')).toHaveLength(1);
+    expect(screen.getByText('Next festival')).toBeTruthy();
+    expect(screen.getByTestId('next-festival-name').props.children).toBe('Calendar Test Beta');
+    expect(screen.getByTestId('next-festival-date').props.children).toBe('12 Mar – 16 Mar 2031');
+    expect(screen.getByTestId('next-festival-countdown').props.children).toBe('In 2 days');
+    expect(screen.getByTestId('next-festival-certainty').props.children).toBe(
+      'Date varies by region',
     );
-    expect(screen.getByTestId('upcoming-fest_cal_alpha-certainty').props.children).toBe(
-      'Date confirmed',
+    // the fixture festivals are all ai_drafted, but the hero never shows the review badge
+    const card = screen.getByTestId('next-festival-card');
+    expect(within(card).queryByText('AI draft')).toBeNull();
+    expect(screen.queryByText('AI draft')).toBeNull();
+    // one card only: no list of other festivals on Home
+    expect(screen.queryByTestId('upcoming-fest_cal_alpha')).toBeNull();
+    expect(screen.getByTestId('next-festival-card').props.accessibilityLabel).toMatch(
+      /Next festival: Calendar Test Beta\. 12 Mar – 16 Mar 2031\. In 2 days\. Date varies by region/,
     );
-    // not a puja: no "Mainly observed in" line on the compact Home rows
-    expect(screen.queryByText(/Mainly observed in/)).toBeNull();
+  });
 
+  it('under the card, See calendar says how many OTHER festivals fall in the next 30 days', async () => {
+    await renderWithDb(<HomeScreen />, await db());
+    // alpha (14 Mar) and gamma (31 Mar); beta is the hero; lamps is months away
+    expect((await screen.findByTestId('more-soon')).props.children).toBe(
+      '2 more in the next 30 days',
+    );
+    expect(screen.getByText('See calendar')).toBeTruthy();
     await fireEvent.press(screen.getByTestId('see-calendar'));
     expect(navigate).toHaveBeenCalledWith('/calendar');
   });
 
-  it('includes a festival that is on right now (ongoing) and marks it', async () => {
+  it('hides the count (not the link) when no other festival is in the next 30 days', async () => {
+    setToday('2031-10-31'); // lamps is ongoing; alpha's next date is in March 2032
+    await renderWithDb(<HomeScreen />, await db());
+    expect((await screen.findByTestId('next-festival-name')).props.children).toBe(
+      'Test Festival of Lamps',
+    );
+    expect(screen.queryByTestId('more-soon')).toBeNull();
+    expect(screen.queryByText(/more in the next 30 days/)).toBeNull();
+    expect(screen.getByTestId('see-calendar')).toBeTruthy();
+  });
+
+  it('shows "Ongoing" for a festival that is on, and "Starts today" on its first day', async () => {
     setToday('2031-03-13');
+    const first = await renderWithDb(<HomeScreen />, await db());
+    expect((await screen.findByTestId('next-festival-countdown')).props.children).toBe('Ongoing');
+    await first.unmount();
+
+    setToday('2031-03-12');
     await renderWithDb(<HomeScreen />, await db());
-    expect(await screen.findByTestId('upcoming-fest_cal_beta')).toBeTruthy();
-    expect(screen.getAllByText('Ongoing').length).toBe(1);
+    expect((await screen.findByTestId('next-festival-countdown')).props.children).toBe(
+      'Starts today',
+    );
   });
 
-  it('drops a festival the day after it ends', async () => {
-    setToday('2031-03-17');
+  it('says "In 1 day" the day before', async () => {
+    setToday('2031-03-11');
     await renderWithDb(<HomeScreen />, await db());
-    expect(await screen.findByTestId('upcoming-fest_cal_gamma')).toBeTruthy();
-    expect(screen.queryByTestId('upcoming-fest_cal_beta')).toBeNull();
-    // alpha's 2031 date is over, so its next bundled date (2032) is shown instead
-    expect(screen.getByTestId('upcoming-fest_cal_alpha-date').props.children).toBe('3 Mar 2032');
-  });
-
-  it('shows at most five festivals', async () => {
-    const bundle = makeCalendarBundle();
-    const base = bundle.festivals.find((f) => f.id === 'fest_cal_alpha');
-    if (!base) throw new Error('fixture changed');
-    const extra = [1, 2, 3, 4].map((n) => ({
-      ...base,
-      id: `fest_cal_extra_${n}`,
-      name: { en: `Extra ${n}`, hi: `अतिरिक्त ${n}` },
-    }));
-    const calendar = [
-      {
-        year: 2031,
-        entries: [
-          ...bundle.calendar[0].entries,
-          ...extra.map((f, i) => ({
-            id: `cal_extra_${i}`,
-            festivalId: f.id,
-            date: `2031-06-0${i + 1}`,
-            certainty: 'provisional' as const,
-          })),
-        ],
-      },
-      bundle.calendar[1],
-    ];
-    const database = createMigratedDb();
-    await seedContentIfNeeded(database, {
-      ...bundle,
-      festivals: [...bundle.festivals, ...extra],
-      calendar,
-    });
-    await renderWithDb(<HomeScreen />, database);
-    await screen.findByTestId('upcoming-section');
-    expect(screen.getAllByTestId(/^upcoming-fest_[a-z_0-9]+$/)).toHaveLength(5);
+    expect((await screen.findByTestId('next-festival-countdown')).props.children).toBe('In 1 day');
   });
 
   it('opens Festival Details for a calendar-only festival and the puja for a linked one', async () => {
-    await renderWithDb(<HomeScreen />, await db());
-    await fireEvent.press(await screen.findByTestId('upcoming-fest_cal_alpha'));
+    const first = await renderWithDb(<HomeScreen />, await db());
+    await fireEvent.press(await screen.findByTestId('next-festival-card'));
     expect(push).toHaveBeenLastCalledWith({
       pathname: '/festival/[id]',
-      params: { id: 'fest_cal_alpha' },
+      params: { id: 'fest_cal_beta' },
     });
-    await fireEvent.press(screen.getByTestId('upcoming-fest_test_lamps'));
+    await first.unmount();
+
+    setToday('2031-10-31');
+    await renderWithDb(<HomeScreen />, await db());
+    await fireEvent.press(await screen.findByTestId('next-festival-card'));
     expect(push).toHaveBeenLastCalledWith({
       pathname: '/puja/[id]',
       params: { id: 'puja_test_lakshmi' },
     });
   });
 
-  it('shows month names and the certainty label in Hindi', async () => {
+  it('prefers a festival with a puja guide over a calendar-only one that starts the same day', async () => {
+    const bundle = makeCalendarBundle();
+    // lamps (linked puja) and alpha (calendar-only, pan_india) now both start on 2031-03-12... beta too
+    const calendar = [
+      {
+        year: 2031,
+        entries: [
+          ...bundle.calendar[0].entries.filter((e) => e.festivalId !== 'fest_test_lamps'),
+          {
+            id: 'cal_tie_lamps',
+            festivalId: 'fest_test_lamps',
+            date: '2031-03-12',
+            certainty: 'provisional' as const,
+          },
+        ],
+      },
+      bundle.calendar[1],
+    ];
+    await renderWithDb(<HomeScreen />, await db({ calendar }));
+    expect((await screen.findByTestId('next-festival-name')).props.children).toBe(
+      'Test Festival of Lamps',
+    );
+  });
+
+  it('shows month names, the countdown and the count in Hindi', async () => {
     await resetSettings('hi');
     await renderWithDb(<HomeScreen />, await db());
-    expect(await screen.findByText('आने वाले पर्व')).toBeTruthy();
+    expect(await screen.findByText('अगला पर्व')).toBeTruthy();
     expect(screen.getByText('कैलेंडर देखें')).toBeTruthy();
-    expect(screen.getByTestId('upcoming-fest_cal_alpha-certainty').props.children).toBe(
-      'तारीख़ की पुष्टि हुई',
+    expect(screen.getByTestId('next-festival-countdown').props.children).toBe('2 दिन में');
+    expect(screen.getByTestId('more-soon').props.children).toBe('अगले 30 दिनों में 2 और पर्व');
+    expect(screen.getByTestId('next-festival-certainty').props.children).toBe(
+      'तारीख़ क्षेत्र के अनुसार बदलती है',
     );
-    expect(screen.getByTestId('upcoming-fest_cal_alpha-date').props.children).toMatch(/[ऀ-ॿ]/);
+    expect(screen.getByTestId('next-festival-date').props.children).toMatch(/[\u0900-\u097F]/);
   });
 });
 

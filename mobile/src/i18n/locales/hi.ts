@@ -53,9 +53,14 @@ const hi: Translations = {
   },
   home: {
     todayLabel: 'आज',
-    upcomingTitle: 'आने वाले पर्व',
-    upcomingDescription:
-      'ऐप के इस संस्करण में उपलब्ध अगली तारीख़ें। तारीख़ें क्षेत्र के अनुसार अलग हो सकती हैं।',
+    nextFestival: 'अगला पर्व',
+    countdownToday: 'आज से शुरू',
+    countdownOngoing: 'चल रहा है',
+    countdownIn_one: '{{count}} दिन में',
+    countdownIn_other: '{{count}} दिन में',
+    moreSoon_one: 'अगले 30 दिनों में {{count}} और पर्व',
+    moreSoon_other: 'अगले 30 दिनों में {{count}} और पर्व',
+    nextFestivalA11y: 'अगला पर्व: {{name}}',
     seeCalendar: 'कैलेंडर देखें',
     seeCalendarA11y: 'कैलेंडर देखें। कैलेंडर टैब खुलता है।',
     searchPlaceholder: 'पूजा, त्योहार, सामग्री खोजें',
