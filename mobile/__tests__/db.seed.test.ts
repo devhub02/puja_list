@@ -76,8 +76,9 @@ describe('seed loader', () => {
     expect(await count(db, 'search_index')).toBe(6);
     expect(await getContentInfo(db)).toEqual({
       contentVersion: 1,
-      schemaVersion: 1,
+      schemaVersion: 2,
       pujaCount: 3,
+      festivalCount: 2,
       seededAt: 777,
     });
   });
@@ -143,8 +144,8 @@ describe('seed loader', () => {
   it('refuses a bundle with a newer schemaVersion than the app supports, keeping old content', async () => {
     const db = createMigratedDb();
     await seedContentIfNeeded(db, makeFixtureBundle());
-    const future = makeFixtureBundle({ schemaVersion: 2, contentVersion: 5 });
-    await expect(seedContentIfNeeded(db, future)).rejects.toThrow(/schemaVersion 2 is newer/);
+    const future = makeFixtureBundle({ schemaVersion: 3, contentVersion: 5 });
+    await expect(seedContentIfNeeded(db, future)).rejects.toThrow(/schemaVersion 3 is newer/);
     expect((await getContentInfo(db)).contentVersion).toBe(1);
     expect(await count(db, 'puja')).toBe(3);
   });

@@ -138,6 +138,7 @@ describe('festival repository', () => {
         year: 2031,
         date: '2031-10-30',
         endDate: '2031-11-02',
+        region: 'all',
         certainty: 'provisional',
         regionNote: { en: 'fixture' },
         source: 'TEST FIXTURE',
@@ -172,6 +173,7 @@ describe('content info', () => {
       contentVersion: null,
       schemaVersion: null,
       pujaCount: 0,
+      festivalCount: 0,
       seededAt: null,
     });
   });

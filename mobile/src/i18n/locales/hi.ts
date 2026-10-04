@@ -347,6 +347,7 @@ const hi: Translations = {
       version: 'ऐप वर्ज़न',
       contentVersion: 'कंटेंट वर्ज़न',
       pujaCount: 'इस वर्ज़न में पूजाएँ',
+      festivalCount: 'इस वर्ज़न में त्योहार',
       contentUnavailable: 'लोड नहीं हुआ',
       description:
         'पूजा साथी देश भर की पूजाओं और त्योहारों की तैयारी में आपकी मदद करता है: महत्व, सामग्री, क़दम-दर-क़दम विधि और चेकलिस्ट।',

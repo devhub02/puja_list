@@ -11,7 +11,7 @@ import { withTransaction } from './sqlDb';
 import type { ContentBundle } from './types';
 
 /** Highest content `schemaVersion` this build of the app can read. */
-export const SUPPORTED_SCHEMA_VERSION = 1;
+export const SUPPORTED_SCHEMA_VERSION = 2;
 
 export type SeedOutcome = 'seeded' | 'unchanged';
 
@@ -79,15 +79,23 @@ export async function seedContentIfNeeded(
 
     for (const f of bundle.festivals) {
       await db.run(
-        `INSERT INTO festival (id, name_json, alt_names_json, description_json, significance_json, regions_json, status)
-         VALUES (?, ?, ?, ?, ?, ?, ?)`,
+        `INSERT INTO festival (id, name_json, alt_names_json, short_description_json, significance_json,
+           regions_json, states_json, category, date_type, observance_json, linked_puja_ids_json,
+           review_status, source_note_json, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
           f.id,
           json(f.name),
           jsonOrNull(f.alternateNames),
-          json(f.description),
-          json(f.significance),
+          json(f.shortDescription),
+          jsonOrNull(f.significance),
           json(f.regions),
+          jsonOrNull(f.states?.length ? f.states : undefined),
+          f.category,
+          f.dateType,
+          jsonOrNull(f.observanceDescription),
+          json(f.linkedPujaIds ?? []),
+          f.reviewStatus,
+          json(f.sourceNote),
           f.status,
         ],
       );
@@ -179,14 +187,15 @@ export async function seedContentIfNeeded(
     for (const calendarYear of bundle.calendar) {
       for (const e of calendarYear.entries) {
         await db.run(
-          `INSERT INTO calendar_date (id, festival_id, year, date, end_date, certainty, region_note_json, source)
-           VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+          `INSERT INTO calendar_date (id, festival_id, year, date, end_date, region, certainty, region_note_json, source)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
           [
             e.id,
             e.festivalId,
             calendarYear.year,
             e.date,
             e.endDate ?? null,
+            e.region ?? 'all',
             e.certainty,
             jsonOrNull(e.regionNote),
             e.source,

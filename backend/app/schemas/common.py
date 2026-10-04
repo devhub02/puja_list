@@ -10,7 +10,7 @@ from typing import Annotated
 from pydantic import AfterValidator, BaseModel, ConfigDict, StringConstraints
 from pydantic.alias_generators import to_camel
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 
 ID_PATTERN = r"^[a-z0-9]+(_[a-z0-9]+)*$"
 LANGUAGE_PATTERN = r"^[a-z]{2,3}(-[A-Za-z0-9]+)*$"
@@ -50,6 +50,42 @@ class Region(str, Enum):
     north_east = "north_east"
     tribal_regional = "tribal_regional"
     pan_india = "pan_india"
+
+
+class FestivalRegion(str, Enum):
+    """Fixed region list for festivals (Region, above, is the older list used by pujas)."""
+
+    pan_india = "pan_india"
+    north = "north"
+    east = "east"
+    west = "west"
+    south = "south"
+    central = "central"
+    north_east = "north_east"
+    himalayan = "himalayan"
+    tribal = "tribal"
+
+
+class FestivalCategory(str, Enum):
+    deity_festival = "deity_festival"
+    harvest_seasonal = "harvest_seasonal"
+    new_year = "new_year"
+    vrat_fasting = "vrat_fasting"
+    family_bond = "family_bond"
+    nature_ritual = "nature_ritual"
+    yatra_mela = "yatra_mela"
+
+
+class DateType(str, Enum):
+    fixed_gregorian = "fixed_gregorian"
+    solar = "solar"
+    lunar = "lunar"
+    regional = "regional"
+    variable = "variable"
+
+
+# Region values allowed in a calendar entry / CSV row: "all" or one FestivalRegion value.
+CALENDAR_ALL_REGIONS = "all"
 
 
 class PujaCategory(str, Enum):

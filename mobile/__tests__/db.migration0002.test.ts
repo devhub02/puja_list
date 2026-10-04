@@ -28,7 +28,7 @@ async function phase4Database(options: { withOldChecklistRows?: boolean } = {}) 
 describe('migration 0002 (preparations) on a Phase 4 database', () => {
   it('keeps saved pujas, recent views and recent searches', async () => {
     const db = await phase4Database();
-    applyMigrations(db, { from: 2 });
+    applyMigrations(db, { from: 2, to: 3 });
     expect(await db.all('SELECT * FROM saved_puja ORDER BY puja_id')).toEqual([
       { puja_id: 'puja_a', saved_at: 111 },
       { puja_id: 'puja_b', saved_at: 222 },
@@ -44,7 +44,7 @@ describe('migration 0002 (preparations) on a Phase 4 database', () => {
 
   it('creates preparation and vidhi_progress and rebuilds the two owned tables', async () => {
     const db = await phase4Database();
-    applyMigrations(db, { from: 2 });
+    applyMigrations(db, { from: 2, to: 3 });
     const columns = async (table: string) =>
       (await db.all<{ name: string }>(`SELECT name FROM pragma_table_info('${table}')`))
         .map((c) => c.name)
@@ -70,7 +70,7 @@ describe('migration 0002 (preparations) on a Phase 4 database', () => {
 
   it('moves any existing checklist rows into one default preparation per puja', async () => {
     const db = await phase4Database({ withOldChecklistRows: true });
-    applyMigrations(db, { from: 2 });
+    applyMigrations(db, { from: 2, to: 3 });
 
     const preparations = await db.all<Record<string, unknown>>(
       'SELECT * FROM preparation ORDER BY puja_id',
@@ -158,7 +158,7 @@ describe('migration 0002 (preparations) on a Phase 4 database', () => {
     await db.run(
       `INSERT INTO samagri (id, name_json, status) VALUES ('sm_keep', '{"en":"Keep"}', 'active')`,
     );
-    applyMigrations(db, { from: 2 });
+    applyMigrations(db, { from: 2, to: 3 });
     expect(await db.all('SELECT id FROM samagri')).toEqual([{ id: 'sm_keep' }]);
   });
 });

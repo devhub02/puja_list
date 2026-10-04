@@ -275,3 +275,42 @@ Not verified:
 7. TalkBack: checkbox state is announced on each item, section headers say expanded/collapsed, progress bars read a value, toasts are read.
 8. Airplane mode: everything still works.
 9. Content: a long preparation list scrolls smoothly; the 14-item Satyanarayan puja is the longest.
+
+
+## Phase 6A status — Festival catalog and calendar-date import pipeline
+
+Done:
+- **Schema (`schemaVersion` 2; docs/CONTENT_SCHEMA.md §3.1, §3.6, §6 rules 11/12/18/19, §7, §8)**: a festival can exist without a puja guide; new/renamed fields `shortDescription`, optional `significance`, `regions` (fixed `FestivalRegion` list incl. `himalayan`, `tribal`), optional free-text `states`, `category`, `dateType`, optional `observanceDescription` (must tell the reader to check a local panchang), `linkedPujaIds` (optional, must exist), `reviewStatus`, `sourceNote`. `hi` is mandatory for festival text. Calendar entries gained `region`; the duplicate rule is one entry per festival per region per year.
+- **Festival catalog (`content/festivals.json`)**: 103 festivals, all `ai_drafted` with an honest source note, no dates, Hindu festivals only, covering all nine regions. contentVersion 5. The catalog is not exhaustive and is not claimed to be. All 16 puja guides from Batches 1 and 2 are linked to a festival (87 festivals are calendar-only).
+- **Date pipeline**: `scripts/export_dates_template.py` creates/merges `content/calendar/calendar_dates.csv` (206 rows: 103 festivals x 2026 and 2027, every date, certainty and source cell empty; the merge only appends rows for new festival/year pairs); `scripts/import_calendar_dates.py` validates every filled row with line numbers, writes nothing if any row is invalid, and writes `content/calendar/<year>.json`. With the empty CSV it imports 0 dates and succeeds. No date was filled by me. The existing `export_content.py` already bundles calendar year files (tested with fixture dates).
+- **Review sheet**: `scripts/export_review_sheet.py` also writes `docs/review/festivals.md` (run: 103 festivals).
+- **Mobile**: migration `0003_festival_catalog` (generated, then hand-rewritten like 0002; see DB_SCHEMA.md §7.1) preserves all user data; seed loader reads schemaVersion 2 and the new festival columns; `getContentInfo` returns `festivalCount`; Settings > About shows the real puja count and festival count. No other UI change.
+- **Docs**: CONTENT_SCHEMA.md, DB_SCHEMA.md, this file, and the new docs/CALENDAR_DATA_GUIDE.md.
+
+Decisions and changes from the proposal:
+- `description` -> `shortDescription` and `pujaIds` -> `linkedPujaIds` were renamed (schemaVersion bump) instead of adding duplicate fields. The old long festival `significance` texts of the first 16 festivals were not carried over (nothing in the UI showed them); `significance` is now optional.
+- The first 16 festival ids are unchanged. Three display names changed to match the brief: `fest_hanuman_puja` is now "Hanuman Jayanti" (regional date; "Hanuman Puja" kept as a search alias), `fest_navratri` is now "Sharad Navratri" (a separate `fest_chaitra_navratri` was added), `fest_saraswati_puja` is now "Vasant Panchami (Saraswati Puja)". `fest_navratri` no longer carries "Durga Puja" as an alias because Bengal's Durga Puja is its own entry (`fest_durga_puja`, not linked to the Navratri guide).
+- A puja's `festivalId` must be listed by its festival, but a festival may list a puja whose `festivalId` names another festival; the old "must point back" rule was dropped.
+- `FestivalRegion` is separate from the older `Region` list used by pujas (which keeps `tribal_regional`); festivals cannot use `tribal_regional`.
+- `dateType` `fixed_gregorian` exists in the schema but no festival uses it (festivals that look Gregorian are solar).
+- The importer keeps `calendarYears` in the manifest in step with the generated files but never bumps `contentVersion`; you bump it before export (the export refuses otherwise).
+- `pujaCount` and `festivalCount` count every row, deprecated ones included (as `pujaCount` did before).
+
+Verified (run for real in this phase):
+- backend: `pytest` 140 passed (35 new calendar-pipeline tests, new festival rules); `scripts/validate_content.py` OK (contentVersion 5, 103 festivals, 16 pujas, 53 samagri, 0 calendar years); `export_dates_template.py` created 206 rows; `import_calendar_dates.py` OK with 0 dates; `export_content.py` wrote `mobile/assets/puja_data/content.json`.
+- mobile (Node v22.22.0): `npx tsc --noEmit` clean; `npm run lint` clean; `npm run format:check` clean; `npm test` **27 suites / 404 tests passed** (was 25 / 371; added migration 0003 test, real-content festival test, About festival count); `npx drizzle-kit generate` reports "No schema changes"; `npx expo export --platform android` OK (4.3 MB hbc).
+- dev server: `npx expo start --clear` (CI=1) and `curl` of `expo-router/entry.bundle?platform=android&dev=true&minify=false` returned **HTTP 200** (1803 modules, 9.4 MB, 14 s); no error lines in the server log. `npm ls metro @expo/metro-config`: `metro@0.84.5`, `@expo/metro-config@57.0.12`; no `metro*` in package.json.
+
+Not verified:
+- `npx expo-doctor`: 19 of 21 checks pass; the same two failures as in earlier phases (Expo config schema and React Native Directory) need network servers this sandbox cannot reach.
+- Nothing was run on an emulator or device. The migration was tested on Node's SQLite (not the Android build), including a database with user rows in every user table.
+- Every festival entry is `ai_drafted`: names, Hindi text, regions, `dateType` and observance wording have not been checked by a person or expert.
+
+### What to verify by hand on the emulator / phone
+1. **Upgrade** from a Phase 5 build that has saved pujas, a preparation with ticks and custom items, recent views and recent searches: the app opens, nothing is lost (the migration runs once and the content is re-seeded on that first start).
+2. Fresh install: first start is not noticeably slower (the bundle is now about 0.5 MB).
+3. Settings > About: puja count 16 and festival count 103, in English and Hindi, light and dark, largest text size, at 360 dp.
+4. Search (Home/Search screen) still finds the 16 puja guides; festival names are not shown as separate results yet (that is part of a later phase), so search for "ganesh", "diwali", "छठ" and check nothing regressed.
+5. Airplane mode: everything still works.
+6. Read `docs/review/festivals.md` and mark entries you doubt; then fill `calendar_dates.csv` as in `docs/CALENDAR_DATA_GUIDE.md`.
+
