@@ -8,7 +8,7 @@ import { AppText } from '@/components/AppText';
 import { Card } from '@/components/Card';
 import { CategoryCard } from '@/components/CategoryCard';
 import { EmptyState } from '@/components/EmptyState';
-import { FestivalRow } from '@/components/FestivalRow';
+import { NextFestivalCard } from '@/components/NextFestivalCard';
 import { PujaTile } from '@/components/PujaTile';
 import { ScreenContainer } from '@/components/ScreenContainer';
 import { SearchBar } from '@/components/SearchBar';
@@ -26,8 +26,7 @@ import { appIconImage } from '@/theme/images';
 import { iconSize, minTouchTarget, radius, spacing } from '@/theme/tokens';
 import { useTheme } from '@/theme';
 import { categoryOrder, pickFeatured } from '@/utils/pujaDisplay';
-
-const UPCOMING_LIMIT = 5;
+import { countMoreSoon, pickNextFestival } from '@/utils/upcoming';
 
 export default function HomeScreen() {
   const { t } = useTranslation();
@@ -38,8 +37,27 @@ export default function HomeScreen() {
   const catalog = useCatalog();
   const { savedIds, recentIds, toggleSaved } = useUserState();
   const today = useTodayIso();
-  const upcoming = useUpcomingFestivals(UPCOMING_LIMIT);
+  const upcoming = useUpcomingFestivals();
   const openFestival = useOpenFestival();
+  const hero = useMemo(() => {
+    if (upcoming.status !== 'ready') return null;
+    const withGuide = new Set(catalog.pujas.flatMap((p) => (p.festivalId ? [p.festivalId] : [])));
+    const linkedIds = new Set(catalog.pujas.map((p) => p.id));
+    return pickNextFestival(
+      upcoming.data,
+      today,
+      (festival) =>
+        withGuide.has(festival.id) || festival.linkedPujaIds.some((id) => linkedIds.has(id)),
+    );
+  }, [upcoming, catalog.pujas, today]);
+  const moreCount = useMemo(
+    () =>
+      upcoming.status === 'ready' && hero
+        ? countMoreSoon(upcoming.data, hero.festival.id, today)
+        : 0,
+    [upcoming, hero, today],
+  );
+  const moreText = moreCount > 0 ? t('home.moreSoon', { count: moreCount }) : null;
 
   const byId = useMemo(() => new Map(catalog.pujas.map((p) => [p.id, p])), [catalog.pujas]);
   const featured = useMemo(() => pickFeatured(catalog.pujas), [catalog.pujas]);
@@ -121,36 +139,34 @@ export default function HomeScreen() {
         onPress={() => router.push('/search')}
       />
 
-      {/* Only real bundled dates; with none (or while loading / on error) the whole section is hidden. */}
-      {upcoming.status === 'ready' && upcoming.data.length > 0 ? (
-        <View style={styles.section} testID="upcoming-section">
-          <SectionHeader
-            title={t('home.upcomingTitle')}
-            description={t('home.upcomingDescription')}
+      {/* One compact "Next festival" card from real bundled dates; hidden when there is none. */}
+      {hero ? (
+        <View style={styles.upcoming} testID="upcoming-section">
+          <NextFestivalCard
+            festival={hero.festival}
+            date={hero.date}
+            language={language}
+            today={today}
+            onOpen={openFestival}
           />
-          {upcoming.data.map(({ festival, date }) => (
-            <FestivalRow
-              key={`${festival.id}:${date.id}`}
-              festival={festival}
-              date={date}
-              language={language}
-              today={today}
-              compact
-              onOpen={openFestival}
-              testID={`upcoming-${festival.id}`}
-            />
-          ))}
           <Pressable
             testID="see-calendar"
             accessibilityRole="link"
-            accessibilityLabel={t('home.seeCalendarA11y')}
+            accessibilityLabel={[t('home.seeCalendarA11y'), moreText].filter(Boolean).join('. ')}
             onPress={() => router.navigate('/calendar')}
             android_ripple={{ color: colors.pressed }}
             style={styles.link}
           >
-            <AppText color="primary" style={styles.linkText}>
-              {t('home.seeCalendar')}
-            </AppText>
+            <View style={styles.linkText}>
+              <AppText color="primary" style={styles.linkLabel}>
+                {t('home.seeCalendar')}
+              </AppText>
+              {moreText ? (
+                <AppText variant="bodySmall" color="textSecondary" testID="more-soon">
+                  {moreText}
+                </AppText>
+              ) : null}
+            </View>
             <MaterialCommunityIcons
               name="arrow-right"
               size={iconSize.md}
@@ -228,14 +244,15 @@ const styles = StyleSheet.create({
   row: { gap: spacing.sm, paddingHorizontal: spacing.md, paddingBottom: spacing.xs },
   rowBleed: { marginHorizontal: -spacing.md },
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm },
+  upcoming: { gap: spacing.xxs },
   link: {
     flexDirection: 'row',
     alignItems: 'center',
-    alignSelf: 'flex-start',
     gap: spacing.xs,
     minHeight: minTouchTarget,
     paddingHorizontal: spacing.xs,
   },
-  linkText: { textDecorationLine: 'underline', fontWeight: '600' },
+  linkText: { flex: 1 },
+  linkLabel: { textDecorationLine: 'underline', fontWeight: '600' },
   gridCell: { width: '47.5%', flexGrow: 1 },
 });

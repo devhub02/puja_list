@@ -391,3 +391,25 @@ Import result: **25 dates imported, all in 2026; none in 2027** (the 2027 rows a
 9. Airplane mode: everything works (no network use was added).
 10. Check the two overridden rows and the 16 `confirmed` rows in `calendar_dates.csv` against your sources.
 
+
+### Phase 6B follow-up: compact Home "Next festival" (`phase-6b-home-fix`)
+Problem: the Home "Upcoming festivals" section was 5 tall cards that pushed Featured pujas down, showed overlapping ranges that looked contradictory, repeated the "AI draft" badge and led with a regional festival (Mysuru Dasara).
+
+Changed (Home only):
+- **One "Next festival" hero card** (`NextFestivalCard`): name, date or range, a countdown pill, the certainty label. **No review badge.** Whole card is one button (min 48dp, label "Next festival: <name>. <date>. <countdown>. <certainty>."). It opens the linked puja when exactly one active puja is linked, otherwise Festival Details (same rule as the Calendar).
+- **Ranking** (`pickNextFestival` in `src/utils/upcoming.ts`, pure): candidates are festivals whose last day (end date, else date) is today or later, so an ongoing festival counts; earliest start date wins; ties: (a) has a linked puja guide, (b) `pan_india` in `festival.regions`, (c) English name (then date id, so the result is stable). On the real data with today 2026-10-05, Sharad Navratri and Mysuru Dasara both start 2026-10-11 and Sharad Navratri wins (tested against the exported `content.json`).
+- **Countdown** (`countdownFor`, plain calendar dates, no time zones): `Starts today` (first day, single or multi-day), `In 1 day`, `In N days`, `Ongoing`; Hindi: `आज से शुरू`, `1 दिन में`, `N दिन में`, `चल रहा है`.
+- **See calendar row** directly under the card (a link, min 48dp) opens the Calendar tab and, when above zero, says "N more in the next 30 days" / "अगले 30 दिनों में N और पर्व". `countMoreSoon`: other festivals (the hero excluded) that start on or before today + 30 days and are not over (an ongoing one counts), each festival once, only bundled dates. Zero hides the count; the link stays. With today 2026-10-05 the real data gives 7.
+- The section title, its description and the 5-row list are gone (less height, so Featured pujas is much closer to the top). Removed strings `home.upcomingTitle` / `home.upcomingDescription`; `FestivalRow` lost its now-unused `compact` prop. `useUpcomingFestivals()` now returns one next-date entry per festival (no limit); `listUpcomingFestivals` stays in the repository (tested) but the app no longer calls it.
+- New pure helpers `daysBetween` and `addDays` in `dateUtils`.
+
+Where the review-status ("AI draft") badge still appears: Puja Details, Samagri screen header, Festival Details, Library and Search puja cards (`PujaCard`, when not expert verified), and the Calendar festival rows (month list and All festivals). It no longer appears on Home.
+
+Judgement call: a one-day festival that falls today also reads "Starts today", as you specified (no separate "Today" wording).
+
+Tests: new `upcoming.test.ts` (ranking incl. tie on start date, ongoing, last day, no linked puja, only a regional festival; countdowns incl. month/year/leap boundaries; the 30-day count incl. no double counting and zero); Home tests rewritten for the single card (no badge, countdown, count hidden at zero, opens puja or Festival Details, Hindi); real-content test for Sharad Navratri on 2026-10-05. All earlier tests pass.
+
+Verified (real output; Node v22.22.0): `npx tsc --noEmit` clean; `npm run lint` clean; `npm run format:check` clean; `npm test` **34 suites / 525 tests passed**; `npx expo export --platform android` OK (4.3 MB hbc); dev server `CI=1 npx expo start --clear` + curl of the Android bundle: **HTTP 200** (1818 modules, 9.5 MB); the only "ERROR" line is React Native DevTools failing to install as root (sandbox). `metro@0.84.5`, `@expo/metro-config@57.0.12`; no `metro*` in package.json; no dependency changed.
+
+Not verified: nothing was run on an emulator or device. Check by hand: that Featured pujas is visible without scrolling far on a 360dp phone; the hero at the largest text size (name wraps to 2 lines, the pill and the "N more" line wrap); Hindi countdown wording; light and dark; TalkBack reads the card as one button.
+

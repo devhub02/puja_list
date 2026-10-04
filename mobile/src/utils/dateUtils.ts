@@ -139,3 +139,20 @@ export function monthGrid(year: number, month: number, weekStart: WeekStart = 0)
 export function weekdayOrder(weekStart: WeekStart = 0): number[] {
   return Array.from({ length: 7 }, (_, i) => (weekStart + i) % 7);
 }
+
+/** Whole calendar days from `from` to `to` (negative when `to` is earlier). Null if either is not a real date. */
+export function daysBetween(from: string, to: string): number | null {
+  const a = parseIso(from);
+  const b = parseIso(to);
+  if (!a || !b) return null;
+  return utcDays(b) - utcDays(a);
+}
+
+/** The calendar date `days` days after `iso` (before it when negative). Null if `iso` is not a real date. */
+export function addDays(iso: string, days: number): string | null {
+  const ymd = parseIso(iso);
+  if (!ymd) return null;
+  const probe = new Date(Date.UTC(2000, 0, 1));
+  probe.setUTCFullYear(ymd.year, ymd.month - 1, ymd.day + days);
+  return toIso(probe.getUTCFullYear(), probe.getUTCMonth() + 1, probe.getUTCDate());
+}
