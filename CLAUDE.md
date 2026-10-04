@@ -39,6 +39,7 @@ content/*.json (source of truth) -> Pydantic validation -> exported JSON in mobi
 
 ## Calendar rules
 Year-specific dates are stored separately from festival metadata, bundled and verified. NEVER compute lunar/tithi dates in code. If a date is unavailable show "date not available". Each date has a certainty field.
+NEVER write festival dates from memory or inference, in content or in code. Dates enter the project only through content/calendar/calendar_dates.csv, filled by me from verified sources. Never fill, guess or "complete" a date cell yourself.
 
 ## UI
 All UI work must use the `ui-ux-pro-max` skill and follow docs/DESIGN_SYSTEM.md (CLAUDE.md palette wins; React Native, not web).
