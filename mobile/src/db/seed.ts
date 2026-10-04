@@ -198,7 +198,7 @@ export async function seedContentIfNeeded(
             e.region ?? 'all',
             e.certainty,
             jsonOrNull(e.regionNote),
-            e.source,
+            e.source ?? '', // the column is NOT NULL; '' means "no source"
           ],
         );
       }

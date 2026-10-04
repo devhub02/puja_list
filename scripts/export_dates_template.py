@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Create or extend content/calendar/calendar_dates.csv: one row per festival per supported year.
 
-The date, end_date, certainty and source_note columns are left EMPTY: dates are filled by a person from
+The date, end_date and certainty columns are left EMPTY: dates are filled by a person from
 verified sources, never by this tool. An existing CSV is never overwritten; only rows for festival/year
 pairs that are not in it yet are appended.
 """

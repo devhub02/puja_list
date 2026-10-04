@@ -1,8 +1,11 @@
 """Calendar-date pipeline: CSV template and CSV -> content/calendar/<year>.json import.
 
 Dates enter the project ONLY through content/calendar/calendar_dates.csv, filled by a human from verified
-sources. Nothing in this module computes, guesses or adjusts a date: the template leaves date, certainty and
-source_note empty, and the importer only copies rows that a person filled, after validating them.
+sources. Nothing in this module computes, guesses or adjusts a date: the template leaves date, end_date and
+certainty empty, and the importer only copies rows that a person filled, after validating them.
+
+The CSV has six columns. There is no region column (every imported entry gets region "all") and no source
+column (sources are kept outside the repository), so the generated year files carry no `source`.
 """
 
 from __future__ import annotations
@@ -19,7 +22,7 @@ from typing import Any
 from pydantic import ValidationError
 
 from app.schemas import CalendarYear
-from app.schemas.common import CALENDAR_ALL_REGIONS, DateCertainty, FestivalRegion
+from app.schemas.common import CALENDAR_ALL_REGIONS, DateCertainty
 from app.services.content_loader import DEFAULT_CONTENT_DIR
 
 SUPPORTED_YEARS: tuple[int, ...] = (2026, 2027)
@@ -30,11 +33,8 @@ CSV_COLUMNS = (
     "year",
     "date",
     "end_date",
-    "region",
     "certainty",
-    "source_note",
 )
-VALID_REGIONS = (CALENDAR_ALL_REGIONS, *(r.value for r in FestivalRegion))
 VALID_CERTAINTY = tuple(c.value for c in DateCertainty)
 _ISO = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
@@ -96,9 +96,7 @@ def export_template(
                 "year": str(year),
                 "date": "",
                 "end_date": "",
-                "region": CALENDAR_ALL_REGIONS,
                 "certainty": "",
-                "source_note": "",
             })
     rows = existing + added
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -141,10 +139,8 @@ def _parse_iso(value: str) -> _date | None:
         return None
 
 
-def _entry_id(year: int, festival_id: str, region: str) -> str:
-    base = festival_id.removeprefix("fest_")
-    suffix = "" if region == CALENDAR_ALL_REGIONS else f"_{region}"
-    return f"cal_{year}_{base}{suffix}"
+def _entry_id(year: int, festival_id: str) -> str:
+    return f"cal_{year}_{festival_id.removeprefix('fest_')}"
 
 
 def _read_numbered(path: Path) -> tuple[list[tuple[int, dict[str, str]]], list[RowIssue]]:
@@ -192,7 +188,7 @@ def import_dates(content_dir: Path = DEFAULT_CONTENT_DIR) -> ImportResult:
     festival_ids = set(_festival_names(content_dir))
     seen_years: set[int] = set()
     filled: list[tuple[int, dict[str, str]]] = []
-    first_line: dict[tuple[str, int, str], int] = {}
+    first_line: dict[tuple[str, int], int] = {}
 
     for line, row in rows:
         year_text = row["year"]
@@ -203,7 +199,7 @@ def import_dates(content_dir: Path = DEFAULT_CONTENT_DIR) -> ImportResult:
             continue
 
         problems: list[str] = []
-        festival_id, region = row["festival_id"], row["region"] or CALENDAR_ALL_REGIONS
+        festival_id = row["festival_id"]
         if festival_id not in festival_ids:
             problems.append(f"festival_id {festival_id!r} does not exist in festivals.json")
 
@@ -226,20 +222,16 @@ def import_dates(content_dir: Path = DEFAULT_CONTENT_DIR) -> ImportResult:
                 if year is not None and end.year != year:
                     problems.append(f"end_date {row['end_date']} is not in {year} (a date range must stay in one year)")
 
-        if region not in VALID_REGIONS:
-            problems.append(f"region {region!r} is not one of {', '.join(VALID_REGIONS)}")
         if not row["certainty"]:
             problems.append(f"certainty is required when a date is given (one of {', '.join(VALID_CERTAINTY)})")
         elif row["certainty"] not in VALID_CERTAINTY:
             problems.append(f"certainty {row['certainty']!r} is not one of {', '.join(VALID_CERTAINTY)}")
-        if not row["source_note"]:
-            problems.append("source_note is required when a date is given (name where you verified the date)")
 
         if year is not None:
-            key = (festival_id, year, region)
+            key = (festival_id, year)
             if key in first_line:
                 problems.append(
-                    f"duplicate festival/year/region: {festival_id} {year} {region!r} already filled on line {first_line[key]}"
+                    f"duplicate festival/year: {festival_id} {year} already filled on line {first_line[key]}"
                 )
             else:
                 first_line[key] = line
@@ -255,14 +247,12 @@ def import_dates(content_dir: Path = DEFAULT_CONTENT_DIR) -> ImportResult:
     by_year: dict[int, list[dict[str, Any]]] = {}
     for _line, row in filled:
         year = int(row["year"])
-        region = row["region"] or CALENDAR_ALL_REGIONS
         entry: dict[str, Any] = {
-            "id": _entry_id(year, row["festival_id"], region),
+            "id": _entry_id(year, row["festival_id"]),
             "festivalId": row["festival_id"],
             "date": row["date"],
-            "region": region,
+            "region": CALENDAR_ALL_REGIONS,
             "certainty": row["certainty"],
-            "source": row["source_note"],
         }
         if row["end_date"]:
             entry["endDate"] = row["end_date"]
@@ -271,7 +261,7 @@ def import_dates(content_dir: Path = DEFAULT_CONTENT_DIR) -> ImportResult:
     cal_dir = content_dir / "calendar"
     documents: dict[int, str] = {}
     for year, entries in sorted(by_year.items()):
-        entries.sort(key=lambda e: (e["date"], e["festivalId"], e["region"]))
+        entries.sort(key=lambda e: (e["date"], e["festivalId"]))
         try:
             model = CalendarYear.model_validate({"year": year, "entries": entries})
         except ValidationError as exc:  # should be unreachable after the checks above

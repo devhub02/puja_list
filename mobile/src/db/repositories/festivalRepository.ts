@@ -73,7 +73,7 @@ function toCalendarDate(row: CalendarRow): CalendarDate {
     region: row.region,
     certainty: row.certainty,
     regionNote: parseOptionalJson<LocaleMap>(row.region_note_json),
-    source: row.source,
+    source: row.source || undefined,
   };
 }
 

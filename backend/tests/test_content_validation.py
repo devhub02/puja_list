@@ -417,6 +417,15 @@ def test_calendar_same_festival_may_have_regional_entries(load_mutated):
     assert load_mutated(m).ok
 
 
+def test_calendar_source_is_optional_but_not_empty(load_mutated):
+    assert load_mutated(lambda c: c["calendar"]["2031"]["entries"][0].pop("source")).ok
+    assert "source" in messages(load_mutated(lambda c: c["calendar"]["2031"]["entries"][0].update(source="")))
+
+
+def test_calendar_region_defaults_to_all(load_mutated):
+    assert load_mutated(lambda c: c["calendar"]["2031"]["entries"][0].pop("region", None)).ok
+
+
 def test_calendar_region_must_be_known(load_mutated):
     r = load_mutated(lambda c: c["calendar"]["2031"]["entries"][0].update(region="mars"))
     assert "region 'mars' is not one of" in messages(r)
