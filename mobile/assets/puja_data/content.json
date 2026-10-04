@@ -1,7 +1,7 @@
 {
-  "checksum": "sha256:a6ac55dafff66eb3997b696e2b6b6f9399de5a187cb272c8b6a37dad449e3a47",
+  "checksum": "sha256:3ad882fa511c7b1416ae3a1018f0d41eac793ca786d2f5783f437869612d21a7",
   "schemaVersion": 1,
-  "contentVersion": 3,
+  "contentVersion": 4,
   "languages": [
     "en",
     "hi"
@@ -5611,6 +5611,16 @@
       "name": {
         "en": "Diya/lamp",
         "hi": "दीया"
+      },
+      "alternateNames": {
+        "en": [
+          "Deepak",
+          "Deepam"
+        ],
+        "hi": [
+          "दीपक",
+          "दिया"
+        ]
       },
       "description": {
         "en": "Oil lamp for lighting",

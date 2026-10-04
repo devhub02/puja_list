@@ -9,12 +9,14 @@ type Props = {
   children: ReactNode;
   tone?: 'surface' | 'alt';
   style?: StyleProp<ViewStyle>;
+  testID?: string;
 };
 
-export function Card({ children, tone = 'surface', style }: Props) {
+export function Card({ children, tone = 'surface', style, testID }: Props) {
   const { colors, shadow } = useTheme();
   return (
     <View
+      testID={testID}
       style={[
         styles.card,
         {

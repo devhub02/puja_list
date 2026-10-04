@@ -7,12 +7,27 @@ import HomeScreen from '../app/(tabs)/index';
 import LibraryScreen from '../app/(tabs)/library';
 import PreparationScreen from '../app/(tabs)/preparation';
 import SettingsScreen from '../app/(tabs)/settings';
+import { DatabaseProvider } from '@/db/DatabaseProvider';
+import { seedContentIfNeeded } from '@/db/seed';
+
+import { makeFixtureBundle } from '../testing/contentFixture';
+import { createMigratedDb } from '../testing/nodeSqlDb';
 import { TestProviders, resetSettings } from '../testing/utils';
+
+jest.mock('expo-constants', () => ({
+  __esModule: true,
+  default: { expoConfig: { version: '1.0.0' } },
+}));
+
+const db = createMigratedDb();
+const seeded = seedContentIfNeeded(db, makeFixtureBundle());
 
 const routes = {
   _layout: () => (
     <TestProviders>
-      <Slot />
+      <DatabaseProvider db={db}>
+        <Slot />
+      </DatabaseProvider>
     </TestProviders>
   ),
   '(tabs)/_layout': TabsLayout,
@@ -39,10 +54,12 @@ describe('bottom tabs', () => {
     }
   });
 
-  it('navigates to Library and shows its translated empty state', async () => {
+  it('navigates to Library and lists the pujas from the database', async () => {
+    await seeded;
     await resetSettings('en');
     await renderRouter(routes, { initialUrl: '/' });
     await fireEvent.press(await screen.findByLabelText('Library'));
-    expect(await screen.findByText('The puja library is being prepared')).toBeTruthy();
+    expect(await screen.findByTestId('library-count')).toBeTruthy();
+    expect(await screen.findByTestId('puja-card-puja_test_lakshmi')).toBeTruthy();
   });
 });

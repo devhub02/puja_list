@@ -17,8 +17,8 @@ export type TestSqlDb = SqlDb & {
   failOnStatement?: (sql: string, count: number) => boolean;
 };
 
-export function createNodeSqlDb(): TestSqlDb {
-  const raw = new DatabaseSync(':memory:');
+export function createNodeSqlDb(file: string = ':memory:'): TestSqlDb {
+  const raw = new DatabaseSync(file);
   raw.exec('PRAGMA foreign_keys = ON;');
   let count = 0;
   const db: TestSqlDb = {
