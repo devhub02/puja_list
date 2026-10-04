@@ -58,6 +58,9 @@ const en = {
     about: {
       title: 'About',
       version: 'App version',
+      contentVersion: 'Content version',
+      pujaCount: 'Pujas in this version',
+      contentUnavailable: 'Not loaded',
       description:
         'Puja Saathi helps you prepare for pujas and festivals across India: significance, samagri, step-by-step vidhi and checklists.',
       offline: 'All puja content is stored inside the app and works without internet.',
@@ -69,6 +72,13 @@ const en = {
       title: 'Please note',
       body: 'Vidhi and samagri can differ by region, family tradition, sampradaya and the way a puja is performed. Adjust the details according to your own family tradition.',
     },
+  },
+  startup: {
+    errorTitle: 'Could not open the puja library',
+    errorBody:
+      'Something went wrong while preparing the content stored on this phone. Your saved data is safe. Please try again.',
+    retry: 'Try again',
+    retrying: 'Trying again…',
   },
   a11y: {
     selected: 'selected',

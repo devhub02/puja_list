@@ -2,3 +2,5 @@ node_modules
 dist
 .expo
 package-lock.json
+drizzle
+assets/puja_data

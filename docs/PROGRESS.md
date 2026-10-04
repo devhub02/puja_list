@@ -4,7 +4,7 @@ Phases are defined in the project plan; this checklist tracks their status. Stat
 
 - [x] **Phase 0 — Monorepo bootstrap and documentation** (done on branch `phase-0-setup`, not pushed)
 - [x] **Phase 1 — Design system, navigation, i18n, settings** (done on branch `phase-1-foundation`, not pushed)
-- [ ] Phase 2
+- [x] **Phase 2 — Content schema validation, export pipeline, phone database** (done on branch `phase-2-data-layer`, not pushed)
 - [ ] Phase 3
 - [ ] Phase 4
 - [ ] Phase 5
@@ -57,3 +57,31 @@ Not fully verified:
 - Tab labels intentionally ignore the OS font scale (see DESIGN_SYSTEM.md); confirm this is acceptable.
 
 Deferred on purpose: SQLite/Drizzle, content loading, notifications, ads, "Reset local data" (nothing to reset yet).
+
+
+## Phase 2 status — data layer (schema validation, export pipeline, phone database)
+
+Done:
+- Backend: Pydantic v2 models for festival, puja, samagri item/usage, vidhi step, regional variation, checklist item, calendar year/entry, manifest and the top-level `ContentBundle` (`backend/app/schemas/`). Strict (unknown fields rejected), locale maps require `en`, ids match `^[a-z0-9]+(_[a-z0-9]+)*$`. Cross-file rules in `crosscheck.py`; loader/exporter in `backend/app/services/`.
+- `scripts/validate_content.py` (errors show file, entity id, field; exit 1) and `scripts/export_content.py` (validates first, refuses on failure, also checks against the previous export: no removed ids, `contentVersion` never lower, changed content needs a bump). Output: `mobile/assets/puja_data/content.json` with `schemaVersion`, `contentVersion`, `checksum`.
+- `content/` holds only `content_manifest.json`, `festivals.json` (`[]`), `samagri.json` (`[]`). No puja content exists yet. The export was run once; the bundle has 0 festivals/pujas/samagri.
+- Mobile DB (`mobile/src/db`): Drizzle schema exactly per `docs/DB_SCHEMA.md` (content tables incl. `puja_samagri` and `checklist_template`, user-data tables with no FKs to content, `content_meta`, indexes), generated migration `0000_initial_schema` plus raw-SQL migration `0001_fts_search_index` (FTS5), applied at app start.
+- Seed loader against a small `SqlDb` interface: one transaction, content tables + FTS rebuilt, user data never touched, rollback on any failure; re-seeds on `contentVersion`, `schemaVersion` or `checksum` change.
+- Startup: DB setup runs asynchronously after the first render; the splash screen is held until fonts, settings and the first DB attempt finish; failure shows a translated error state (English + Hindi) with a Retry button.
+- Read-only repositories: `listPujas` (category/month filters), `getPuja`, `listFestivals`/`getFestival` (with bundled dates), `searchContent` (bm25-ranked), `getContentInfo`. No user-data repositories yet.
+- Settings > About shows the loaded content version and puja count read from the database.
+
+FTS5 + Hindi finding (see `docs/DB_SCHEMA.md` §5): the default `unicode61` tokenizer splits Devanagari words at every matra/virama (so `ष` matches inside `लक्ष्मी`). The migration uses `unicode61 remove_diacritics 2 categories 'L* N* Co Mn Mc'`, which keeps words whole. Verified on Node's SQLite 3.50.x; a test fails if the `categories` option is removed.
+
+Dependencies added to `mobile/`: `expo-sqlite`, `drizzle-orm`, `drizzle-kit` (dev), `babel-plugin-inline-import` (dev, required by Drizzle's Expo migrations guide), `babel-preset-expo` (dev; needed now that a `babel.config.js` exists), `@types/node` (dev; test tooling for `node:sqlite`). New config: `babel.config.js`, `metro.config.js` (`.sql` source ext), `drizzle.config.ts`.
+
+Verified (real output in the phase report): backend `pytest` (89 tests), `validate_content.py`, `export_content.py`; mobile `npx tsc --noEmit`, `npm run lint`, `npm run format:check`, `npm test` (12 suites, 138 tests), `npx expo export --platform android` (the FTS migration and `content.json` are inside the bundle).
+
+Not verified:
+- **Nothing was run on a real Android device or emulator.** Tests use Node's built-in SQLite (`node:sqlite`, FTS5 enabled) as a stand-in; it is not the Android SQLite build. That `expo-sqlite` on Android has FTS5 is confirmed from its build flags, not by running it. Migrations, seeding, Hindi search and the About screen on a phone are still to be checked by hand.
+- `npx expo-doctor`: 19 of 21 checks passed; the same 2 network-dependent checks (Expo config schema, React Native Directory) fail because the sandbox cannot reach those servers.
+- `npx expo install` could not reach Expo's API; `expo-sqlite` was installed at the version from `expo/bundledNativeModules.json` (`~57.0.3`). Re-run `npx expo install --check` on a networked machine.
+- The `withTransaction` helper uses plain `BEGIN IMMEDIATE`/`COMMIT` on the single connection (not expo's `withExclusiveTransactionAsync`); fine at startup, where nothing else queries, but do not run other queries during a seed.
+- Seeding runs one statement per row. That is fine for the current empty bundle; re-measure startup time on a phone when Phase 3 adds hundreds of pujas.
+
+Deferred on purpose: real content (Phase 3), Library/Details/Search screens (Phase 4), user-data repositories (Phases 4-6), Alembic/SQLAlchemy (not needed yet), optional Content API.
