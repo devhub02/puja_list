@@ -11,11 +11,26 @@ export interface SqlDb {
   all<T = Record<string, unknown>>(sql: string, params?: SqlValue[]): Promise<T[]>;
 }
 
+// One queue per connection: two transactions can never interleave on the same connection (a second
+// BEGIN would fail, and statements from one caller would land inside the other's transaction).
+const queues = new WeakMap<SqlDb, Promise<unknown>>();
+
 /**
  * Run `fn` in one transaction: COMMIT if it resolves, ROLLBACK (and rethrow) if it throws.
- * Callers must not run other queries on the same connection while it is in progress.
+ * Transactions on one connection run one after another, in call order. `fn` must not start another
+ * transaction on the same connection (it would wait for itself).
  */
-export async function withTransaction<T>(db: SqlDb, fn: () => Promise<T>): Promise<T> {
+export function withTransaction<T>(db: SqlDb, fn: () => Promise<T>): Promise<T> {
+  const previous = queues.get(db) ?? Promise.resolve();
+  const result = previous.then(() => runTransaction(db, fn));
+  queues.set(
+    db,
+    result.catch(() => undefined),
+  );
+  return result;
+}
+
+async function runTransaction<T>(db: SqlDb, fn: () => Promise<T>): Promise<T> {
   await db.run('BEGIN IMMEDIATE');
   try {
     const result = await fn();

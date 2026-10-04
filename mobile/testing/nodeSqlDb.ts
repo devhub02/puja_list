@@ -39,14 +39,17 @@ export function createNodeSqlDb(file: string = ':memory:'): TestSqlDb {
 
 const DRIZZLE_DIR = path.resolve(__dirname, '..', 'drizzle');
 
-/** Applies the committed Drizzle migrations in journal order, the way the app's migrator does. */
-export function applyMigrations(db: TestSqlDb): void {
+/**
+ * Applies the committed Drizzle migrations in journal order, the way the app's migrator does.
+ * `range` applies only entries [from, to) of the journal, so a test can build an older schema first.
+ */
+export function applyMigrations(db: TestSqlDb, range: { from?: number; to?: number } = {}): void {
   const journal = JSON.parse(
     fs.readFileSync(path.join(DRIZZLE_DIR, 'meta', '_journal.json'), 'utf8'),
   ) as {
     entries: { tag: string }[];
   };
-  for (const entry of journal.entries) {
+  for (const entry of journal.entries.slice(range.from ?? 0, range.to)) {
     const sql = fs.readFileSync(path.join(DRIZZLE_DIR, `${entry.tag}.sql`), 'utf8');
     for (const statement of sql.split('--> statement-breakpoint')) {
       if (statement.trim()) db.raw.exec(statement);

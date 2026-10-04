@@ -16,6 +16,8 @@ const CONTENT_TABLES = [
 ];
 const USER_TABLES = [
   'saved_puja',
+  'preparation',
+  'vidhi_progress',
   'checklist_progress',
   'custom_samagri',
   'reminder',
@@ -56,8 +58,10 @@ describe('migrations on a fresh install', () => {
         'calendar_date_year_date_idx',
         'checklist_template_puja_id_idx',
         'saved_puja_saved_at_idx',
-        'checklist_progress_puja_id_idx',
-        'custom_samagri_puja_id_idx',
+        'checklist_progress_preparation_id_idx',
+        'preparation_puja_id_idx',
+        'preparation_last_opened_at_idx',
+        'custom_samagri_preparation_id_idx',
         'reminder_fire_at_idx',
         'reminder_puja_id_idx',
         'recent_view_viewed_at_idx',
@@ -74,10 +78,17 @@ describe('migrations on a fresh install', () => {
     expect(row[0].sql).toMatch(/UNIQUE INDEX/);
   });
 
-  it('gives user-data tables no foreign keys to content tables', async () => {
+  it('gives user-data tables no foreign keys to content tables (only to their own preparation, with cascade)', async () => {
     const db = createMigratedDb();
     for (const table of USER_TABLES) {
-      expect(await db.all(`SELECT * FROM pragma_foreign_key_list('${table}')`)).toEqual([]);
+      const fks = await db.all<{ table: string; on_delete: string }>(
+        `SELECT * FROM pragma_foreign_key_list('${table}')`,
+      );
+      if (['checklist_progress', 'custom_samagri', 'vidhi_progress'].includes(table)) {
+        expect(fks.map((fk) => [fk.table, fk.on_delete])).toEqual([['preparation', 'CASCADE']]);
+      } else {
+        expect(fks).toEqual([]);
+      }
     }
   });
 

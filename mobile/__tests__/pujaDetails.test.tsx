@@ -1,13 +1,21 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react-native';
 
 import PujaDetailsScreen from '../app/puja/[id]';
-import { listRecentViews, listSavedPujas } from '@/db/repositories';
+import {
+  createPreparation,
+  listPreparations,
+  listRecentViews,
+  listSavedPujas,
+  setItemChecked,
+} from '@/db/repositories';
 import { seedContentIfNeeded } from '@/db/seed';
+import { resetPreparationStore } from '@/store/preparationStore';
 import { resetUserStateStore } from '@/store/userStateStore';
 
 import { makeFixtureBundle } from '../testing/contentFixture';
 import { createMigratedDb } from '../testing/nodeSqlDb';
-import { back, navigate, resetRouterMock, setParams } from '../testing/routerMock';
+import { RICH_ID, makePreparationBundle } from '../testing/preparationFixture';
+import { back, navigate, push, resetRouterMock, setParams } from '../testing/routerMock';
 import { renderWithDb, resetSettings } from '../testing/utils';
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -15,6 +23,7 @@ jest.mock('expo-router', () => require('../testing/routerMock').routerMock);
 
 beforeEach(async () => {
   resetRouterMock();
+  resetPreparationStore();
   resetUserStateStore();
   await resetSettings('en');
 });
@@ -49,13 +58,15 @@ describe('Puja details', () => {
     expect(screen.getByText('Fixture variation')).toBeTruthy();
     expect(screen.getByText('East India')).toBeTruthy();
 
-    // read-only summary; no Samagri / Vidhi / Start buttons yet (Phase 5)
+    // read-only summary, plus the Phase 5 buttons (no preparation yet, so no progress card)
     expect(screen.getByTestId('samagri-counts').props.children).toBe(
       '1 required, 1 commonly used, 0 optional',
     );
     expect(screen.getByTestId('step-count').props.children).toBe('2 steps in the vidhi');
-    expect(screen.queryByText(/Start preparation/i)).toBeNull();
-    expect(screen.queryByRole('button', { name: /vidhi|samagri/i })).toBeNull();
+    expect(screen.getByTestId('start-preparation')).toBeTruthy();
+    expect(screen.getByTestId('open-samagri')).toBeTruthy();
+    expect(screen.getByTestId('open-vidhi')).toBeTruthy();
+    expect(screen.queryByTestId('my-progress')).toBeNull();
 
     // the date is never invented
     expect(screen.getByTestId('date-unavailable').props.children).toMatch(/Date not available/);
@@ -186,5 +197,97 @@ describe('Puja details', () => {
     await renderWithDb(<PujaDetailsScreen />, await fixtureDb());
     await screen.findByTestId('details-name');
     expect(screen.queryByTestId('safety-notes')).toBeNull();
+  });
+});
+
+describe('Puja details: preparation buttons (Phase 5)', () => {
+  async function richDb() {
+    const db = createMigratedDb();
+    await seedContentIfNeeded(db, makePreparationBundle());
+    return db;
+  }
+
+  it('Samagri and Vidhi open their screens for this puja', async () => {
+    setParams({ id: RICH_ID });
+    await renderWithDb(<PujaDetailsScreen />, await richDb());
+    await fireEvent.press(await screen.findByTestId('open-samagri'));
+    expect(push).toHaveBeenCalledWith({ pathname: '/puja/[id]/samagri', params: { id: RICH_ID } });
+    await fireEvent.press(screen.getByTestId('open-vidhi'));
+    expect(push).toHaveBeenCalledWith({ pathname: '/puja/[id]/vidhi', params: { id: RICH_ID } });
+  });
+
+  it('"Start preparation" with none yet creates one and opens its checklist (no dialog)', async () => {
+    const db = await richDb();
+    setParams({ id: RICH_ID });
+    await renderWithDb(<PujaDetailsScreen />, db);
+    await fireEvent.press(await screen.findByTestId('start-preparation'));
+    await waitFor(async () => expect(await listPreparations(db)).toHaveLength(1));
+    const [prep] = await listPreparations(db);
+    expect(screen.queryByTestId('start-dialog')).toBeNull();
+    expect(push).toHaveBeenCalledWith({
+      pathname: '/puja/[id]/samagri',
+      params: { id: RICH_ID, prep: prep.id },
+    });
+  });
+
+  it('with an existing preparation it asks: continue the existing one, or start a new one', async () => {
+    const db = await richDb();
+    const existing = await createPreparation(db, { pujaId: RICH_ID });
+    setParams({ id: RICH_ID });
+    await renderWithDb(<PujaDetailsScreen />, db);
+    await fireEvent.press(await screen.findByTestId('start-preparation'));
+    expect(screen.getByText('You already have a preparation for this puja')).toBeTruthy();
+    expect(push).not.toHaveBeenCalled();
+    expect(await listPreparations(db)).toHaveLength(1);
+
+    // Cancel changes nothing
+    await fireEvent.press(screen.getByTestId('start-cancel'));
+    expect(screen.queryByText('You already have a preparation for this puja')).toBeNull();
+    expect(await listPreparations(db)).toHaveLength(1);
+
+    // Continue opens the existing one without creating another
+    await fireEvent.press(screen.getByTestId('start-preparation'));
+    await fireEvent.press(screen.getByTestId('start-continue'));
+    expect(push).toHaveBeenCalledWith({
+      pathname: '/puja/[id]/samagri',
+      params: { id: RICH_ID, prep: existing.id },
+    });
+    expect(await listPreparations(db)).toHaveLength(1);
+
+    // Start a new one creates a second
+    push.mockClear();
+    await fireEvent.press(screen.getByTestId('start-preparation'));
+    await fireEvent.press(screen.getByTestId('start-new'));
+    await waitFor(async () => expect(await listPreparations(db)).toHaveLength(2));
+    const created = (await listPreparations(db)).find((p) => p.id !== existing.id)!;
+    expect(push).toHaveBeenCalledWith({
+      pathname: '/puja/[id]/samagri',
+      params: { id: RICH_ID, prep: created.id },
+    });
+  });
+
+  it('shows my progress for this puja ("Required 1 of 2") and opens that checklist', async () => {
+    const db = await richDb();
+    const prep = await createPreparation(db, { pujaId: RICH_ID, title: 'Home' });
+    await setItemChecked(db, prep.id, 'samagri', 'sm_r1', true);
+    setParams({ id: RICH_ID });
+    await renderWithDb(<PujaDetailsScreen />, db);
+    expect((await screen.findByTestId('my-progress-required')).props.children).toBe(
+      'Required 1 of 2',
+    );
+    expect(screen.getByText('Home')).toBeTruthy();
+    expect(screen.getByText('1 of 7 items checked')).toBeTruthy();
+    await fireEvent.press(screen.getByTestId('open-samagri'));
+    expect(push).toHaveBeenCalledWith({
+      pathname: '/puja/[id]/samagri',
+      params: { id: RICH_ID, prep: prep.id },
+    });
+  });
+
+  it('shows no progress card when there is no preparation', async () => {
+    setParams({ id: RICH_ID });
+    await renderWithDb(<PujaDetailsScreen />, await richDb());
+    await screen.findByTestId('start-preparation');
+    expect(screen.queryByTestId('my-progress')).toBeNull();
   });
 });

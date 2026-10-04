@@ -15,6 +15,8 @@ type Props = {
   /** Toggle state (e.g. "saved"), exposed to screen readers. */
   selected?: boolean;
   accessibilityLabel?: string;
+  /** Dimmed and not pressable; exposed to screen readers as disabled. Prefer explaining why nearby. */
+  disabled?: boolean;
   testID?: string;
 };
 
@@ -26,6 +28,7 @@ export function Button({
   icon,
   selected,
   accessibilityLabel,
+  disabled = false,
   testID,
 }: Props) {
   const { colors } = useTheme();
@@ -36,11 +39,13 @@ export function Button({
       testID={testID}
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel ?? label}
-      accessibilityState={selected === undefined ? undefined : { selected }}
+      accessibilityState={{ disabled, ...(selected === undefined ? {} : { selected }) }}
+      disabled={disabled}
       onPress={onPress}
       android_ripple={{ color: colors.pressed }}
       style={({ pressed }) => [
         styles.button,
+        disabled && styles.disabled,
         primary
           ? { backgroundColor: colors.primary, opacity: pressed ? 0.85 : 1 }
           : {
@@ -77,4 +82,5 @@ const styles = StyleSheet.create({
     gap: spacing.xs,
   },
   label: { textAlign: 'center', flexShrink: 1 },
+  disabled: { opacity: 0.45 },
 });

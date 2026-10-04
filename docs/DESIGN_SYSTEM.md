@@ -207,3 +207,52 @@ Verified by code/tests: 48 dp targets and labels, selected states, Hindi + Engli
 error states, light/dark colours come only from tokens. **Not verifiable here (no emulator):** rendering at 360 dp with the
 largest font, Hindi line clipping in the search field and cards, scroll smoothness of the Library on a low-end phone, the
 adaptive icon crop, and the splash screen. See the checklist in `docs/PROGRESS.md`.
+
+
+---
+
+# Phase 5 additions: Samagri checklist, Vidhi reader, My Preparation
+
+`ui-ux-pro-max` (`.agents/skills/ui-ux-pro-max/`) was used again, for real: its `SKILL.md` workflow, `search.py` queries (`--domain ux` for touch targets/spacing, confirmation dialogs, progress indicators, modal focus, and `--stack react-native` for accessibility labels and list rendering) and the canonical Pre-Delivery Checklist in `references/pro-rules.md`. The skill is not registered with the Skill tool in this environment, so it was applied by reading and running its files directly. As before, its suggested style/palette were not adopted; CLAUDE.md's palette wins (React Native, not web).
+
+| Skill guidance | Decision |
+|---|---|
+| Touch targets 48 dp on Android, 8 dp gap between targets | Checklist row = whole text area ticks it (min 48 dp tall); edit/delete/expand/section/chip/dialog buttons all >= 48 dp; 8 dp between chips and buttons. |
+| "Confirm before delete / irreversible actions" | Confirmation dialog for: delete custom item, reset checklist, delete preparation, clear completed custom items. Duplicate and rename are reversible and have a form dialog instead. |
+| "Silent success" is an anti-pattern ("brief success message") | `notify()` after reset, delete, duplicate, rename, clear: an Android toast (TalkBack reads it) or a screen-reader announcement. |
+| "Step indicators or progress bar" | `ProgressBar` on the checklist, on each preparation card, on Puja details and in the reader ("Step n of N" + bar). Always with a number next to it, never colour alone. |
+| Disabled controls: real disabled semantics, reduced emphasis, no tap action | `Button disabled` (45% opacity, `accessibilityState.disabled`), used for "Reset" with nothing ticked, "Previous" on the first step, A-/A+ at their limits. |
+| Form fields: visible label, error near the field | `TextField`: label above (never placeholder-only), 2 dp border that turns `focusRing` on focus/error, error text under the field with an alert role. |
+| "Don't rely on colour alone" | A ticked item shows a filled box icon **and** a line through the name **and** the `checked` state; collapsed/expanded sections expose `expanded`; the optional-step marker is text + icon. |
+| No emoji, one icon family, tokenised sizes | Material Community Icons only, `iconSize` tokens. |
+| Memoised list rows, stable keys | `FlatList` + `React.memo` rows (`ChecklistRow`, `PreparationCard`) with stable string keys; Samagri and My Preparation are virtualised. |
+| Focus ring on every interactive control | `TextField` has one. Buttons/chips rely on the Android pressed ripple and system focus highlight, as in earlier phases; no custom ring was added. Open item. |
+| Modal scrim legibility | The dialog card is opaque (`surface`), so text legibility does not depend on the scrim; the scrim (`rgba(28,20,17,0.6)`) only separates the card from the screen behind it in both themes. |
+
+## New components (`mobile/src/components`)
+
+- **`ChecklistRow`**: one checklist item. A 48 dp `checkbox` Pressable covers the check icon and all text, so the thumb target is large. Name (subheading), one summary line, optional labelled detail lines ("Quantity: ...", "Preparation: ...", "Regional note: ..."). When the text is long (> 140 characters) the summary is clamped to 2 lines, details are hidden and a separate 48 dp **Show more / Show less** button (role `button`, `expanded` state, per-item label) toggles them. Ticked = filled box + line-through + secondary colour. Custom rows add separate Edit / Delete icon buttons (never nested inside the checkbox Pressable). `compact` (shopping list) shows only name + one summary line. Highlight = 2 dp primary border + `surfaceAlt` fill (the item opened from a vidhi chip).
+- **`ProgressBar`**: 10 dp track (`surfaceAlt` + 1 dp `borderStrong` outline) with a `primary` fill. Role `progressbar` with `accessibilityValue {min, max, now, text}`.
+- **`Dialog`**: Modal on a scrim; Android back and a tap outside close it; title is a header; optional message and content (fields, lists); actions are stacked full-width `Button`s (main action first, Cancel last) so they never wrap badly at the largest text size; the body scrolls when long (max 86% of the window height). No danger colour exists in the palette, so a destructive confirm is a normal primary button whose title and body say exactly what will be lost.
+- **`TextField`**: labelled `TextInput`, min 48 dp (96 dp multiline), no explicit `lineHeight` (it clips Devanagari matras inside Android text fields, same rule as `SearchBar`).
+- **`TextSizeControl`**: `A-` / `A+` with the current size name between them (live region). It writes the **same** `textSize` in the settings store that Settings uses; nothing separate. The button at the end of the range is disabled.
+- **`PreparationCard`**: puja name, label (gold), progress bar, **"Required x of y" as the prominent line** (subheading), overall count, vidhi position, last opened date; buttons Checklist / Vidhi and a 48 dp More (...) button. A puja that no longer exists shows "This puja is no longer available" with management actions only.
+- `Button` gained `disabled`; `Chip` gained `role="button"` (used for the related-samagri chips).
+
+## Screen rules
+
+- **Samagri**: title + puja name; a progress card (bar, "x of y items checked", "n checked . m left", then a tinted **"Required items: x of y"** box with its own icon, the label of the checklist if any, an autosave hint, the review badge); filter chips (All / Required / Common / Optional / Mine, a radio group) and an "Unchecked only" checkbox chip; Add item / Reset checklist buttons; then sections in the fixed order **Required, Commonly used, Optional, My items**, each a 48 dp header button with its own `checked/total` and a chevron (`expanded` state). Section counters always count the whole section, not just what the filter shows. Items the guide no longer lists appear last under "No longer in the guide" (not counted, removable). The standard disclaimer closes the list. Empty states: no samagri (explains and offers Add item), nothing matches the filter (offers "Show all items"), no custom items.
+- **Vidhi reader**: top bar (back, "Vidhi" + puja name, safety button when the puja has safety notes); "Step n of N" with A-/A+ and a progress bar; the step (heading, optional-step pill, description, an **Important** card with a primary border, "Samagri for this step" chips); a fixed bottom bar with Previous / Next (Next becomes Finish on the last step) above the gesture bar. Safety notes: shown on their own screen before step 1 when starting from the beginning, and reachable at any time from the shield button (a dialog). Finished = a Completed screen (check icon, "You have read all N steps.", Read again from step 1, Open samagri checklist, Back to puja). Reader text uses the global text-size scale and the Devanagari line height (x1.65). The screen is kept awake while open. No ads, no interruptions.
+- **Puja details**: "Start preparation" (primary), then Samagri and Vidhi (outline, side by side, wrapping on a narrow screen). When the user has a checklist for this puja a "Your preparation" card shows its label, bar and **"Required x of y"**. With an existing preparation, Start opens a dialog: Continue the existing one / Start a new one / Cancel.
+- **My Preparation**: a "Checklists | Shopping list" segmented control. Checklists: Current preparations (not 100% ticked, most recently opened first), Saved pujas, Recently used (the five most recently opened, compact rows). Real empty state with an "Open library" button when there are no preparations. Shopping list: a chip per preparation (only when there are several), "n items left", then the unchecked items grouped Required, Commonly used, Optional, My items as compact tick-off rows. No reminder UI of any kind.
+
+## Accessibility notes (Phase 5)
+
+- Checklist rows announce as `checkbox` with the checked state; section headers announce `expanded`; progress bars announce a value; the reader's step title carries "Step n of N: title"; every icon-only button has a label that includes the item name ("Delete Ghee", "Open Vidhi: Rich Puja, Home").
+- Dialogs close with Android back; the text fields have visible labels; validation errors are announced.
+- 360 dp is the test width in the component tests; at the largest text size the dialogs stack their buttons, the reader and checklist wrap, and A-/A+ stay 48 dp.
+- Reduced motion: only the dialog fade is animated (RN Modal `fade`); nothing else moves except the list scrolling to a focused item.
+
+## Phase 5 UI review
+
+Verified by code/tests: roles, labels and states, 48 dp targets (set in styles), light/dark colours only from tokens, Hindi and English text for every screen (including all 16 real pujas), line-height ratio in Hindi, text-size scaling in the reader, disabled states, dialog confirmation flows. **Not verifiable here (no emulator):** keyboard behaviour in the dialogs (whether the Save button stays visible above the keyboard), rendering at 360 dp with the largest OS font, scroll-to-item smoothness after tapping a related-samagri chip, how the bottom bar sits above the gesture bar, the toast, and keep-awake. See `docs/PROGRESS.md`.

@@ -9,16 +9,20 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AppText } from '@/components/AppText';
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
+import { Dialog } from '@/components/Dialog';
 import { IconButton } from '@/components/IconButton';
+import { ProgressBar } from '@/components/ProgressBar';
 import { PujaImage } from '@/components/PujaImage';
 import { ReviewBadge } from '@/components/ReviewBadge';
 import { SectionHeader } from '@/components/SectionHeader';
 import { ErrorState, LoadingState } from '@/components/StateViews';
 import { useDatabase } from '@/db/DatabaseProvider';
-import { getPuja } from '@/db/repositories';
+import { createPreparation, getPuja } from '@/db/repositories';
 import type { PujaDetail } from '@/db/types';
+import { usePreparationSummaries } from '@/hooks/usePreparation';
 import { useUserState } from '@/hooks/useUserState';
 import { localize } from '@/i18n/localeMap';
+import { writeAndRefresh } from '@/store/preparationStore';
 import { useSettingsStore } from '@/store/settingsStore';
 import { useUserStateStore } from '@/store/userStateStore';
 import { iconSize, radius, spacing } from '@/theme/tokens';
@@ -43,6 +47,8 @@ export default function PujaDetailsScreen() {
   const id = Array.isArray(params.id) ? params.id[0] : params.id;
 
   const [attempt, setAttempt] = useState(0);
+  const [askStart, setAskStart] = useState(false);
+  const prepSummaries = usePreparationSummaries();
   // The result belongs to one (id, attempt); anything else means "still loading" (no setState in the effect body).
   const key = `${id ?? ''}:${attempt}`;
   const [loaded, setLoaded] = useState<{
@@ -82,6 +88,27 @@ export default function PujaDetailsScreen() {
     () => (router.canGoBack() ? router.back() : router.replace('/')),
     [router],
   );
+
+  // The user's checklists for this puja, most recently opened first (empty until they start one).
+  const myPreparations =
+    prepSummaries.status === 'ready' ? prepSummaries.summaries.filter((p) => p.pujaId === id) : [];
+  const latestPreparation = myPreparations[0];
+
+  const openSamagri = (pujaId: string, preparationId?: string) =>
+    router.push({
+      pathname: '/puja/[id]/samagri',
+      params: preparationId ? { id: pujaId, prep: preparationId } : { id: pujaId },
+    });
+  const openVidhi = (pujaId: string, preparationId?: string) =>
+    router.push({
+      pathname: '/puja/[id]/vidhi',
+      params: preparationId ? { id: pujaId, prep: preparationId } : { id: pujaId },
+    });
+  const startNew = async (pujaId: string) => {
+    setAskStart(false);
+    const created = await writeAndRefresh(() => createPreparation(db, { pujaId }));
+    openSamagri(pujaId, created.id);
+  };
 
   const body = (() => {
     if (state.status === 'loading') return <LoadingState />;
@@ -140,6 +167,67 @@ export default function PujaDetailsScreen() {
           selected={saved}
           onPress={() => void toggleSaved(db, puja.id)}
         />
+
+        <View style={styles.actions}>
+          <Button
+            testID="start-preparation"
+            icon="clipboard-plus-outline"
+            label={t('details.startPreparation')}
+            onPress={() => (latestPreparation ? setAskStart(true) : void startNew(puja.id))}
+          />
+          <View style={styles.actionRow}>
+            <View style={styles.actionCell}>
+              <Button
+                testID="open-samagri"
+                variant="outline"
+                icon="basket-outline"
+                label={t('details.openSamagri')}
+                onPress={() => openSamagri(puja.id, latestPreparation?.id)}
+              />
+            </View>
+            <View style={styles.actionCell}>
+              <Button
+                testID="open-vidhi"
+                variant="outline"
+                icon="book-open-variant"
+                label={t('details.openVidhi')}
+                onPress={() => openVidhi(puja.id, latestPreparation?.id)}
+              />
+            </View>
+          </View>
+        </View>
+
+        {latestPreparation ? (
+          <Card testID="my-progress" style={styles.progress}>
+            <AppText variant="subheading" accessibilityRole="header">
+              {t('details.yourPreparation')}
+            </AppText>
+            {latestPreparation.title ? (
+              <AppText color="textSecondary">{latestPreparation.title}</AppText>
+            ) : null}
+            <ProgressBar
+              value={
+                latestPreparation.progress.overall.total === 0
+                  ? 0
+                  : latestPreparation.progress.overall.checked /
+                    latestPreparation.progress.overall.total
+              }
+              label={t('preparation.progressLabel', { name })}
+              valueText={t('preparation.overallShort', latestPreparation.progress.overall)}
+            />
+            <AppText variant="subheading" testID="my-progress-required">
+              {t('preparation.requiredShort', latestPreparation.progress.required)}
+            </AppText>
+            <AppText variant="bodySmall" color="textSecondary">
+              {t('preparation.overallShort', latestPreparation.progress.overall)}
+            </AppText>
+            {myPreparations.length > 1 ? (
+              <AppText variant="caption" color="textSecondary">
+                {t('details.preparationCount', { count: myPreparations.length })}
+              </AppText>
+            ) : null}
+          </Card>
+        ) : null}
 
         {reviewed ? (
           <Card tone="alt" style={styles.review}>
@@ -226,9 +314,6 @@ export default function PujaDetailsScreen() {
               {t('details.steps', { count: puja.steps.length })}
             </AppText>
           ) : null}
-          <AppText variant="bodySmall" color="textSecondary">
-            {t('details.detailsLater')}
-          </AppText>
         </Section>
 
         <Section title={t('details.sourceTitle')}>
@@ -264,6 +349,34 @@ export default function PujaDetailsScreen() {
         />
       </View>
       <ScrollView contentContainerStyle={styles.content}>{body}</ScrollView>
+      <Dialog
+        testID="start-dialog"
+        visible={askStart && state.status === 'ready'}
+        title={t('details.startExistingTitle')}
+        message={t('details.startExistingBody')}
+        onClose={() => setAskStart(false)}
+        actions={[
+          {
+            label: t('details.continueExisting'),
+            variant: 'primary',
+            testID: 'start-continue',
+            onPress: () => {
+              setAskStart(false);
+              if (state.status === 'ready' && latestPreparation) {
+                openSamagri(state.puja.id, latestPreparation.id);
+              }
+            },
+          },
+          {
+            label: t('details.startNew'),
+            testID: 'start-new',
+            onPress: () => {
+              if (state.status === 'ready') void startNew(state.puja.id);
+            },
+          },
+          { label: t('common.cancel'), testID: 'start-cancel', onPress: () => setAskStart(false) },
+        ]}
+      />
     </View>
   );
 }
@@ -296,6 +409,10 @@ const styles = StyleSheet.create({
   },
   hero: { width: '100%', aspectRatio: 16 / 9, borderRadius: radius.lg },
   titleBlock: { gap: spacing.xxs },
+  actions: { gap: spacing.xs },
+  actionRow: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.xs },
+  actionCell: { flexGrow: 1, flexBasis: 140 },
+  progress: { gap: spacing.xs },
   badges: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: spacing.xs },
   section: { gap: spacing.sm },
   review: { gap: spacing.xs },
