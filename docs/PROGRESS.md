@@ -85,3 +85,12 @@ Not verified:
 - Seeding runs one statement per row. That is fine for the current empty bundle; re-measure startup time on a phone when Phase 3 adds hundreds of pujas.
 
 Deferred on purpose: real content (Phase 3), Library/Details/Search screens (Phase 4), user-data repositories (Phases 4-6), Alembic/SQLAlchemy (not needed yet), optional Content API.
+
+## Known issues and fixes
+
+**Metro bundler error on Windows with Node 24.x** (Fixed)
+- **Error:** `Cannot read properties of undefined (reading 'transformFile')` in `metro/src/Bundler.js:55:30` when running `npx expo start` on Windows
+- **Root cause:** `babel-plugin-inline-import` was in `devDependencies` instead of `dependencies`. Babel requires this plugin at runtime during Metro bundling to inline `.sql` files from Drizzle migrations. DevDependencies may not be available in all bundling contexts.
+- **Secondary factor:** Node 24.19.0 is newer than officially supported (Expo SDK 57 targets Node 18–22 LTS). Metro 0.84.5 may have compatibility issues with Node 24.
+- **Fix:** Moved `babel-plugin-inline-import` from `devDependencies` to `dependencies` in `mobile/package.json`. Verified: `npx expo start --clear` now starts Metro bundler without the `transformFile` error and successfully rebuilds cache.
+- **User action:** Run `npm install` in `mobile/` after pulling the fix. If issues persist, consider downgrading to Node 22 LTS.
