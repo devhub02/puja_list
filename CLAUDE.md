@@ -41,6 +41,7 @@ content/*.json (source of truth) -> Pydantic validation -> exported JSON in mobi
 Year-specific dates are stored separately from festival metadata, bundled and verified. NEVER compute lunar/tithi dates in code. If a date is unavailable show "date not available". Each date has a certainty field.
 
 ## UI
+All UI work must use the `ui-ux-pro-max` skill and follow docs/DESIGN_SYSTEM.md (CLAUDE.md palette wins; React Native, not web).
 Warm cream background, saffron/orange accents, deep maroon headings, subtle gold, rounded cards. Light + dark theme. Bundle Noto Sans Devanagari. No copyrighted artwork. Accessible contrast, large touch targets. Test on a real Android device or emulator.
 
 ## Privacy
