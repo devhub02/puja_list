@@ -18,9 +18,14 @@ Every file was converted from the owner's originals (resized and re-encoded, sam
 
 | File | Category id |
 |---|---|
-| `category-household.webp` | `household` |
-| `category-regional.webp` | `regional` |
-| `category-vrat.webp` | `vrat` |
+| `category-household-pujas.webp` | `household` |
+| `category-vrat-observances.webp` | `vrat` |
+| `category-regional-festivals.webp` | `regional` |
+| `category-major-festivals.webp` | `festival` |
+| `category-special-occasions.webp` | `life_cycle` |
+| `category-seasonal-festivals.webp` | not mapped (no matching content category); kept for later |
+
+`tribal` has no image yet and uses the vector icon.
 
 ## Pujas (`mobile/assets/images/pujas/`)
 

@@ -2,7 +2,7 @@
  * The ONE place that maps content ids to bundled artwork (Metro needs static require paths).
  * Puja image -> category image -> null (callers draw a vector icon). A missing entry never throws.
  * File naming: assets/images/pujas/puja-<puja id without the "puja_" prefix, "_" as "-">.webp and
- * assets/images/categories/category-<category id>.webp.
+ * assets/images/categories/category-<name>.webp (names listed in the map below).
  */
 import type { ImageSourcePropType } from 'react-native';
 
@@ -25,11 +25,16 @@ const pujaImages: Record<string, ImageSourcePropType> = {
   puja_vishwakarma: require('../../assets/images/pujas/puja-vishwakarma.webp'),
 };
 
-/** Only categories with artwork are listed; the others (festival, life_cycle, tribal) use the icon fallback. */
+/**
+ * Category artwork. `tribal` has no image yet and uses the vector-icon fallback.
+ * `category-seasonal-festivals.webp` is kept in assets/images/categories for later: no content category matches it.
+ */
 const categoryImages: Record<string, ImageSourcePropType> = {
-  household: require('../../assets/images/categories/category-household.webp'),
-  regional: require('../../assets/images/categories/category-regional.webp'),
-  vrat: require('../../assets/images/categories/category-vrat.webp'),
+  household: require('../../assets/images/categories/category-household-pujas.webp'),
+  vrat: require('../../assets/images/categories/category-vrat-observances.webp'),
+  regional: require('../../assets/images/categories/category-regional-festivals.webp'),
+  festival: require('../../assets/images/categories/category-major-festivals.webp'),
+  life_cycle: require('../../assets/images/categories/category-special-occasions.webp'),
 };
 
 const has = (map: Record<string, ImageSourcePropType>, key: string | undefined) =>

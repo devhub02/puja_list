@@ -5,6 +5,7 @@ import { getCategoryImage, getPujaImage } from '@/theme/images';
 import { matchCategoryIds } from '@/utils/categorySearch';
 import { buildLibraryItems, emptyFilters, hasActiveFilters } from '@/utils/libraryFilter';
 import {
+  categoryOrder,
   extractSafetyNotes,
   kindOf,
   pickFeatured,
@@ -192,6 +193,16 @@ describe('image mapping', () => {
 
   it('every bundled puja has artwork', () => {
     for (const puja of bundled.pujas) expect(getPujaImage(puja.id, puja.category)).not.toBeNull();
+  });
+
+  it('every content category is mapped to an image or deliberately uses the icon fallback', () => {
+    const used = new Set(bundled.pujas.map((p) => p.category));
+    expect([...used].sort()).toEqual(['festival', 'household', 'vrat']);
+    for (const category of categoryOrder) {
+      const image = getCategoryImage(category);
+      if (category === 'tribal') expect(image).toBeNull();
+      else expect(image).not.toBeNull();
+    }
   });
 
   it('falls back to the category image, then to null, and never throws', () => {

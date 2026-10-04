@@ -193,7 +193,7 @@ Deferred on purpose: Library/Details screens (Phase 4), actual pandit review/ver
 ## Phase 4 status — Home, Library, Search and Puja details
 
 Done:
-- **Images**: 22 original images from the owner's `PujaSaathi-Assets/` optimized into `mobile/assets/images/{brand,categories,pujas}` (16 puja WebP, 3 category WebP, 3 brand PNG; 1.3 MB total, largest file 103 KB). One id -> image mapping in `src/theme/images.ts` (puja -> category -> icon, never throws). app.json now uses the brand icon, splash and an adaptive-icon foreground on the cream background. `docs/ASSET_CREDITS.md` written.
+- **Images**: 22 original images from the owner's `PujaSaathi-Assets/` optimized into `mobile/assets/images/{brand,categories,pujas}` (16 puja WebP, 6 category WebP, 3 brand PNG; ~1.4 MB total, largest file 103 KB). One id -> image mapping in `src/theme/images.ts` (puja -> category -> icon, never throws). app.json now uses the brand icon, splash and an adaptive-icon foreground on the cream background. `docs/ASSET_CREDITS.md` written.
 - **User-state repositories**: `saved_puja`, `recent_view` (last 20), `recent_search` (last 10, no duplicates ignoring case/spacing). Tests include a real close-and-reopen of a file database and a content re-seed that removes a puja.
 - **Search**: one `SearchBar` used on Home (launcher), Library (filters in place, sticky above the list) and the Search screen. New `searchPujas` repository function (names, alternate spellings, festival names, category names, samagri names; a samagri match reports which puja contains it). 200 ms debounce; recents + suggestions on empty; <= 6 instant suggestions while typing; keyboard search opens the full list; clear (X); translated no-results; a search is recorded only on submit or when a result is opened.
 - **Screens**: Home, Library, Search (`app/search.tsx`), Puja details (`app/puja/[id].tsx`), all English + Hindi, with loading / empty / error states, accessibility labels and 48 dp targets.
@@ -205,7 +205,7 @@ Decisions where the data did not support a feature:
 - **Upcoming festivals**: not shown (no calendar dates).
 - **Details sections**: "When is it observed?" shows "Date not available" (no `generalDateDescription` exists); "Common traditions" is omitted (no such field); "Preparation overview" is a read-only summary built from real data (samagri counts, step count) because no overview text exists; **safety notes** are found by the title pattern "Safety Note / Health Note / Health and Safety Note" on vidhi steps (stop-gap until the schema gets a structured field). Puja `puja_govardhan` involves open flames but has no safety step in its content, so it shows no safety card; that is a content gap to fill, not something the app should invent.
 - **"Festival vs household" filter**: derived from the category (`household` and `life_cycle` = household; everything else = festival), because every puja is linked to a festival.
-- **Category images**: only 3 of 6 categories have artwork (see the image report in the phase summary); the others use a vector icon.
+- **Category images**: 5 of 6 categories have artwork (festival, vrat, household, life_cycle, regional); `tribal` uses a vector icon. `category-seasonal-festivals.webp` is kept, unmapped.
 
 Verified (run for real in this phase):
 - backend: `pytest` 89 passed; `scripts/validate_content.py` OK (contentVersion 4, 16 pujas)
