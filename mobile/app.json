@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "pujasaathi",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
     "backgroundColor": "#FFF8EC",
     "platforms": ["android"],
     "android": {
@@ -26,7 +26,11 @@
         {
           "backgroundColor": "#FFF8EC",
           "image": "./assets/images/splash-icon.png",
-          "imageWidth": 76
+          "imageWidth": 76,
+          "dark": {
+            "backgroundColor": "#1C1411",
+            "image": "./assets/images/splash-icon.png"
+          }
         }
       ]
     ],
