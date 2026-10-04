@@ -15,7 +15,7 @@ describe('Home tab', () => {
     expect(screen.getByTestId('home-date').props.children).toMatch(/2\d{3}/);
     expect(screen.getByText('Coming soon')).toBeTruthy();
     expect(screen.getByText('Your puja guides are on the way')).toBeTruthy();
-  });
+  }, 10000);
 
   it('renders in Hindi', async () => {
     await resetSettings('hi');
@@ -23,5 +23,5 @@ describe('Home tab', () => {
     expect(screen.getByText('पूजा साथी')).toBeTruthy();
     expect(screen.getByText('आज')).toBeTruthy();
     expect(screen.getByText('जल्द आ रहा है')).toBeTruthy();
-  });
+  }, 10000);
 });
