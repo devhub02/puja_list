@@ -1,0 +1,42 @@
+{
+  "id": "puja_vishwakarma",
+  "festivalId": "fest_vishwakarma",
+  "name": { "en": "Vishwakarma Puja", "hi": "विश्वकर्मा पूजन" },
+  "alternateNames": { "en": ["Viswakarma Puja"], "hi": ["विश्वकर्मा पूजा"] },
+  "category": "household",
+  "regions": ["pan_india"],
+  "summary": { "en": "Festival honoring Vishwakarma, the divine architect and craftsman. Widely celebrated in industries, workshops, and by artisans and engineers.", "hi": "विश्वकर्मा, दिव्य वास्तुकार और कारीगर को सम्मान देने का पर्व। उद्योगों, कार्यशालाओं और कारीगरों द्वारा व्यापक रूप से मनाया जाता है।" },
+  "significance": { "en": "Vishwakarma Puja celebrates the patron deity of artisans, engineers, and craftspeople. He is worshipped for skill, knowledge, and protection in one's profession. The puja typically includes blessing tools and machinery, invoking safety and prosperity in work.", "hi": "विश्वकर्मा पूजन कारीगरों, इंजीनियरों और शिल्पकारों के संरक्षक देवता का जश्न है। उन्हें कौशल, ज्ञान और पेशे में सुरक्षा के लिए पूजा जाता है। पूजा में आमतौर पर औजारों और मशीनरी को आशीर्वाद देना, काम में सुरक्षा और समृद्धि का आह्वान शामिल होता है।" },
+  "samagri": [
+    { "samagriId": "sm_flowers", "classification": "REQUIRED", "purpose": { "en": "Flowers for worshipping the deity", "hi": "देवता की पूजा के लिए फूल" }, "sortOrder": 1 },
+    { "samagriId": "sm_incense", "classification": "COMMON", "purpose": { "en": "Incense during worship", "hi": "पूजा के दौरान अगरबत्ती" }, "sortOrder": 2 },
+    { "samagriId": "sm_diya", "classification": "COMMON", "purpose": { "en": "Oil lamp for lighting", "hi": "प्रकाश के लिए दीया" }, "sortOrder": 3 },
+    { "samagriId": "sm_oil", "classification": "REQUIRED", "purpose": { "en": "Oil for the lamp", "hi": "दीये के लिए तेल" }, "sortOrder": 4 },
+    { "samagriId": "sm_rice", "classification": "COMMON", "purpose": { "en": "Rice for offerings", "hi": "चढ़ावे के लिए चावल" }, "sortOrder": 5 },
+    { "samagriId": "sm_water", "classification": "REQUIRED", "purpose": { "en": "Water for rituals", "hi": "पूजा के लिए पानी" }, "sortOrder": 6 },
+    { "samagriId": "sm_yellow_flowers", "classification": "COMMON", "purpose": { "en": "Marigold or yellow flowers as offering", "hi": "गेंदा या पीले फूलों का चढ़ावा" }, "sortOrder": 7 },
+    { "samagriId": "sm_sweets", "classification": "OPTIONAL", "purpose": { "en": "Sweets for distribution after puja", "hi": "पूजा के बाद वितरण के लिए मिठाई" }, "sortOrder": 8 },
+    { "samagriId": "sm_milk", "classification": "OPTIONAL", "purpose": { "en": "Milk for offerings if needed", "hi": "आवश्यकतानुसार दूध का चढ़ावा" }, "sortOrder": 9 }
+  ],
+  "steps": [
+    { "id": "step_vishwakarma_1", "stepNumber": 1, "title": { "en": "Prepare the Workspace", "hi": "कार्यस्थल की तैयारी" }, "description": { "en": "Clean and prepare the workshop or workspace where tools and machinery are located. Arrange all tools and equipment in an organized manner. This place becomes the shrine for the puja.", "hi": "कार्यशाला या कार्यस्थल को साफ करें और तैयार करें जहां औजार और मशीनरी हैं। सभी उपकरणों को व्यवस्थित तरीके से व्यवस्थित करें। यह स्थान पूजा के लिए मंदिर बन जाता है।" }, "relatedSamagriIds": [], "isOptional": false },
+    { "id": "step_vishwakarma_2", "stepNumber": 2, "title": { "en": "Set up the Altar", "hi": "वेदी की स्थापना" }, "description": { "en": "Create a small altar or sacred space. Place an idol or image of Vishwakarma if available, or simply use flowers and incense to mark the sacred space. Arrange water, flowers, and offering items.", "hi": "एक छोटी वेदी या पवित्र स्थान बनाएं। यदि उपलब्ध हो तो विश्वकर्मा की मूर्ति या तस्वीर रखें, या केवल पवित्र स्थान को चिह्नित करने के लिए फूल और अगरबत्ती का उपयोग करें। पानी, फूल और चढ़ावे की वस्तुओं को व्यवस्थित करें।" }, "relatedSamagriIds": ["sm_flowers", "sm_incense", "sm_water"], "isOptional": false },
+    { "id": "step_vishwakarma_3", "stepNumber": 3, "title": { "en": "Invoke Vishwakarma", "hi": "विश्वकर्मा का आह्वान" }, "description": { "en": "Light the diya and incense. Offer flowers and water to the deity. Recite prayers invoking Vishwakarma for his blessings. The specific prayers vary by family tradition and region—follow your own or consult a local guide.", "hi": "दीया और अगरबत्ती जलाएं। देवता को फूल और पानी अर्पित करें। विश्वकर्मा से आशीर्वाद के लिए प्रार्थना करें। विशिष्ट प्रार्थनाएं परिवार की परंपरा और क्षेत्र के आधार पर भिन्न होती हैं—अपनी परंपरा का पालन करें या किसी स्थानीय व्यक्ति से परामर्श लें।" }, "relatedSamagriIds": ["sm_diya", "sm_oil", "sm_incense", "sm_flowers", "sm_water"], "isOptional": false },
+    { "id": "step_vishwakarma_4", "stepNumber": 4, "title": { "en": "Bless the Tools and Machinery", "hi": "औजारों और मशीनरी का आशीर्वाद" }, "description": { "en": "The main ritual involves blessing all tools and machinery. Circle the tools with offerings or simply touch them with flowers and tilaka while reciting blessings. This symbolizes invoking protection and prosperity for work performed with these tools.", "hi": "मुख्य अनुष्ठान सभी औजारों और मशीनरी को आशीर्वाद देना है। चढ़ावे के साथ औजारों को घेरें या केवल उन्हें फूलों और तिलक से छूते हुए आशीर्वाद दें। यह इन औजारों के साथ किए गए काम में सुरक्षा और समृद्धि का प्रतीक है।" }, "relatedSamagriIds": ["sm_flowers"], "isOptional": false },
+    { "id": "step_vishwakarma_5", "stepNumber": 5, "title": { "en": "Distribution of Blessed Items", "hi": "आशीर्वादित वस्तुओं का वितरण" }, "description": { "en": "Distribute blessed water, flowers, or sweets among workers, colleagues, or family members. This marks the completion of the puja and spreads the blessings. Traditionally, workers take the day off to celebrate together.", "hi": "कर्मचारियों, सहकर्मियों या पारिवारिक सदस्यों के बीच आशीर्वादित पानी, फूल या मिठाई वितरित करें। यह पूजा की समाप्ति का प्रतीक है और आशीर्वाद को फैलाता है। परंपरागत रूप से, कर्मचारी एक साथ मनाने के लिए दिन की छुट्टी लेते हैं।" }, "relatedSamagriIds": ["sm_water", "sm_flowers", "sm_sweets"], "isOptional": false },
+    { "id": "step_vishwakarma_6", "stepNumber": 6, "title": { "en": "Safety Note: Tool and Machinery Precautions", "hi": "सुरक्षा नोट: औजार और मशीनरी सावधानियां" }, "description": { "en": "During the puja, ensure all machinery is turned off and safe. Do not operate any equipment during the ritual. Keep the area clear of hazards. If the puja involves blessing tools near running machinery, ensure proper safety protocols are followed and machines are isolated from the ritual area.", "hi": "पूजा के दौरान, सभी मशीनरी को बंद करें और सुरक्षित करें। अनुष्ठान के दौरान किसी भी उपकरण को संचालित न करें। क्षेत्र को खतरों से मुक्त रखें। यदि पूजा में चलती हुई मशीनरी के पास औजारों को आशीर्वाद देना शामिल है, तो उचित सुरक्षा प्रोटोकॉल का पालन सुनिश्चित करें और मशीनों को अनुष्ठान क्षेत्र से अलग करें।" }, "relatedSamagriIds": [], "isOptional": false }
+  ],
+  "variations": [
+    {
+      "id": "var_vishwakarma_factory",
+      "regions": ["pan_india"],
+      "title": { "en": "Factory and Industrial Tradition", "hi": "कारखाना और औद्योगिक परंपरा" },
+      "description": { "en": "In factories and large industries, Vishwakarma Puja is celebrated on a large scale. The ritual often includes blessing all machinery on the factory floor, group prayers for safety, and distribution of sweets among all workers. Many organizations declare a holiday to allow workers to participate in the celebrations.", "hi": "कारखानों और बड़े उद्योगों में विश्वकर्मा पूजन बड़े पैमाने पर मनाया जाता है। अनुष्ठान में अक्सर कारखाने के फर्श पर सभी मशीनरी को आशीर्वाद देना, सुरक्षा के लिए सामूहिक प्रार्थना और सभी कर्मचारियों के बीच मिठाई का वितरण शामिल होता है। कई संगठन कर्मचारियों को समारोह में भाग लेने की अनुमति देने के लिए अवकाश की घोषणा करते हैं।" }
+    }
+  ],
+  "disclaimer": null,
+  "reviewStatus": "ai_drafted",
+  "sourceNote": { "en": "AI-drafted guide based on Vishwakarma Puja traditions across India. Specific prayers and rituals vary by region and community. Not verified by a pandit.", "hi": "भारत भर में विश्वकर्मा पूजन की परंपराओं पर आधारित AI-तैयार गाइड। विशिष्ट प्रार्थनाएं और अनुष्ठान क्षेत्र और समुदाय के आधार पर भिन्न होते हैं। पंडित द्वारा सत्यापित नहीं।" },
+  "contentVersion": 3,
+  "status": "active"
+}

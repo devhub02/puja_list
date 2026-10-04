@@ -276,5 +276,47 @@
     "name": { "en": "Aarti lamp", "hi": "आरती का दीया" },
     "description": { "en": "Multi-wick lamp for aarti ritual", "hi": "आरती की परंपरा के लिए बहु-बत्ती दीया" },
     "status": "active"
+  },
+  {
+    "id": "sm_sugarcane",
+    "name": { "en": "Sugarcane", "hi": "गन्ना" },
+    "description": { "en": "Fresh sugarcane stalks", "hi": "ताजे गन्ने की बेल" },
+    "status": "active"
+  },
+  {
+    "id": "sm_thread",
+    "name": { "en": "Thread", "hi": "धागा" },
+    "description": { "en": "Sacred thread or string", "hi": "पवित्र धागा" },
+    "status": "active"
+  },
+  {
+    "id": "sm_mehndi",
+    "name": { "en": "Henna/mehndi", "hi": "मेहंदी" },
+    "description": { "en": "Henna paste for decoration", "hi": "सजावट के लिए मेहंदी पेस्ट" },
+    "status": "active"
+  },
+  {
+    "id": "sm_clay_pot",
+    "name": { "en": "Clay pot", "hi": "मिट्टी का बर्तन" },
+    "description": { "en": "Earthen pot for ritual use", "hi": "पूजा के लिए मिट्टी का बर्तन" },
+    "status": "active"
+  },
+  {
+    "id": "sm_chickpea",
+    "name": { "en": "Chickpea/chana", "hi": "चना" },
+    "description": { "en": "Dried chickpeas or gram", "hi": "सूखे चने या दाल" },
+    "status": "active"
+  },
+  {
+    "id": "sm_cow_dung",
+    "name": { "en": "Cow dung", "hi": "गाय का गोबर" },
+    "description": { "en": "Dried cow dung for ritual and cleansing", "hi": "पूजा और सफाई के लिए सूखा गाय का गोबर" },
+    "status": "active"
+  },
+  {
+    "id": "sm_stones",
+    "name": { "en": "Stones", "hi": "पत्थर" },
+    "description": { "en": "Small pebbles or stones for ritual", "hi": "पूजा के लिए छोटी कंकड़" },
+    "status": "active"
   }
 ]

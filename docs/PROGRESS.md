@@ -5,8 +5,8 @@ Phases are defined in the project plan; this checklist tracks their status. Stat
 - [x] **Phase 0 — Monorepo bootstrap and documentation** (done on branch `phase-0-setup`, not pushed)
 - [x] **Phase 1 — Design system, navigation, i18n, settings** (done on branch `phase-1-foundation`, not pushed)
 - [x] **Phase 2 — Content schema validation, export pipeline, phone database** (done on branch `phase-2-data-layer`, not pushed)
-- [x] **Phase 3, Batch 1 — Bundled puja content, pan-India core pujas** (in progress on branch `phase-3-batch-1`)
-- [ ] Phase 3, Batch 2
+- [x] **Phase 3, Batch 1 — Bundled puja content, pan-India core pujas** (merged to main)
+- [x] **Phase 3, Batch 2 — Bundled puja content, East India and festival-family pujas** (done on branch `phase-3-batch-2`, not pushed)
 - [ ] Phase 4
 - [ ] Phase 5
 - [ ] Phase 6
@@ -130,5 +130,61 @@ Notes on content:
 - Regional variations describe genuine differences only; general disclaimer reminds users to follow their own family tradition
 - **sourceNote**: every puja states "AI-drafted general guide, not yet verified by a pandit"
 - Settings > About now displays: puja count (8), content version (2)
+
+Deferred on purpose: Library/Details screens (Phase 4), actual pandit review/verification (Phase 3 follow-ups), calendar year dates (separate phase), user data repositories (Phases 4+).
+
+
+## Phase 3, Batch 2 status — East India and festival-family pujas
+
+Done:
+- **Content for 8 new pujas** (all `reviewStatus: ai_drafted`):
+  1. Chhath Puja — 12 samagri items, 6 vidhi steps (including safety notes), 2 regional variations (Bihar/Jharkhand, Eastern UP/Nepal Terai); health warning for long fasts
+  2. Vishwakarma Puja — 9 samagri items, 6 vidhi steps (tool blessing, worker safety), 1 factory/industrial variation
+  3. Jitiya Vrat — 9 samagri items, 6 vidhi steps (overnight fast, morning worship), 1 regional variation (Bihar/Jharkhand); health warning for rigorous fasting
+  4. Hartalika Teej — 9 samagri items, 6 vidhi steps (mehndi, fasting, worship), 1 regional variation (North India fairs); health warning for all-day fast
+  5. Bhai Dooj — 9 samagri items, 4 vidhi steps (tilak application, gift exchange), 1 regional variation (Maharashtra Bhai Tika)
+  6. Raksha Bandhan — 9 samagri items, 5 vidhi steps (rakhi tying ceremony), 1 regional variation (Coastal India/Nariyel Purnima)
+  7. Karwa Chauth — 9 samagri items, 5 vidhi steps (full day fast until moonrise), 1 regional variation (North India traditions); health warning for extended fasting without water
+  8. Govardhan Puja — 12 samagri items, 6 vidhi steps (mound creation, Annakut offerings, cow worship), 1 regional variation (Mathura/Brindavan grandeur)
+- **8 new samagri items added**: sugarcane, thread, mehndi, clay pot, chickpea, cow dung, stones
+- **Total samagri catalogue**: 53 items (added 7 new ones for this batch)
+- **16 total pujas** (8 from Batch 1 + 8 from Batch 2) with **16 festivals**
+- **Content export and validation**: contentVersion bumped to 3, all 16 pujas validated
+- **Review sheets exported**: `docs/review/puja_*.md` files updated (16 total sheets for manual verification)
+- **Android bundle compiles**: `npx expo export --platform android` (1685 modules, 3.8MB)
+
+Verified:
+- Backend: `pytest` (89 tests) — all pass
+- Backend validation: `validate_content.py` — content OK, contentVersion bumped to 3, 16 pujas/festivals
+- Backend export: `export_content.py` — bundle created with sha256 checksum a6ac55daff...
+- Mobile: `npx tsc --noEmit` — no TypeScript errors
+- Mobile: `npm run lint` — all linting passes
+- Mobile: `npm run format:check` — all formatting valid
+- Mobile Android export: `npx expo export --platform android` — bundle (1685 modules, 3.8MB) compiles
+- Dev server bundling: `npx expo start --clear` running successfully
+- Android bundle request: HTTP 200 response for entry.bundle?platform=android&dev=true&minify=false
+- Node version: v22.22.0
+- Metro/Expo: `@expo/metro-config@57.0.12`, `metro@0.84.5`
+
+Not verified:
+- `npm test` in mobile/ — Jest configuration issue (noted in Phase 3 Batch 1, non-blocking)
+- `npx expo-doctor` — deferred (same 2 network checks as earlier phases)
+- Real Android device or emulator: no device available; all schema, seeding, search, display, fasting health features still need to be checked by hand
+
+Notes on content:
+- All pujas authored in English (primary) and Hindi (Devanagari) with natural translations, not transliterations
+- **No invented mantras, shlokas, aarti text, or scripture quotes.** Actions described in family tradition terms; recitations noted as "as per family tradition"
+- **Explicit safety notes** on Chhath (ghat water depth, child supervision, cold water temperature), Jitiya (overnight fast without water), Karwa Chauth (day-long fast without food or water), Govardhan (open flame diyas)
+- **Health warnings** for all fasting vrats: pregnant mothers, nursing mothers, anemia, diabetes, heart conditions, and those on medications should consult a doctor
+- Each puja has its own samagri list; items classified appropriately (REQUIRED/COMMON/OPTIONAL per puja)
+- Regional variations only where genuinely known (Bihar vs. Jharkhand vs. Eastern UP for Chhath; factory vs. small workshop for Vishwakarma; North India fairs for Teej; Mathura/Brindavan grandeur for Govardhan)
+- **sourceNote**: every puja states "AI-drafted general guide, not yet verified by a pandit"
+- Settings > About now displays: puja count (16), content version (3)
+
+Omitted details (where unsure):
+- Exact quantities for food offerings in Chhath and Govardhan (guidance is "as needed")
+- Specific song lyrics for Chhath Geet, Teej Geet, Jitiya Geet (note: "as per family tradition or local pandit")
+- Exact fabric for ritual items (guidance is general: "cloth", "thread", not brand specifics)
+- Precise astronomical calculations for Chhath or Karwa Chauth moon-sighting (app will show "date not available" when calendar dates are added in a later phase)
 
 Deferred on purpose: Library/Details screens (Phase 4), actual pandit review/verification (Phase 3 follow-ups), calendar year dates (separate phase), user data repositories (Phases 4+).

@@ -1,0 +1,40 @@
+{
+  "id": "puja_bhai_dooj",
+  "festivalId": "fest_bhai_dooj",
+  "name": { "en": "Bhai Dooj", "hi": "भाई दूज" },
+  "alternateNames": { "en": ["Bhai Tika", "Bhaiya Dooj"], "hi": ["भाई टीका", "भैया दूज"] },
+  "category": "household",
+  "regions": ["pan_india"],
+  "summary": { "en": "Festival celebrating the bond between brothers and sisters. Sisters pray for their brothers' well-being and longevity by applying tilak on their foreheads.", "hi": "भाई और बहन के रिश्ते को मनाने वाला पर्व। बहनें अपने भाइयों के कल्याण और दीर्घायु के लिए उनके माथे पर तिलक लगाकर प्रार्थना करती हैं।" },
+  "significance": { "en": "Bhai Dooj celebrates the sacred bond of sibling love. According to tradition, sisters apply tilak to their brothers' foreheads as a blessing for their protection and prosperity. The brother, in turn, pledges to support and protect his sister. It is a day to strengthen family bonds and express love and gratitude.", "hi": "भाई दूज भाई-बहन के पवित्र रिश्ते का जश्न है। परंपरा के अनुसार, बहनें अपने भाइयों के संरक्षण और समृद्धि के आशीर्वाद के रूप में उनके माथे पर तिलक लगाती हैं। बदले में, भाई अपनी बहन का समर्थन और रक्षा करने का वचन देता है। यह पारिवारिक संबंधों को मजबूत करने और प्रेम और कृतज्ञता व्यक्त करने का दिन है।" },
+  "samagri": [
+    { "samagriId": "sm_vermillion", "classification": "REQUIRED", "purpose": { "en": "Red powder for applying tilak on brother's forehead", "hi": "भाई के माथे पर तिलक लगाने के लिए लाल पाउडर" }, "sortOrder": 1 },
+    { "samagriId": "sm_rice", "classification": "REQUIRED", "purpose": { "en": "Rice for tika, mixed with vermillion", "hi": "तिलक के लिए चावल, सिंदूर के साथ मिलाया जाता है" }, "sortOrder": 2 },
+    { "samagriId": "sm_flowers", "classification": "COMMON", "purpose": { "en": "Flowers for offering and worship", "hi": "चढ़ावे और पूजा के लिए फूल" }, "sortOrder": 3 },
+    { "samagriId": "sm_diya", "classification": "COMMON", "purpose": { "en": "Oil lamp for lighting", "hi": "प्रकाश के लिए दीया" }, "sortOrder": 4 },
+    { "samagriId": "sm_oil", "classification": "REQUIRED", "purpose": { "en": "Oil for the lamp", "hi": "दीये के लिए तेल" }, "sortOrder": 5 },
+    { "samagriId": "sm_incense", "classification": "OPTIONAL", "purpose": { "en": "Incense during prayers", "hi": "प्रार्थना के दौरान अगरबत्ती" }, "sortOrder": 6 },
+    { "samagriId": "sm_water", "classification": "REQUIRED", "purpose": { "en": "Water for rituals and blessings", "hi": "अनुष्ठान और आशीर्वाद के लिए पानी" }, "sortOrder": 7 },
+    { "samagriId": "sm_sweets", "classification": "COMMON", "purpose": { "en": "Sweets for offering and sharing", "hi": "चढ़ावा और साझा करने के लिए मिठाई" }, "sortOrder": 8 },
+    { "samagriId": "sm_dry_fruits", "classification": "OPTIONAL", "purpose": { "en": "Dry fruits for gifts and offerings", "hi": "उपहार और चढ़ावे के लिए सूखे मेवे" }, "sortOrder": 9 }
+  ],
+  "steps": [
+    { "id": "step_bhai_dooj_1", "stepNumber": 1, "title": { "en": "Prepare the Tilak", "hi": "तिलक की तैयारी" }, "description": { "en": "Mix vermillion powder with rice to create a paste for the tilak. Some families add water or oil to make it bind better. Prepare this sacred mixture with devotion, as it represents blessings for the brother's well-being.", "hi": "भाई के माथे पर तिलक लगाने के लिए सिंदूर के पाउडर को चावल के साथ मिलाएं। कुछ परिवार इसे बेहतर तरीके से बांधने के लिए पानी या तेल मिलाते हैं। इस पवित्र मिश्रण को भक्ति के साथ तैयार करें, क्योंकि यह भाई के कल्याण के लिए आशीर्वाद का प्रतिनिधित्व करता है।" }, "relatedSamagriIds": ["sm_vermillion", "sm_rice"], "isOptional": false },
+    { "id": "step_bhai_dooj_2", "stepNumber": 2, "title": { "en": "Light the Lamp and Offer Prayers", "hi": "दीया जलाएं और प्रार्थना करें" }, "description": { "en": "Light a diya and offer flowers and water. Recite prayers for the brother's health, prosperity, and long life. Some families sing short prayers or hymns as part of the ritual. The atmosphere should be one of love and gratitude.", "hi": "एक दीया जलाएं और फूल और पानी अर्पित करें। भाई के स्वास्थ्य, समृद्धि और लंबी उम्र के लिए प्रार्थना करें। कुछ परिवार अनुष्ठान के हिस्से के रूप में छोटी प्रार्थनाएं या भजन गाते हैं। माहौल प्रेम और कृतज्ञता का होना चाहिए।" }, "relatedSamagriIds": ["sm_diya", "sm_oil", "sm_flowers", "sm_water"], "isOptional": false },
+    { "id": "step_bhai_dooj_3", "stepNumber": 3, "title": { "en": "Apply the Tilak", "hi": "तिलक लगाएं" }, "description": { "en": "With prayers on the lips, apply the tilak on the brother's forehead. This mark symbolizes the sister's love and blessings for his protection and prosperity. The brother should receive this with reverence and gratitude.", "hi": "होठों पर प्रार्थना के साथ, भाई के माथे पर तिलक लगाएं। यह चिह्न बहन के प्रेम और उसके संरक्षण और समृद्धि के लिए आशीर्वाद का प्रतीक है। भाई को यह सम्मान और कृतज्ञता के साथ प्राप्त करना चाहिए।" }, "relatedSamagriIds": ["sm_vermillion", "sm_rice"], "isOptional": false },
+    { "id": "step_bhai_dooj_4", "stepNumber": 4, "title": { "en": "Exchange of Gifts and Blessings", "hi": "उपहारों और आशीर्वादों का आदान-प्रदान" }, "description": { "en": "After the tilak, the brother blesses the sister and offers gifts (sweets, dry fruits, or other tokens of love). The sister, in return, prays for the brother's well-being. Share sweets and gifts with family members to spread joy and strengthen bonds.", "hi": "तिलक के बाद, भाई बहन को आशीर्वाद देता है और उपहार देता है (मिठाई, सूखे मेवे या प्रेम के अन्य प्रतीक)। बदले में, बहन भाई के कल्याण के लिए प्रार्थना करती है। पारिवारिक सदस्यों के साथ मिठाई और उपहार साझा करें ताकि खुशी फैले और रिश्ते मजबूत हों।" }, "relatedSamagriIds": ["sm_sweets", "sm_dry_fruits"], "isOptional": false }
+  ],
+  "variations": [
+    {
+      "id": "var_bhai_dooj_maharashtra",
+      "regions": ["west"],
+      "title": { "en": "Maharashtra Tradition (Bhai Tika)", "hi": "महाराष्ट्र परंपरा (भाई टीका)" },
+      "description": { "en": "In Maharashtra, this festival is known as Bhai Tika. Sisters apply a more elaborate tilak with rice, flower petals, and vermillion. The ritual often includes a more formal blessing where the sister places a hand on the brother's head while giving blessings. Gifts and sweets exchanged are more elaborate.", "hi": "महाराष्ट्र में इस त्योहार को भाई टीका के नाम से जाना जाता है। बहनें चावल, फूलों की पंखुड़ियों और सिंदूर के साथ अधिक विस्तृत तिलक लगाती हैं। अनुष्ठान में अक्सर एक अधिक औपचारिक आशीर्वाद शामिल होता है जहां बहन आशीर्वाद देते समय भाई के सिर पर हाथ रखती है। उपहार और मिठाई अधिक विस्तृत होते हैं।" }
+    }
+  ],
+  "disclaimer": null,
+  "reviewStatus": "ai_drafted",
+  "sourceNote": { "en": "AI-drafted guide based on Bhai Dooj traditions across India. Specific rituals and gift-giving practices vary by region and family. Not verified by a pandit.", "hi": "भारत भर में भाई दूज परंपराओं पर आधारित AI-तैयार गाइड। विशिष्ट अनुष्ठान और उपहार-देने की प्रथाएं क्षेत्र और परिवार के अनुसार भिन्न होती हैं। पंडित द्वारा सत्यापित नहीं।" },
+  "contentVersion": 3,
+  "status": "active"
+}
