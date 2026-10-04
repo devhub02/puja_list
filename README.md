@@ -22,7 +22,8 @@ festivals across India: significance, samagri, step-by-step vidhi, preparation c
 |---|---|
 | 0 - Monorepo bootstrap and docs | Done |
 | 1 - Design system, navigation, i18n, settings | Done (branch `phase-1-foundation`) |
-| 2+ - Content, database, reminders, ads | Not started |
+| 2 - Content schema validation, export pipeline, phone database | Done (branch `phase-2-data-layer`) |
+| 3+ - Real content, screens, reminders, ads | Not started |
 
 The app currently has four tabs (Home, Library, My Preparation, Settings). Settings is fully working (language,
 theme, text size, About, disclaimer). The other tabs are honest "coming soon" screens; there is **no puja content
@@ -60,6 +61,7 @@ Wi-Fi), or press `a` for a running Android emulator.
 | `npm run format` / `npm run format:check` | Prettier write / check |
 | `npx expo export --platform android` | Build the Android bundle (smoke check; output in `dist/`, git-ignored) |
 | `npx expo-doctor` | Check the project setup (needs internet for two of its checks) |
+| `npm run db:generate` | After editing `src/db/schema.ts`: generate a Drizzle migration into `mobile/drizzle/` (commit it). Raw SQL: `npx drizzle-kit generate --custom --name=<name>` |
 
 If the app looks stale after changing dependencies or config, restart with a clean cache: `npx expo start -c`.
 
@@ -80,6 +82,20 @@ pytest
 
 `GET /health` returns `{"status": "ok"}`.
 
+## Content pipeline (validate and export)
+
+Source of truth is `content/` (format: [docs/CONTENT_SCHEMA.md](docs/CONTENT_SCHEMA.md)). Run from the repo root with the
+backend virtualenv active (it needs `pydantic`):
+
+```bash
+python scripts/validate_content.py   # checks every file and cross-reference; prints file / entity id / field; exit 1 on errors
+python scripts/export_content.py     # validates first, refuses on failure, then writes mobile/assets/puja_data/content.json
+```
+
+The export carries `schemaVersion`, `contentVersion` and a checksum. Bump `contentVersion` in
+`content/content_manifest.json` whenever content changes; the app re-seeds its phone database when it sees a new version.
+Neither script invents content. Phase 2 ships empty collections; real content arrives in Phase 3.
+
 ## Project structure
 
 ```
@@ -87,14 +103,17 @@ mobile/                Expo + React Native app (TypeScript strict, Expo Router)
   app/                 Screens: (tabs)/index, library, preparation, settings; root _layout
   src/
     components/        Shared UI: AppText, Card, EmptyState, ScreenContainer, SectionHeader, SegmentedControl
+    db/                Drizzle schema, seed loader, FTS5 search, read-only repositories
     i18n/              Locale files (en, hi), language registry, locale-map helper, date format
     store/             Zustand settings store (persisted with AsyncStorage)
     theme/             Design tokens, ThemeProvider/useTheme, fonts, contrast helper
+  drizzle/             Generated + raw SQL migrations (committed, applied at app start)
+  assets/puja_data/    Exported content bundle (written by scripts/export_content.py)
   assets/fonts/        Bundled Nunito Sans + Noto Sans Devanagari (SIL OFL)
   __tests__/           Jest tests
-backend/               FastAPI service and content tooling (Python)
-content/               Source-of-truth JSON for puja and calendar data (not created yet)
-scripts/               Content validation and export (not created yet)
+backend/               FastAPI service and content tooling (Python): app/schemas (Pydantic content models), app/services (loader, export), tests/
+content/               Source-of-truth JSON for puja and calendar data (empty collections for now)
+scripts/               validate_content.py, export_content.py
 docs/                  CONTENT_SCHEMA.md, DB_SCHEMA.md, DESIGN_SYSTEM.md, PROGRESS.md
 CLAUDE.md              Project rules and context
 ```

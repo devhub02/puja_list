@@ -7,6 +7,9 @@ import * as SystemUI from 'expo-system-ui';
 import { useEffect } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import { StartupError } from '@/components/StartupError';
+import { initializeDatabase } from '@/db/database';
+import { DatabaseProvider, useDatabaseInit } from '@/db/DatabaseProvider';
 import { useSettingsHydrated } from '@/store/settingsStore';
 import { ThemeProvider, useAppFonts, useTheme } from '@/theme';
 
@@ -30,19 +33,27 @@ function ThemedShell() {
 export default function RootLayout() {
   const fontsReady = useAppFonts();
   const settingsReady = useSettingsHydrated();
-  const ready = fontsReady && settingsReady;
+  const database = useDatabaseInit(initializeDatabase);
+  // The first frame is never blocked: database setup starts after the first render, and the splash
+  // screen simply stays up until fonts, settings and the first database attempt have all finished.
+  const ready = fontsReady && settingsReady && database.settledOnce;
 
   useEffect(() => {
     if (ready) void SplashScreen.hideAsync();
   }, [ready]);
 
-  // The splash screen stays up until fonts and saved settings are loaded: no wrong theme/language flash.
   if (!ready) return null;
 
   return (
     <SafeAreaProvider>
       <ThemeProvider>
-        <ThemedShell />
+        {database.status === 'ready' ? (
+          <DatabaseProvider db={database.db}>
+            <ThemedShell />
+          </DatabaseProvider>
+        ) : (
+          <StartupError onRetry={database.retry} busy={database.status === 'loading'} />
+        )}
       </ThemeProvider>
     </SafeAreaProvider>
   );

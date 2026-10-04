@@ -8,12 +8,14 @@ import { ScreenContainer } from '@/components/ScreenContainer';
 import { SectionHeader } from '@/components/SectionHeader';
 import { SegmentedControl } from '@/components/SegmentedControl';
 import type { SegmentOption } from '@/components/SegmentedControl';
+import { useContentInfo } from '@/db/useContentInfo';
 import { languageCodes, languages } from '@/i18n/registry';
 import { useSettingsStore } from '@/store/settingsStore';
 import { spacing, textSizeOrder, themeModes } from '@/theme';
 
 export default function SettingsScreen() {
   const { t } = useTranslation();
+  const contentInfo = useContentInfo();
   const language = useSettingsStore((s) => s.language);
   const themeMode = useSettingsStore((s) => s.themeMode);
   const textSize = useSettingsStore((s) => s.textSize);
@@ -96,6 +98,22 @@ export default function SettingsScreen() {
             </AppText>
             <AppText variant="subheading" testID="app-version">
               {Constants.expoConfig?.version ?? ''}
+            </AppText>
+          </View>
+          <View style={styles.versionRow}>
+            <AppText variant="bodySmall" color="textSecondary">
+              {t('settings.about.contentVersion')}
+            </AppText>
+            <AppText variant="subheading" testID="content-version">
+              {contentInfo?.contentVersion ?? t('settings.about.contentUnavailable')}
+            </AppText>
+          </View>
+          <View style={styles.versionRow}>
+            <AppText variant="bodySmall" color="textSecondary">
+              {t('settings.about.pujaCount')}
+            </AppText>
+            <AppText variant="subheading" testID="puja-count">
+              {contentInfo ? contentInfo.pujaCount : t('settings.about.contentUnavailable')}
             </AppText>
           </View>
           <AppText>{t('settings.about.description')}</AppText>

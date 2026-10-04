@@ -1,6 +1,6 @@
 # Phone Database Schema (design only)
 
-Status: design for Phase 0. No code yet. Target: `expo-sqlite` with Drizzle ORM (FTS5 for search). The database lives on the phone only.
+Status: designed in Phase 0, implemented in Phase 2 (`mobile/src/db/schema.ts`, migrations in `mobile/drizzle/`). `expo-sqlite` with Drizzle ORM (FTS5 for search). The database lives on the phone only.
 
 ## 1. Principles
 
@@ -21,7 +21,7 @@ Status: design for Phase 0. No code yet. Target: `expo-sqlite` with Drizzle ORM 
 | `vidhi_step` | `id` PK, `puja_id`, `step_number` INTEGER, `title_json`, `description_json`, `related_samagri_ids_json`, `is_optional` INTEGER (0/1), `important_note_json` |
 | `regional_variation` | `id` PK, `puja_id`, `regions_json`, `title_json`, `description_json`, `affects_step_ids_json`, `affects_samagri_ids_json` |
 | `calendar_date` | `id` PK, `festival_id`, `year` INTEGER, `date` (ISO), `end_date` (ISO, nullable), `certainty`, `region_note_json`, `source` |
-| `content_meta` | `key` PK, `value` — holds `content_version`, `schema_version`, `seeded_at` |
+| `content_meta` | `key` PK, `value` — holds `content_version`, `schema_version`, `checksum`, `seeded_at` |
 
 Content tables may use real foreign keys **among themselves** (for example `vidhi_step.puja_id -> puja.id`) because they are always rebuilt together in one transaction. `puja_samagri` and `checklist` template rows (if the puja has `preparationChecklist`) follow the same rule. A `checklist_template` table (`id` PK, `puja_id`, `text_json`, `days_before`) is included in the content set for the preparation checklist.
 
@@ -37,7 +37,7 @@ None of these has a foreign key to a content table.
 | `reminder` | `id` PK (generated), `puja_id` (nullable), `festival_id` (nullable), `title`, `fire_at` INTEGER, `notification_id` (nullable, from expo-notifications), `created_at` INTEGER | local notifications, inexact |
 | `recent_view` | `puja_id` PK, `viewed_at` INTEGER | upserted on view; trimmed to the latest N |
 | `recent_search` | `query` PK, `searched_at` INTEGER | trimmed to the latest N |
-| `app_setting` | `key` PK, `value` | only if settings are not kept in MMKV/AsyncStorage |
+| `app_setting` | `key` PK, `value` | **not created**: settings live in AsyncStorage (Phase 1). Add it by a migration only if that changes. |
 
 Rules:
 - `puja_id`, `festival_id`, `item_ref` are plain strings holding stable content ids.
@@ -71,43 +71,47 @@ What goes in each row:
 - **puja / festival rows**: `names` = every language of `name` in one string; `alt_names` = all alternate spellings (for example transliterations such as "Ganesh/Ganesha/गणेश"); `extra` = samagri names for pujas so a search for a samagri finds pujas that use it.
 - **samagri rows**: `names` and `alt_names` of the item.
 
-Tokenizer: `unicode61` with `remove_diacritics 2`. This handles Devanagari word boundaries and folds Latin accents. Prefix queries (`term*`) support type-ahead.
+Tokenizer: `unicode61 remove_diacritics 2 categories 'L* N* Co Mn Mc'`. Prefix queries (`"term"*`) support type-ahead.
+
+Why `categories` is needed (tested in Phase 2): the default `unicode61` token categories are `L* N* Co`. Devanagari vowel signs (matras, category Mc) and the virama/anusvara (Mn) are not in that list, so the default tokenizer **splits Hindi words at every matra**: `लक्ष्मी` becomes `लक`, `ष`, `म`, which makes a query like `ष` match inside unrelated words. Adding `Mn Mc` keeps whole words intact. `remove_diacritics 2` still folds Latin accents. The trigram tokenizer was rejected because it needs at least 3 characters (many Hindi words and type-ahead prefixes are shorter).
 
 Hindi/English specifics:
 - Alternate **Roman spellings of Hindi words** (Latin transliteration) are stored in `alt_names`, because users often type Hindi in Latin letters. These come from content (`alternateNames`), not from code-based transliteration.
-- Devanagari combining marks (matras) are kept as-is by `unicode61`; the content authoring rule is to include common spelling variants in `alternateNames` rather than depend on fuzzy matching.
+- Devanagari combining marks (matras) are token characters (see above). Text and queries are normalised to NFC and stripped of zero-width joiners in app code, identically on both sides. The content authoring rule is to include common spelling variants in `alternateNames` rather than depend on fuzzy matching.
+- A user query becomes `"word1"* "word2"*`: every word is a prefix term and all must match. User input is stripped of FTS syntax characters before use.
+- Deprecated entities are kept in the content tables but get no search row. A puja's `extra` contains the names **and alternate spellings** of its samagri.
 - Ranking: `bm25` with column weights favouring `names` over `alt_names` over `extra`.
 
-Fallback: if FTS5 is not available in the bundled SQLite build, fall back to `LIKE` over `name_json`/`alt_names_json`. This must be checked on a real device in the phase that adds the database; until then it is an assumption, not a verified fact.
+FTS5 availability: `expo-sqlite`'s Android build compiles SQLite with `-DSQLITE_ENABLE_FTS5=1` (verified in `node_modules/expo-sqlite/android/build.gradle`, SQLite 3.50.x), and the migration creates the table at startup, so a build without FTS5 would fail loudly at the first launch rather than silently mis-search. Behaviour of the tokenizer was verified in unit tests on Node's SQLite 3.50.x; confirming it on a real Android device is still a manual step. There is deliberately no `LIKE` fallback code.
 
 Recent searches are stored in `recent_search`; the FTS index holds no user data.
 
 ## 6. Seeding plan
 
-Trigger: on first launch, or when the bundled manifest's `contentVersion` (or `schemaVersion`) differs from `content_meta.content_version`.
+Trigger: on first launch (no `content_meta` rows), or when the bundled `contentVersion`, `schemaVersion` or `checksum` differs from the stored `content_version`, `schema_version` or `checksum`. (The checksum also catches a rebuilt bundle whose version was not bumped. "Tables are empty" is not used as a trigger because an empty content set is valid.)
 
 Steps (all inside one SQLite transaction):
-1. Read the bundled JSON and manifest.
-2. `DELETE` rows from **content tables only** (including `search_index`), in dependency order.
+1. Read the bundled `content.json` (a bundle with a `schemaVersion` newer than the app supports is refused before anything is written).
+2. `BEGIN IMMEDIATE`, then `DELETE` rows from **content tables only** (including `search_index`), children before parents. `PRAGMA foreign_keys = ON` is set at open; content tables use real foreign keys among themselves (no cascades).
 3. `INSERT` the new rows (batched), rebuild `search_index`.
-4. Update `content_meta` (`content_version`, `schema_version`, `seeded_at`).
+4. Update `content_meta` (`content_version`, `schema_version`, `checksum`, `seeded_at`).
 5. `COMMIT`. If any step fails, `ROLLBACK`: the previous content stays in place and the app keeps working with it. The next launch retries.
 
 User-data tables are not part of the transaction's writes. After seeding, orphan handling is read-time only:
 - A saved/checked/reminder row whose content id no longer exists is shown as "no longer available" (or hidden), never deleted automatically.
 - Because ids are never reused or renamed (`CONTENT_SCHEMA.md` §1.2), an old id never silently points at different content.
 
-Large JSON is processed per file to limit memory use. The seed does not use the network.
+The bundle is a single JSON file (CONTENT_SCHEMA.md §2.2) read into memory at once; revisit if it grows to many megabytes. The seed does not use the network.
 
 ## 7. Migration plan (schema changes)
 
 Two kinds of change, handled differently:
 
 **Content-table changes** (new column, new table):
-- Content tables are disposable. A schema change is applied by dropping and recreating the affected content tables, then re-seeding in the same transaction. No data migration is needed.
+- Content tables are disposable. A schema change is a normal migration that drops and recreates the affected content tables **and deletes the `content_meta` rows**, so the seed runs again right after (the missing meta triggers it). No data migration is needed.
 
 **User-data-table changes**:
-- Use versioned, forward-only migrations (Drizzle migrations generated at build time, applied at app start before seeding). `PRAGMA user_version` tracks the applied version.
+- Use versioned, forward-only migrations (Drizzle migrations generated at build time with `npx drizzle-kit generate`, committed in `mobile/drizzle/`, applied at app start before seeding). Drizzle's own `__drizzle_migrations` table tracks what was applied; `PRAGMA user_version` is not used. Raw SQL (such as the FTS5 table) goes in a `drizzle-kit generate --custom` migration.
 - Migrations only `ALTER TABLE ... ADD COLUMN` or create new tables when possible; destructive changes copy data to a new table inside a transaction first.
 - Each migration runs in a transaction; on failure it rolls back and the app shows a recoverable error rather than losing data.
 - Every migration is covered by a test that opens a database at the previous version with sample user data and checks that the data survives.
