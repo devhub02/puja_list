@@ -78,5 +78,88 @@
     "regions": ["pan_india"],
     "pujaIds": ["puja_hanuman_puja"],
     "status": "active"
+  },
+  {
+    "id": "fest_chhath",
+    "name": { "en": "Chhath Puja", "hi": "छठ पूजा" },
+    "alternateNames": { "en": ["Chhat Puja", "Surya Shashthi"], "hi": ["छठ व्रत", "सूर्य षष्ठी"] },
+    "description": { "en": "Four-day festival honoring the Sun God, primarily observed in Bihar, Jharkhand, and eastern Uttar Pradesh.", "hi": "सूर्य देव को समर्पित चार दिनों का त्योहार, जो मुख्य रूप से बिहार, झारखंड और पूर्वी उत्तर प्रदेश में मनाया जाता है।" },
+    "significance": { "en": "Solar festival celebrating the Sun God as the symbol of energy and life, involving ritual bathing and rigorous fasting.", "hi": "सूर्य देव को जीवन और ऊर्जा के प्रतीक के रूप में मनाने वाला पर्व, जिसमें अनुष्ठान स्नान और कठोर व्रत शामिल होता है।" },
+    "regions": ["east", "pan_india"],
+    "pujaIds": ["puja_chhath"],
+    "status": "active"
+  },
+  {
+    "id": "fest_vishwakarma",
+    "name": { "en": "Vishwakarma Puja", "hi": "विश्वकर्मा पूजन" },
+    "alternateNames": { "en": ["Viswakarma Puja"], "hi": ["विश्वकर्मा पूजा"] },
+    "description": { "en": "Festival honoring Vishwakarma, the divine architect and craftsman, celebrated by artisans, engineers, and industries.", "hi": "विश्वकर्मा, दिव्य वास्तुकार और कारीगर को सम्मान देने वाला पर्व, जो कारीगरों, इंजीनियरों और उद्योगों द्वारा मनाया जाता है।" },
+    "significance": { "en": "Patron deity of artisans and engineers, blessing tools and machinery for safety and prosperity in work.", "hi": "कारीगरों और इंजीनियरों के संरक्षक देवता, जो काम में सुरक्षा और समृद्धि के लिए औजारों और मशीनरी को आशीर्वाद देते हैं।" },
+    "regions": ["pan_india"],
+    "pujaIds": ["puja_vishwakarma"],
+    "status": "active"
+  },
+  {
+    "id": "fest_jitiya",
+    "name": { "en": "Jitiya Vrat", "hi": "जितिया व्रत" },
+    "alternateNames": { "en": ["Jivitputrika", "Jivit Putra Vrat"], "hi": ["जीवितपुत्रिका", "जीवित पुत्र व्रत"] },
+    "description": { "en": "Women's fasting ritual observed for the well-being and long life of sons, primarily in Bihar and eastern India.", "hi": "पुत्रों के कल्याण और लंबी उम्र के लिए महिलाओं द्वारा किया जाने वाला व्रत, मुख्य रूप से बिहार और पूर्वी भारत में।" },
+    "significance": { "en": "Sacred vrat involving day-long and overnight fasting, reflecting a mother's devotion to her son's welfare and longevity.", "hi": "पवित्र व्रत जिसमें पूरे दिन और रात भर का व्रत शामिल है, जो माता की अपने पुत्र के कल्याण के प्रति भक्ति को दर्शाता है।" },
+    "regions": ["east", "pan_india"],
+    "pujaIds": ["puja_jitiya"],
+    "status": "active"
+  },
+  {
+    "id": "fest_hartalika_teej",
+    "name": { "en": "Hartalika Teej", "hi": "हरतालिका तीज" },
+    "alternateNames": { "en": ["Hartalika", "Tritiya Vrat"], "hi": ["हरतालिका", "तृतीया व्रत"] },
+    "description": { "en": "Women's fasting festival celebrated for marital happiness and the well-being of husbands, primarily in North and West India.", "hi": "पति के कल्याण और वैवाहिक सुख के लिए महिलाओं का व्रत पर्व, मुख्य रूप से उत्तर और पश्चिम भारत में मनाया जाता है।" },
+    "significance": { "en": "Festival celebrating marital devotion and the love between husband and wife, marked by fasting, mehndi, and swinging.", "hi": "वैवाहिक भक्ति और पति-पत्नी के बीच प्रेम का जश्न, जो व्रत, मेहंदी और झूले झूलने से चिह्नित है।" },
+    "regions": ["north", "west", "pan_india"],
+    "pujaIds": ["puja_hartalika_teej"],
+    "status": "active"
+  },
+  {
+    "id": "fest_bhai_dooj",
+    "name": { "en": "Bhai Dooj", "hi": "भाई दूज" },
+    "alternateNames": { "en": ["Bhai Tika", "Bhaiya Dooj"], "hi": ["भाई टीका", "भैया दूज"] },
+    "description": { "en": "Festival celebrating the bond between brothers and sisters, with sisters applying tilak on brothers' foreheads.", "hi": "भाई और बहन के रिश्ते को मनाने वाला पर्व, जिसमें बहनें भाइयों के माथे पर तिलक लगाती हैं।" },
+    "significance": { "en": "Celebrates the sacred bond of sibling love and mutual protection, strengthening family relationships.", "hi": "भाई-बहन के पवित्र रिश्ते और पारस्परिक सुरक्षा का जश्न, जो पारिवारिक रिश्तों को मजबूत करता है।" },
+    "regions": ["pan_india"],
+    "pujaIds": ["puja_bhai_dooj"],
+    "status": "active"
+  },
+  {
+    "id": "fest_raksha_bandhan",
+    "name": { "en": "Raksha Bandhan", "hi": "राखा बंधन" },
+    "alternateNames": { "en": ["Rakhi", "Rakshabandhan", "Nariyel Purnima"], "hi": ["राखी", "राक्षा बंधन", "नारियल पूर्णिमा"] },
+    "description": { "en": "Festival celebrating the protective bond between brothers and sisters, with sisters tying sacred threads on brothers' wrists.",
+    "hi": "भाई और बहन के बीच सुरक्षात्मक संबंध का जश्न, जिसमें बहनें भाइयों की कलाई पर पवित्र धागा बांधती हैं।" },
+    "significance": { "en": "Ancient festival reinforcing family bonds and mutual responsibilities between siblings across generations and diaspora.", "hi": "प्राचीन त्योहार जो भाई-बहन के बीच पारिवारिक संबंधों और पारस्परिक जिम्मेदारियों को मजबूत करता है।" },
+    "regions": ["pan_india"],
+    "pujaIds": ["puja_raksha_bandhan"],
+    "status": "active"
+  },
+  {
+    "id": "fest_karwa_chauth",
+    "name": { "en": "Karwa Chauth", "hi": "करवा चौथ" },
+    "alternateNames": { "en": ["Karva Chauth", "Karwe Chauth"], "hi": ["करवा चौथ"] },
+    "description": { "en": "Women's fasting festival observed for the longevity and well-being of husbands, primarily celebrated in North and West India.", "hi": "पति की लंबी उम्र और कल्याण के लिए महिलाओं द्वारा किया जाने वाला व्रत पर्व, मुख्य रूप से उत्तर और पश्चिम भारत में मनाया जाता है।" },
+    "significance": { "en": "Celebrates marital devotion and the bond between husband and wife through day-long fasting and moon worship.", "hi": "दिन भर के व्रत और चंद्र पूजा के माध्यम से वैवाहिक भक्ति और पति-पत्नी के बंधन का जश्न।" },
+    "regions": ["north", "west", "pan_india"],
+    "pujaIds": ["puja_karwa_chauth"],
+    "status": "active"
+  },
+  {
+    "id": "fest_govardhan",
+    "name": { "en": "Govardhan Puja", "hi": "गोवर्धन पूजन" },
+    "alternateNames": { "en": ["Goverdhan", "Annakut", "Samvatsari"], "hi": ["गोवर्धन", "अन्नकूट", "संवत्सरी"] },
+    "description": { "en": "Festival celebrating Lord Krishna's protection of the cowherds and cattle by lifting Govardhan Mountain.",
+    "hi": "भगवान कृष्ण द्वारा गोवर्धन पर्वत को उठाकर गोपालकों और गायों की रक्षा का जश्न।" },
+    "significance": { "en": "Celebrates Krishna's divine intervention and marks the beginning of Annakut (mount of food) with abundance and harvest gratitude.",
+    "hi": "कृष्ण के दिव्य हस्तक्षेप का जश्न और अन्नकूट (भोजन का पर्वत) की शुरुआत, बहुतायत और फसल के लिए कृतज्ञता के साथ।" },
+    "regions": ["pan_india"],
+    "pujaIds": ["puja_govardhan"],
+    "status": "active"
   }
 ]

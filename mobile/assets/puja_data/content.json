@@ -1,12 +1,77 @@
 {
-  "checksum": "sha256:f0ad6931c333fc701940badaef7ddaf04630da487008d8b57990b1392e3619d1",
+  "checksum": "sha256:a6ac55dafff66eb3997b696e2b6b6f9399de5a187cb272c8b6a37dad449e3a47",
   "schemaVersion": 1,
-  "contentVersion": 2,
+  "contentVersion": 3,
   "languages": [
     "en",
     "hi"
   ],
   "festivals": [
+    {
+      "id": "fest_bhai_dooj",
+      "name": {
+        "en": "Bhai Dooj",
+        "hi": "भाई दूज"
+      },
+      "alternateNames": {
+        "en": [
+          "Bhai Tika",
+          "Bhaiya Dooj"
+        ],
+        "hi": [
+          "भाई टीका",
+          "भैया दूज"
+        ]
+      },
+      "description": {
+        "en": "Festival celebrating the bond between brothers and sisters, with sisters applying tilak on brothers' foreheads.",
+        "hi": "भाई और बहन के रिश्ते को मनाने वाला पर्व, जिसमें बहनें भाइयों के माथे पर तिलक लगाती हैं।"
+      },
+      "significance": {
+        "en": "Celebrates the sacred bond of sibling love and mutual protection, strengthening family relationships.",
+        "hi": "भाई-बहन के पवित्र रिश्ते और पारस्परिक सुरक्षा का जश्न, जो पारिवारिक रिश्तों को मजबूत करता है।"
+      },
+      "regions": [
+        "pan_india"
+      ],
+      "pujaIds": [
+        "puja_bhai_dooj"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "fest_chhath",
+      "name": {
+        "en": "Chhath Puja",
+        "hi": "छठ पूजा"
+      },
+      "alternateNames": {
+        "en": [
+          "Chhat Puja",
+          "Surya Shashthi"
+        ],
+        "hi": [
+          "छठ व्रत",
+          "सूर्य षष्ठी"
+        ]
+      },
+      "description": {
+        "en": "Four-day festival honoring the Sun God, primarily observed in Bihar, Jharkhand, and eastern Uttar Pradesh.",
+        "hi": "सूर्य देव को समर्पित चार दिनों का त्योहार, जो मुख्य रूप से बिहार, झारखंड और पूर्वी उत्तर प्रदेश में मनाया जाता है।"
+      },
+      "significance": {
+        "en": "Solar festival celebrating the Sun God as the symbol of energy and life, involving ritual bathing and rigorous fasting.",
+        "hi": "सूर्य देव को जीवन और ऊर्जा के प्रतीक के रूप में मनाने वाला पर्व, जिसमें अनुष्ठान स्नान और कठोर व्रत शामिल होता है।"
+      },
+      "regions": [
+        "east",
+        "pan_india"
+      ],
+      "pujaIds": [
+        "puja_chhath"
+      ],
+      "status": "active"
+    },
     {
       "id": "fest_diwali",
       "name": {
@@ -72,6 +137,40 @@
       "status": "active"
     },
     {
+      "id": "fest_govardhan",
+      "name": {
+        "en": "Govardhan Puja",
+        "hi": "गोवर्धन पूजन"
+      },
+      "alternateNames": {
+        "en": [
+          "Goverdhan",
+          "Annakut",
+          "Samvatsari"
+        ],
+        "hi": [
+          "गोवर्धन",
+          "अन्नकूट",
+          "संवत्सरी"
+        ]
+      },
+      "description": {
+        "en": "Festival celebrating Lord Krishna's protection of the cowherds and cattle by lifting Govardhan Mountain.",
+        "hi": "भगवान कृष्ण द्वारा गोवर्धन पर्वत को उठाकर गोपालकों और गायों की रक्षा का जश्न।"
+      },
+      "significance": {
+        "en": "Celebrates Krishna's divine intervention and marks the beginning of Annakut (mount of food) with abundance and harvest gratitude.",
+        "hi": "कृष्ण के दिव्य हस्तक्षेप का जश्न और अन्नकूट (भोजन का पर्वत) की शुरुआत, बहुतायत और फसल के लिए कृतज्ञता के साथ।"
+      },
+      "regions": [
+        "pan_india"
+      ],
+      "pujaIds": [
+        "puja_govardhan"
+      ],
+      "status": "active"
+    },
+    {
       "id": "fest_hanuman_puja",
       "name": {
         "en": "Hanuman Puja",
@@ -98,6 +197,40 @@
       ],
       "pujaIds": [
         "puja_hanuman_puja"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "fest_hartalika_teej",
+      "name": {
+        "en": "Hartalika Teej",
+        "hi": "हरतालिका तीज"
+      },
+      "alternateNames": {
+        "en": [
+          "Hartalika",
+          "Tritiya Vrat"
+        ],
+        "hi": [
+          "हरतालिका",
+          "तृतीया व्रत"
+        ]
+      },
+      "description": {
+        "en": "Women's fasting festival celebrated for marital happiness and the well-being of husbands, primarily in North and West India.",
+        "hi": "पति के कल्याण और वैवाहिक सुख के लिए महिलाओं का व्रत पर्व, मुख्य रूप से उत्तर और पश्चिम भारत में मनाया जाता है।"
+      },
+      "significance": {
+        "en": "Festival celebrating marital devotion and the love between husband and wife, marked by fasting, mehndi, and swinging.",
+        "hi": "वैवाहिक भक्ति और पति-पत्नी के बीच प्रेम का जश्न, जो व्रत, मेहंदी और झूले झूलने से चिह्नित है।"
+      },
+      "regions": [
+        "north",
+        "west",
+        "pan_india"
+      ],
+      "pujaIds": [
+        "puja_hartalika_teej"
       ],
       "status": "active"
     },
@@ -130,6 +263,72 @@
       ],
       "pujaIds": [
         "puja_janmashtami"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "fest_jitiya",
+      "name": {
+        "en": "Jitiya Vrat",
+        "hi": "जितिया व्रत"
+      },
+      "alternateNames": {
+        "en": [
+          "Jivitputrika",
+          "Jivit Putra Vrat"
+        ],
+        "hi": [
+          "जीवितपुत्रिका",
+          "जीवित पुत्र व्रत"
+        ]
+      },
+      "description": {
+        "en": "Women's fasting ritual observed for the well-being and long life of sons, primarily in Bihar and eastern India.",
+        "hi": "पुत्रों के कल्याण और लंबी उम्र के लिए महिलाओं द्वारा किया जाने वाला व्रत, मुख्य रूप से बिहार और पूर्वी भारत में।"
+      },
+      "significance": {
+        "en": "Sacred vrat involving day-long and overnight fasting, reflecting a mother's devotion to her son's welfare and longevity.",
+        "hi": "पवित्र व्रत जिसमें पूरे दिन और रात भर का व्रत शामिल है, जो माता की अपने पुत्र के कल्याण के प्रति भक्ति को दर्शाता है।"
+      },
+      "regions": [
+        "east",
+        "pan_india"
+      ],
+      "pujaIds": [
+        "puja_jitiya"
+      ],
+      "status": "active"
+    },
+    {
+      "id": "fest_karwa_chauth",
+      "name": {
+        "en": "Karwa Chauth",
+        "hi": "करवा चौथ"
+      },
+      "alternateNames": {
+        "en": [
+          "Karva Chauth",
+          "Karwe Chauth"
+        ],
+        "hi": [
+          "करवा चौथ"
+        ]
+      },
+      "description": {
+        "en": "Women's fasting festival observed for the longevity and well-being of husbands, primarily celebrated in North and West India.",
+        "hi": "पति की लंबी उम्र और कल्याण के लिए महिलाओं द्वारा किया जाने वाला व्रत पर्व, मुख्य रूप से उत्तर और पश्चिम भारत में मनाया जाता है।"
+      },
+      "significance": {
+        "en": "Celebrates marital devotion and the bond between husband and wife through day-long fasting and moon worship.",
+        "hi": "दिन भर के व्रत और चंद्र पूजा के माध्यम से वैवाहिक भक्ति और पति-पत्नी के बंधन का जश्न।"
+      },
+      "regions": [
+        "north",
+        "west",
+        "pan_india"
+      ],
+      "pujaIds": [
+        "puja_karwa_chauth"
       ],
       "status": "active"
     },
@@ -199,6 +398,40 @@
       "status": "active"
     },
     {
+      "id": "fest_raksha_bandhan",
+      "name": {
+        "en": "Raksha Bandhan",
+        "hi": "राखा बंधन"
+      },
+      "alternateNames": {
+        "en": [
+          "Rakhi",
+          "Rakshabandhan",
+          "Nariyel Purnima"
+        ],
+        "hi": [
+          "राखी",
+          "राक्षा बंधन",
+          "नारियल पूर्णिमा"
+        ]
+      },
+      "description": {
+        "en": "Festival celebrating the protective bond between brothers and sisters, with sisters tying sacred threads on brothers' wrists.",
+        "hi": "भाई और बहन के बीच सुरक्षात्मक संबंध का जश्न, जिसमें बहनें भाइयों की कलाई पर पवित्र धागा बांधती हैं।"
+      },
+      "significance": {
+        "en": "Ancient festival reinforcing family bonds and mutual responsibilities between siblings across generations and diaspora.",
+        "hi": "प्राचीन त्योहार जो भाई-बहन के बीच पारिवारिक संबंधों और पारस्परिक जिम्मेदारियों को मजबूत करता है।"
+      },
+      "regions": [
+        "pan_india"
+      ],
+      "pujaIds": [
+        "puja_raksha_bandhan"
+      ],
+      "status": "active"
+    },
+    {
       "id": "fest_saraswati_puja",
       "name": {
         "en": "Saraswati Puja",
@@ -259,9 +492,546 @@
         "puja_satyanarayan_puja"
       ],
       "status": "active"
+    },
+    {
+      "id": "fest_vishwakarma",
+      "name": {
+        "en": "Vishwakarma Puja",
+        "hi": "विश्वकर्मा पूजन"
+      },
+      "alternateNames": {
+        "en": [
+          "Viswakarma Puja"
+        ],
+        "hi": [
+          "विश्वकर्मा पूजा"
+        ]
+      },
+      "description": {
+        "en": "Festival honoring Vishwakarma, the divine architect and craftsman, celebrated by artisans, engineers, and industries.",
+        "hi": "विश्वकर्मा, दिव्य वास्तुकार और कारीगर को सम्मान देने वाला पर्व, जो कारीगरों, इंजीनियरों और उद्योगों द्वारा मनाया जाता है।"
+      },
+      "significance": {
+        "en": "Patron deity of artisans and engineers, blessing tools and machinery for safety and prosperity in work.",
+        "hi": "कारीगरों और इंजीनियरों के संरक्षक देवता, जो काम में सुरक्षा और समृद्धि के लिए औजारों और मशीनरी को आशीर्वाद देते हैं।"
+      },
+      "regions": [
+        "pan_india"
+      ],
+      "pujaIds": [
+        "puja_vishwakarma"
+      ],
+      "status": "active"
     }
   ],
   "pujas": [
+    {
+      "id": "puja_bhai_dooj",
+      "festivalId": "fest_bhai_dooj",
+      "name": {
+        "en": "Bhai Dooj",
+        "hi": "भाई दूज"
+      },
+      "alternateNames": {
+        "en": [
+          "Bhai Tika",
+          "Bhaiya Dooj"
+        ],
+        "hi": [
+          "भाई टीका",
+          "भैया दूज"
+        ]
+      },
+      "category": "household",
+      "regions": [
+        "pan_india"
+      ],
+      "summary": {
+        "en": "Festival celebrating the bond between brothers and sisters. Sisters pray for their brothers' well-being and longevity by applying tilak on their foreheads.",
+        "hi": "भाई और बहन के रिश्ते को मनाने वाला पर्व। बहनें अपने भाइयों के कल्याण और दीर्घायु के लिए उनके माथे पर तिलक लगाकर प्रार्थना करती हैं।"
+      },
+      "significance": {
+        "en": "Bhai Dooj celebrates the sacred bond of sibling love. According to tradition, sisters apply tilak to their brothers' foreheads as a blessing for their protection and prosperity. The brother, in turn, pledges to support and protect his sister. It is a day to strengthen family bonds and express love and gratitude.",
+        "hi": "भाई दूज भाई-बहन के पवित्र रिश्ते का जश्न है। परंपरा के अनुसार, बहनें अपने भाइयों के संरक्षण और समृद्धि के आशीर्वाद के रूप में उनके माथे पर तिलक लगाती हैं। बदले में, भाई अपनी बहन का समर्थन और रक्षा करने का वचन देता है। यह पारिवारिक संबंधों को मजबूत करने और प्रेम और कृतज्ञता व्यक्त करने का दिन है।"
+      },
+      "samagri": [
+        {
+          "samagriId": "sm_vermillion",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "Red powder for applying tilak on brother's forehead",
+            "hi": "भाई के माथे पर तिलक लगाने के लिए लाल पाउडर"
+          },
+          "sortOrder": 1
+        },
+        {
+          "samagriId": "sm_rice",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "Rice for tika, mixed with vermillion",
+            "hi": "तिलक के लिए चावल, सिंदूर के साथ मिलाया जाता है"
+          },
+          "sortOrder": 2
+        },
+        {
+          "samagriId": "sm_flowers",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Flowers for offering and worship",
+            "hi": "चढ़ावे और पूजा के लिए फूल"
+          },
+          "sortOrder": 3
+        },
+        {
+          "samagriId": "sm_diya",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Oil lamp for lighting",
+            "hi": "प्रकाश के लिए दीया"
+          },
+          "sortOrder": 4
+        },
+        {
+          "samagriId": "sm_oil",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "Oil for the lamp",
+            "hi": "दीये के लिए तेल"
+          },
+          "sortOrder": 5
+        },
+        {
+          "samagriId": "sm_incense",
+          "classification": "OPTIONAL",
+          "purpose": {
+            "en": "Incense during prayers",
+            "hi": "प्रार्थना के दौरान अगरबत्ती"
+          },
+          "sortOrder": 6
+        },
+        {
+          "samagriId": "sm_water",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "Water for rituals and blessings",
+            "hi": "अनुष्ठान और आशीर्वाद के लिए पानी"
+          },
+          "sortOrder": 7
+        },
+        {
+          "samagriId": "sm_sweets",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Sweets for offering and sharing",
+            "hi": "चढ़ावा और साझा करने के लिए मिठाई"
+          },
+          "sortOrder": 8
+        },
+        {
+          "samagriId": "sm_dry_fruits",
+          "classification": "OPTIONAL",
+          "purpose": {
+            "en": "Dry fruits for gifts and offerings",
+            "hi": "उपहार और चढ़ावे के लिए सूखे मेवे"
+          },
+          "sortOrder": 9
+        }
+      ],
+      "steps": [
+        {
+          "id": "step_bhai_dooj_1",
+          "stepNumber": 1,
+          "title": {
+            "en": "Prepare the Tilak",
+            "hi": "तिलक की तैयारी"
+          },
+          "description": {
+            "en": "Mix vermillion powder with rice to create a paste for the tilak. Some families add water or oil to make it bind better. Prepare this sacred mixture with devotion, as it represents blessings for the brother's well-being.",
+            "hi": "भाई के माथे पर तिलक लगाने के लिए सिंदूर के पाउडर को चावल के साथ मिलाएं। कुछ परिवार इसे बेहतर तरीके से बांधने के लिए पानी या तेल मिलाते हैं। इस पवित्र मिश्रण को भक्ति के साथ तैयार करें, क्योंकि यह भाई के कल्याण के लिए आशीर्वाद का प्रतिनिधित्व करता है।"
+          },
+          "relatedSamagriIds": [
+            "sm_vermillion",
+            "sm_rice"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_bhai_dooj_2",
+          "stepNumber": 2,
+          "title": {
+            "en": "Light the Lamp and Offer Prayers",
+            "hi": "दीया जलाएं और प्रार्थना करें"
+          },
+          "description": {
+            "en": "Light a diya and offer flowers and water. Recite prayers for the brother's health, prosperity, and long life. Some families sing short prayers or hymns as part of the ritual. The atmosphere should be one of love and gratitude.",
+            "hi": "एक दीया जलाएं और फूल और पानी अर्पित करें। भाई के स्वास्थ्य, समृद्धि और लंबी उम्र के लिए प्रार्थना करें। कुछ परिवार अनुष्ठान के हिस्से के रूप में छोटी प्रार्थनाएं या भजन गाते हैं। माहौल प्रेम और कृतज्ञता का होना चाहिए।"
+          },
+          "relatedSamagriIds": [
+            "sm_diya",
+            "sm_oil",
+            "sm_flowers",
+            "sm_water"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_bhai_dooj_3",
+          "stepNumber": 3,
+          "title": {
+            "en": "Apply the Tilak",
+            "hi": "तिलक लगाएं"
+          },
+          "description": {
+            "en": "With prayers on the lips, apply the tilak on the brother's forehead. This mark symbolizes the sister's love and blessings for his protection and prosperity. The brother should receive this with reverence and gratitude.",
+            "hi": "होठों पर प्रार्थना के साथ, भाई के माथे पर तिलक लगाएं। यह चिह्न बहन के प्रेम और उसके संरक्षण और समृद्धि के लिए आशीर्वाद का प्रतीक है। भाई को यह सम्मान और कृतज्ञता के साथ प्राप्त करना चाहिए।"
+          },
+          "relatedSamagriIds": [
+            "sm_vermillion",
+            "sm_rice"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_bhai_dooj_4",
+          "stepNumber": 4,
+          "title": {
+            "en": "Exchange of Gifts and Blessings",
+            "hi": "उपहारों और आशीर्वादों का आदान-प्रदान"
+          },
+          "description": {
+            "en": "After the tilak, the brother blesses the sister and offers gifts (sweets, dry fruits, or other tokens of love). The sister, in return, prays for the brother's well-being. Share sweets and gifts with family members to spread joy and strengthen bonds.",
+            "hi": "तिलक के बाद, भाई बहन को आशीर्वाद देता है और उपहार देता है (मिठाई, सूखे मेवे या प्रेम के अन्य प्रतीक)। बदले में, बहन भाई के कल्याण के लिए प्रार्थना करती है। पारिवारिक सदस्यों के साथ मिठाई और उपहार साझा करें ताकि खुशी फैले और रिश्ते मजबूत हों।"
+          },
+          "relatedSamagriIds": [
+            "sm_sweets",
+            "sm_dry_fruits"
+          ],
+          "isOptional": false
+        }
+      ],
+      "variations": [
+        {
+          "id": "var_bhai_dooj_maharashtra",
+          "regions": [
+            "west"
+          ],
+          "title": {
+            "en": "Maharashtra Tradition (Bhai Tika)",
+            "hi": "महाराष्ट्र परंपरा (भाई टीका)"
+          },
+          "description": {
+            "en": "In Maharashtra, this festival is known as Bhai Tika. Sisters apply a more elaborate tilak with rice, flower petals, and vermillion. The ritual often includes a more formal blessing where the sister places a hand on the brother's head while giving blessings. Gifts and sweets exchanged are more elaborate.",
+            "hi": "महाराष्ट्र में इस त्योहार को भाई टीका के नाम से जाना जाता है। बहनें चावल, फूलों की पंखुड़ियों और सिंदूर के साथ अधिक विस्तृत तिलक लगाती हैं। अनुष्ठान में अक्सर एक अधिक औपचारिक आशीर्वाद शामिल होता है जहां बहन आशीर्वाद देते समय भाई के सिर पर हाथ रखती है। उपहार और मिठाई अधिक विस्तृत होते हैं।"
+          },
+          "affectsStepIds": [],
+          "affectsSamagriIds": []
+        }
+      ],
+      "preparationChecklist": [],
+      "reviewStatus": "ai_drafted",
+      "sourceNote": {
+        "en": "AI-drafted guide based on Bhai Dooj traditions across India. Specific rituals and gift-giving practices vary by region and family. Not verified by a pandit.",
+        "hi": "भारत भर में भाई दूज परंपराओं पर आधारित AI-तैयार गाइड। विशिष्ट अनुष्ठान और उपहार-देने की प्रथाएं क्षेत्र और परिवार के अनुसार भिन्न होती हैं। पंडित द्वारा सत्यापित नहीं।"
+      },
+      "contentVersion": 3,
+      "status": "active"
+    },
+    {
+      "id": "puja_chhath",
+      "festivalId": "fest_chhath",
+      "name": {
+        "en": "Chhath Puja",
+        "hi": "छठ पूजा"
+      },
+      "alternateNames": {
+        "en": [
+          "Chhat Puja",
+          "Chhat Puja",
+          "Surya Shashthi"
+        ],
+        "hi": [
+          "छठ व्रत",
+          "छठ पर्व",
+          "सूर्य षष्ठी"
+        ]
+      },
+      "category": "vrat",
+      "regions": [
+        "east",
+        "pan_india"
+      ],
+      "summary": {
+        "en": "Four-day solar festival honoring the Sun God, primarily observed in Bihar, Jharkhand, and eastern Uttar Pradesh.",
+        "hi": "सूर्य देव को समर्पित चार दिनों का त्योहार, जो मुख्य रूप से बिहार, झारखंड और पूर्वी उत्तर प्रदेश में मनाया जाता है।"
+      },
+      "significance": {
+        "en": "Chhath celebrates the Sun God (Surya) as the symbol of energy and life. The ritual purifies the body and spirit through rigorous fasting. Performed primarily for the well-being and longevity of family members, especially sons.",
+        "hi": "छठ पूजा सूर्य देव को जीवन और ऊर्जा के प्रतीक के रूप में समर्पित है। यह अनुष्ठान कठोर व्रत के माध्यम से शरीर और आत्मा को शुद्ध करता है। यह मुख्य रूप से परिवार के सदस्यों, विशेषकर पुत्रों के कल्याण और दीर्घायु के लिए किया जाता है।"
+      },
+      "samagri": [
+        {
+          "samagriId": "sm_sugarcane",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "Offered to the Sun God and used in the ritual",
+            "hi": "सूर्य देव को अर्पित करने के लिए और अनुष्ठान में उपयोग किए जाते हैं"
+          },
+          "sortOrder": 1
+        },
+        {
+          "samagriId": "sm_banana",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "Fruit offering to the deity",
+            "hi": "देवता को फल का चढ़ावा"
+          },
+          "sortOrder": 2
+        },
+        {
+          "samagriId": "sm_coconut",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "Coconut water and coconut offered to the Sun",
+            "hi": "सूर्य को नारियल का पानी और नारियल अर्पित किया जाता है"
+          },
+          "sortOrder": 3
+        },
+        {
+          "samagriId": "sm_jaggery",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "Sweetener for offerings and consumption",
+            "hi": "चढ़ावे और भोजन के लिए मिठास"
+          },
+          "sortOrder": 4
+        },
+        {
+          "samagriId": "sm_rice",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "Used in various rituals and for offerings",
+            "hi": "विभिन्न अनुष्ठानों और चढ़ावे के लिए उपयोग किया जाता है"
+          },
+          "sortOrder": 5
+        },
+        {
+          "samagriId": "sm_wheat_flour",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "To make puri/bhature for offerings",
+            "hi": "पूरी/भातूरे बनाने के लिए"
+          },
+          "sortOrder": 6
+        },
+        {
+          "samagriId": "sm_water",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "For ritual bathing and offerings; collected from a ghat",
+            "hi": "अनुष्ठान स्नान और चढ़ावे के लिए; घाट से लिया जाता है"
+          },
+          "sortOrder": 7
+        },
+        {
+          "samagriId": "sm_flowers",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Flower offerings to the Sun",
+            "hi": "सूर्य को फूलों का चढ़ावा"
+          },
+          "sortOrder": 8
+        },
+        {
+          "samagriId": "sm_incense",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Aromatic offerings during puja",
+            "hi": "पूजा के दौरान सुगंध के लिए"
+          },
+          "sortOrder": 9
+        },
+        {
+          "samagriId": "sm_oil",
+          "classification": "OPTIONAL",
+          "purpose": {
+            "en": "Oil for the ritual lamp if used",
+            "hi": "अगर दीया जलाया जाए तो तेल"
+          },
+          "sortOrder": 10
+        },
+        {
+          "samagriId": "sm_turmeric",
+          "classification": "OPTIONAL",
+          "purpose": {
+            "en": "Herbal cleansing during ritual bathing",
+            "hi": "अनुष्ठान स्नान के दौरान जड़ी-बूटी की सफाई"
+          },
+          "sortOrder": 11
+        },
+        {
+          "samagriId": "sm_milk",
+          "classification": "OPTIONAL",
+          "purpose": {
+            "en": "Milk-based offerings as needed",
+            "hi": "आवश्यकतानुसार दूध के आधार पर चढ़ावे"
+          },
+          "sortOrder": 12
+        }
+      ],
+      "steps": [
+        {
+          "id": "step_chhath_1",
+          "stepNumber": 1,
+          "title": {
+            "en": "Nahaay-Khaay (First Day)",
+            "hi": "नहाय-खाय (पहला दिन)"
+          },
+          "description": {
+            "en": "Begin the vrat with ritual bathing at a natural water source (ghat). Return home and prepare a simple meal with rice and pumpkin cooked in ghee. This breaks the fast initiated with the first sunrise observation.",
+            "hi": "प्राकृतिक जल स्रोत (घाट) पर अनुष्ठान स्नान के साथ व्रत शुरू करें। घर लौटें और घी में पकी हुई चावल और कद्दू से सरल भोजन तैयार करें। यह पहले सूर्यास्त अवलोकन के साथ शुरू किए गए व्रत को तोड़ता है।"
+          },
+          "relatedSamagriIds": [
+            "sm_water",
+            "sm_rice"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_chhath_2",
+          "stepNumber": 2,
+          "title": {
+            "en": "Kharna (Second Day)",
+            "hi": "खरना (दूसरा दिन)"
+          },
+          "description": {
+            "en": "Complete a full-day fast until sunset. At sunset, make offerings to the Sun God with fruits, sugarcane, and wheat flour items. Prepare a meal of rice pudding (kheer) and puri with jaggery.",
+            "hi": "सूर्यास्त तक पूरे दिन का व्रत रखें। सूर्यास्त के समय सूर्य देव को फल, गन्ना और गेहूं के आटे से चढ़ावे दें। चावल की खीर (खीर) और गुड़ के साथ पूरी तैयार करें।"
+          },
+          "relatedSamagriIds": [
+            "sm_banana",
+            "sm_sugarcane",
+            "sm_wheat_flour",
+            "sm_jaggery",
+            "sm_rice"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_chhath_3",
+          "stepNumber": 3,
+          "title": {
+            "en": "Sandhya Arghya (Third Day: Evening Offering)",
+            "hi": "संध्या अर्घ्य (तीसरा दिन: शाम का अर्घ्य)"
+          },
+          "description": {
+            "en": "Begin another day of fasting. At sunset, go to the riverbank or water source with offerings. Create a ritual platform with coconut, banana, sugarcane, and wheat-flour items arranged on woven baskets. Offer water to the setting Sun while singing traditional songs. This continues the fast overnight.",
+            "hi": "फिर से एक दिन का व्रत शुरू करें। सूर्यास्त के समय चढ़ावों के साथ नदी के किनारे या जल स्रोत पर जाएं। नारियल, केला, गन्ना और गेहूं के आटे की वस्तुओं को बुने हुए टोकरियों पर व्यवस्थित करके एक अनुष्ठान मंच बनाएं। परंपरागत गीत गाते हुए सूर्य को पानी अर्पित करें। यह रात भर व्रत जारी रखता है।"
+          },
+          "relatedSamagriIds": [
+            "sm_coconut",
+            "sm_banana",
+            "sm_sugarcane",
+            "sm_wheat_flour",
+            "sm_water",
+            "sm_flowers"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_chhath_4",
+          "stepNumber": 4,
+          "title": {
+            "en": "Usha Arghya (Fourth Day: Dawn Offering)",
+            "hi": "उषा अर्घ्य (चौथा दिन: भोर का अर्घ्य)"
+          },
+          "description": {
+            "en": "After fasting through the night, offer water and prayers to the rising Sun at dawn. Use the same offerings as the evening ritual. After completing the arghya, conclude the fast with a simple meal of rice, lentils, and seasonal vegetables. The vrat is now complete.",
+            "hi": "रात भर व्रत रखने के बाद, भोर में उदते सूर्य को पानी और प्रार्थना अर्पित करें। संध्या अनुष्ठान के समान ही चढ़ावे का उपयोग करें। अर्घ्य पूरा करने के बाद, चावल, दाल और मौसमी सब्जियों के सरल भोजन के साथ व्रत को तोड़ें। व्रत अब पूर्ण हो गया है।"
+          },
+          "relatedSamagriIds": [
+            "sm_water",
+            "sm_coconut",
+            "sm_banana",
+            "sm_sugarcane",
+            "sm_flowers",
+            "sm_rice"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_chhath_5",
+          "stepNumber": 5,
+          "title": {
+            "en": "Safety Note: Ghat Safety",
+            "hi": "सुरक्षा नोट: घाट की सुरक्षा"
+          },
+          "description": {
+            "en": "As the puja involves standing in water at dawn and dusk, take precautions: watch water depth and current, avoid slippery steps, supervise children closely, be aware of cold water temperature, and have assistance available. Do not perform this ritual alone.",
+            "hi": "चूंकि यह पूजा भोर और शाम को पानी में खड़े होने के साथ जुड़ी है, सावधानियां बरतें: पानी की गहराई और प्रवाह पर ध्यान दें, फिसलन वाली सीढ़ियों से बचें, बच्चों की निकटता से निगरानी करें, ठंडे पानी के तापमान के बारे में जागरूक रहें, और सहायता उपलब्ध रखें। यह अनुष्ठान अकेले न करें।"
+          },
+          "relatedSamagriIds": [
+            "sm_water"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_chhath_6",
+          "stepNumber": 6,
+          "title": {
+            "en": "Health Note: Fasting Safety",
+            "hi": "स्वास्थ्य नोट: व्रत की सुरक्षा"
+          },
+          "description": {
+            "en": "Chhath involves long fasts without food and sometimes without water. People with health conditions (diabetes, heart disease, anemia), pregnant or nursing mothers, and those on medications should consult a doctor before beginning this vrat. Do not treat fasting as compulsory if health is at risk.",
+            "hi": "छठ में बिना भोजन और कभी-कभी पानी के लंबे व्रत शामिल होते हैं। स्वास्थ्य समस्याओं (मधुमेह, हृदय रोग, एनीमिया) वाले लोग, गर्भवती या स्तनपान कराने वाली माताएं, और दवा पर लोगों को यह व्रत शुरू करने से पहले डॉक्टर से परामर्श लेना चाहिए। यदि स्वास्थ्य खतरे में हो तो व्रत को अनिवार्य न समझें।"
+          },
+          "relatedSamagriIds": [],
+          "isOptional": false
+        }
+      ],
+      "variations": [
+        {
+          "id": "var_chhath_bihar",
+          "regions": [
+            "east"
+          ],
+          "title": {
+            "en": "Bihar and Jharkhand Tradition",
+            "hi": "बिहार और झारखंड परंपरा"
+          },
+          "description": {
+            "en": "In Bihar and Jharkhand, Chhath is celebrated with great fervor. Large processions of worshippers go to the ghats, and the offerings are often more elaborate with extensive fruit and flower arrangements. Songs specific to the region (Chhath Geet) are sung throughout the festival. Many households use bamboo baskets for offerings.",
+            "hi": "बिहार और झारखंड में छठ बहुत धूमधाम से मनाई जाती है। पूजा करने वालों की बड़ी परेड घाटों पर जाती है, और चढ़ावे अक्सर विस्तृत फल और फूलों की व्यवस्था के साथ अधिक विस्तृत होते हैं। क्षेत्र विशेष के गीत (छठ गीत) पूरे त्योहार के दौरान गाए जाते हैं। कई घर चढ़ावे के लिए बांस की टोकरियों का उपयोग करते हैं।"
+          },
+          "affectsStepIds": [],
+          "affectsSamagriIds": []
+        },
+        {
+          "id": "var_chhath_eastern_up",
+          "regions": [
+            "north"
+          ],
+          "title": {
+            "en": "Eastern Uttar Pradesh Practice",
+            "hi": "पूर्वी उत्तर प्रदेश की प्रथा"
+          },
+          "description": {
+            "en": "In eastern Uttar Pradesh and parts of Nepal Terai, Chhath is observed with similar intensity but with slight variations in rituals and offerings. Some families make specific khichdi (rice and lentil preparation) instead of kheer during Kharna. The timing and sequence of rituals may vary based on local customs and panchang (lunar calendar).",
+            "hi": "पूर्वी उत्तर प्रदेश और नेपाल तराई के कुछ हिस्सों में छठ समान तीव्रता के साथ मनाई जाती है लेकिन अनुष्ठानों और चढ़ावों में मामूली भिन्नताएं हैं। कुछ परिवार खरना के दौरान खीर की जगह विशेष खिचड़ी (चावल और दाल की तैयारी) बनाते हैं। अनुष्ठानों का समय और क्रम स्थानीय रीति-रिवाजों और पंचांग (चंद्र पंचांग) के आधार पर भिन्न हो सकता है।"
+          },
+          "affectsStepIds": [],
+          "affectsSamagriIds": []
+        }
+      ],
+      "preparationChecklist": [],
+      "reviewStatus": "ai_drafted",
+      "sourceNote": {
+        "en": "AI-drafted guide based on traditional Chhath practices in Bihar, Jharkhand, and eastern Uttar Pradesh. Not verified by a pandit. The fasting practice requires health consultation.",
+        "hi": "बिहार, झारखंड और पूर्वी उत्तर प्रदेश में पारंपरिक छठ प्रथाओं पर आधारित AI-तैयार गाइड। पंडित द्वारा सत्यापित नहीं। व्रत की प्रथा को स्वास्थ्य परामर्श की आवश्यकता है।"
+      },
+      "contentVersion": 3,
+      "status": "active"
+    },
     {
       "id": "puja_diwali_lakshmi_puja",
       "festivalId": "fest_diwali",
@@ -986,6 +1756,278 @@
       "status": "active"
     },
     {
+      "id": "puja_govardhan",
+      "festivalId": "fest_govardhan",
+      "name": {
+        "en": "Govardhan Puja",
+        "hi": "गोवर्धन पूजन"
+      },
+      "alternateNames": {
+        "en": [
+          "Goverdhan",
+          "Annakut",
+          "Samvatsari"
+        ],
+        "hi": [
+          "गोवर्धन",
+          "अन्नकूट",
+          "संवत्सरी"
+        ]
+      },
+      "category": "household",
+      "regions": [
+        "pan_india"
+      ],
+      "summary": {
+        "en": "Festival celebrating Lord Krishna's protection of the cowherds and cattle by lifting Govardhan Mountain. Celebrated with offerings of food, cow dung, and stones.",
+        "hi": "भगवान कृष्ण द्वारा गोवर्धन पर्वत को उठाकर गोपालकों और गायों की रक्षा का जश्न। भोजन, गाय के गोबर और पत्थरों के चढ़ावे के साथ मनाया जाता है।"
+      },
+      "significance": {
+        "en": "Govardhan Puja celebrates Lord Krishna's divine intervention to protect his community (gopis and cows) from heavy rains and floods. According to the Bhagavata Purana, Krishna lifted the Govardhan Mountain as an umbrella. This festival also marks the beginning of Annakut (mount of food), where food offerings symbolize abundance and gratitude for the harvest.",
+        "hi": "गोवर्धन पूजन भगवान कृष्ण द्वारा अपने समुदाय (गोपियों और गायों) को भारी बारिश और बाढ़ से बचाने के दिव्य हस्तक्षेप का जश्न है। भागवत पुराण के अनुसार, कृष्ण ने गोवर्धन पर्वत को छतरी की तरह उठाया था। यह त्योहार अन्नकूट (भोजन का पर्वत) की शुरुआत को भी चिह्नित करता है, जहां भोजन के चढ़ावे बहुतायत और फसल के लिए कृतज्ञता का प्रतीक हैं।"
+      },
+      "samagri": [
+        {
+          "samagriId": "sm_cow_dung",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "Dried cow dung to create a ritual mound representing Govardhan Mountain",
+            "hi": "गोवर्धन पर्वत का प्रतिनिधित्व करने के लिए अनुष्ठान का ढेर बनाने के लिए सूखा गाय का गोबर"
+          },
+          "sortOrder": 1
+        },
+        {
+          "samagriId": "sm_flowers",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Flowers for offering and decoration",
+            "hi": "चढ़ावे और सजावट के लिए फूल"
+          },
+          "sortOrder": 2
+        },
+        {
+          "samagriId": "sm_diya",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Oil lamps for lighting",
+            "hi": "प्रकाश के लिए तेल के दीये"
+          },
+          "sortOrder": 3
+        },
+        {
+          "samagriId": "sm_oil",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "Oil for the lamps",
+            "hi": "दीयों के लिए तेल"
+          },
+          "sortOrder": 4
+        },
+        {
+          "samagriId": "sm_rice",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Rice for offerings",
+            "hi": "चढ़ावे के लिए चावल"
+          },
+          "sortOrder": 5
+        },
+        {
+          "samagriId": "sm_incense",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Incense during worship",
+            "hi": "पूजा के दौरान अगरबत्ती"
+          },
+          "sortOrder": 6
+        },
+        {
+          "samagriId": "sm_water",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "Water for rituals",
+            "hi": "अनुष्ठान के लिए पानी"
+          },
+          "sortOrder": 7
+        },
+        {
+          "samagriId": "sm_sweets",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "Sweets and food offerings (Annakut)",
+            "hi": "मिठाई और भोजन के चढ़ावे (अन्नकूट)"
+          },
+          "sortOrder": 8
+        },
+        {
+          "samagriId": "sm_ghee",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Ghee for food preparation and offerings",
+            "hi": "भोजन की तैयारी और चढ़ावे के लिए घी"
+          },
+          "sortOrder": 9
+        },
+        {
+          "samagriId": "sm_milk",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Milk for food offerings",
+            "hi": "भोजन के चढ़ावे के लिए दूध"
+          },
+          "sortOrder": 10
+        },
+        {
+          "samagriId": "sm_fruit",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Fresh fruits for offerings",
+            "hi": "चढ़ावे के लिए ताजे फल"
+          },
+          "sortOrder": 11
+        },
+        {
+          "samagriId": "sm_stones",
+          "classification": "OPTIONAL",
+          "purpose": {
+            "en": "Small pebbles as symbolic offerings to the mountain",
+            "hi": "पर्वत को प्रतीकात्मक चढ़ावे के रूप में छोटी कंकड़"
+          },
+          "sortOrder": 12
+        }
+      ],
+      "steps": [
+        {
+          "id": "step_govardhan_1",
+          "stepNumber": 1,
+          "title": {
+            "en": "Create a Govardhan Mound",
+            "hi": "गोवर्धन का ढेर बनाएं"
+          },
+          "description": {
+            "en": "Prepare a mound or representation of Govardhan Mountain using dried cow dung. This can be done in a courtyard, temple, or designated space. The mound symbolizes the sacred mountain that Krishna lifted. Decorate the mound with flowers and place small pebbles on it.",
+            "hi": "सूखे गाय के गोबर का उपयोग करके गोवर्धन पर्वत का एक ढेर या प्रतिनिधित्व तैयार करें। यह आंगन, मंदिर या निर्दिष्ट स्थान में किया जा सकता है। ढेर पवित्र पर्वत का प्रतीक है जिसे कृष्ण ने उठाया था। ढेर को फूलों से सजाएं और इस पर छोटी कंकड़ रखें।"
+          },
+          "relatedSamagriIds": [
+            "sm_cow_dung",
+            "sm_flowers",
+            "sm_stones"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_govardhan_2",
+          "stepNumber": 2,
+          "title": {
+            "en": "Light Lamps Around the Mound",
+            "hi": "ढेर के चारों ओर दीये जलाएं"
+          },
+          "description": {
+            "en": "Arrange oil lamps (diyas) in a circle around the Govardhan mound. Light each diya with devotion. The lamps symbolize the protection and divine light that Krishna provided. As you light each lamp, recite prayers invoking Krishna's blessings.",
+            "hi": "गोवर्धन के ढेर के चारों ओर तेल के दीये व्यवस्थित करें। भक्ति के साथ प्रत्येक दीया जलाएं। दीये कृष्ण द्वारा प्रदान की गई सुरक्षा और दिव्य प्रकाश का प्रतीक हैं। जब आप प्रत्येक दीया जलाते हैं, तो कृष्ण के आशीर्वाद के लिए प्रार्थना करें।"
+          },
+          "relatedSamagriIds": [
+            "sm_diya",
+            "sm_oil"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_govardhan_3",
+          "stepNumber": 3,
+          "title": {
+            "en": "Offer Flowers and Water",
+            "hi": "फूल और पानी अर्पित करें"
+          },
+          "description": {
+            "en": "Offer flowers and water to the Govardhan mound. These offerings represent respect and gratitude to the mountain and to Krishna for his protection. Recite prayers or chants as you make these offerings. If available, sprinkle water around the mound in a clockwise direction.",
+            "hi": "गोवर्धन के ढेर को फूल और पानी अर्पित करें। ये चढ़ावे पर्वत और सुरक्षा के लिए कृष्ण के प्रति सम्मान और कृतज्ञता का प्रतिनिधित्व करते हैं। जब आप ये चढ़ावे देते हैं तो प्रार्थना या मंत्र का पाठ करें। यदि उपलब्ध हो तो ढेर के चारों ओर दक्षिणावर्त दिशा में पानी छिड़ें।"
+          },
+          "relatedSamagriIds": [
+            "sm_flowers",
+            "sm_water"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_govardhan_4",
+          "stepNumber": 4,
+          "title": {
+            "en": "Circumambulate the Mound",
+            "hi": "ढेर के चारों ओर परिक्रमा करें"
+          },
+          "description": {
+            "en": "Walk around the Govardhan mound in a clockwise direction. This ritual, called pradakshina, is a form of worship and respect. Many people perform this while singing devotional songs or chanting Krishna's names. The circumambulation symbolizes one's devotion and gratitude to the divine.",
+            "hi": "गोवर्धन के ढेर के चारों ओर दक्षिणावर्त दिशा में चलें। इस अनुष्ठान को प्रदक्षिणा कहा जाता है, जो पूजा और सम्मान का एक रूप है। कई लोग इसे भक्ति गीत गाते या कृष्ण के नाम का जाप करते हुए करते हैं। परिक्रमा दिव्य के प्रति किसी की भक्ति और कृतज्ञता का प्रतीक है।"
+          },
+          "relatedSamagriIds": [],
+          "isOptional": false
+        },
+        {
+          "id": "step_govardhan_5",
+          "stepNumber": 5,
+          "title": {
+            "en": "Prepare and Offer Annakut (Mount of Food)",
+            "hi": "अन्नकूट (भोजन का पर्वत) तैयार करें और अर्पित करें"
+          },
+          "description": {
+            "en": "Prepare a large variety of food offerings, called Annakut. This can include sweets, savory dishes, fruits, and vegetables. Arrange them in an attractive display to symbolize abundance and gratitude for the harvest. Offer these foods to the deity with prayers. After the puja, distribute the blessed food (prasad) among family and friends.",
+            "hi": "भोजन के चढ़ावे की एक विस्तृत विविधता तैयार करें, जिसे अन्नकूट कहा जाता है। इसमें मिठाई, नमकीन व्यंजन, फल और सब्जियां शामिल हो सकती हैं। उन्हें आकर्षक तरीके से व्यवस्थित करें ताकि बहुतायत और फसल के लिए कृतज्ञता का प्रतीक हो। इन खाद्य पदार्थों को प्रार्थना के साथ देवता को अर्पित करें। पूजा के बाद, परिवार और दोस्तों के बीच आशीर्वादित भोजन (प्रसाद) वितरित करें।"
+          },
+          "relatedSamagriIds": [
+            "sm_sweets",
+            "sm_ghee",
+            "sm_milk",
+            "sm_fruit"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_govardhan_6",
+          "stepNumber": 6,
+          "title": {
+            "en": "Celebrate with Cow/Cattle Worship",
+            "hi": "गाय/पशुधन पूजा के साथ मनाएं"
+          },
+          "description": {
+            "en": "If a cow or cattle are available, perform a simple worship ritual with them. Apply tilak or vermillion on their foreheads, offer flowers, and feed them with the blessed food. Cows are revered in Hindu tradition as representing Krishna himself. This practice honors the animals that are central to Krishna's pastoral life and the meaning of Govardhan.",
+            "hi": "यदि कोई गाय या पशुधन उपलब्ध है, तो उनके साथ एक सरल पूजा अनुष्ठान करें। उनके माथे पर तिलक या सिंदूर लगाएं, फूल अर्पित करें और उन्हें आशीर्वादित भोजन दें। हिंदू परंपरा में गायों को कृष्ण का प्रतिनिधित्व करने वाले के रूप में पूजा जाता है। यह प्रथा उन जानवरों को सम्मानित करती है जो कृष्ण के चरवाहा जीवन और गोवर्धन के अर्थ के लिए केंद्रीय हैं।"
+          },
+          "relatedSamagriIds": [
+            "sm_flowers",
+            "sm_sweets"
+          ],
+          "isOptional": true
+        }
+      ],
+      "variations": [
+        {
+          "id": "var_govardhan_mathura",
+          "regions": [
+            "north"
+          ],
+          "title": {
+            "en": "Mathura and Brindavan Tradition",
+            "hi": "मथुरा और वृंदावन परंपरा"
+          },
+          "description": {
+            "en": "In Mathura and Brindavan (places closely associated with Lord Krishna), Govardhan Puja is celebrated with extraordinary grandeur. Govardhan Mountain itself becomes the center of worship, with thousands of devotees circumambulating it. The festival is marked by elaborate Annakut celebrations with vast quantities of food offerings. Traditional music, dance, and Krishna devotional songs (bhajans) are performed throughout the day.",
+            "hi": "मथुरा और वृंदावन (भगवान कृष्ण से जुड़े स्थानों) में, गोवर्धन पूजन असाधारण भव्यता के साथ मनाया जाता है। गोवर्धन पर्वत स्वयं पूजा का केंद्र बन जाता है, हजारों भक्त इसके चारों ओर परिक्रमा करते हैं। यह त्योहार भोजन के चढ़ावों की विशाल मात्रा के साथ विस्तृत अन्नकूट समारोहों द्वारा चिह्नित है। पूरे दिन पारंपरिक संगीत, नृत्य और कृष्ण भक्ति गीत (भजन) किए जाते हैं।"
+          },
+          "affectsStepIds": [],
+          "affectsSamagriIds": []
+        }
+      ],
+      "preparationChecklist": [],
+      "reviewStatus": "ai_drafted",
+      "sourceNote": {
+        "en": "AI-drafted guide based on Govardhan Puja traditions across India. Specific rituals and practices, especially in Mathura and Brindavan, vary significantly. Not verified by a pandit.",
+        "hi": "भारत भर में गोवर्धन पूजन परंपराओं पर आधारित AI-तैयार गाइड। विशिष्ट अनुष्ठान और प्रथाएं, विशेषकर मथुरा और वृंदावन में, काफी भिन्न होती हैं। पंडित द्वारा सत्यापित नहीं।"
+      },
+      "contentVersion": 3,
+      "status": "active"
+    },
+    {
       "id": "puja_hanuman_puja",
       "festivalId": "fest_hanuman_puja",
       "name": {
@@ -1358,6 +2400,252 @@
       "status": "active"
     },
     {
+      "id": "puja_hartalika_teej",
+      "festivalId": "fest_hartalika_teej",
+      "name": {
+        "en": "Hartalika Teej",
+        "hi": "हरतालिका तीज"
+      },
+      "alternateNames": {
+        "en": [
+          "Hartalika",
+          "Tritiya Vrat"
+        ],
+        "hi": [
+          "हरतालिका",
+          "तृतीया व्रत"
+        ]
+      },
+      "category": "vrat",
+      "regions": [
+        "north",
+        "west",
+        "pan_india"
+      ],
+      "summary": {
+        "en": "Women's fasting festival celebrated for marital happiness and the well-being of husbands, primarily observed in North and West India.",
+        "hi": "पति के कल्याण और वैवाहिक सुख के लिए महिलाओं का व्रत पर्व, मुख्य रूप से उत्तर और पश्चिम भारत में मनाया जाता है।"
+      },
+      "significance": {
+        "en": "Hartalika Teej celebrates the love and devotion in marriage. According to tradition, Goddess Parvati fasted on this day to marry Lord Shiva. Women observe this vrat with the belief that it strengthens the marital bond and ensures the husband's long life and prosperity. The festival is marked by mehndi application, singing, and swinging.",
+        "hi": "हरतालिका तीज विवाह में प्रेम और भक्ति का उत्सव है। परंपरा के अनुसार, देवी पार्वती ने भगवान शिव से विवाह करने के लिए इस दिन व्रत रखा था। महिलाएं इस व्रत को इस विश्वास के साथ रखती हैं कि यह विवाहित बंधन को मजबूत करता है और पति की लंबी उम्र और समृद्धि सुनिश्चित करता है। यह पर्व मेहंदी लगाने, गीत गाने और झूले झूलने से चिह्नित है।"
+      },
+      "samagri": [
+        {
+          "samagriId": "sm_mehndi",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Henna for applying on hands and feet",
+            "hi": "हाथों और पैरों पर लगाने के लिए मेहंदी"
+          },
+          "sortOrder": 1
+        },
+        {
+          "samagriId": "sm_turmeric",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Turmeric paste for ritual bathing",
+            "hi": "अनुष्ठान स्नान के लिए हल्दी पेस्ट"
+          },
+          "sortOrder": 2
+        },
+        {
+          "samagriId": "sm_flowers",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Flowers for worship and decoration",
+            "hi": "पूजा और सजावट के लिए फूल"
+          },
+          "sortOrder": 3
+        },
+        {
+          "samagriId": "sm_water",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "Water for fasting and rituals",
+            "hi": "व्रत और अनुष्ठान के लिए पानी"
+          },
+          "sortOrder": 4
+        },
+        {
+          "samagriId": "sm_diya",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Oil lamp for worship",
+            "hi": "पूजा के लिए दीया"
+          },
+          "sortOrder": 5
+        },
+        {
+          "samagriId": "sm_oil",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "Oil for the lamp",
+            "hi": "दीये के लिए तेल"
+          },
+          "sortOrder": 6
+        },
+        {
+          "samagriId": "sm_incense",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Incense during prayers",
+            "hi": "प्रार्थना के दौरान अगरबत्ती"
+          },
+          "sortOrder": 7
+        },
+        {
+          "samagriId": "sm_sweets",
+          "classification": "OPTIONAL",
+          "purpose": {
+            "en": "Sweets prepared for distribution",
+            "hi": "वितरण के लिए तैयार मिठाई"
+          },
+          "sortOrder": 8
+        },
+        {
+          "samagriId": "sm_milk",
+          "classification": "OPTIONAL",
+          "purpose": {
+            "en": "Milk for ritual bathing if desired",
+            "hi": "यदि चाहें तो अनुष्ठान स्नान के लिए दूध"
+          },
+          "sortOrder": 9
+        }
+      ],
+      "steps": [
+        {
+          "id": "step_hartalika_1",
+          "stepNumber": 1,
+          "title": {
+            "en": "Prepare with Ritual Bathing",
+            "hi": "अनुष्ठान स्नान से तैयारी"
+          },
+          "description": {
+            "en": "Begin the day with a ritual bath. Apply turmeric paste if available. This purifies the body for the day-long fast and worship that follows.",
+            "hi": "अनुष्ठान स्नान के साथ दिन शुरू करें। यदि उपलब्ध हो तो हल्दी पेस्ट लगाएं। यह दिन भर के व्रत और पूजा के लिए शरीर को शुद्ध करता है।"
+          },
+          "relatedSamagriIds": [
+            "sm_water",
+            "sm_turmeric"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_hartalika_2",
+          "stepNumber": 2,
+          "title": {
+            "en": "Fast Throughout the Day",
+            "hi": "पूरे दिन व्रत रखें"
+          },
+          "description": {
+            "en": "Observe a day-long fast without food. Water or milk may be consumed as per family tradition. Spend the day in devotional activities, singing songs, or applying mehndi with friends and family. The fast is broken the next morning after worship.",
+            "hi": "बिना भोजन के पूरे दिन व्रत रखें। परिवार की परंपरा के अनुसार पानी या दूध का सेवन किया जा सकता है। दिन को भक्तिमय गतिविधियों में, गीत गाने में, या दोस्तों और परिवार के साथ मेहंदी लगाने में बिताएं। व्रत को अगली सुबह पूजा के बाद तोड़ा जाता है।"
+          },
+          "relatedSamagriIds": [
+            "sm_water",
+            "sm_milk"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_hartalika_3",
+          "stepNumber": 3,
+          "title": {
+            "en": "Evening Worship",
+            "hi": "संध्या की पूजा"
+          },
+          "description": {
+            "en": "In the evening, prepare an altar with flowers and light a diya. Offer flowers and water to a deity (typically Goddess Parvati or a symbolic representation of marital happiness). Sing traditional Teej songs and share stories of devoted wives as per family custom.",
+            "hi": "शाम को फूलों के साथ एक वेदी तैयार करें और दीया जलाएं। एक देवी को फूल और पानी अर्पित करें (आमतौर पर देवी पार्वती या वैवाहिक सुख का प्रतीकात्मक प्रतिनिधित्व)। पारंपरिक तीज गीत गाएं और परिवार की परंपरा के अनुसार समर्पित पत्नियों की कहानियां साझा करें।"
+          },
+          "relatedSamagriIds": [
+            "sm_flowers",
+            "sm_water",
+            "sm_diya",
+            "sm_oil",
+            "sm_incense"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_hartalika_4",
+          "stepNumber": 4,
+          "title": {
+            "en": "Apply Mehndi",
+            "hi": "मेहंदी लगाएं"
+          },
+          "description": {
+            "en": "Apply henna on hands and feet as a festive tradition. This is a joyful part of the celebration and is often done together with friends and family while singing songs.",
+            "hi": "एक उत्सव परंपरा के रूप में हाथों और पैरों पर मेहंदी लगाएं। यह उत्सव का एक आनंददायक हिस्सा है और अक्सर दोस्तों और परिवार के साथ गीत गाते हुए किया जाता है।"
+          },
+          "relatedSamagriIds": [
+            "sm_mehndi"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_hartalika_5",
+          "stepNumber": 5,
+          "title": {
+            "en": "Morning Worship and Breaking Fast",
+            "hi": "सुबह की पूजा और व्रत को तोड़ना"
+          },
+          "description": {
+            "en": "On the next morning, perform worship with flowers and offerings. Pray for the husband's health and long life. After completing the prayers, break the fast with a light meal. In many regions, this is followed by celebration and the application of tilaka on the husband's forehead.",
+            "hi": "अगली सुबह फूलों और चढ़ावों के साथ पूजा करें। पति के स्वास्थ्य और लंबी उम्र के लिए प्रार्थना करें। प्रार्थना पूरी करने के बाद, हल्के भोजन के साथ व्रत को तोड़ें। कई क्षेत्रों में, इसके बाद पति के माथे पर तिलक लगाया जाता है।"
+          },
+          "relatedSamagriIds": [
+            "sm_flowers",
+            "sm_water"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_hartalika_6",
+          "stepNumber": 6,
+          "title": {
+            "en": "Health Note: Fasting Considerations",
+            "hi": "स्वास्थ्य नोट: व्रत के विचार"
+          },
+          "description": {
+            "en": "This vrat may involve a full day fast without food. Women with health conditions, pregnant mothers, or those on medications should consult a doctor. Water may be consumed as per family tradition, which helps maintain hydration during the fast.",
+            "hi": "यह व्रत बिना भोजन के पूरे दिन का व्रत हो सकता है। स्वास्थ्य समस्याओं वाली महिलाएं, गर्भवती माताएं, या दवा पर लोगों को डॉक्टर से परामर्श लेना चाहिए। परिवार की परंपरा के अनुसार पानी का सेवन किया जा सकता है, जो व्रत के दौरान हाइड्रेशन बनाए रखने में मदद करता है।"
+          },
+          "relatedSamagriIds": [
+            "sm_water"
+          ],
+          "isOptional": false
+        }
+      ],
+      "variations": [
+        {
+          "id": "var_hartalika_north_india",
+          "regions": [
+            "north"
+          ],
+          "title": {
+            "en": "North India Tradition",
+            "hi": "उत्तर भारत की परंपरा"
+          },
+          "description": {
+            "en": "In North India, Hartalika Teej is celebrated with great enthusiasm. The festival is marked by women singing traditional songs (Teej geet) in groups, applying colorful mehndi designs, and swinging on swings. Many communities organize fairs where women gather to celebrate together. Sweets like gujhiya and other traditional preparations are made and distributed.",
+            "hi": "उत्तर भारत में हरतालिका तीज बहुत उत्साह के साथ मनाई जाती है। यह पर्व महिलाओं द्वारा समूहों में पारंपरिक गीत (तीज गीत) गाने, रंगीन मेहंदी डिजाइन लगाने और झूले झूलने से चिह्नित है। कई समुदाय मेलों का आयोजन करते हैं जहां महिलाएं एक साथ मनाती हैं। गुझिया और अन्य पारंपरिक तैयारियों जैसी मिठाई बनाई और वितरित की जाती है।"
+          },
+          "affectsStepIds": [],
+          "affectsSamagriIds": []
+        }
+      ],
+      "preparationChecklist": [],
+      "reviewStatus": "ai_drafted",
+      "sourceNote": {
+        "en": "AI-drafted guide based on Hartalika Teej traditions in North and West India. Specific rituals and songs vary by region and family. Not verified by a pandit.",
+        "hi": "उत्तर और पश्चिम भारत में हरतालिका तीज परंपराओं पर आधारित AI-तैयार गाइड। विशिष्ट अनुष्ठान और गीत क्षेत्र और परिवार के अनुसार भिन्न होते हैं। पंडित द्वारा सत्यापित नहीं।"
+      },
+      "contentVersion": 3,
+      "status": "active"
+    },
+    {
       "id": "puja_janmashtami",
       "festivalId": "fest_janmashtami",
       "name": {
@@ -1724,6 +3012,486 @@
         "hi": "व्यापक रूप से प्रलेखित जन्माष्टमी प्रथाओं के आधार पर AI द्वारा तैयार सामान्य मार्गदर्शन। अभी तक किसी पंडित द्वारा सत्यापित नहीं। सटीक तारीख और समय को एक पुजारी से परामर्श लेकर चंद्र पंचांग से निर्धारित किया जाना चाहिए।"
       },
       "contentVersion": 1,
+      "status": "active"
+    },
+    {
+      "id": "puja_jitiya",
+      "festivalId": "fest_jitiya",
+      "name": {
+        "en": "Jitiya Vrat",
+        "hi": "जितिया व्रत"
+      },
+      "alternateNames": {
+        "en": [
+          "Jivitputrika",
+          "Jivit Putra Vrat"
+        ],
+        "hi": [
+          "जीवितपुत्रिका",
+          "जीवित पुत्र व्रत"
+        ]
+      },
+      "category": "vrat",
+      "regions": [
+        "east",
+        "pan_india"
+      ],
+      "summary": {
+        "en": "Women's fasting ritual observed for the well-being and long life of sons, primarily in Bihar and eastern India.",
+        "hi": "पुत्रों के कल्याण और लंबी उम्र के लिए महिलाओं द्वारा किया जाने वाला व्रत, मुख्य रूप से बिहार और पूर्वी भारत में।"
+      },
+      "significance": {
+        "en": "Jitiya is a sacred vrat observed by mothers for the health and longevity of their sons. The ritual involves fasting without food or water throughout the day and night, with the fast broken only the next morning after worship. It is performed with the belief that the mother's sacrifice ensures the son's well-being.",
+        "hi": "जितिया एक पवित्र व्रत है जो माताओं द्वारा अपने पुत्रों के स्वास्थ्य और दीर्घायु के लिए किया जाता है। अनुष्ठान में पूरे दिन और रात बिना भोजन या पानी के व्रत रखना शामिल है, व्रत को केवल अगली सुबह पूजा के बाद तोड़ा जाता है। इसे इस विश्वास के साथ किया जाता है कि माता के त्याग से पुत्र का कल्याण होता है।"
+      },
+      "samagri": [
+        {
+          "samagriId": "sm_chickpea",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "Chickpea flour or roasted chickpeas, core offering",
+            "hi": "चने का आटा या भुने हुए चने, मुख्य चढ़ावा"
+          },
+          "sortOrder": 1
+        },
+        {
+          "samagriId": "sm_wheat_flour",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "Wheat flour for making puri or offering",
+            "hi": "पूरी बनाने या चढ़ावे के लिए गेहूं का आटा"
+          },
+          "sortOrder": 2
+        },
+        {
+          "samagriId": "sm_water",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Water for rituals",
+            "hi": "अनुष्ठान के लिए पानी"
+          },
+          "sortOrder": 3
+        },
+        {
+          "samagriId": "sm_flowers",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Flowers for worship",
+            "hi": "पूजा के लिए फूल"
+          },
+          "sortOrder": 4
+        },
+        {
+          "samagriId": "sm_incense",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Incense during prayers",
+            "hi": "प्रार्थना के दौरान अगरबत्ती"
+          },
+          "sortOrder": 5
+        },
+        {
+          "samagriId": "sm_diya",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Oil lamp for lighting",
+            "hi": "प्रकाश के लिए दीया"
+          },
+          "sortOrder": 6
+        },
+        {
+          "samagriId": "sm_oil",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "Oil for the lamp",
+            "hi": "दीये के लिए तेल"
+          },
+          "sortOrder": 7
+        },
+        {
+          "samagriId": "sm_jaggery",
+          "classification": "OPTIONAL",
+          "purpose": {
+            "en": "Jaggery for sweetening offerings",
+            "hi": "चढ़ावे को मीठा करने के लिए गुड़"
+          },
+          "sortOrder": 8
+        },
+        {
+          "samagriId": "sm_milk",
+          "classification": "OPTIONAL",
+          "purpose": {
+            "en": "Milk for food preparation after fast",
+            "hi": "व्रत के बाद भोजन तैयारी के लिए दूध"
+          },
+          "sortOrder": 9
+        }
+      ],
+      "steps": [
+        {
+          "id": "step_jitiya_1",
+          "stepNumber": 1,
+          "title": {
+            "en": "Begin the Fast at Dawn",
+            "hi": "भोर में व्रत शुरू करें"
+          },
+          "description": {
+            "en": "Begin the vrat early in the morning. From this moment until the next dawn, abstain from all food and water. This rigorous fast is the core of the Jitiya vrat and is undertaken with devotion for the son's welfare.",
+            "hi": "सुबह जल्दी व्रत शुरू करें। इस समय से अगली सुबह तक, सभी भोजन और पानी से बचें। यह कठोर व्रत जितिया व्रत का मुख्य हिस्सा है और पुत्र के कल्याण के लिए भक्ति से किया जाता है।"
+          },
+          "relatedSamagriIds": [],
+          "isOptional": false
+        },
+        {
+          "id": "step_jitiya_2",
+          "stepNumber": 2,
+          "title": {
+            "en": "Evening Prayers",
+            "hi": "संध्या की प्रार्थना"
+          },
+          "description": {
+            "en": "In the evening, light the diya and incense. Offer flowers and water to the deity (typically a mother goddess or child's protective deity). Recite prayers and sing traditional vrat songs as per family tradition. Maintain the fast throughout the evening.",
+            "hi": "शाम को दीया और अगरबत्ती जलाएं। देवी (आमतौर पर एक माता देवी या बच्चे की रक्षक देवी) को फूल और पानी अर्पित करें। परिवार की परंपरा के अनुसार प्रार्थना करें और पारंपरिक व्रत गीत गाएं। पूरी शाम व्रत रखें।"
+          },
+          "relatedSamagriIds": [
+            "sm_diya",
+            "sm_oil",
+            "sm_incense",
+            "sm_flowers",
+            "sm_water"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_jitiya_3",
+          "stepNumber": 3,
+          "title": {
+            "en": "Night-long Vigil",
+            "hi": "रात भर की निगरानी"
+          },
+          "description": {
+            "en": "Spend the night in prayer, meditation, or songs dedicated to the child's welfare. Some families listen to or recite stories of devoted mothers. Maintain complete fasting through the night without food or water. The spiritual devotion during this time is considered central to the vrat's power.",
+            "hi": "बच्चे के कल्याण के लिए समर्पित प्रार्थना, ध्यान या गीतों में रात बिताएं। कुछ परिवार समर्पित माताओं की कहानियां सुनते या सुनाते हैं। रात भर बिना भोजन या पानी के पूर्ण व्रत रखें। इस समय आध्यात्मिक भक्ति को व्रत की शक्ति के लिए केंद्रीय माना जाता है।"
+          },
+          "relatedSamagriIds": [],
+          "isOptional": false
+        },
+        {
+          "id": "step_jitiya_4",
+          "stepNumber": 4,
+          "title": {
+            "en": "Morning Worship",
+            "hi": "सुबह की पूजा"
+          },
+          "description": {
+            "en": "At dawn, prepare simple offerings of chickpea flour and wheat flour items. Make puri or khichdi if desired. Offer these to the deity along with flowers. Recite final prayers for the son's health and well-being. After completing the worship rituals, the fast is broken with a light meal.",
+            "hi": "भोर में चने के आटे और गेहूं के आटे की सरल चढ़ावे तैयार करें। यदि चाहें तो पूरी या खिचड़ी बनाएं। इन्हें फूलों के साथ देवी को अर्पित करें। पुत्र के स्वास्थ्य और कल्याण के लिए अंतिम प्रार्थना करें। पूजा के अनुष्ठान को पूरा करने के बाद, व्रत को हल्के भोजन के साथ तोड़ा जाता है।"
+          },
+          "relatedSamagriIds": [
+            "sm_chickpea",
+            "sm_wheat_flour",
+            "sm_flowers"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_jitiya_5",
+          "stepNumber": 5,
+          "title": {
+            "en": "Breaking the Fast",
+            "hi": "व्रत को तोड़ना"
+          },
+          "description": {
+            "en": "After sunrise and worship, drink water or milk first to rehydrate. Then have a light meal of milk-based food, khichdi, or other easily digestible items. Avoid heavy foods immediately after the fast to allow the body to adjust gradually.",
+            "hi": "सूर्योदय और पूजा के बाद, पहले पानी या दूध पिएं। फिर दूध-आधारित भोजन, खिचड़ी या अन्य आसानी से पचने योग्य वस्तुओं का हल्का भोजन करें। व्रत के तुरंत बाद भारी खाद्य पदार्थों से बचें ताकि शरीर धीरे-धीरे समायोजित हो सके।"
+          },
+          "relatedSamagriIds": [
+            "sm_milk",
+            "sm_water"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_jitiya_6",
+          "stepNumber": 6,
+          "title": {
+            "en": "Health and Safety Note",
+            "hi": "स्वास्थ्य और सुरक्षा नोट"
+          },
+          "description": {
+            "en": "This vrat involves fasting without food or water for a full day and night. Women with health conditions (anemia, low blood pressure, diabetes), pregnant mothers, or those on medications should consult a doctor before observing this vrat. Do not push oneself beyond physical limits. The spirit of the vrat is devotion, not physical harm.",
+            "hi": "यह व्रत पूरे दिन और रात बिना भोजन या पानी के व्रत रखना है। स्वास्थ्य समस्याओं (एनीमिया, निम्न रक्तचाप, मधुमेह) वाली महिलाएं, गर्भवती माताएं, या दवा पर लोगों को इस व्रत को देखने से पहले डॉक्टर से परामर्श लेना चाहिए। अपने भौतिक सीमा से परे जबरदस्ती न करें। व्रत की भावना भक्ति है, भौतिक नुकसान नहीं।"
+          },
+          "relatedSamagriIds": [],
+          "isOptional": false
+        }
+      ],
+      "variations": [
+        {
+          "id": "var_jitiya_bihar_jharkhand",
+          "regions": [
+            "east"
+          ],
+          "title": {
+            "en": "Bihar and Jharkhand Tradition",
+            "hi": "बिहार और झारखंड की परंपरा"
+          },
+          "description": {
+            "en": "In Bihar and Jharkhand, Jitiya is primarily observed by mothers. The vrat is rigorous and highly respected. In these regions, large groups of women often fast together, strengthening community bonds. Songs specific to Jitiya (Jitiya Geet) are sung throughout the night, creating a devotional atmosphere.",
+            "hi": "बिहार और झारखंड में जितिया मुख्य रूप से माताओं द्वारा मनाई जाती है। व्रत कठोर और अत्यधिक सम्मानित है। इन क्षेत्रों में, महिलाओं के बड़े समूह अक्सर एक साथ व्रत करते हैं, सामुदायिक बंधन को मजबूत करते हैं। जितिया विशेष गीत (जितिया गीत) पूरी रात गाए जाते हैं, एक भक्तिमय माहौल बनाते हैं।"
+          },
+          "affectsStepIds": [],
+          "affectsSamagriIds": []
+        }
+      ],
+      "preparationChecklist": [],
+      "reviewStatus": "ai_drafted",
+      "sourceNote": {
+        "en": "AI-drafted guide based on Jitiya Vrat traditions in Bihar and eastern India. Specific rituals and songs vary by family. Not verified by a pandit. Health consultation recommended for rigorous fasting.",
+        "hi": "बिहार और पूर्वी भारत में जितिया व्रत परंपराओं पर आधारित AI-तैयार गाइड। विशिष्ट अनुष्ठान और गीत परिवार के अनुसार भिन्न होते हैं। पंडित द्वारा सत्यापित नहीं। कठोर व्रत के लिए स्वास्थ्य परामर्श अनुशंसित है।"
+      },
+      "contentVersion": 3,
+      "status": "active"
+    },
+    {
+      "id": "puja_karwa_chauth",
+      "festivalId": "fest_karwa_chauth",
+      "name": {
+        "en": "Karwa Chauth",
+        "hi": "करवा चौथ"
+      },
+      "alternateNames": {
+        "en": [
+          "Karva Chauth",
+          "Karwe Chauth"
+        ],
+        "hi": [
+          "करवा चौथ"
+        ]
+      },
+      "category": "vrat",
+      "regions": [
+        "north",
+        "west",
+        "pan_india"
+      ],
+      "summary": {
+        "en": "Women's fasting festival observed for the longevity and well-being of husbands, primarily celebrated in North and West India.",
+        "hi": "पति की लंबी उम्र और कल्याण के लिए महिलाओं द्वारा किया जाने वाला व्रत पर्व, मुख्य रूप से उत्तर और पश्चिम भारत में मनाया जाता है।"
+      },
+      "significance": {
+        "en": "Karwa Chauth celebrates marital devotion and the bond between husband and wife. Women fast from sunrise to moonrise without food or water, praying for their husbands' health and long life. The fast is broken only after sighting and worshipping the moon. This vrat reflects the depth of marital commitment and mutual care.",
+        "hi": "करवा चौथ वैवाहिक भक्ति और पति-पत्नी के बंधन का जश्न है। महिलाएं सूर्योदय से चंद्रोदय तक बिना भोजन या पानी के व्रत रखती हैं, अपने पति के स्वास्थ्य और लंबी उम्र के लिए प्रार्थना करती हैं। व्रत को केवल चंद्रमा को देखने और पूजा करने के बाद तोड़ा जाता है। यह व्रत वैवाहिक प्रतिबद्धता की गहराई और पारस्परिक देखभाल को दर्शाता है।"
+      },
+      "samagri": [
+        {
+          "samagriId": "sm_water",
+          "classification": "OPTIONAL",
+          "purpose": {
+            "en": "Water available during the day for breaking fast at moonrise if needed",
+            "hi": "चंद्रोदय पर व्रत को तोड़ने के लिए दिन के दौरान उपलब्ध पानी, यदि आवश्यक हो"
+          },
+          "sortOrder": 1
+        },
+        {
+          "samagriId": "sm_clay_pot",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "Clay pot used in the ritual, symbolizes tradition",
+            "hi": "अनुष्ठान में उपयोग किया जाने वाला मिट्टी का बर्तन, परंपरा का प्रतीक"
+          },
+          "sortOrder": 2
+        },
+        {
+          "samagriId": "sm_diya",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Oil lamp for evening worship",
+            "hi": "शाम की पूजा के लिए दीया"
+          },
+          "sortOrder": 3
+        },
+        {
+          "samagriId": "sm_oil",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "Oil for the lamp",
+            "hi": "दीये के लिए तेल"
+          },
+          "sortOrder": 4
+        },
+        {
+          "samagriId": "sm_flowers",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Flowers for offering",
+            "hi": "चढ़ावे के लिए फूल"
+          },
+          "sortOrder": 5
+        },
+        {
+          "samagriId": "sm_vermillion",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Vermillion for tilak",
+            "hi": "तिलक के लिए सिंदूर"
+          },
+          "sortOrder": 6
+        },
+        {
+          "samagriId": "sm_rice",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Rice for offerings and tika",
+            "hi": "चढ़ावे और तिलक के लिए चावल"
+          },
+          "sortOrder": 7
+        },
+        {
+          "samagriId": "sm_milk",
+          "classification": "OPTIONAL",
+          "purpose": {
+            "en": "Milk to break the fast after moonrise",
+            "hi": "चंद्रोदय के बाद व्रत को तोड़ने के लिए दूध"
+          },
+          "sortOrder": 8
+        },
+        {
+          "samagriId": "sm_sweets",
+          "classification": "OPTIONAL",
+          "purpose": {
+            "en": "Sweets for breaking the fast",
+            "hi": "व्रत को तोड़ने के लिए मिठाई"
+          },
+          "sortOrder": 9
+        }
+      ],
+      "steps": [
+        {
+          "id": "step_karwa_1",
+          "stepNumber": 1,
+          "title": {
+            "en": "Begin the Fast at Dawn",
+            "hi": "भोर में व्रत शुरू करें"
+          },
+          "description": {
+            "en": "Begin the vrat at sunrise by abstaining from all food and water. This day-long fast is observed with the intention of the husband's well-being and longevity. The fast continues until the moon is sighted in the evening.",
+            "hi": "सूर्योदय के समय सभी भोजन और पानी का सेवन न करके व्रत शुरू करें। यह पूरे दिन का व्रत पति के कल्याण और लंबी उम्र के इरादे के साथ रखा जाता है। व्रत शाम को चंद्रमा दिखाई देने तक जारी रहता है।"
+          },
+          "relatedSamagriIds": [],
+          "isOptional": false
+        },
+        {
+          "id": "step_karwa_2",
+          "stepNumber": 2,
+          "title": {
+            "en": "Evening Preparation and Worship",
+            "hi": "शाम की तैयारी और पूजा"
+          },
+          "description": {
+            "en": "In the evening, prepare for moon worship by cleaning the area and lighting a diya. Arrange flowers and place the clay pot (karwa) prominently. This symbolizes the ritual space for the puja. Gather with other fasting women if possible, as this creates a community of shared devotion.",
+            "hi": "शाम को क्षेत्र को साफ करके और दीया जलाकर चंद्र पूजा के लिए तैयारी करें। फूलों को व्यवस्थित करें और मिट्टी के बर्तन (करवा) को प्रमुखता से रखें। यह पूजा के लिए अनुष्ठान स्थान का प्रतीक है। यदि संभव हो तो अन्य उपवास रखने वाली महिलाओं के साथ मिलें, क्योंकि यह साझा भक्ति का एक समुदाय बनाता है।"
+          },
+          "relatedSamagriIds": [
+            "sm_diya",
+            "sm_oil",
+            "sm_flowers",
+            "sm_clay_pot"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_karwa_3",
+          "stepNumber": 3,
+          "title": {
+            "en": "Sighting and Worshipping the Moon",
+            "hi": "चंद्रमा को देखना और पूजा करना"
+          },
+          "description": {
+            "en": "As soon as the moon becomes visible, gather to sight it. Offer flowers and water in the direction of the moon. Many women recite prayers or chants as the moon rises, invoking blessings for their husbands. The moon is believed to be a symbol of beauty, purity, and the eternal nature of love.",
+            "hi": "जैसे ही चंद्रमा दिखाई देता है, इसे देखने के लिए इकट्ठा करें। चंद्रमा की दिशा में फूल और पानी अर्पित करें। कई महिलाएं चंद्रमा के उदय होने के समय प्रार्थना या मंत्र का पाठ करती हैं, अपने पति के लिए आशीर्वाद का आह्वान करती हैं। चंद्रमा को सौंदर्य, पवित्रता और प्रेम की शाश्वत प्रकृति का प्रतीक माना जाता है।"
+          },
+          "relatedSamagriIds": [
+            "sm_flowers",
+            "sm_water"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_karwa_4",
+          "stepNumber": 4,
+          "title": {
+            "en": "Ritual with Husband (if present)",
+            "hi": "पति के साथ अनुष्ठान (यदि मौजूद हो)"
+          },
+          "description": {
+            "en": "If the husband is present, he applies tilaka on the wife's forehead and offers her food to break the fast. He reaffirms his commitment to her care and protection. The couple exchanges blessings and gifts. In many families, this becomes a moment of renewed commitment and affection.",
+            "hi": "यदि पति मौजूद है, तो वह पत्नी के माथे पर तिलक लगाता है और उसे व्रत को तोड़ने के लिए भोजन देता है। वह उसकी देखभाल और सुरक्षा के लिए अपनी प्रतिबद्धता को दोहराता है। दंपति आशीर्वाद और उपहारों का आदान-प्रदान करते हैं। कई परिवारों में, यह प्रतिबद्धता और स्नेह को नवीनीकृत करने का एक क्षण बन जाता है।"
+          },
+          "relatedSamagriIds": [
+            "sm_vermillion",
+            "sm_rice"
+          ],
+          "isOptional": true
+        },
+        {
+          "id": "step_karwa_5",
+          "stepNumber": 5,
+          "title": {
+            "en": "Breaking the Fast",
+            "hi": "व्रत को तोड़ना"
+          },
+          "description": {
+            "en": "After moon worship, break the fast with water or milk first, followed by a light meal. Sweets and fruits are traditionally used to break the fast. Take time to allow the body to adjust gradually after the long fast. Share the meal with family and friends to celebrate the day.",
+            "hi": "चंद्र पूजा के बाद, पहले पानी या दूध के साथ व्रत को तोड़ें, फिर हल्के भोजन से। परंपरागत रूप से मिठाई और फल व्रत को तोड़ने के लिए उपयोग किए जाते हैं। लंबे व्रत के बाद शरीर को धीरे-धीरे समायोजित करने के लिए समय लें। दिन को मनाने के लिए परिवार और दोस्तों के साथ भोजन साझा करें।"
+          },
+          "relatedSamagriIds": [
+            "sm_water",
+            "sm_milk",
+            "sm_sweets"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_karwa_6",
+          "stepNumber": 6,
+          "title": {
+            "en": "Health and Safety Note: Fasting Precautions",
+            "hi": "स्वास्थ्य और सुरक्षा नोट: व्रत सावधानियां"
+          },
+          "description": {
+            "en": "This vrat involves a full day and evening fast without food or water until moonrise. Women with health conditions (anemia, low blood sugar, diabetes, heart conditions), pregnant mothers, nursing mothers, or those on medications should consult a doctor before observing this vrat. Do not view fasting as compulsory if health is at risk. The spirit of the ritual is devotion and love, not physical suffering.",
+            "hi": "यह व्रत चंद्रोदय तक पूरे दिन और शाम का व्रत बिना भोजन या पानी के है। स्वास्थ्य समस्याओं (एनीमिया, निम्न रक्त शर्करा, मधुमेह, हृदय रोग) वाली महिलाएं, गर्भवती माताएं, स्तनपान कराने वाली माताएं, या दवा पर लोगों को इस व्रत को देखने से पहले डॉक्टर से परामर्श लेना चाहिए। यदि स्वास्थ्य जोखिम में हो तो व्रत को अनिवार्य न समझें। अनुष्ठान की भावना भक्ति और प्रेम है, भौतिक पीड़ा नहीं।"
+          },
+          "relatedSamagriIds": [],
+          "isOptional": false
+        }
+      ],
+      "variations": [
+        {
+          "id": "var_karwa_north_india",
+          "regions": [
+            "north"
+          ],
+          "title": {
+            "en": "North India Tradition",
+            "hi": "उत्तर भारत की परंपरा"
+          },
+          "description": {
+            "en": "In North India, particularly Punjab, Haryana, and Uttar Pradesh, Karwa Chauth is celebrated with great enthusiasm. Married women dress in traditional attire, apply mehndi, and gather in groups to fast together. The evening worship is more elaborate, with songs and stories celebrating marital devotion. Many families organize community gatherings for the moon-sighting ritual.",
+            "hi": "उत्तर भारत में, विशेषकर पंजाब, हरियाणा और उत्तर प्रदेश में, करवा चौथ बहुत उत्साह के साथ मनाई जाती है। विवाहित महिलाएं पारंपरिक पोशाक पहनती हैं, मेहंदी लगाती हैं और एक साथ व्रत करने के लिए समूहों में जमा होती हैं। शाम की पूजा अधिक विस्तृत होती है, वैवाहिक भक्ति का जश्न देने वाले गीत और कहानियों के साथ। कई परिवार चंद्र-दर्शन अनुष्ठान के लिए सामुदायिक समारोह का आयोजन करते हैं।"
+          },
+          "affectsStepIds": [],
+          "affectsSamagriIds": []
+        }
+      ],
+      "preparationChecklist": [],
+      "reviewStatus": "ai_drafted",
+      "sourceNote": {
+        "en": "AI-drafted guide based on Karwa Chauth traditions in North and West India. Specific rituals and practices vary by region and family. Not verified by a pandit. Health consultation recommended for extended fasting.",
+        "hi": "उत्तर और पश्चिम भारत में करवा चौथ परंपराओं पर आधारित AI-तैयार गाइड। विशिष्ट अनुष्ठान और प्रथाएं क्षेत्र और परिवार के अनुसार भिन्न होती हैं। पंडित द्वारा सत्यापित नहीं। विस्तारित व्रत के लिए स्वास्थ्य परामर्श अनुशंसित है।"
+      },
+      "contentVersion": 3,
       "status": "active"
     },
     {
@@ -2488,6 +4256,237 @@
       "status": "active"
     },
     {
+      "id": "puja_raksha_bandhan",
+      "festivalId": "fest_raksha_bandhan",
+      "name": {
+        "en": "Raksha Bandhan",
+        "hi": "राखा बंधन"
+      },
+      "alternateNames": {
+        "en": [
+          "Rakhi",
+          "Rakshabandhan",
+          "Nariyel Purnima"
+        ],
+        "hi": [
+          "राखी",
+          "राक्षा बंधन",
+          "नारियल पूर्णिमा"
+        ]
+      },
+      "category": "household",
+      "regions": [
+        "pan_india"
+      ],
+      "summary": {
+        "en": "Festival celebrating the bond between brothers and sisters. Sisters tie a sacred thread (rakhi) on their brothers' wrists as a symbol of protection and blessings.",
+        "hi": "भाई और बहन के रिश्ते को मनाने वाला पर्व। बहनें सुरक्षा और आशीर्वाद के प्रतीक के रूप में अपने भाइयों की कलाई पर एक पवित्र धागा (राखी) बांधती हैं।"
+      },
+      "significance": {
+        "en": "Raksha Bandhan celebrates the protective bond between siblings. The rakhi, a sacred thread, symbolizes the sister's love and the brother's commitment to protect her. This ancient festival is celebrated across India and among diaspora communities worldwide, reinforcing family bonds and mutual responsibilities.",
+        "hi": "राखा बंधन भाई-बहन के बीच सुरक्षात्मक संबंध का जश्न है। राखी, एक पवित्र धागा, बहन के प्रेम और भाई की उसकी रक्षा के लिए प्रतिबद्धता का प्रतीक है। यह प्राचीन त्योहार भारत भर में और दुनिया भर में प्रवासी समुदायों द्वारा मनाया जाता है, पारिवारिक संबंधों और पारस्परिक जिम्मेदारियों को मजबूत करता है।"
+      },
+      "samagri": [
+        {
+          "samagriId": "sm_thread",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "Sacred thread (rakhi) for tying on brother's wrist",
+            "hi": "भाई की कलाई पर बांधने के लिए पवित्र धागा (राखी)"
+          },
+          "sortOrder": 1
+        },
+        {
+          "samagriId": "sm_flowers",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Flowers for offering and decoration",
+            "hi": "चढ़ावे और सजावट के लिए फूल"
+          },
+          "sortOrder": 2
+        },
+        {
+          "samagriId": "sm_diya",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Oil lamp for lighting",
+            "hi": "प्रकाश के लिए दीया"
+          },
+          "sortOrder": 3
+        },
+        {
+          "samagriId": "sm_oil",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "Oil for the lamp",
+            "hi": "दीये के लिए तेल"
+          },
+          "sortOrder": 4
+        },
+        {
+          "samagriId": "sm_rice",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Rice for tika",
+            "hi": "तिलक के लिए चावल"
+          },
+          "sortOrder": 5
+        },
+        {
+          "samagriId": "sm_vermillion",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Red powder for tilak",
+            "hi": "तिलक के लिए लाल पाउडर"
+          },
+          "sortOrder": 6
+        },
+        {
+          "samagriId": "sm_water",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "Water for rituals",
+            "hi": "अनुष्ठान के लिए पानी"
+          },
+          "sortOrder": 7
+        },
+        {
+          "samagriId": "sm_sweets",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Sweets for offering and sharing",
+            "hi": "चढ़ावा और साझा करने के लिए मिठाई"
+          },
+          "sortOrder": 8
+        },
+        {
+          "samagriId": "sm_dry_fruits",
+          "classification": "OPTIONAL",
+          "purpose": {
+            "en": "Dry fruits for gifts",
+            "hi": "उपहार के लिए सूखे मेवे"
+          },
+          "sortOrder": 9
+        }
+      ],
+      "steps": [
+        {
+          "id": "step_raksha_1",
+          "stepNumber": 1,
+          "title": {
+            "en": "Set up the Altar",
+            "hi": "वेदी की स्थापना"
+          },
+          "description": {
+            "en": "Prepare a clean space and arrange flowers, diya, water, and the rakhi. Create a simple altar with the rakhi as the central element. This is the sacred space for the ritual.",
+            "hi": "एक स्वच्छ स्थान तैयार करें और फूल, दीया, पानी और राखी को व्यवस्थित करें। राखी को केंद्रीय तत्व के रूप में एक सरल वेदी बनाएं। यह अनुष्ठान के लिए पवित्र स्थान है।"
+          },
+          "relatedSamagriIds": [
+            "sm_flowers",
+            "sm_diya",
+            "sm_water",
+            "sm_thread"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_raksha_2",
+          "stepNumber": 2,
+          "title": {
+            "en": "Light the Lamp and Offer Prayers",
+            "hi": "दीया जलाएं और प्रार्थना करें"
+          },
+          "description": {
+            "en": "Light the diya and offer flowers and water. Recite prayers for the brother's safety, health, and prosperity. The sister should offer these prayers with heartfelt devotion, invoking blessings for the brother.",
+            "hi": "एक दीया जलाएं और फूल और पानी अर्पित करें। भाई की सुरक्षा, स्वास्थ्य और समृद्धि के लिए प्रार्थना करें। बहन को भाई के लिए आशीर्वाद का आह्वान करते हुए हृदय से प्रार्थना करनी चाहिए।"
+          },
+          "relatedSamagriIds": [
+            "sm_diya",
+            "sm_oil",
+            "sm_flowers",
+            "sm_water"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_raksha_3",
+          "stepNumber": 3,
+          "title": {
+            "en": "Apply Tilak to Brother's Forehead",
+            "hi": "भाई के माथे पर तिलक लगाएं"
+          },
+          "description": {
+            "en": "Mix vermillion with rice and apply a tilak on the brother's forehead. This marks him as blessed and protected by his sister's prayers.",
+            "hi": "सिंदूर को चावल के साथ मिलाएं और भाई के माथे पर तिलक लगाएं। यह उसे अपनी बहन की प्रार्थनाओं द्वारा आशीर्वादित और सुरक्षित के रूप में चिह्नित करता है।"
+          },
+          "relatedSamagriIds": [
+            "sm_vermillion",
+            "sm_rice"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_raksha_4",
+          "stepNumber": 4,
+          "title": {
+            "en": "Tie the Rakhi",
+            "hi": "राखी बांधें"
+          },
+          "description": {
+            "en": "With prayers and blessings, tie the rakhi (sacred thread) on the brother's wrist. This is the central ritual of Raksha Bandhan. As the sister ties the rakhi, she recites blessings for the brother's protection and prosperity. The brother accepts this with reverence.",
+            "hi": "प्रार्थना और आशीर्वाद के साथ, भाई की कलाई पर राखी (पवित्र धागा) बांधें। यह राखा बंधन का केंद्रीय अनुष्ठान है। जब बहन राखी बांधती है, तो भाई की सुरक्षा और समृद्धि के लिए आशीर्वाद देती है। भाई इसे सम्मान के साथ स्वीकार करता है।"
+          },
+          "relatedSamagriIds": [
+            "sm_thread"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_raksha_5",
+          "stepNumber": 5,
+          "title": {
+            "en": "Exchange of Gifts and Blessings",
+            "hi": "उपहारों और आशीर्वादों का आदान-प्रदान"
+          },
+          "description": {
+            "en": "After tying the rakhi, the brother offers gifts and sweets to the sister. He blesses her and reaffirms his commitment to protect her. The sister accepts these with joy. Distribute sweets and gifts among family members to celebrate the occasion.",
+            "hi": "राखी बांधने के बाद, भाई बहन को उपहार और मिठाई देता है। वह उसे आशीर्वाद देता है और उसकी रक्षा के लिए अपनी प्रतिबद्धता को दोहराता है। बहन इन्हें खुशी के साथ स्वीकार करती है। पारिवारिक सदस्यों के बीच मिठाई और उपहार वितरित करें।"
+          },
+          "relatedSamagriIds": [
+            "sm_sweets",
+            "sm_dry_fruits"
+          ],
+          "isOptional": false
+        }
+      ],
+      "variations": [
+        {
+          "id": "var_raksha_coastal_india",
+          "regions": [
+            "west"
+          ],
+          "title": {
+            "en": "Coastal India Variation (Nariyel Purnima)",
+            "hi": "तटीय भारत भिन्नता (नारियल पूर्णिमा)"
+          },
+          "description": {
+            "en": "In coastal regions, particularly in Maharashtra and Goa, this festival is also known as Nariyel Purnima (coconut full moon). The ritual includes offering coconuts to the sea, believed to appease the sea God. Fishing communities perform a special ritual offering coconuts to seek safe voyages. The sibling bond ritual remains central, but the coastal variations emphasize the monsoon and the sea.",
+            "hi": "तटीय क्षेत्रों में, विशेषकर महाराष्ट्र और गोवा में, इस त्योहार को नारियल पूर्णिमा (नारियल पूर्ण चंद्रमा) के नाम से जाना जाता है। अनुष्ठान में समुद्र को नारियल का चढ़ावा देना शामिल है, जिसे समुद्र देव को शांत करने के लिए माना जाता है। मत्स्य पालन समुदाय सुरक्षित यात्रा के लिए नारियल का एक विशेष अनुष्ठान प्रदान करते हैं। भाई-बहन का बंधन अनुष्ठान केंद्रीय रहता है, लेकिन तटीय भिन्नताएं मानसून और समुद्र पर जोर देती हैं।"
+          },
+          "affectsStepIds": [],
+          "affectsSamagriIds": []
+        }
+      ],
+      "preparationChecklist": [],
+      "reviewStatus": "ai_drafted",
+      "sourceNote": {
+        "en": "AI-drafted guide based on Raksha Bandhan traditions across India. Specific rituals and practices vary by region and community. Not verified by a pandit.",
+        "hi": "भारत भर में राखा बंधन परंपराओं पर आधारित AI-तैयार गाइड। विशिष्ट अनुष्ठान और प्रथाएं क्षेत्र और समुदाय के अनुसार भिन्न होती हैं। पंडित द्वारा सत्यापित नहीं।"
+      },
+      "contentVersion": 3,
+      "status": "active"
+    },
+    {
       "id": "puja_saraswati_puja",
       "festivalId": "fest_saraswati_puja",
       "name": {
@@ -3164,6 +5163,245 @@
       },
       "contentVersion": 1,
       "status": "active"
+    },
+    {
+      "id": "puja_vishwakarma",
+      "festivalId": "fest_vishwakarma",
+      "name": {
+        "en": "Vishwakarma Puja",
+        "hi": "विश्वकर्मा पूजन"
+      },
+      "alternateNames": {
+        "en": [
+          "Viswakarma Puja"
+        ],
+        "hi": [
+          "विश्वकर्मा पूजा"
+        ]
+      },
+      "category": "household",
+      "regions": [
+        "pan_india"
+      ],
+      "summary": {
+        "en": "Festival honoring Vishwakarma, the divine architect and craftsman. Widely celebrated in industries, workshops, and by artisans and engineers.",
+        "hi": "विश्वकर्मा, दिव्य वास्तुकार और कारीगर को सम्मान देने का पर्व। उद्योगों, कार्यशालाओं और कारीगरों द्वारा व्यापक रूप से मनाया जाता है।"
+      },
+      "significance": {
+        "en": "Vishwakarma Puja celebrates the patron deity of artisans, engineers, and craftspeople. He is worshipped for skill, knowledge, and protection in one's profession. The puja typically includes blessing tools and machinery, invoking safety and prosperity in work.",
+        "hi": "विश्वकर्मा पूजन कारीगरों, इंजीनियरों और शिल्पकारों के संरक्षक देवता का जश्न है। उन्हें कौशल, ज्ञान और पेशे में सुरक्षा के लिए पूजा जाता है। पूजा में आमतौर पर औजारों और मशीनरी को आशीर्वाद देना, काम में सुरक्षा और समृद्धि का आह्वान शामिल होता है।"
+      },
+      "samagri": [
+        {
+          "samagriId": "sm_flowers",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "Flowers for worshipping the deity",
+            "hi": "देवता की पूजा के लिए फूल"
+          },
+          "sortOrder": 1
+        },
+        {
+          "samagriId": "sm_incense",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Incense during worship",
+            "hi": "पूजा के दौरान अगरबत्ती"
+          },
+          "sortOrder": 2
+        },
+        {
+          "samagriId": "sm_diya",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Oil lamp for lighting",
+            "hi": "प्रकाश के लिए दीया"
+          },
+          "sortOrder": 3
+        },
+        {
+          "samagriId": "sm_oil",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "Oil for the lamp",
+            "hi": "दीये के लिए तेल"
+          },
+          "sortOrder": 4
+        },
+        {
+          "samagriId": "sm_rice",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Rice for offerings",
+            "hi": "चढ़ावे के लिए चावल"
+          },
+          "sortOrder": 5
+        },
+        {
+          "samagriId": "sm_water",
+          "classification": "REQUIRED",
+          "purpose": {
+            "en": "Water for rituals",
+            "hi": "पूजा के लिए पानी"
+          },
+          "sortOrder": 6
+        },
+        {
+          "samagriId": "sm_yellow_flowers",
+          "classification": "COMMON",
+          "purpose": {
+            "en": "Marigold or yellow flowers as offering",
+            "hi": "गेंदा या पीले फूलों का चढ़ावा"
+          },
+          "sortOrder": 7
+        },
+        {
+          "samagriId": "sm_sweets",
+          "classification": "OPTIONAL",
+          "purpose": {
+            "en": "Sweets for distribution after puja",
+            "hi": "पूजा के बाद वितरण के लिए मिठाई"
+          },
+          "sortOrder": 8
+        },
+        {
+          "samagriId": "sm_milk",
+          "classification": "OPTIONAL",
+          "purpose": {
+            "en": "Milk for offerings if needed",
+            "hi": "आवश्यकतानुसार दूध का चढ़ावा"
+          },
+          "sortOrder": 9
+        }
+      ],
+      "steps": [
+        {
+          "id": "step_vishwakarma_1",
+          "stepNumber": 1,
+          "title": {
+            "en": "Prepare the Workspace",
+            "hi": "कार्यस्थल की तैयारी"
+          },
+          "description": {
+            "en": "Clean and prepare the workshop or workspace where tools and machinery are located. Arrange all tools and equipment in an organized manner. This place becomes the shrine for the puja.",
+            "hi": "कार्यशाला या कार्यस्थल को साफ करें और तैयार करें जहां औजार और मशीनरी हैं। सभी उपकरणों को व्यवस्थित तरीके से व्यवस्थित करें। यह स्थान पूजा के लिए मंदिर बन जाता है।"
+          },
+          "relatedSamagriIds": [],
+          "isOptional": false
+        },
+        {
+          "id": "step_vishwakarma_2",
+          "stepNumber": 2,
+          "title": {
+            "en": "Set up the Altar",
+            "hi": "वेदी की स्थापना"
+          },
+          "description": {
+            "en": "Create a small altar or sacred space. Place an idol or image of Vishwakarma if available, or simply use flowers and incense to mark the sacred space. Arrange water, flowers, and offering items.",
+            "hi": "एक छोटी वेदी या पवित्र स्थान बनाएं। यदि उपलब्ध हो तो विश्वकर्मा की मूर्ति या तस्वीर रखें, या केवल पवित्र स्थान को चिह्नित करने के लिए फूल और अगरबत्ती का उपयोग करें। पानी, फूल और चढ़ावे की वस्तुओं को व्यवस्थित करें।"
+          },
+          "relatedSamagriIds": [
+            "sm_flowers",
+            "sm_incense",
+            "sm_water"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_vishwakarma_3",
+          "stepNumber": 3,
+          "title": {
+            "en": "Invoke Vishwakarma",
+            "hi": "विश्वकर्मा का आह्वान"
+          },
+          "description": {
+            "en": "Light the diya and incense. Offer flowers and water to the deity. Recite prayers invoking Vishwakarma for his blessings. The specific prayers vary by family tradition and region—follow your own or consult a local guide.",
+            "hi": "दीया और अगरबत्ती जलाएं। देवता को फूल और पानी अर्पित करें। विश्वकर्मा से आशीर्वाद के लिए प्रार्थना करें। विशिष्ट प्रार्थनाएं परिवार की परंपरा और क्षेत्र के आधार पर भिन्न होती हैं—अपनी परंपरा का पालन करें या किसी स्थानीय व्यक्ति से परामर्श लें।"
+          },
+          "relatedSamagriIds": [
+            "sm_diya",
+            "sm_oil",
+            "sm_incense",
+            "sm_flowers",
+            "sm_water"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_vishwakarma_4",
+          "stepNumber": 4,
+          "title": {
+            "en": "Bless the Tools and Machinery",
+            "hi": "औजारों और मशीनरी का आशीर्वाद"
+          },
+          "description": {
+            "en": "The main ritual involves blessing all tools and machinery. Circle the tools with offerings or simply touch them with flowers and tilaka while reciting blessings. This symbolizes invoking protection and prosperity for work performed with these tools.",
+            "hi": "मुख्य अनुष्ठान सभी औजारों और मशीनरी को आशीर्वाद देना है। चढ़ावे के साथ औजारों को घेरें या केवल उन्हें फूलों और तिलक से छूते हुए आशीर्वाद दें। यह इन औजारों के साथ किए गए काम में सुरक्षा और समृद्धि का प्रतीक है।"
+          },
+          "relatedSamagriIds": [
+            "sm_flowers"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_vishwakarma_5",
+          "stepNumber": 5,
+          "title": {
+            "en": "Distribution of Blessed Items",
+            "hi": "आशीर्वादित वस्तुओं का वितरण"
+          },
+          "description": {
+            "en": "Distribute blessed water, flowers, or sweets among workers, colleagues, or family members. This marks the completion of the puja and spreads the blessings. Traditionally, workers take the day off to celebrate together.",
+            "hi": "कर्मचारियों, सहकर्मियों या पारिवारिक सदस्यों के बीच आशीर्वादित पानी, फूल या मिठाई वितरित करें। यह पूजा की समाप्ति का प्रतीक है और आशीर्वाद को फैलाता है। परंपरागत रूप से, कर्मचारी एक साथ मनाने के लिए दिन की छुट्टी लेते हैं।"
+          },
+          "relatedSamagriIds": [
+            "sm_water",
+            "sm_flowers",
+            "sm_sweets"
+          ],
+          "isOptional": false
+        },
+        {
+          "id": "step_vishwakarma_6",
+          "stepNumber": 6,
+          "title": {
+            "en": "Safety Note: Tool and Machinery Precautions",
+            "hi": "सुरक्षा नोट: औजार और मशीनरी सावधानियां"
+          },
+          "description": {
+            "en": "During the puja, ensure all machinery is turned off and safe. Do not operate any equipment during the ritual. Keep the area clear of hazards. If the puja involves blessing tools near running machinery, ensure proper safety protocols are followed and machines are isolated from the ritual area.",
+            "hi": "पूजा के दौरान, सभी मशीनरी को बंद करें और सुरक्षित करें। अनुष्ठान के दौरान किसी भी उपकरण को संचालित न करें। क्षेत्र को खतरों से मुक्त रखें। यदि पूजा में चलती हुई मशीनरी के पास औजारों को आशीर्वाद देना शामिल है, तो उचित सुरक्षा प्रोटोकॉल का पालन सुनिश्चित करें और मशीनों को अनुष्ठान क्षेत्र से अलग करें।"
+          },
+          "relatedSamagriIds": [],
+          "isOptional": false
+        }
+      ],
+      "variations": [
+        {
+          "id": "var_vishwakarma_factory",
+          "regions": [
+            "pan_india"
+          ],
+          "title": {
+            "en": "Factory and Industrial Tradition",
+            "hi": "कारखाना और औद्योगिक परंपरा"
+          },
+          "description": {
+            "en": "In factories and large industries, Vishwakarma Puja is celebrated on a large scale. The ritual often includes blessing all machinery on the factory floor, group prayers for safety, and distribution of sweets among all workers. Many organizations declare a holiday to allow workers to participate in the celebrations.",
+            "hi": "कारखानों और बड़े उद्योगों में विश्वकर्मा पूजन बड़े पैमाने पर मनाया जाता है। अनुष्ठान में अक्सर कारखाने के फर्श पर सभी मशीनरी को आशीर्वाद देना, सुरक्षा के लिए सामूहिक प्रार्थना और सभी कर्मचारियों के बीच मिठाई का वितरण शामिल होता है। कई संगठन कर्मचारियों को समारोह में भाग लेने की अनुमति देने के लिए अवकाश की घोषणा करते हैं।"
+          },
+          "affectsStepIds": [],
+          "affectsSamagriIds": []
+        }
+      ],
+      "preparationChecklist": [],
+      "reviewStatus": "ai_drafted",
+      "sourceNote": {
+        "en": "AI-drafted guide based on Vishwakarma Puja traditions across India. Specific prayers and rituals vary by region and community. Not verified by a pandit.",
+        "hi": "भारत भर में विश्वकर्मा पूजन की परंपराओं पर आधारित AI-तैयार गाइड। विशिष्ट प्रार्थनाएं और अनुष्ठान क्षेत्र और समुदाय के आधार पर भिन्न होते हैं। पंडित द्वारा सत्यापित नहीं।"
+      },
+      "contentVersion": 3,
+      "status": "active"
     }
   ],
   "samagri": [
@@ -3285,6 +5523,30 @@
       "status": "active"
     },
     {
+      "id": "sm_chickpea",
+      "name": {
+        "en": "Chickpea/chana",
+        "hi": "चना"
+      },
+      "description": {
+        "en": "Dried chickpeas or gram",
+        "hi": "सूखे चने या दाल"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_clay_pot",
+      "name": {
+        "en": "Clay pot",
+        "hi": "मिट्टी का बर्तन"
+      },
+      "description": {
+        "en": "Earthen pot for ritual use",
+        "hi": "पूजा के लिए मिट्टी का बर्तन"
+      },
+      "status": "active"
+    },
+    {
       "id": "sm_coconut",
       "name": {
         "en": "Coconut",
@@ -3317,6 +5579,18 @@
       "description": {
         "en": "Conch shell for puja rituals",
         "hi": "पूजा की परंपरा के लिए शंख"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_cow_dung",
+      "name": {
+        "en": "Cow dung",
+        "hi": "गाय का गोबर"
+      },
+      "description": {
+        "en": "Dried cow dung for ritual and cleansing",
+        "hi": "पूजा और सफाई के लिए सूखा गाय का गोबर"
       },
       "status": "active"
     },
@@ -3521,6 +5795,18 @@
       "status": "active"
     },
     {
+      "id": "sm_mehndi",
+      "name": {
+        "en": "Henna/mehndi",
+        "hi": "मेहंदी"
+      },
+      "description": {
+        "en": "Henna paste for decoration",
+        "hi": "सजावट के लिए मेहंदी पेस्ट"
+      },
+      "status": "active"
+    },
+    {
       "id": "sm_milk",
       "name": {
         "en": "Milk",
@@ -3641,6 +5927,30 @@
       "status": "active"
     },
     {
+      "id": "sm_stones",
+      "name": {
+        "en": "Stones",
+        "hi": "पत्थर"
+      },
+      "description": {
+        "en": "Small pebbles or stones for ritual",
+        "hi": "पूजा के लिए छोटी कंकड़"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_sugarcane",
+      "name": {
+        "en": "Sugarcane",
+        "hi": "गन्ना"
+      },
+      "description": {
+        "en": "Fresh sugarcane stalks",
+        "hi": "ताजे गन्ने की बेल"
+      },
+      "status": "active"
+    },
+    {
       "id": "sm_sweets",
       "name": {
         "en": "Sweets",
@@ -3649,6 +5959,18 @@
       "description": {
         "en": "Traditional sweets for offering",
         "hi": "पूजा के लिए पारंपरिक मिठाई"
+      },
+      "status": "active"
+    },
+    {
+      "id": "sm_thread",
+      "name": {
+        "en": "Thread",
+        "hi": "धागा"
+      },
+      "description": {
+        "en": "Sacred thread or string",
+        "hi": "पवित्र धागा"
       },
       "status": "active"
     },

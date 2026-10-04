@@ -1,0 +1,42 @@
+{
+  "id": "puja_jitiya",
+  "festivalId": "fest_jitiya",
+  "name": { "en": "Jitiya Vrat", "hi": "जितिया व्रत" },
+  "alternateNames": { "en": ["Jivitputrika", "Jivit Putra Vrat"], "hi": ["जीवितपुत्रिका", "जीवित पुत्र व्रत"] },
+  "category": "vrat",
+  "regions": ["east", "pan_india"],
+  "summary": { "en": "Women's fasting ritual observed for the well-being and long life of sons, primarily in Bihar and eastern India.", "hi": "पुत्रों के कल्याण और लंबी उम्र के लिए महिलाओं द्वारा किया जाने वाला व्रत, मुख्य रूप से बिहार और पूर्वी भारत में।" },
+  "significance": { "en": "Jitiya is a sacred vrat observed by mothers for the health and longevity of their sons. The ritual involves fasting without food or water throughout the day and night, with the fast broken only the next morning after worship. It is performed with the belief that the mother's sacrifice ensures the son's well-being.", "hi": "जितिया एक पवित्र व्रत है जो माताओं द्वारा अपने पुत्रों के स्वास्थ्य और दीर्घायु के लिए किया जाता है। अनुष्ठान में पूरे दिन और रात बिना भोजन या पानी के व्रत रखना शामिल है, व्रत को केवल अगली सुबह पूजा के बाद तोड़ा जाता है। इसे इस विश्वास के साथ किया जाता है कि माता के त्याग से पुत्र का कल्याण होता है।" },
+  "samagri": [
+    { "samagriId": "sm_chickpea", "classification": "REQUIRED", "purpose": { "en": "Chickpea flour or roasted chickpeas, core offering", "hi": "चने का आटा या भुने हुए चने, मुख्य चढ़ावा" }, "sortOrder": 1 },
+    { "samagriId": "sm_wheat_flour", "classification": "REQUIRED", "purpose": { "en": "Wheat flour for making puri or offering", "hi": "पूरी बनाने या चढ़ावे के लिए गेहूं का आटा" }, "sortOrder": 2 },
+    { "samagriId": "sm_water", "classification": "COMMON", "purpose": { "en": "Water for rituals", "hi": "अनुष्ठान के लिए पानी" }, "sortOrder": 3 },
+    { "samagriId": "sm_flowers", "classification": "COMMON", "purpose": { "en": "Flowers for worship", "hi": "पूजा के लिए फूल" }, "sortOrder": 4 },
+    { "samagriId": "sm_incense", "classification": "COMMON", "purpose": { "en": "Incense during prayers", "hi": "प्रार्थना के दौरान अगरबत्ती" }, "sortOrder": 5 },
+    { "samagriId": "sm_diya", "classification": "COMMON", "purpose": { "en": "Oil lamp for lighting", "hi": "प्रकाश के लिए दीया" }, "sortOrder": 6 },
+    { "samagriId": "sm_oil", "classification": "REQUIRED", "purpose": { "en": "Oil for the lamp", "hi": "दीये के लिए तेल" }, "sortOrder": 7 },
+    { "samagriId": "sm_jaggery", "classification": "OPTIONAL", "purpose": { "en": "Jaggery for sweetening offerings", "hi": "चढ़ावे को मीठा करने के लिए गुड़" }, "sortOrder": 8 },
+    { "samagriId": "sm_milk", "classification": "OPTIONAL", "purpose": { "en": "Milk for food preparation after fast", "hi": "व्रत के बाद भोजन तैयारी के लिए दूध" }, "sortOrder": 9 }
+  ],
+  "steps": [
+    { "id": "step_jitiya_1", "stepNumber": 1, "title": { "en": "Begin the Fast at Dawn", "hi": "भोर में व्रत शुरू करें" }, "description": { "en": "Begin the vrat early in the morning. From this moment until the next dawn, abstain from all food and water. This rigorous fast is the core of the Jitiya vrat and is undertaken with devotion for the son's welfare.", "hi": "सुबह जल्दी व्रत शुरू करें। इस समय से अगली सुबह तक, सभी भोजन और पानी से बचें। यह कठोर व्रत जितिया व्रत का मुख्य हिस्सा है और पुत्र के कल्याण के लिए भक्ति से किया जाता है।" }, "relatedSamagriIds": [], "isOptional": false },
+    { "id": "step_jitiya_2", "stepNumber": 2, "title": { "en": "Evening Prayers", "hi": "संध्या की प्रार्थना" }, "description": { "en": "In the evening, light the diya and incense. Offer flowers and water to the deity (typically a mother goddess or child's protective deity). Recite prayers and sing traditional vrat songs as per family tradition. Maintain the fast throughout the evening.", "hi": "शाम को दीया और अगरबत्ती जलाएं। देवी (आमतौर पर एक माता देवी या बच्चे की रक्षक देवी) को फूल और पानी अर्पित करें। परिवार की परंपरा के अनुसार प्रार्थना करें और पारंपरिक व्रत गीत गाएं। पूरी शाम व्रत रखें।" }, "relatedSamagriIds": ["sm_diya", "sm_oil", "sm_incense", "sm_flowers", "sm_water"], "isOptional": false },
+    { "id": "step_jitiya_3", "stepNumber": 3, "title": { "en": "Night-long Vigil", "hi": "रात भर की निगरानी" }, "description": { "en": "Spend the night in prayer, meditation, or songs dedicated to the child's welfare. Some families listen to or recite stories of devoted mothers. Maintain complete fasting through the night without food or water. The spiritual devotion during this time is considered central to the vrat's power.", "hi": "बच्चे के कल्याण के लिए समर्पित प्रार्थना, ध्यान या गीतों में रात बिताएं। कुछ परिवार समर्पित माताओं की कहानियां सुनते या सुनाते हैं। रात भर बिना भोजन या पानी के पूर्ण व्रत रखें। इस समय आध्यात्मिक भक्ति को व्रत की शक्ति के लिए केंद्रीय माना जाता है।" }, "relatedSamagriIds": [], "isOptional": false },
+    { "id": "step_jitiya_4", "stepNumber": 4, "title": { "en": "Morning Worship", "hi": "सुबह की पूजा" }, "description": { "en": "At dawn, prepare simple offerings of chickpea flour and wheat flour items. Make puri or khichdi if desired. Offer these to the deity along with flowers. Recite final prayers for the son's health and well-being. After completing the worship rituals, the fast is broken with a light meal.", "hi": "भोर में चने के आटे और गेहूं के आटे की सरल चढ़ावे तैयार करें। यदि चाहें तो पूरी या खिचड़ी बनाएं। इन्हें फूलों के साथ देवी को अर्पित करें। पुत्र के स्वास्थ्य और कल्याण के लिए अंतिम प्रार्थना करें। पूजा के अनुष्ठान को पूरा करने के बाद, व्रत को हल्के भोजन के साथ तोड़ा जाता है।" }, "relatedSamagriIds": ["sm_chickpea", "sm_wheat_flour", "sm_flowers"], "isOptional": false },
+    { "id": "step_jitiya_5", "stepNumber": 5, "title": { "en": "Breaking the Fast", "hi": "व्रत को तोड़ना" }, "description": { "en": "After sunrise and worship, drink water or milk first to rehydrate. Then have a light meal of milk-based food, khichdi, or other easily digestible items. Avoid heavy foods immediately after the fast to allow the body to adjust gradually.", "hi": "सूर्योदय और पूजा के बाद, पहले पानी या दूध पिएं। फिर दूध-आधारित भोजन, खिचड़ी या अन्य आसानी से पचने योग्य वस्तुओं का हल्का भोजन करें। व्रत के तुरंत बाद भारी खाद्य पदार्थों से बचें ताकि शरीर धीरे-धीरे समायोजित हो सके।" }, "relatedSamagriIds": ["sm_milk", "sm_water"], "isOptional": false },
+    { "id": "step_jitiya_6", "stepNumber": 6, "title": { "en": "Health and Safety Note", "hi": "स्वास्थ्य और सुरक्षा नोट" }, "description": { "en": "This vrat involves fasting without food or water for a full day and night. Women with health conditions (anemia, low blood pressure, diabetes), pregnant mothers, or those on medications should consult a doctor before observing this vrat. Do not push oneself beyond physical limits. The spirit of the vrat is devotion, not physical harm.", "hi": "यह व्रत पूरे दिन और रात बिना भोजन या पानी के व्रत रखना है। स्वास्थ्य समस्याओं (एनीमिया, निम्न रक्तचाप, मधुमेह) वाली महिलाएं, गर्भवती माताएं, या दवा पर लोगों को इस व्रत को देखने से पहले डॉक्टर से परामर्श लेना चाहिए। अपने भौतिक सीमा से परे जबरदस्ती न करें। व्रत की भावना भक्ति है, भौतिक नुकसान नहीं।" }, "relatedSamagriIds": [], "isOptional": false }
+  ],
+  "variations": [
+    {
+      "id": "var_jitiya_bihar_jharkhand",
+      "regions": ["east"],
+      "title": { "en": "Bihar and Jharkhand Tradition", "hi": "बिहार और झारखंड की परंपरा" },
+      "description": { "en": "In Bihar and Jharkhand, Jitiya is primarily observed by mothers. The vrat is rigorous and highly respected. In these regions, large groups of women often fast together, strengthening community bonds. Songs specific to Jitiya (Jitiya Geet) are sung throughout the night, creating a devotional atmosphere.", "hi": "बिहार और झारखंड में जितिया मुख्य रूप से माताओं द्वारा मनाई जाती है। व्रत कठोर और अत्यधिक सम्मानित है। इन क्षेत्रों में, महिलाओं के बड़े समूह अक्सर एक साथ व्रत करते हैं, सामुदायिक बंधन को मजबूत करते हैं। जितिया विशेष गीत (जितिया गीत) पूरी रात गाए जाते हैं, एक भक्तिमय माहौल बनाते हैं।" }
+    }
+  ],
+  "disclaimer": null,
+  "reviewStatus": "ai_drafted",
+  "sourceNote": { "en": "AI-drafted guide based on Jitiya Vrat traditions in Bihar and eastern India. Specific rituals and songs vary by family. Not verified by a pandit. Health consultation recommended for rigorous fasting.", "hi": "बिहार और पूर्वी भारत में जितिया व्रत परंपराओं पर आधारित AI-तैयार गाइड। विशिष्ट अनुष्ठान और गीत परिवार के अनुसार भिन्न होते हैं। पंडित द्वारा सत्यापित नहीं। कठोर व्रत के लिए स्वास्थ्य परामर्श अनुशंसित है।" },
+  "contentVersion": 3,
+  "status": "active"
+}

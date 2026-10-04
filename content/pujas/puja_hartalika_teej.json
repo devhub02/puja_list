@@ -1,0 +1,42 @@
+{
+  "id": "puja_hartalika_teej",
+  "festivalId": "fest_hartalika_teej",
+  "name": { "en": "Hartalika Teej", "hi": "हरतालिका तीज" },
+  "alternateNames": { "en": ["Hartalika", "Tritiya Vrat"], "hi": ["हरतालिका", "तृतीया व्रत"] },
+  "category": "vrat",
+  "regions": ["north", "west", "pan_india"],
+  "summary": { "en": "Women's fasting festival celebrated for marital happiness and the well-being of husbands, primarily observed in North and West India.", "hi": "पति के कल्याण और वैवाहिक सुख के लिए महिलाओं का व्रत पर्व, मुख्य रूप से उत्तर और पश्चिम भारत में मनाया जाता है।" },
+  "significance": { "en": "Hartalika Teej celebrates the love and devotion in marriage. According to tradition, Goddess Parvati fasted on this day to marry Lord Shiva. Women observe this vrat with the belief that it strengthens the marital bond and ensures the husband's long life and prosperity. The festival is marked by mehndi application, singing, and swinging.", "hi": "हरतालिका तीज विवाह में प्रेम और भक्ति का उत्सव है। परंपरा के अनुसार, देवी पार्वती ने भगवान शिव से विवाह करने के लिए इस दिन व्रत रखा था। महिलाएं इस व्रत को इस विश्वास के साथ रखती हैं कि यह विवाहित बंधन को मजबूत करता है और पति की लंबी उम्र और समृद्धि सुनिश्चित करता है। यह पर्व मेहंदी लगाने, गीत गाने और झूले झूलने से चिह्नित है।" },
+  "samagri": [
+    { "samagriId": "sm_mehndi", "classification": "COMMON", "purpose": { "en": "Henna for applying on hands and feet", "hi": "हाथों और पैरों पर लगाने के लिए मेहंदी" }, "sortOrder": 1 },
+    { "samagriId": "sm_turmeric", "classification": "COMMON", "purpose": { "en": "Turmeric paste for ritual bathing", "hi": "अनुष्ठान स्नान के लिए हल्दी पेस्ट" }, "sortOrder": 2 },
+    { "samagriId": "sm_flowers", "classification": "COMMON", "purpose": { "en": "Flowers for worship and decoration", "hi": "पूजा और सजावट के लिए फूल" }, "sortOrder": 3 },
+    { "samagriId": "sm_water", "classification": "REQUIRED", "purpose": { "en": "Water for fasting and rituals", "hi": "व्रत और अनुष्ठान के लिए पानी" }, "sortOrder": 4 },
+    { "samagriId": "sm_diya", "classification": "COMMON", "purpose": { "en": "Oil lamp for worship", "hi": "पूजा के लिए दीया" }, "sortOrder": 5 },
+    { "samagriId": "sm_oil", "classification": "REQUIRED", "purpose": { "en": "Oil for the lamp", "hi": "दीये के लिए तेल" }, "sortOrder": 6 },
+    { "samagriId": "sm_incense", "classification": "COMMON", "purpose": { "en": "Incense during prayers", "hi": "प्रार्थना के दौरान अगरबत्ती" }, "sortOrder": 7 },
+    { "samagriId": "sm_sweets", "classification": "OPTIONAL", "purpose": { "en": "Sweets prepared for distribution", "hi": "वितरण के लिए तैयार मिठाई" }, "sortOrder": 8 },
+    { "samagriId": "sm_milk", "classification": "OPTIONAL", "purpose": { "en": "Milk for ritual bathing if desired", "hi": "यदि चाहें तो अनुष्ठान स्नान के लिए दूध" }, "sortOrder": 9 }
+  ],
+  "steps": [
+    { "id": "step_hartalika_1", "stepNumber": 1, "title": { "en": "Prepare with Ritual Bathing", "hi": "अनुष्ठान स्नान से तैयारी" }, "description": { "en": "Begin the day with a ritual bath. Apply turmeric paste if available. This purifies the body for the day-long fast and worship that follows.", "hi": "अनुष्ठान स्नान के साथ दिन शुरू करें। यदि उपलब्ध हो तो हल्दी पेस्ट लगाएं। यह दिन भर के व्रत और पूजा के लिए शरीर को शुद्ध करता है।" }, "relatedSamagriIds": ["sm_water", "sm_turmeric"], "isOptional": false },
+    { "id": "step_hartalika_2", "stepNumber": 2, "title": { "en": "Fast Throughout the Day", "hi": "पूरे दिन व्रत रखें" }, "description": { "en": "Observe a day-long fast without food. Water or milk may be consumed as per family tradition. Spend the day in devotional activities, singing songs, or applying mehndi with friends and family. The fast is broken the next morning after worship.", "hi": "बिना भोजन के पूरे दिन व्रत रखें। परिवार की परंपरा के अनुसार पानी या दूध का सेवन किया जा सकता है। दिन को भक्तिमय गतिविधियों में, गीत गाने में, या दोस्तों और परिवार के साथ मेहंदी लगाने में बिताएं। व्रत को अगली सुबह पूजा के बाद तोड़ा जाता है।" }, "relatedSamagriIds": ["sm_water", "sm_milk"], "isOptional": false },
+    { "id": "step_hartalika_3", "stepNumber": 3, "title": { "en": "Evening Worship", "hi": "संध्या की पूजा" }, "description": { "en": "In the evening, prepare an altar with flowers and light a diya. Offer flowers and water to a deity (typically Goddess Parvati or a symbolic representation of marital happiness). Sing traditional Teej songs and share stories of devoted wives as per family custom.", "hi": "शाम को फूलों के साथ एक वेदी तैयार करें और दीया जलाएं। एक देवी को फूल और पानी अर्पित करें (आमतौर पर देवी पार्वती या वैवाहिक सुख का प्रतीकात्मक प्रतिनिधित्व)। पारंपरिक तीज गीत गाएं और परिवार की परंपरा के अनुसार समर्पित पत्नियों की कहानियां साझा करें।" }, "relatedSamagriIds": ["sm_flowers", "sm_water", "sm_diya", "sm_oil", "sm_incense"], "isOptional": false },
+    { "id": "step_hartalika_4", "stepNumber": 4, "title": { "en": "Apply Mehndi", "hi": "मेहंदी लगाएं" }, "description": { "en": "Apply henna on hands and feet as a festive tradition. This is a joyful part of the celebration and is often done together with friends and family while singing songs.", "hi": "एक उत्सव परंपरा के रूप में हाथों और पैरों पर मेहंदी लगाएं। यह उत्सव का एक आनंददायक हिस्सा है और अक्सर दोस्तों और परिवार के साथ गीत गाते हुए किया जाता है।" }, "relatedSamagriIds": ["sm_mehndi"], "isOptional": false },
+    { "id": "step_hartalika_5", "stepNumber": 5, "title": { "en": "Morning Worship and Breaking Fast", "hi": "सुबह की पूजा और व्रत को तोड़ना" }, "description": { "en": "On the next morning, perform worship with flowers and offerings. Pray for the husband's health and long life. After completing the prayers, break the fast with a light meal. In many regions, this is followed by celebration and the application of tilaka on the husband's forehead.", "hi": "अगली सुबह फूलों और चढ़ावों के साथ पूजा करें। पति के स्वास्थ्य और लंबी उम्र के लिए प्रार्थना करें। प्रार्थना पूरी करने के बाद, हल्के भोजन के साथ व्रत को तोड़ें। कई क्षेत्रों में, इसके बाद पति के माथे पर तिलक लगाया जाता है।" }, "relatedSamagriIds": ["sm_flowers", "sm_water"], "isOptional": false },
+    { "id": "step_hartalika_6", "stepNumber": 6, "title": { "en": "Health Note: Fasting Considerations", "hi": "स्वास्थ्य नोट: व्रत के विचार" }, "description": { "en": "This vrat may involve a full day fast without food. Women with health conditions, pregnant mothers, or those on medications should consult a doctor. Water may be consumed as per family tradition, which helps maintain hydration during the fast.", "hi": "यह व्रत बिना भोजन के पूरे दिन का व्रत हो सकता है। स्वास्थ्य समस्याओं वाली महिलाएं, गर्भवती माताएं, या दवा पर लोगों को डॉक्टर से परामर्श लेना चाहिए। परिवार की परंपरा के अनुसार पानी का सेवन किया जा सकता है, जो व्रत के दौरान हाइड्रेशन बनाए रखने में मदद करता है।" }, "relatedSamagriIds": ["sm_water"], "isOptional": false }
+  ],
+  "variations": [
+    {
+      "id": "var_hartalika_north_india",
+      "regions": ["north"],
+      "title": { "en": "North India Tradition", "hi": "उत्तर भारत की परंपरा" },
+      "description": { "en": "In North India, Hartalika Teej is celebrated with great enthusiasm. The festival is marked by women singing traditional songs (Teej geet) in groups, applying colorful mehndi designs, and swinging on swings. Many communities organize fairs where women gather to celebrate together. Sweets like gujhiya and other traditional preparations are made and distributed.", "hi": "उत्तर भारत में हरतालिका तीज बहुत उत्साह के साथ मनाई जाती है। यह पर्व महिलाओं द्वारा समूहों में पारंपरिक गीत (तीज गीत) गाने, रंगीन मेहंदी डिजाइन लगाने और झूले झूलने से चिह्नित है। कई समुदाय मेलों का आयोजन करते हैं जहां महिलाएं एक साथ मनाती हैं। गुझिया और अन्य पारंपरिक तैयारियों जैसी मिठाई बनाई और वितरित की जाती है।" }
+    }
+  ],
+  "disclaimer": null,
+  "reviewStatus": "ai_drafted",
+  "sourceNote": { "en": "AI-drafted guide based on Hartalika Teej traditions in North and West India. Specific rituals and songs vary by region and family. Not verified by a pandit.", "hi": "उत्तर और पश्चिम भारत में हरतालिका तीज परंपराओं पर आधारित AI-तैयार गाइड। विशिष्ट अनुष्ठान और गीत क्षेत्र और परिवार के अनुसार भिन्न होते हैं। पंडित द्वारा सत्यापित नहीं।" },
+  "contentVersion": 3,
+  "status": "active"
+}

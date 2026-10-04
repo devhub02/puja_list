@@ -1,0 +1,51 @@
+{
+  "id": "puja_chhath",
+  "festivalId": "fest_chhath",
+  "name": { "en": "Chhath Puja", "hi": "छठ पूजा" },
+  "alternateNames": { "en": ["Chhat Puja", "Chhat Puja", "Surya Shashthi"], "hi": ["छठ व्रत", "छठ पर्व", "सूर्य षष्ठी"] },
+  "category": "vrat",
+  "regions": ["east", "pan_india"],
+  "summary": { "en": "Four-day solar festival honoring the Sun God, primarily observed in Bihar, Jharkhand, and eastern Uttar Pradesh.", "hi": "सूर्य देव को समर्पित चार दिनों का त्योहार, जो मुख्य रूप से बिहार, झारखंड और पूर्वी उत्तर प्रदेश में मनाया जाता है।" },
+  "significance": { "en": "Chhath celebrates the Sun God (Surya) as the symbol of energy and life. The ritual purifies the body and spirit through rigorous fasting. Performed primarily for the well-being and longevity of family members, especially sons.", "hi": "छठ पूजा सूर्य देव को जीवन और ऊर्जा के प्रतीक के रूप में समर्पित है। यह अनुष्ठान कठोर व्रत के माध्यम से शरीर और आत्मा को शुद्ध करता है। यह मुख्य रूप से परिवार के सदस्यों, विशेषकर पुत्रों के कल्याण और दीर्घायु के लिए किया जाता है।" },
+  "samagri": [
+    { "samagriId": "sm_sugarcane", "classification": "REQUIRED", "purpose": { "en": "Offered to the Sun God and used in the ritual", "hi": "सूर्य देव को अर्पित करने के लिए और अनुष्ठान में उपयोग किए जाते हैं" }, "sortOrder": 1 },
+    { "samagriId": "sm_banana", "classification": "REQUIRED", "purpose": { "en": "Fruit offering to the deity", "hi": "देवता को फल का चढ़ावा" }, "sortOrder": 2 },
+    { "samagriId": "sm_coconut", "classification": "REQUIRED", "purpose": { "en": "Coconut water and coconut offered to the Sun", "hi": "सूर्य को नारियल का पानी और नारियल अर्पित किया जाता है" }, "sortOrder": 3 },
+    { "samagriId": "sm_jaggery", "classification": "REQUIRED", "purpose": { "en": "Sweetener for offerings and consumption", "hi": "चढ़ावे और भोजन के लिए मिठास" }, "sortOrder": 4 },
+    { "samagriId": "sm_rice", "classification": "REQUIRED", "purpose": { "en": "Used in various rituals and for offerings", "hi": "विभिन्न अनुष्ठानों और चढ़ावे के लिए उपयोग किया जाता है" }, "sortOrder": 5 },
+    { "samagriId": "sm_wheat_flour", "classification": "COMMON", "purpose": { "en": "To make puri/bhature for offerings", "hi": "पूरी/भातूरे बनाने के लिए" }, "sortOrder": 6 },
+    { "samagriId": "sm_water", "classification": "REQUIRED", "purpose": { "en": "For ritual bathing and offerings; collected from a ghat", "hi": "अनुष्ठान स्नान और चढ़ावे के लिए; घाट से लिया जाता है" }, "sortOrder": 7 },
+    { "samagriId": "sm_flowers", "classification": "COMMON", "purpose": { "en": "Flower offerings to the Sun", "hi": "सूर्य को फूलों का चढ़ावा" }, "sortOrder": 8 },
+    { "samagriId": "sm_incense", "classification": "COMMON", "purpose": { "en": "Aromatic offerings during puja", "hi": "पूजा के दौरान सुगंध के लिए" }, "sortOrder": 9 },
+    { "samagriId": "sm_oil", "classification": "OPTIONAL", "purpose": { "en": "Oil for the ritual lamp if used", "hi": "अगर दीया जलाया जाए तो तेल" }, "sortOrder": 10 },
+    { "samagriId": "sm_turmeric", "classification": "OPTIONAL", "purpose": { "en": "Herbal cleansing during ritual bathing", "hi": "अनुष्ठान स्नान के दौरान जड़ी-बूटी की सफाई" }, "sortOrder": 11 },
+    { "samagriId": "sm_milk", "classification": "OPTIONAL", "purpose": { "en": "Milk-based offerings as needed", "hi": "आवश्यकतानुसार दूध के आधार पर चढ़ावे" }, "sortOrder": 12 }
+  ],
+  "steps": [
+    { "id": "step_chhath_1", "stepNumber": 1, "title": { "en": "Nahaay-Khaay (First Day)", "hi": "नहाय-खाय (पहला दिन)" }, "description": { "en": "Begin the vrat with ritual bathing at a natural water source (ghat). Return home and prepare a simple meal with rice and pumpkin cooked in ghee. This breaks the fast initiated with the first sunrise observation.", "hi": "प्राकृतिक जल स्रोत (घाट) पर अनुष्ठान स्नान के साथ व्रत शुरू करें। घर लौटें और घी में पकी हुई चावल और कद्दू से सरल भोजन तैयार करें। यह पहले सूर्यास्त अवलोकन के साथ शुरू किए गए व्रत को तोड़ता है।" }, "relatedSamagriIds": ["sm_water", "sm_rice"], "isOptional": false },
+    { "id": "step_chhath_2", "stepNumber": 2, "title": { "en": "Kharna (Second Day)", "hi": "खरना (दूसरा दिन)" }, "description": { "en": "Complete a full-day fast until sunset. At sunset, make offerings to the Sun God with fruits, sugarcane, and wheat flour items. Prepare a meal of rice pudding (kheer) and puri with jaggery.", "hi": "सूर्यास्त तक पूरे दिन का व्रत रखें। सूर्यास्त के समय सूर्य देव को फल, गन्ना और गेहूं के आटे से चढ़ावे दें। चावल की खीर (खीर) और गुड़ के साथ पूरी तैयार करें।" }, "relatedSamagriIds": ["sm_banana", "sm_sugarcane", "sm_wheat_flour", "sm_jaggery", "sm_rice"], "isOptional": false },
+    { "id": "step_chhath_3", "stepNumber": 3, "title": { "en": "Sandhya Arghya (Third Day: Evening Offering)", "hi": "संध्या अर्घ्य (तीसरा दिन: शाम का अर्घ्य)" }, "description": { "en": "Begin another day of fasting. At sunset, go to the riverbank or water source with offerings. Create a ritual platform with coconut, banana, sugarcane, and wheat-flour items arranged on woven baskets. Offer water to the setting Sun while singing traditional songs. This continues the fast overnight.", "hi": "फिर से एक दिन का व्रत शुरू करें। सूर्यास्त के समय चढ़ावों के साथ नदी के किनारे या जल स्रोत पर जाएं। नारियल, केला, गन्ना और गेहूं के आटे की वस्तुओं को बुने हुए टोकरियों पर व्यवस्थित करके एक अनुष्ठान मंच बनाएं। परंपरागत गीत गाते हुए सूर्य को पानी अर्पित करें। यह रात भर व्रत जारी रखता है।" }, "relatedSamagriIds": ["sm_coconut", "sm_banana", "sm_sugarcane", "sm_wheat_flour", "sm_water", "sm_flowers"], "isOptional": false },
+    { "id": "step_chhath_4", "stepNumber": 4, "title": { "en": "Usha Arghya (Fourth Day: Dawn Offering)", "hi": "उषा अर्घ्य (चौथा दिन: भोर का अर्घ्य)" }, "description": { "en": "After fasting through the night, offer water and prayers to the rising Sun at dawn. Use the same offerings as the evening ritual. After completing the arghya, conclude the fast with a simple meal of rice, lentils, and seasonal vegetables. The vrat is now complete.", "hi": "रात भर व्रत रखने के बाद, भोर में उदते सूर्य को पानी और प्रार्थना अर्पित करें। संध्या अनुष्ठान के समान ही चढ़ावे का उपयोग करें। अर्घ्य पूरा करने के बाद, चावल, दाल और मौसमी सब्जियों के सरल भोजन के साथ व्रत को तोड़ें। व्रत अब पूर्ण हो गया है।" }, "relatedSamagriIds": ["sm_water", "sm_coconut", "sm_banana", "sm_sugarcane", "sm_flowers", "sm_rice"], "isOptional": false },
+    { "id": "step_chhath_5", "stepNumber": 5, "title": { "en": "Safety Note: Ghat Safety", "hi": "सुरक्षा नोट: घाट की सुरक्षा" }, "description": { "en": "As the puja involves standing in water at dawn and dusk, take precautions: watch water depth and current, avoid slippery steps, supervise children closely, be aware of cold water temperature, and have assistance available. Do not perform this ritual alone.", "hi": "चूंकि यह पूजा भोर और शाम को पानी में खड़े होने के साथ जुड़ी है, सावधानियां बरतें: पानी की गहराई और प्रवाह पर ध्यान दें, फिसलन वाली सीढ़ियों से बचें, बच्चों की निकटता से निगरानी करें, ठंडे पानी के तापमान के बारे में जागरूक रहें, और सहायता उपलब्ध रखें। यह अनुष्ठान अकेले न करें।" }, "relatedSamagriIds": ["sm_water"], "isOptional": false },
+    { "id": "step_chhath_6", "stepNumber": 6, "title": { "en": "Health Note: Fasting Safety", "hi": "स्वास्थ्य नोट: व्रत की सुरक्षा" }, "description": { "en": "Chhath involves long fasts without food and sometimes without water. People with health conditions (diabetes, heart disease, anemia), pregnant or nursing mothers, and those on medications should consult a doctor before beginning this vrat. Do not treat fasting as compulsory if health is at risk.", "hi": "छठ में बिना भोजन और कभी-कभी पानी के लंबे व्रत शामिल होते हैं। स्वास्थ्य समस्याओं (मधुमेह, हृदय रोग, एनीमिया) वाले लोग, गर्भवती या स्तनपान कराने वाली माताएं, और दवा पर लोगों को यह व्रत शुरू करने से पहले डॉक्टर से परामर्श लेना चाहिए। यदि स्वास्थ्य खतरे में हो तो व्रत को अनिवार्य न समझें।" }, "relatedSamagriIds": [], "isOptional": false }
+  ],
+  "variations": [
+    {
+      "id": "var_chhath_bihar",
+      "regions": ["east"],
+      "title": { "en": "Bihar and Jharkhand Tradition", "hi": "बिहार और झारखंड परंपरा" },
+      "description": { "en": "In Bihar and Jharkhand, Chhath is celebrated with great fervor. Large processions of worshippers go to the ghats, and the offerings are often more elaborate with extensive fruit and flower arrangements. Songs specific to the region (Chhath Geet) are sung throughout the festival. Many households use bamboo baskets for offerings.", "hi": "बिहार और झारखंड में छठ बहुत धूमधाम से मनाई जाती है। पूजा करने वालों की बड़ी परेड घाटों पर जाती है, और चढ़ावे अक्सर विस्तृत फल और फूलों की व्यवस्था के साथ अधिक विस्तृत होते हैं। क्षेत्र विशेष के गीत (छठ गीत) पूरे त्योहार के दौरान गाए जाते हैं। कई घर चढ़ावे के लिए बांस की टोकरियों का उपयोग करते हैं।" }
+    },
+    {
+      "id": "var_chhath_eastern_up",
+      "regions": ["north"],
+      "title": { "en": "Eastern Uttar Pradesh Practice", "hi": "पूर्वी उत्तर प्रदेश की प्रथा" },
+      "description": { "en": "In eastern Uttar Pradesh and parts of Nepal Terai, Chhath is observed with similar intensity but with slight variations in rituals and offerings. Some families make specific khichdi (rice and lentil preparation) instead of kheer during Kharna. The timing and sequence of rituals may vary based on local customs and panchang (lunar calendar).", "hi": "पूर्वी उत्तर प्रदेश और नेपाल तराई के कुछ हिस्सों में छठ समान तीव्रता के साथ मनाई जाती है लेकिन अनुष्ठानों और चढ़ावों में मामूली भिन्नताएं हैं। कुछ परिवार खरना के दौरान खीर की जगह विशेष खिचड़ी (चावल और दाल की तैयारी) बनाते हैं। अनुष्ठानों का समय और क्रम स्थानीय रीति-रिवाजों और पंचांग (चंद्र पंचांग) के आधार पर भिन्न हो सकता है।" }
+    }
+  ],
+  "disclaimer": null,
+  "reviewStatus": "ai_drafted",
+  "sourceNote": { "en": "AI-drafted guide based on traditional Chhath practices in Bihar, Jharkhand, and eastern Uttar Pradesh. Not verified by a pandit. The fasting practice requires health consultation.", "hi": "बिहार, झारखंड और पूर्वी उत्तर प्रदेश में पारंपरिक छठ प्रथाओं पर आधारित AI-तैयार गाइड। पंडित द्वारा सत्यापित नहीं। व्रत की प्रथा को स्वास्थ्य परामर्श की आवश्यकता है।" },
+  "contentVersion": 3,
+  "status": "active"
+}
