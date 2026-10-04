@@ -55,3 +55,7 @@ Application ID: com.pujasaathi.app (cannot change after Play Store publish). Rem
 - After each phase run the relevant checks: in mobile/ `npx tsc --noEmit`, lint, `npm test`; in backend/ `pytest`; plus `npx expo start` / prebuild check when relevant. Never say something passes unless you ran it and saw it pass.
 - Update docs/PROGRESS.md, then commit on branch `phase-N-short-name`. Do not push.
 - No "TODO / implement later" stubs. If something can't be completed, say so and give the closest working version.
+
+## important 
+
+- Sandbox checks are NOT enough for mobile work. Before declaring any mobile phase done, also start the real dev server (`npx expo start --clear`, run in background) and request the Android bundle from it (for example `curl -s -o /dev/null -w "%{http_code}" "http://localhost:8081/node_modules/expo-router/entry.bundle?platform=android&dev=true&minify=false"`), and confirm HTTP 200 with no Metro errors in the server log. Report Node version and `npm ls metro @expo/metro-config` output. Never add `metro*` packages directly to package.json. If dev-server bundling cannot be verified, say so clearly instead of claiming success.
