@@ -61,3 +61,12 @@ Application ID: com.pujasaathi.app (cannot change after Play Store publish). Rem
 ## important 
 
 - Sandbox checks are NOT enough for mobile work. Before declaring any mobile phase done, also start the real dev server (`npx expo start --clear`, run in background) and request the Android bundle from it (for example `curl -s -o /dev/null -w "%{http_code}" "http://localhost:8081/node_modules/expo-router/entry.bundle?platform=android&dev=true&minify=false"`), and confirm HTTP 200 with no Metro errors in the server log. Report Node version and `npm ls metro @expo/metro-config` output. Never add `metro*` packages directly to package.json. If dev-server bundling cannot be verified, say so clearly instead of claiming success.
+
+
+## Ads rules (Phase 7 onwards)
+- Ads are shown ONLY on: Home (one banner), Library (inline adaptive banner after several items). NEVER on: vidhi reader, samagri checklist, My Preparation, reminder sheets, Settings, permission dialogs, or anywhere near destructive buttons. No interstitials, no app-open ads, no rewarded ads unless I ask. No ad is ever required to open a guide, a checklist or a step.
+- Development and debug builds use ONLY Google's official test ad IDs. Real ad IDs must never be committed. A release build without real IDs configured must show NO ads (never test ads, never a fake placeholder).
+- Offline or ad load failure: the ad slot collapses to zero height. No fake ads, no error text, no crash. The SDK must never block startup or any screen.
+- Ads are requested only after the consent flow says it is allowed (UMP canRequestAds).
+- The app is a general-audience app, not directed to children: configure ad content rating conservatively.
+- After any native dependency change, regenerate native code with `npx expo prebuild --clean` only if needed; keep the generated android/ and ios/ folders out of git unless I say otherwise.
