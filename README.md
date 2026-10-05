@@ -51,6 +51,15 @@ npm start
 `npm start` opens the Expo dev server. Then either scan the QR code with Expo Go (phone and computer on the same
 Wi-Fi), or press `a` for a running Android emulator.
 
+**From Phase 7 onward, `react-native-google-mobile-ads` is a native dependency, so Expo Go can no longer run this
+app.** Use a development build instead (see [docs/ADS_SETUP.md](docs/ADS_SETUP.md) for the full workflow and release
+checklist):
+
+```bash
+npx expo run:android          # first build only (or after any native dependency change); needs Android Studio/SDK
+npx expo start --dev-client   # daily work after that
+```
+
 | Command (in `mobile/`) | What it does |
 |---|---|
 | `npm start` | Start the Expo dev server |
@@ -128,9 +137,9 @@ Content strings use locale maps (`{"en": "...", "hi": "..."}`) and fall back to 
 
 ## Offline-first model
 
-- All puja content will be bundled in the app (`mobile/assets/puja_data/`), so every feature works without internet.
-- Planned: the network is used only for AdMob ads and the consent form in a later phase. Ads never block a feature.
-  No accounts, no login.
+- All puja content is bundled in the app (`mobile/assets/puja_data/`), so every feature works without internet.
+- The network is used only for AdMob ads and the UMP consent form (`mobile/src/ads/`). Ads never block a feature:
+  offline or a failed ad load collapses that ad slot to nothing. No accounts, no login, no analytics.
 - An optional content API may come later; bundled content always remains the fallback.
 
 ## Content note
@@ -144,6 +153,8 @@ expert.
 - [docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md): colours, typography, spacing, components, accessibility
 - [docs/CONTENT_SCHEMA.md](docs/CONTENT_SCHEMA.md): bundled JSON content format and validation rules
 - [docs/DB_SCHEMA.md](docs/DB_SCHEMA.md): on-device SQLite design
+- [docs/ADS_SETUP.md](docs/ADS_SETUP.md): AdMob/UMP setup, test IDs, dev-build workflow, release checklist
+- [docs/PRIVACY_AND_ADS.md](docs/PRIVACY_AND_ADS.md): what is stored/processed, Data safety form checklist, privacy policy template
 - [docs/PROGRESS.md](docs/PROGRESS.md): phase checklist and verification notes
 - [CLAUDE.md](CLAUDE.md): project rules
 

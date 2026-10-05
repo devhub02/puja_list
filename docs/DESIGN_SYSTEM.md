@@ -343,3 +343,59 @@ Verified by code/tests: roles, labels and selected states, labels for every day 
 ## Accessibility notes (Phase 6C)
 
 Switches announce their state and the time; icon buttons say what they act on; the error line is an `alert`; dialogs close with Android back; the reset confirm exposes `disabled`; headings are `header`. Hindi strings are natural Devanagari ("तारीख़", "रिमाइंडर", "सूचनाएँ"). **Not verifiable here (no emulator):** the sheet with the keyboard open (does Save stay reachable above the keyboard), the largest OS font at 360dp (the "Remind me" pill in the header next to the share button), how the system date/time dialogs look and behave on the real device, TalkBack reading of the switch rows, and the notification itself (see `docs/PROGRESS.md`).
+
+---
+
+# Phase 7 additions: AdMob + UMP consent
+
+`ui-ux-pro-max` (`.agents/skills/ui-ux-pro-max/`) was used again via `scripts/search.py`. Two targeted queries hit no match in its local database (said so, no silent fallback): `--domain ux "ad banner placement label spacing"` and `--domain ux "consent dialog permission"`. A broader query, `--domain ux "disclosure label icon text"`, returned "Compact Label Overflow" (a badge/pill label should stay whole on one line rather than wrap or rely on a hover-only tooltip) and the existing "Input Labels" rule (never placeholder-only). The canonical pre-delivery checklist (`references/pro-rules.md`) and the Phase 6C fallback rules for permission dialogs and switches were reused rather than re-deriving them, since this phase adds no new dialog type. CLAUDE.md's palette wins throughout; no colour token was added.
+
+| Guidance | Decision |
+|---|---|
+| Compact label should stay whole, not wrap (skill match, generalised from badges to this new label) | The "Ad"/"Advertisement" label (`AdSlot`) is one short `caption` line above the banner, never wrapped onto the ad itself; it does not truncate because the string is short in both languages. |
+| Reserve space / avoid layout shift (Phase 4's own performance rule, reapplied) | `AdSlot` is zero-height until an ad has actually loaded, then it occupies its real height once — it never "pops in" over existing content because nothing below it has already been laid out at a wrong height (the surrounding screens use normal flow, not fixed offsets). |
+| Icon-only buttons need a label (Phase 1 rule, reapplied) | The "Ad privacy choices" row is a full `Button` with icon **and** text label, never an icon alone. |
+| 48dp touch targets, 8dp+ between controls (Phase 1 rule, reapplied) | The privacy-choices `Button` is the standard 48dp `Button`; the ad slot itself is never adjacent to a tappable control without the section's normal `spacing.md`/`spacing.lg` gap (CLAUDE.md "Ads rules": never next to a primary button). |
+| Don't rely on colour alone (recurring rule) | The ad label is text, not a colour swatch or icon-only marker; the label is also read by screen readers (it is a normal `AppText`, not hidden from the accessibility tree) so a user relying on TalkBack also hears that the content is an ad. |
+
+## `AdSlot` (`mobile/src/ads/AdSlot.tsx`)
+
+Renders nothing — zero height, no placeholder, no skeleton — until the native banner reports
+`onAdLoaded`. Collapses back to nothing on `onAdFailedToLoad` (this is also what happens when the
+device is offline: the load simply fails). Once loaded, the slot is a plain block: a small
+`caption`/`textSecondary` "Ad" label above the banner, a hairline border top and bottom (`colors.border`,
+decorative only, not meaning), `spacing.md` vertical margin so it is never flush against the
+section above or below it. Placements: Home (after the Featured row, before Categories — never
+between the hero "Next festival" card and its "See calendar" link, and never touching a primary
+button) and Library (inline in the list, see below). No ad appears anywhere not listed in CLAUDE.md
+"Ads rules" (`mobile/__tests__/noAdsInForbiddenScreens.test.ts` checks this by source, since
+rendering every forbidden screen would duplicate each screen's own heavy fixture setup).
+
+## Library inline banner placement
+
+Pure logic in `mobile/src/ads/libraryAdPlacement.ts`: the first ad after row 8, repeating every 15
+rows after that, never as the first or last row (if there is no room to avoid the last row — e.g.
+exactly 9 items — no ad is shown at all rather than bending that rule), and nothing at all while a
+filter or search is active with fewer than 8 results. The Library screen turns this into actual
+`FlatList` rows (a `Row` union of `{kind:'puja'}` / `{kind:'ad'}`) rather than a separate overlay,
+so the virtualised list still only renders what is on screen.
+
+## Settings: "About ads" and "Ad privacy choices"
+
+A plain `Card` with two sentences (offline-first reminder, then what AdMob/UMP may process) sits
+between About and the standard disclaimer — `AdsPrivacySettings` (`mobile/src/components/`). The
+"Ad privacy choices" outline `Button` (bell-style icon + text, like the existing "Manage reminders"
+row) is shown **only** when the UMP SDK reports `privacyOptionsRequirementStatus: REQUIRED`; most
+test devices outside the EEA/UK will never see it, by design, not as a bug.
+
+## Phase 7 UI review
+
+Verified by code/tests: the ad slot renders nothing until loaded and nothing on error (unit
+tested with a mocked native banner); the label is plain, readable text, not hidden from
+accessibility; 48dp targets on the privacy-choices button; Library ad placement math (first/last
+row, spacing, minimum results under a filter) is unit tested; no `AdSlot` import anywhere in the
+screens CLAUDE.md forbids it from. **Not verifiable here (no emulator, and ad serving itself is
+never something a sandbox can verify):** what a real AdMob test ad actually looks like next to the
+Featured row and inside the Library list at 360dp, in light and dark, at the largest text size; the
+real UMP consent form's own appearance and flow; TalkBack reading of the loaded ad slot and the
+privacy-choices row end to end. See `docs/PROGRESS.md`.

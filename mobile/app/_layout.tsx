@@ -7,6 +7,7 @@ import * as SystemUI from 'expo-system-ui';
 import { useEffect } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import { startAdsFlow } from '@/ads/AdsManager';
 import { StartupError } from '@/components/StartupError';
 import { initializeDatabase } from '@/db/database';
 import { DatabaseProvider, useDatabaseInit } from '@/db/DatabaseProvider';
@@ -44,6 +45,12 @@ export default function RootLayout() {
   useEffect(() => {
     if (ready) void SplashScreen.hideAsync();
   }, [ready]);
+
+  // Consent + ads init: started after the first render, never blocks it; fails closed (no ads) on
+  // any error, offline included (see src/ads/AdsManager.ts).
+  useEffect(() => {
+    void startAdsFlow();
+  }, []);
 
   if (!ready) return null;
 
