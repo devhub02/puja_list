@@ -49,3 +49,19 @@ describe('adsConfig', () => {
     assertNoRealAdIds(join(__dirname, '..', 'app.json'));
   });
 });
+
+describe('app.json ads plugin', () => {
+  // The library's Gradle script reads rootProject.ext.googleMobileAdsJson unless the
+  // RNGMA_ANDROID_BACKEND gradle property is set, and that property is only written when the
+  // plugin gets an androidSdk option. Without it the Android build fails at configure time.
+  it('sets androidSdk so the Android build does not depend on an unset Gradle extension', () => {
+    const appJson = JSON.parse(readFileSync(join(__dirname, '..', 'app.json'), 'utf8')) as {
+      expo: { plugins: unknown[] };
+    };
+    const entry = appJson.expo.plugins.find(
+      (plugin): plugin is [string, Record<string, unknown>] =>
+        Array.isArray(plugin) && plugin[0] === 'react-native-google-mobile-ads',
+    );
+    expect(entry?.[1]).toMatchObject({ androidSdk: 'classic' });
+  });
+});

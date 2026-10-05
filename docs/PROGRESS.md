@@ -12,7 +12,7 @@ Phases are defined in the project plan; this checklist tracks their status. Stat
 - [x] **Phase 6A — Festival catalog and calendar-date import pipeline** (merged to main)
 - [x] **Phase 6B — Calendar tab, Home upcoming festivals, next-date display** (done on branch `phase-6b-calendar`, not pushed; **not yet checked on a device or emulator**)
 - [x] **Phase 6C — Local reminders, notification settings, reset local data, share checklist** (merged to main)
-- [x] **Phase 7 — AdMob + UMP consent** (done on branch `phase-7-ads`, not pushed; **not yet checked on a device or emulator; ad serving itself cannot be verified in a sandbox**)
+- [x] **Phase 7 — AdMob + UMP consent** (done on branch `phase-7-ads`, not pushed; verification pass below: real debug build installed and launched on an emulator; the banner itself has not been seen rendering yet)
 - [ ] Phase 8
 - [ ] Phase 9
 
@@ -695,3 +695,34 @@ pushed. Push and open a PR:
 ```
 git push -u origin phase-7-ads
 ```
+
+## Phase 7 verification pass (`phase-7-ads`)
+
+Environment: Node v24.19.0, JDK 17.0.20, `ANDROID_HOME` set, Pixel_9a_bulkingapp AVD (Android 35, Google Play image) already booted.
+
+### Bug found and fixed
+- **The Android debug build failed at Gradle configure time** with `Cannot get property 'googleMobileAdsJson' on extra properties extension as it does not exist` (`react-native-google-mobile-ads` `android/build.gradle` line 123). The library only defines that extension when the plugin gets an `androidSdk` option (it writes the `RNGMA_ANDROID_BACKEND` gradle property, which short-circuits the read). Fix: `"androidSdk": "classic"` added to the plugin options in `mobile/app.json` (the library's default backend, so behaviour is unchanged). Regression test added in `mobile/__tests__/adsConfig.test.ts`.
+- Also: a stale Gradle 9.3.1 daemon from an earlier session locked files in `node_modules`, so `rm -rf node_modules` failed. It was stopped; no code change.
+
+### Verified (real output)
+- `npm ci` clean install; `npx expo install --check`: "Dependencies are up to date"; `npx expo-doctor`: **21/21 checks passed** (the two network checks that failed in earlier phases pass now).
+- `npx expo prebuild --platform android --clean` OK; `npx expo run:android --variant debug`: **BUILD SUCCESSFUL in 5m 58s** (Gradle reported 5m 58s for the successful build (the first attempt failed at configure time, so it is not a timing). Wall-clock time including native CMake was roughly 35 minutes, mostly in the C++ compile of Reanimated, Worklets and Gesture Handler). APK installed on `sdk_gphone64_x86_64`, package `com.pujasaathi.app` present.
+- Dev server: Metro on 8081 `packager-status:running`; `curl` of `expo-router/entry.bundle?platform=android&dev=true&minify=false` returned **HTTP 200**, 10,563,390 bytes. Metro log: one "Error while reading cache, falling back to a full crawl" line (a stale Metro disk cache; it recovers, no bundling error).
+- Node v24.19.0 is what this environment runs; CLAUDE.md says "Node LTS" (v22 was used in earlier phases). Not changed in this pass.
+- Permissions (debug build, `aapt dump permissions` and merger report): expected `INTERNET`, `ACCESS_NETWORK_STATE`, `WAKE_LOCK`, `POST_NOTIFICATIONS` present, and `com.google.android.gms.permission.AD_ID` **confirmed** (from `play-services-ads-api` 25.4.0). Unexpected ones and their sources are listed in `docs/PRIVACY_AND_ADS.md`. No `SCHEDULE_EXACT_ALARM`, `USE_EXACT_ALARM`, location, contacts, camera, microphone.
+- Cold start (`.verify/01_cold_start.png`): Home renders in light theme with the hero "Next festival" card (Sharad Navratri, "In 5 days", "Date confirmed"), "See calendar" with "7 more in the next 30 days", then Featured pujas, then Browse by category. No crash.
+- Ads SDK: logcat shows the ads SDK starting, "This request is sent from a test device", and an SDK version line. No `FATAL EXCEPTION` for `com.pujasaathi.app` in the logs read.
+- Tests: `npx tsc --noEmit` clean. `npm test` on the last run: 696 passed, 1 failed; the failing test is `preparation.realContent` (Saraswati puja), which **passed 34/34 when run alone and in the following run**, so it is intermittent under load (the emulator and Metro were running). Not caused by this change.
+
+### Not verified
+- **A test banner was not seen on screen.** Home scrolled from Featured straight to "Browse by category" with no ad slot. The logs show a request but no load success and no load failure, so this is COULD-NOT-VERIFY, not a confirmed bug. The slot collapses to zero height until a load succeeds, by design.
+- Not yet checked on the emulator: Library ad cadence, the no-ad screens, offline behaviour, Settings "About ads" (EN/HI), "Ad privacy choices" absence, the regression flows (checklist persistence, reminder firing, share sheet, reset local data), Hindi / dark / large text.
+- Real ad serving with the real IDs, the UMP form in an EU region, a physical device.
+- The build logs "No 'iosAppId' was provided" twice. That is expected: the app has no iOS app ID yet and this check was for Android only.
+- `npm run format:check` reports style issues in 205 files, including generated/config files. Not fixed here (it was not run clean in earlier phases either; confirm with the owner before reformatting the repo).
+
+### What to verify by hand (on a phone or emulator)
+1. Home: a "Test Ad" banner appears after Featured pujas, never between the hero card and "See calendar"; airplane mode removes it without a gap.
+2. Library: about every 8 rows, never first or last, none under a filter with fewer than 8 results.
+3. Settings: "About ads" in English and Hindi; "Ad privacy choices" should not appear in India.
+4. The regression list from Phases 5, 6A, 6B and 6C (preparation ticks persist, reminder fires, share sheet, reset local data).
