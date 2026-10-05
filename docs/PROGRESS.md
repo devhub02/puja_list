@@ -1,5 +1,41 @@
 # Progress
 
+## Release preparation (master run, branch `phase-8-release`)
+
+NEXT: stage 1 (package rename) — checks are green; the 2-minute reminder check on the emulator is NOT done yet.
+
+### Stage 0 — preflight: DONE
+- `main` contains Phase 7 incl. fix `783d06a` (merge `58a453f`). `phase-8-release` created from `main`.
+- node v24.19.0, JDK 17.0.20, ANDROID_HOME set, emulator-5554 online (Android SDK 35), Gradle/Maven/npm hosts reachable (HTTP 200).
+
+### Stage 1 — package rename `com.pujasaathi.app` -> `com.pujasaathi.india` (in progress)
+Done and verified:
+- Search: class (a) hits changed in `mobile/app.json` (`android.package`), `README.md`, `CLAUDE.md`, `docs/PRIVACY_AND_ADS.md` (adb command). Not changed: display name, `pujasaathi` URL scheme, notification channel `reminders`, content ids, DB names, AdMob test IDs. Historical entries in this file keep the old ID on purpose.
+- `npx expo prebuild --platform android --clean`: `namespace`/`applicationId` = `com.pujasaathi.india`; Kotlin dirs `com/pujasaathi/india`; nothing in `android/` references the old ID.
+- Debug build `npx expo run:android --variant debug`: BUILD SUCCESSFUL (6m 10s). `aapt dump badging`: `package: name='com.pujasaathi.india' versionCode='1' versionName='1.0.0'`, label "Puja Saathi". `pm list packages`: new ID installed. Old app uninstalled (`Success`).
+- First-launch check (fresh install, `pm clear` twice): splash -> Home with real content (Next festival Sharad Navratri, featured pujas, category row) on both runs. See the first-launch note below.
+- CLEAN INSTALL: `rm -rf node_modules && npm ci` EXIT 0.
+- `npx tsc --noEmit`: exit 0.
+- `npm run lint`: exit 0 (after excluding the git-ignored local `.verify/` folder, see below).
+- `npm run format:check`: exit 0 (after `endOfLine: auto`, see below).
+- `npm test`: 51 suites / 697 tests passed (run alone; an earlier run under load had 14 timeouts, not logic failures).
+- backend `pytest`: 139 passed (after the subprocess fix below). `scripts/validate_content.py`: content OK (contentVersion 6, 103 festivals, 16 pujas, 53 samagri, 1 calendar year).
+- Dev-server bundle: `GET /node_modules/expo-router/entry.bundle?platform=android&dev=true&minify=false` -> HTTP 200, 10,563,390 bytes, 18.1 s, no Metro errors in the log. `npm ls metro @expo/metro-config`: `metro@0.84.5`, `@expo/metro-config@57.0.12`; no `metro*` in package.json.
+
+Fixes made during Stage 1 (small, each justified):
+- `backend/tests/test_export.py`, `backend/tests/test_calendar_dates.py`: the subprocess helpers pass `stdin=subprocess.DEVNULL`. Without it 3 tests failed on Windows with `WinError 6: The handle is invalid` (pytest's capture handed the child an invalid stdin handle). Same failure from PowerShell and Bash.
+- `mobile/eslint.config.js`: ignore `.verify/*` (git-ignored local verification folder with a 10 MB bundle; it produced about 33,000 lint errors).
+- `mobile/.prettierrc`: `"endOfLine": "auto"`. The repo stores LF but this Windows checkout has CRLF (`core.autocrlf=true`), so every file failed `format:check` with LF-only rules.
+- `.gitignore`: `scratch-screens/` (emulator screenshots).
+
+First-launch note (the "splash hang" investigated during Stage 1):
+- It was NOT an app first-launch bug. The debug build loads JS from Metro. Metro on 8081 was hung (HTTP 000) after the first run, and the `adb reverse tcp:8081 tcp:8081` forward had been dropped. With a working Metro and forward the app logged `Running "main"`, requested the bundle and rendered Home (`isMetroRunning(): true`, `loadJSBundleFromMetro()`).
+- Not done: the bisect with the old ID (old APK no longer built or installed). No reproduction on the new ID after a clean start, so there is nothing to bisect.
+- Observed: Home showed "Loading..." in the featured area for a short time on the first run, then content. Not investigated further.
+
+Not yet verified (Stage 1 remaining):
+- The reminder check: a reminder 2 minutes ahead fires and opens the checklist. Not run yet.
+
 Phases are defined in the project plan; this checklist tracks their status. Statuses are updated only after the work is done and its checks have been seen to pass.
 
 - [x] **Phase 0 — Monorepo bootstrap and documentation** (done on branch `phase-0-setup`, not pushed)
