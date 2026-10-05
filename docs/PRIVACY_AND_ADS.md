@@ -46,7 +46,7 @@ From the generated manifest and the libraries' own manifests (see `docs/ADS_SETU
 | `INTERNET` | Expo's prebuild template (pre-existing) + `react-native-google-mobile-ads` | Ads and the consent form need a network request; was already present before this phase for the dev build to reach Metro |
 | `ACCESS_NETWORK_STATE` | `react-native-google-mobile-ads` | Lets the ads SDK check connectivity before requesting an ad |
 | `WAKE_LOCK` | `react-native-google-mobile-ads` (confirmed in the merged manifest; the debug source set also injects it) | Used internally by the Play Services Ads SDK |
-| `com.google.android.gms.permission.AD_ID` | `com.google.android.gms:play-services-ads-api:25.4.0` (confirmed in the merged manifest of a real debug build, Phase 7 verification) | Lets the SDK read the advertising identifier. Confirmed present in the installed APK (`aapt dump permissions`) and in `adb shell dumpsys package com.pujasaathi.app`. |
+| `com.google.android.gms.permission.AD_ID` | `com.google.android.gms:play-services-ads-api:25.4.0` (confirmed in the merged manifest of a real debug build, Phase 7 verification) | Lets the SDK read the advertising identifier. Confirmed present in the installed APK (`aapt dump permissions`) and in `adb shell dumpsys package com.pujasaathi.india` (the Phase 7 check ran under the previous ID `com.pujasaathi.app`). |
 | `RECEIVE_BOOT_COMPLETED`, `POST_NOTIFICATIONS` | `expo-notifications` (Phase 6C, unrelated to ads) | Local reminders |
 | `SYSTEM_ALERT_WINDOW`, `VIBRATE`, `READ_EXTERNAL_STORAGE`/`WRITE_EXTERNAL_STORAGE` (max SDK 32) | Expo's prebuild template (pre-existing, unrelated to ads) | Not from this phase |
 

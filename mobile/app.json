@@ -10,7 +10,7 @@
     "backgroundColor": "#FFF8EC",
     "platforms": ["android"],
     "android": {
-      "package": "com.pujasaathi.app",
+      "package": "com.pujasaathi.india",
       "adaptiveIcon": {
         "backgroundColor": "#FFF8EC",
         "foregroundImage": "./assets/images/brand/adaptive-foreground.png"

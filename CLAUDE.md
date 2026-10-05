@@ -49,7 +49,7 @@ Warm cream background, saffron/orange accents, deep maroon headings, subtle gold
 Collect minimal data, no login. AdMob + UMP consent. Never claim "no data collected".
 
 ## Android specifics
-Application ID: com.pujasaathi.app (cannot change after Play Store publish). Reminders: use inexact/scheduled local notifications; do not use exact-alarm permissions unless truly necessary. INTERNET permission only comes with the ads phase.
+Application ID: com.pujasaathi.india (cannot change after Play Store publish; renamed from com.pujasaathi.app because that ID is not available on Google Play). Reminders: use inexact/scheduled local notifications; do not use exact-alarm permissions unless truly necessary. INTERNET permission only comes with the ads phase.
 
 ## Workflow rules
 - Do ONLY the phase I ask for. Do not start the next phase.

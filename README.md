@@ -160,4 +160,4 @@ expert.
 
 ## Android
 
-Application ID: `com.pujasaathi.app`.
+Application ID: `com.pujasaathi.india`.
