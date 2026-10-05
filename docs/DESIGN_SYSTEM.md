@@ -197,7 +197,7 @@ This is a deliberate stop-gap; the proper fix is a structured `safetyNotes` fiel
 ## Images
 
 Brand, category and puja artwork live in `mobile/assets/images/{brand,categories,pujas}` as WebP (PNG for the three brand files),
-all under 150 KB, except the splash image: the owner's original `splash-icon.png` (1254 x 1254 RGBA, 1.5 MB) is used unchanged on purpose, from commit `38f5f02`. `src/theme/images.ts` is the only id -> image mapping. Cards use the image 88 dp wide; Details uses it full
+all under 150 KB, except the splash image: the owner's original `splash-icon.png` (1254 x 1254 RGBA, 1.5 MB) is used unchanged on purpose, from commit `38f5f02`. The splash is drawn at `imageWidth` 140 dp (not 200): Android 12+ shows only a circle of about 192 dp, so the wider logo was cut off. `src/theme/images.ts` is the only id -> image mapping. Cards use the image 88 dp wide; Details uses it full
 width at 16:9. The splash uses the cream background in dark mode too, because the logo's maroon text is unreadable on the dark
 background.
 
