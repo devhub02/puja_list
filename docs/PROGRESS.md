@@ -48,6 +48,36 @@ Done:
 Coverage review (areas from the brief): covered by existing tests: content pipeline (seed, bundled content, export), DB and migrations 0002-0004, search, preparation/checklist, vidhi, calendar, reminders, share (My Preparation and Samagri dialogs), reset (`resetLocalData.test.ts`), ads (consent, placement, forbidden screens, offline fail-closed), settings, startup. Gaps not covered by automated tests: 360 dp layout and largest OS font (visual only, not automated); TalkBack behaviour (labels asserted in component tests, not read by a screen reader); Hindi typing in the search field on the emulator (adb cannot type Devanagari); real notification delivery timing (see the reminder check).
 Emulator review, network OFF (debug build): NOT VERIFIED. The debug build could not load its JavaScript with Wi-Fi and mobile data off ("Unable to load script", Metro unreachable), even with `adb reverse tcp:8081 tcp:8081` set. With Wi-Fi back on it loads Home normally. So the offline check of the app itself must use a release build (no Metro), in Stage 3.
 Emulator review, network ON (debug build): Home loads with the test ad slot labelled "ADVERTISEMENT". Not yet walked through every screen.
+Online walk-through, debug build, Wi-Fi on (screenshots in the git-ignored `scratch-screens/`, each one looked at):
+- Home (light): PASS. `t05_home_scrolled.png`: "ADVERTISEMENT" label above Google's test banner.
+- Home (dark): PASS for the palette. `t18_home_dark.png`: the test banner is white (that is Google's creative, not our styling).
+- Library (light): PASS for content. `t02_library.png`, `t03_library_scrolled.png`: no ad seen in rows 1-16 that were scrolled through. NOT VERIFIED: the inline ad after row 8 never appeared, so its cadence is unconfirmed (no-fill or a bug is not established).
+- Library (dark): PASS. `t19_library_dark.png`.
+- Puja Details: PASS, no ad in the visible area. `t09_puja_details.png` (rest of page not scrolled).
+- Vidhi reader: PASS, no ad. `t10_vidhi.png`.
+- Samagri checklist: PASS, no ad. `29_tapped_notif.png`.
+- My Preparation: PASS, no ad (empty state, data had been cleared). `t11_my_preparation.png`.
+- Reminder sheet: PASS, no ad. `11_reminder_sheet.png`. Manage reminders screen: COULD-NOT-VERIFY (not opened in this pass).
+- Settings (English): PASS, no ad; About ads card present. `t14_settings_en_scrolled.png`. Settings (Hindi): COULD-NOT-VERIFY (not switched).
+- Calendar (month): PASS, no ad. `t12_calendar.png`. All festivals: PASS, no ad. `t16_festival_details.png`.
+- Festival Details (Mysuru Dasara): PASS, no ad. `t17_festival_row_tap.png`. Dark view was checked on screen, but its screenshot file was overwritten by the Home dark capture: not kept as evidence.
+- Hindi on Home and Library: COULD-NOT-VERIFY (language not switched in this pass).
+- Large text size on Home and Library: COULD-NOT-VERIFY (not set in this pass).
+- Ad rule ("no ad except Home and Library"): every screen above that was checked shows no ad. The forbidden-screen source test (`noAdsInForbiddenScreens.test.ts`) also passes.
+
+Logcat for this session (debug build):
+- No `FATAL EXCEPTION` for `com.pujasaathi.india`.
+- One ANR for `com.pujasaathi.india` (`MainActivity`) at 03:32:40, during the network-off attempt when the debug build could not reach Metro. Not reproduced online.
+- ReactNativeJS warnings "Cannot connect to Expo CLI" at 03:32 (same offline attempt).
+- ANRs for the launcher, System UI and input (emulator processes, not ours) at 03:31-03:32.
+- AdMob/UMP: no ad load error for our app was visible in logcat. The Home test banner rendered, which means the ad loaded. The AdSlot shows its label only after a successful load.
+
+Cheap accessibility fixes: none made in this pass (no defect was found in the screens above). Not checked in this pass: touch-target sizes below 48 dp, TalkBack labels on each control, text clipping at the largest size. These stay open for Stage 3.
+
+Backend and Python (CI uses 3.12, local tests ran on 3.14): `backend/requirements.txt` pins every package exactly (alembic 1.20.0, fastapi 0.142.2, httpx 0.28.1, pydantic 2.13.5, pytest 9.1.1, SQLAlchemy 2.1.3, uvicorn 0.54.0). A fresh venv from those pins installed and passed (139 tests, content OK) on 3.14. I did not audit the code for 3.14-only features, and I did not run 3.12 locally. Nothing found so far depends on 3.14 behaviour; CI is the first real 3.12 run, after the push.
+
+Moved to Stage 3 (explicit): (1) the OFFLINE review on the RELEASE build (no Metro); (2) the fresh-install check on the release build: `adb shell pm clear com.pujasaathi.india`, launch, Home appears, twice in a row, with network ON and OFF; (3) cold start (`am start -W`), memory after a long session and APK/AAB size, all on the release build. No cold-start, memory or size numbers were taken on the debug build. (4) Accessibility items left open above.
+
 Still to do in Stage 2: the rest of the emulator review (screens, logcat FATAL/ANR, ad errors), performance (cold start with `am start -W`, memory, APK size) and accessibility checks.
 - Stage 1 status: COMPLETE. All Stage 1 checks passed (see above) and the reminder check passed with the caveat.
 
