@@ -39,6 +39,9 @@ const en = {
     tribal_regional: 'Tribal and regional',
     pan_india: 'Across India',
   },
+  ads: {
+    label: 'Advertisement',
+  },
   review: {
     ai_drafted: 'AI draft',
     cross_checked: 'Cross-checked',
@@ -414,6 +417,14 @@ const en = {
     disclaimer: {
       title: 'Please note',
       body: 'Vidhi and samagri can differ by region, family tradition, sampradaya and the way a puja is performed. Adjust the details according to your own family tradition.',
+    },
+    ads: {
+      title: 'About ads',
+      about:
+        'Puja Saathi works fully offline. Ads need an internet connection; if you are offline or an ad cannot load, that space simply stays empty.',
+      aboutDetail:
+        'Ads are served by Google AdMob, which may process data such as device identifiers to show and measure ads. You can manage your choices below where offered.',
+      privacyChoices: 'Ad privacy choices',
     },
   },
   reminders: {

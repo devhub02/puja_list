@@ -2,6 +2,7 @@ import Constants from 'expo-constants';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 
+import { AdsPrivacySettings } from '@/components/AdsPrivacySettings';
 import { AppText } from '@/components/AppText';
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
@@ -146,6 +147,8 @@ export default function SettingsScreen() {
           </AppText>
         </Card>
       </View>
+
+      <AdsPrivacySettings />
 
       <Card tone="alt">
         <AppText variant="subheading" accessibilityRole="header">

@@ -4,6 +4,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Image, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
+import { AdSlot } from '@/ads/AdSlot';
 import { AppText } from '@/components/AppText';
 import { Card } from '@/components/Card';
 import { CategoryCard } from '@/components/CategoryCard';
@@ -192,6 +193,8 @@ export default function HomeScreen() {
             />
             {row(featured, 'featured')}
           </View>
+
+          <AdSlot placement="home_banner" />
 
           <View style={styles.section}>
             <SectionHeader title={t('home.categoriesTitle')} />

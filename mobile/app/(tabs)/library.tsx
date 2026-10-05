@@ -4,6 +4,8 @@ import { FlatList, StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { AdSlot } from '@/ads/AdSlot';
+import { getLibraryAdInsertPositions } from '@/ads/libraryAdPlacement';
 import { AppText } from '@/components/AppText';
 import { Button } from '@/components/Button';
 import { ChipRow } from '@/components/ChipRow';
@@ -78,6 +80,24 @@ export default function LibraryScreen() {
 
   const savedSet = useMemo(() => new Set(savedIds), [savedIds]);
   const searching = text.trim() !== '';
+
+  // Inline banners between puja rows: never in search results, never with filters on an under-8 result
+  // list, never first/last row (CLAUDE.md "Ads rules").
+  type Row = { kind: 'puja'; item: LibraryItem } | { kind: 'ad'; afterIndex: number };
+  const rows = useMemo<Row[]>(() => {
+    const filterOrSearchActive = searching || hasActiveFilters(filters);
+    const adPositions = searching
+      ? []
+      : getLibraryAdInsertPositions(items.length, filterOrSearchActive);
+    const adAfter = new Set(adPositions);
+    const result: Row[] = [];
+    items.forEach((item, index) => {
+      result.push({ kind: 'puja', item });
+      if (adAfter.has(index)) result.push({ kind: 'ad', afterIndex: index });
+    });
+    return result;
+  }, [items, searching, filters]);
+
   const clearAll = () => {
     setFilters(emptyFilters);
     setText('');
@@ -103,25 +123,33 @@ export default function LibraryScreen() {
     [nextDates, language, t],
   );
 
-  const renderItem = useCallback(
-    ({ item }: { item: LibraryItem }) => (
-      <PujaCard
-        puja={item.puja}
-        language={language}
-        saved={savedSet.has(item.puja.id)}
-        nextDate={nextDateText(item.puja.festivalId)}
-        hint={
-          item.matchedSamagri.length > 0
-            ? t('library.contains', {
-                items: item.matchedSamagri.map((m) => localize(m, language)).join(', '),
-              })
-            : undefined
-        }
-        onOpen={open}
-        onToggleSaved={toggle}
-      />
-    ),
+  const renderRow = useCallback(
+    ({ item: row }: { item: Row }) => {
+      if (row.kind === 'ad') return <AdSlot placement="library_banner" />;
+      const item = row.item;
+      return (
+        <PujaCard
+          puja={item.puja}
+          language={language}
+          saved={savedSet.has(item.puja.id)}
+          nextDate={nextDateText(item.puja.festivalId)}
+          hint={
+            item.matchedSamagri.length > 0
+              ? t('library.contains', {
+                  items: item.matchedSamagri.map((m) => localize(m, language)).join(', '),
+                })
+              : undefined
+          }
+          onOpen={open}
+          onToggleSaved={toggle}
+        />
+      );
+    },
     [language, savedSet, open, toggle, nextDateText, t],
+  );
+  const rowKey = useCallback(
+    (row: Row) => (row.kind === 'ad' ? `ad-${row.afterIndex}` : row.item.puja.id),
+    [],
   );
 
   const header = (
@@ -258,9 +286,9 @@ export default function LibraryScreen() {
       </View>
       <FlatList
         testID="library-list"
-        data={catalog.status === 'ready' && !(searching && search.pending) ? items : []}
-        keyExtractor={(item) => item.puja.id}
-        renderItem={renderItem}
+        data={catalog.status === 'ready' && !(searching && search.pending) ? rows : []}
+        keyExtractor={rowKey}
+        renderItem={renderRow}
         ListHeaderComponent={header}
         ListEmptyComponent={empty}
         ItemSeparatorComponent={Separator}

@@ -11,8 +11,8 @@ Phases are defined in the project plan; this checklist tracks their status. Stat
 - [x] **Phase 5 — Samagri checklist, Vidhi steps and My Preparation** (see its section below)
 - [x] **Phase 6A — Festival catalog and calendar-date import pipeline** (merged to main)
 - [x] **Phase 6B — Calendar tab, Home upcoming festivals, next-date display** (done on branch `phase-6b-calendar`, not pushed; **not yet checked on a device or emulator**)
-- [ ] Phase 6C (reminders, settings reset, share: not started)
-- [ ] Phase 7
+- [x] **Phase 6C — Local reminders, notification settings, reset local data, share checklist** (merged to main)
+- [x] **Phase 7 — AdMob + UMP consent** (done on branch `phase-7-ads`, not pushed; **not yet checked on a device or emulator; ad serving itself cannot be verified in a sandbox**)
 - [ ] Phase 8
 - [ ] Phase 9
 
@@ -519,3 +519,179 @@ or in node_modules
 **CLAUDE.md update:** Added a new workflow rule about dependency management: after adding or changing any dependency, use `npx expo install`, ensure both `package.json` AND `package-lock.json` are committed, and run a CLEAN INSTALL check before declaring the work done (delete node_modules, `npm ci`, verify). This prevents missing dependencies from hiding behind a pre-existing node_modules.
 
 **Branch:** `fix-datetimepicker-dependency` (from main, not pushed). Changes: `mobile/package.json`, `CLAUDE.md`.
+
+
+## Phase 7 status — AdMob + UMP consent (`phase-7-ads`)
+
+### Platform findings (step 1, checked before coding)
+Read via Context7 (docs.expo.dev is blocked in this sandbox) plus the installed package's own
+source/types.
+- **Package**: `react-native-google-mobile-ads@17.2.0` (latest on npm at the time of writing;
+  `npx expo install` itself could not reach Expo's/npm's proxy-filtered endpoints from this
+  sandbox — `HTTP Proxy Network Error: Forbidden` — so the version was taken straight from the
+  npm registry and installed with `npm install`; re-run `npx expo install --check` on a networked
+  machine). v17 adds an optional ad-pool API (`AdPoolProvider`, `usePooledAd`) for juggling many ad
+  instances; this project uses the plain, pool-free `<BannerAd>` since there is never more than one
+  on screen at once — simpler, and still the documented, supported path.
+- **Expo config plugin**: `"react-native-google-mobile-ads"` in `app.json` with `androidAppId`.
+  It writes the AdMob App ID (and three `OPTIMIZE_*`/`DELAY_APP_MEASUREMENT_INIT` flags) as
+  `<meta-data>` on `MainApplication` in the Android manifest — confirmed by running
+  `npx expo prebuild --platform android --no-install` for real and reading the generated
+  `android/app/src/main/AndroidManifest.xml` (then deleting `android/` again). **Not supported in
+  Expo Go**; needs a development build.
+- **Permissions added by the module's own manifest** (`node_modules/react-native-google-mobile-ads/android/src/main/AndroidManifest.xml`,
+  read directly): `INTERNET` (already present from an earlier phase), `ACCESS_NETWORK_STATE`,
+  `WAKE_LOCK`. **`com.google.android.gms.permission.AD_ID` is not in this file** — it is added by
+  the Play Services Ads SDK AAR itself at Gradle manifest-merge time, which this sandbox could not
+  run (`./gradlew assembleDebug` failed immediately on a missing Gradle plugin repository, no
+  network, no Android SDK — see "Not verified" below). Documented as **VERIFY** in
+  `docs/PRIVACY_AND_ADS.md`.
+- **UMP consent API** (same package, `AdsConsent`): `gatherConsent()` combines
+  `requestInfoUpdate()` and showing the form if required; `AdsConsentInfo.canRequestAds` and
+  `.privacyOptionsRequirementStatus` (`REQUIRED`/`NOT_REQUIRED`/`UNKNOWN`) are exactly what this
+  phase needed. `showPrivacyOptionsForm()` reopens the choice later.
+  `TestIds.ADAPTIVE_BANNER` and `BannerAdSize.ANCHORED_ADAPTIVE_BANNER` exist in this version as
+  documented. Native ads exist in this version (`NativeAd`/`NativeAdView`) but the brief says
+  banners only for this phase, so they were not touched.
+- No conflict with the brief was found; nothing was done differently from what was asked.
+
+### Done
+- **`mobile/src/ads/`** (kept separate from content/business logic, per the brief):
+  `nativeAdsModule.ts` (the only file that imports the real package — re-exports `BannerAd`,
+  `BannerAdSize`, `TestIds`, `mobileAds`, `MaxAdContentRating`, `AdsConsent` and its enums, same
+  pattern as `src/notifications/expoScheduler.ts` for `expo-notifications`); `adsConfig.ts` (dev →
+  `TestIds`, release → `adsConfig.release.ts`, a placement with no real id configured is disabled,
+  never falls back to a test ad); `adsConfig.release.ts` (both placements shipped empty — "fill
+  before release"); `consent.ts` (fail-closed UMP wrapper: `gatherConsent`, `getConsentState`,
+  `subscribeConsent`, `showPrivacyOptions`, never throws); `AdsManager.ts` (initializes the SDK only
+  once consent allows ads, `try`/`catch` around every native call, a conservative
+  `RequestConfiguration`); `AdSlot.tsx` (the `<AdSlot placement="...">` component); `libraryAdPlacement.ts`
+  (pure placement math for the Library list).
+- **Placements, exactly as specified**: Home — one adaptive banner after the Featured row, before
+  Categories (`app/(tabs)/index.tsx`). Library — inline in the virtualised list, first ad after row
+  8, repeating no more than every 15 rows, never first/last row, nothing while a filter or search
+  is active with under 8 results (`app/(tabs)/library.tsx`, logic in `libraryAdPlacement.ts`). No
+  native ads; no interstitial/app-open/rewarded code path exists anywhere.
+- **Consent + init wiring**: `app/_layout.tsx` calls `startAdsFlow()` in a `useEffect` after the
+  first render (never blocks the first frame); it gathers UMP consent, then initializes the Mobile
+  Ads SDK only if `canRequestAds` is true. Every native call is wrapped so an SDK failure (missing
+  Play Services, offline, timeout) cannot crash or hang the app — it just leaves ads off.
+- **Ad content rating**: `MaxAdContentRating.PG` (`AdsManager.ts`). Reasoning documented in code and
+  in `docs/DESIGN_SYSTEM.md`: `G` is the strictest tier, but AdMob serves very little inventory at
+  `G` in practice, so `PG` is the strictest rating that still reliably serves ads; the app is
+  general-audience religious/cultural content, not child-directed, so `PG` with
+  `tagForChildDirectedTreatment: false` and `tagForUnderAgeOfConsent: false` is appropriate.
+- **Settings**: `AdsPrivacySettings` (`src/components/`) — an always-shown "About ads" card
+  (offline-first reminder + what AdMob/UMP may process, English and Hindi, never claims "no data is
+  collected") and an "Ad privacy choices" button shown only when
+  `privacyOptionsRequirementStatus === REQUIRED`.
+- **Docs**: `docs/ADS_SETUP.md` (test IDs already in place, how to fill in real IDs, test-device
+  registration, "never click your own live ads", publishing the UMP consent message, dev-build
+  workflow, release checklist), `docs/PRIVACY_AND_ADS.md` (what the app itself stores vs. what
+  AdMob/UMP processes, permissions table, Data safety form draft checklist, an editable Markdown
+  privacy-policy template, everything that still needs **your** or a lawyer's sign-off), this file,
+  `docs/DESIGN_SYSTEM.md` (Phase 7 section), `README.md` (dev-build workflow, updated offline-first
+  section, doc links).
+- **Dependency hygiene**: `react-native-google-mobile-ads@17.2.0` is in both
+  `mobile/package.json` and `mobile/package-lock.json`; a CLEAN INSTALL check was run (delete
+  `node_modules`, `npm ci`, `npm ls react-native-google-mobile-ads`, `npx tsc --noEmit`, full test
+  suite) and passed. No `metro*` package was touched.
+
+### Tests (`mobile/__tests__/`, all real, all passing)
+- `adsConfig.test.ts`: dev build → `TestIds`; release build with empty ids → both placements
+  `null`; a regex check that `adsConfig.release.ts` and `app.json` contain no AdMob publisher id
+  other than Google's own test id (`3940256099942544`) — this is the "fails the build if a real id
+  is committed" check the brief asked for.
+- `adsConsent.test.ts`: not required, required+granted, required+denied, error/timeout (fails
+  closed, resolves instead of throwing), subscribers notified on change and not after
+  unsubscribing, `showPrivacyOptions` updates state and never throws on failure.
+- `adsManager.test.ts`: no SDK init before consent allows it; initializes once consent allows ads;
+  never initializes twice; a failed `initialize()` or a failed `gatherConsent()` never throws and
+  leaves ads off; consent granted after an earlier denial can still initialize ads later.
+- `adSlot.test.tsx`: renders nothing while not ready; renders nothing (no label) until the mocked
+  native banner reports loaded; shows the labelled slot once loaded; collapses back to nothing on a
+  load error (the same path offline takes); no state update after unmount.
+- `libraryAdPlacement.test.ts`: empty/tiny list → no ad; first ad after row 8; never row 0; never
+  the last row (including the "no room to avoid the last row, so show nothing" case); repeats every
+  15; nothing under an active filter/search with fewer than 8 results; still shows ads at 8+ results
+  under a filter.
+- `noAdsInForbiddenScreens.test.ts`: every screen/component CLAUDE.md forbids ads from (vidhi
+  reader, samagri checklist, My Preparation, reminder sheets/dialogs, Settings, Puja/Festival
+  Details, Calendar) is checked by **static source scan** for an `AdSlot` import — a deliberate
+  choice over rendering each one, since every one of those screens already has its own heavy
+  database-fixture render test elsewhere; a source-level guarantee ("never imported") is stronger
+  than "not currently rendered" would be anyway.
+- `adsOffline.test.tsx`: Home and Library render their real content normally with the ads module
+  mocked as unavailable (simulating offline / SDK failure) and show no ad slot.
+- Full suite: **51 suites / 696 tests passed** (was 44 suites / 652 tests on `main`; +7 new suites,
+  +44 new tests). No existing test needed changing.
+
+### Verified (run for real in this phase; Node v22.22.0)
+- backend: `pytest` **139 passed** (unchanged); `validate_content.py` OK (contentVersion 6, 103
+  festivals, 16 pujas, 53 samagri, 1 calendar year); `import_calendar_dates.py` and
+  `export_content.py` OK, and `git status` shows **no change** under `content/` or
+  `mobile/assets/puja_data/` — content is byte-identical to `main`.
+- mobile: CLEAN INSTALL (delete `node_modules`, `npm ci`, `npm ls react-native-google-mobile-ads`
+  → `17.2.0`); `npx tsc --noEmit` clean; `npm run lint` clean; `npm run format:check` clean;
+  `npm test` **51/51 suites, 696/696 tests**; `npx expo export --platform android` OK (4.8 MB hbc,
+  up from 4.6 MB); `npx expo prebuild --platform android --no-install` OK (manifest has the AdMob
+  App ID meta-data; `android/` deleted again afterwards, as CLAUDE.md asks).
+- dev server: `CI=1 npx expo start --clear`, then `curl` of
+  `expo-router/entry.bundle?platform=android&dev=true&minify=false`: **HTTP 200**, ~10 MB bundle.
+  The only "ERROR" line in the server log is React Native DevTools failing to install as root
+  ("Running as root without --no-sandbox"), the same sandbox-only line seen in every earlier phase —
+  not a bundling error.
+- `npx expo-doctor`: **19 of 21 checks pass**; the same two network-dependent checks fail as in
+  every earlier phase (Expo config schema, React Native Directory — "Host not in allowlist" from
+  the sandbox proxy).
+- `npm ls metro @expo/metro-config`: `metro@0.84.5`, `@expo/metro-config@57.0.12`; no `metro*`
+  package was added to `package.json`.
+
+### Not verified
+- **`./gradlew assembleDebug` could not run**: no Android SDK in this sandbox, and the Gradle
+  build failed immediately trying to resolve a Gradle plugin repository it has no network path to
+  (`org.gradle.toolchains.foojay-resolver-convention` could not be found in any configured
+  repository). So the **real, merged** Android manifest (with `AD_ID` and any other
+  Gradle-merged permission) was never produced or inspected — only the pre-merge manifest from
+  `expo prebuild` (confirmed) and each library's own standalone manifest (confirmed) were. You must
+  run `npx expo run:android` or a real Gradle build to see the final permission list; this is
+  called out explicitly in `docs/PRIVACY_AND_ADS.md` as something to VERIFY.
+- **Nothing was run on an emulator or real device.** In particular: whether a real AdMob test ad
+  actually renders and looks right next to the Featured row and inside the Library list, at 360dp,
+  light and dark, largest text size; whether the UMP consent form appears/behaves as expected on a
+  device configured as being in the EEA/UK; whether "Ad privacy choices" opens the real form;
+  TalkBack reading of the loaded ad slot and the privacy row; whether ad loading ever visibly
+  shifts other content (the slot is zero-height until loaded by design, but this was only checked
+  in a unit test, not a real layout pass).
+- **No consent message has been published yet** in the AdMob console (there is no AdMob account
+  tied to this project in this sandbox), so `gatherConsent()` was only exercised against a mocked
+  native module, never the real UMP flow end to end.
+- Ad serving itself (whether a real ad unit actually returns an ad, fill rates, mediation) can
+  never be verified in a sandbox and was not claimed to be.
+
+### What you must verify by hand on the emulator / phone (a development build, not Expo Go)
+1. `npx expo run:android` once (first build with the new native dependency), then
+   `npx expo start --dev-client` for daily work, per `docs/ADS_SETUP.md`.
+2. Home: a "Test Ad" banner appears after Featured pujas, before the category grid — never between
+   the "Next festival" hero card and "See calendar", never touching a button. Turn on airplane mode
+   and relaunch: the slot takes no space at all (no blank box).
+3. Library: scroll past about 8 pujas — a labelled "Test Ad" banner appears as its own row, never
+   first or last; keep scrolling — the next one is roughly 15 rows later. Filter down to under 8
+   results, or search: no ad appears in that list.
+4. Settings → About ads: the two sentences render in English and Hindi; "Ad privacy choices" is
+   probably **absent** unless the test device/account is configured for a region UMP requires a
+   choice in.
+5. Confirm the full Android permission list from a real build (`./gradlew assembleDebug` or Android
+   Studio's merged manifest viewer) and update `docs/PRIVACY_AND_ADS.md`'s "VERIFY" permission row
+   with what you actually see, especially `AD_ID`.
+6. Everything already on the "what to verify by hand" lists of Phases 4-6C still applies; this
+   phase changed Home and Library layout slightly (one extra element each) and added one Settings
+   card, nothing else visual.
+
+### Git
+Branch `phase-7-ads`, from `origin/main` (the local `main` ref in this sandbox was stale and far
+behind `origin/main`; `phase-7-ads` was built on `origin/main`, not the stale local ref). Not
+pushed. Push and open a PR:
+```
+git push -u origin phase-7-ads
+```

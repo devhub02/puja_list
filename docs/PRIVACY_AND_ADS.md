@@ -1,0 +1,146 @@
+# Privacy and ads (Phase 7)
+
+This is **not legal advice** and does not by itself make the app compliant with Google Play policy,
+GDPR, India's DPDP Act or any other law. Every section marked **VERIFY** must be checked by you
+(or a lawyer) against the exact SDK versions you ship and the current Google Play / AdMob
+requirements, which change over time.
+
+## What Puja Saathi itself stores
+
+Everything below stays only on the user's device, in its local SQLite database and
+`AsyncStorage`. None of it is ever sent anywhere by our own code; there is no backend, no account,
+no analytics SDK of ours.
+
+- Puja/festival content (bundled, read-only)
+- Saved pujas, recently viewed pujas, recent searches
+- Preparations: checklist ticks, custom samagri items, vidhi reading position
+- Reminders (local scheduled notifications only — nothing is sent over the network for this)
+- Settings: language, theme, text size, notifications on/off
+
+**We never claim "no data is collected"** (see CLAUDE.md "Privacy") because the AdMob/UMP SDK
+does process some data on the device and with Google, described below.
+
+## What AdMob / UMP processes
+
+**VERIFY** against the AdMob and UMP documentation for the exact SDK version in
+`mobile/package.json` (`react-native-google-mobile-ads`) at release time; this is a summary, not
+the authoritative source.
+
+- To serve and measure ads, the Google Mobile Ads SDK can process an **advertising identifier**
+  (Android's Advertising ID / GAID, where available) and other request signals (device/OS info,
+  IP-derived general location, app info) with Google.
+- The **UMP (User Messaging Platform) SDK** shows a consent form where required (e.g. certain
+  EEA/UK configurations) and records the user's consent choice so AdMob can respect it.
+- Google's own privacy and ad-serving documentation is the source of truth for exactly what is
+  collected and how it is used; this project does not control that.
+- The app's own code never reads, stores or transmits the advertising identifier itself — only the
+  ad SDK does, as part of showing and measuring ads.
+
+## Permissions (Android), and why
+
+From the generated manifest and the libraries' own manifests (see `docs/ADS_SETUP.md` and
+`docs/PROGRESS.md` Phase 7 for exactly how this was checked):
+
+| Permission | Source | Why |
+|---|---|---|
+| `INTERNET` | Expo's prebuild template (pre-existing) + `react-native-google-mobile-ads` | Ads and the consent form need a network request; was already present before this phase for the dev build to reach Metro |
+| `ACCESS_NETWORK_STATE` | `react-native-google-mobile-ads` | Lets the ads SDK check connectivity before requesting an ad |
+| `WAKE_LOCK` | `react-native-google-mobile-ads` | Used internally by the Play Services Ads SDK |
+| `com.google.android.gms.permission.AD_ID` | The Play Services Ads SDK AAR itself (merged by Gradle at build time, not by this project's manifest) — **VERIFY** on a real `./gradlew assembleDebug`/`bundleRelease` output, since this sandbox could not run Gradle | Lets the SDK read the advertising identifier for non-children's ads; the manifest merger adds this automatically for the installed SDK version |
+| `RECEIVE_BOOT_COMPLETED`, `POST_NOTIFICATIONS` | `expo-notifications` (Phase 6C, unrelated to ads) | Local reminders |
+| `SYSTEM_ALERT_WINDOW`, `VIBRATE`, `READ_EXTERNAL_STORAGE`/`WRITE_EXTERNAL_STORAGE` (max SDK 32) | Expo's prebuild template (pre-existing, unrelated to ads) | Not from this phase |
+
+**No `SCHEDULE_EXACT_ALARM`/`USE_EXACT_ALARM`, no location, contacts, camera or microphone
+permission anywhere.**
+
+## Data safety form (Play Console) — draft checklist
+
+**VERIFY every line against the Play Console's current form and the exact SDK version shipped.**
+This is a starting point, not a filled-in answer.
+
+- **Data collected**: Device or other identifiers (advertising ID) — collected by the ads SDK, not
+  by this app's own code.
+- **Purpose**: Advertising or marketing (ads), and possibly Analytics (ad measurement) depending on
+  how Google's current form categorises AdMob's own measurement.
+- **Shared with third parties**: Yes — Google (AdMob) for ad serving/measurement.
+- **Is data collection optional?**: Depends on the UMP consent outcome and region; where UMP shows
+  a choice, say so.
+- **Encrypted in transit**: Yes (the SDK's own requests).
+- **Can users request deletion**: there is no account for this app's own data (it is on-device
+  only); for AdMob's own data practices, point to Google's own controls (e.g. Android's "Delete
+  advertising ID" / "Opt out of ads personalization" settings) rather than claiming this app can
+  delete it.
+- Re-check the **"Data safety"** section whenever `react-native-google-mobile-ads` is upgraded —
+  new SDK versions occasionally change what they declare.
+
+## Privacy policy template (editable, GitHub Pages–ready Markdown)
+
+Copy this into a page you publish (e.g. GitHub Pages) and fill in the bracketed parts. **Have this
+reviewed** before publishing; it is a draft, not a finished policy.
+
+```markdown
+# Privacy Policy — Puja Saathi
+
+Last updated: [DATE]
+
+Puja Saathi ("the app") is an offline-first app that helps you prepare for Hindu pujas and
+festivals. This page explains what happens with your data.
+
+## What stays on your phone
+
+Puja Saathi has no accounts and no login. Everything you create in the app — saved pujas,
+checklist progress, custom items, reminders, and your language/theme/text-size settings — is
+stored only on your device. We do not operate a server that receives this data, and we do not use
+any analytics service of our own.
+
+## Ads
+
+Puja Saathi shows a small number of ads (currently: one banner on the Home screen and occasional
+banners in the Library) served by Google AdMob. Ads need an internet connection; if you are offline
+or an ad cannot load, that space simply stays empty — ads are never required to use any feature.
+
+To show and measure ads, Google's advertising SDK may process information such as your device's
+advertising identifier, general device information, and an approximate location derived from your
+IP address, under Google's own privacy policy:
+https://policies.google.com/privacy
+
+Where required (for example in the EEA/UK), Puja Saathi shows a consent message, provided by
+Google's User Messaging Platform (UMP), before any personalised ad is requested. You can review or
+change your choice at any time from **Settings → About ads → Ad privacy choices**, when that
+option is shown.
+
+## Permissions
+
+The app requests the Android permissions it needs for ads (internet access, network state) and for
+local reminder notifications (posting notifications, restoring them after a restart). It does not
+request location, contacts, camera, microphone or any permission unrelated to these features.
+
+## Your choices
+
+- You can turn off reminder notifications at any time in Settings.
+- You can review your ad consent choice in Settings → About ads, where offered.
+- Android's own system settings let you reset or opt out of your advertising identifier
+  (Settings → Privacy → Ads, or Settings → Google → Ads, depending on your Android version).
+- "Reset local data" in Settings removes everything the app itself has stored on your phone.
+
+## Changes to this policy
+
+[Describe how you will notify users of changes, e.g. "This page will be updated and the date above
+changed; continued use of the app after a change means you accept the update."]
+
+## Contact
+
+[Your contact email or address]
+```
+
+## Checklist of items that need YOUR sign-off before release
+
+- [ ] The permissions table above matches a real `./gradlew assembleDebug` / `bundleRelease`
+      manifest for the exact SDK version shipped (not verified in this sandbox — see
+      `docs/PROGRESS.md`)
+- [ ] Data safety form filled in the Play Console and cross-checked against the current AdMob/UMP
+      documentation for the shipped SDK version
+- [ ] Privacy policy published (GitHub Pages or elsewhere), reviewed by you or a lawyer, and linked
+      from the Play Console listing
+- [ ] Confirm whether DPDP Act (India) or any other local law adds requirements beyond this
+      checklist — not evaluated here
