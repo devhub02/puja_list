@@ -54,6 +54,7 @@ Application ID: com.pujasaathi.app (cannot change after Play Store publish). Rem
 ## Workflow rules
 - Do ONLY the phase I ask for. Do not start the next phase.
 - After each phase run the relevant checks: in mobile/ `npx tsc --noEmit`, lint, `npm test`; in backend/ `pytest`; plus `npx expo start` / prebuild check when relevant. Never say something passes unless you ran it and saw it pass.
+- After adding or changing any dependency in mobile/: install it with `npx expo install` (or `npm install` for non-Expo packages), ensure both `mobile/package.json` AND `mobile/package-lock.json` are committed, and before declaring a phase/fix done run a CLEAN INSTALL check (delete `mobile/node_modules`, run `npm ci`, verify with `npm ls <package-name>` and `npx tsc --noEmit`) so that missing dependencies cannot hide behind a pre-existing node_modules.
 - Update docs/PROGRESS.md, then commit on branch `phase-N-short-name`. Do not push.
 - No "TODO / implement later" stubs. If something can't be completed, say so and give the closest working version.
 
