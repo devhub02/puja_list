@@ -24,7 +24,7 @@
         {
           "backgroundColor": "#FFF8EC",
           "image": "./assets/images/brand/splash-icon.png",
-          "imageWidth": 200,
+          "imageWidth": 140,
           "dark": {
             "backgroundColor": "#FFF8EC",
             "image": "./assets/images/brand/splash-icon.png"
