@@ -2,7 +2,7 @@
 
 ## Release preparation (master run, branch `phase-8-release`)
 
-NEXT: stage 2 (CI and quality pass). Stage 1 complete.
+NEXT: stage 3 (release build) — partly done, see the Stage 3 block. Then stage 4 (privacy policy and Settings row).
 
 ### Stage 0 — preflight: DONE
 - `main` contains Phase 7 incl. fix `783d06a` (merge `58a453f`). `phase-8-release` created from `main`.
@@ -39,6 +39,27 @@ Not yet verified (Stage 1 remaining):
 - Splash hardening (code change, separate from the cause): the splash gate waited on fonts, settings and the database with no time limit, so a stalled database open would hold the splash forever on any device. `useDatabaseInit` now times out after `DB_SETUP_TIMEOUT_MS` (20 s, `mobile/src/db/DatabaseProvider.tsx`): the hook moves to the error state, the splash clears and the translated Retry screen shows. Test: `__tests__/startup.test.tsx` > "useDatabaseInit timeout". Mutation check: with the timeout wrapper removed, that test fails (1 failed); with it, the file passes (8 of 8).
 - Splash size fix: `imageWidth` 200 -> 140 in `mobile/app.json`. On Android 12+ only a circle of about 192 dp is visible; the artwork's opaque pixels reached 125 dp at 200 dp (cut off) and reach 87.5 dp at 140 dp (inside). Verified on the emulator: the full "PujaSaathi" wordmark is visible on cold start (screenshot taken 2 s after launch).
 - Splash image: the splash now uses the owner's original `splash-icon.png` (1254 x 1254 RGBA, 1.5 MB) from commit `38f5f02`, not the optimised 64 KB copy. `docs/DESIGN_SYSTEM.md` records this as the one exception to the 150 KB image rule. `expo prebuild` regenerated the Android splash resources from it.
+### Stage 3 — release build (in progress; NEXT: stage 3, continue)
+Done and verified (run and seen):
+- Release signing without secrets: `mobile/plugins/withPujaRelease.js` (Expo config plugin, survives `prebuild --clean`). Without the four Gradle properties, `assembleRelease` exits 1 with the names of the missing properties (ran, seen). Test builds were signed with a THROWAWAY key generated in `%TEMP%/puja-throwaway-keystore` (outside the repo). That folder is to be deleted at the end of Stage 3; passwords were only in that folder.
+- Release build: `bundleRelease` and `assembleRelease` BUILD SUCCESSFUL (final build 22 min 22 s). versionCode 1, versionName 1.0.0, targetSdk 36, not debuggable. R8 (minify) and resource shrink enabled via plugin; mapping.txt produced (72.6 MB).
+- Sizes (final build): APK `mobile/android/app/build/outputs/apk/release/app-release.apk` = 109,065,082 bytes (universal, 4 ABIs). AAB `.../bundle/release/app-release.aab` = 82,134,799 bytes.
+- Permissions in the final release APK (`aapt dump permissions`): ACCESS_NETWORK_STATE, INTERNET, POST_NOTIFICATIONS, RECEIVE_BOOT_COMPLETED, WAKE_LOCK, com.google.android.gms.permission.AD_ID (all on the allowed list), plus accepted findings: ACCESS_ADSERVICES_AD_ID, ACCESS_ADSERVICES_ATTRIBUTION, ACCESS_ADSERVICES_TOPICS (from the Google Mobile Ads SDK / play-services-ads-api), FOREGROUND_SERVICE (from WorkManager), and our own DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION. Blocked via `android.blockedPermissions` (23 in the manifest, plus 3 more = 26): SYSTEM_ALERT_WINDOW, VIBRATE, READ_APP_BADGE, c2dm RECEIVE, launcher badge permissions, READ/WRITE_EXTERNAL_STORAGE, install-referrer binding. RECEIVE_BOOT_COMPLETED was NOT removed.
+- AD_ID: confirmed present in the final merged release manifest and the built APK (source: play-services-ads-api via the Google Mobile Ads SDK). PRIVACY_AND_ADS.md still needs the "inferred / VERIFY" wording replaced (see Stage 4 items).
+- 16 KB pages: `zipalign -c -P 16 4` on the APK: "Verification successful". ELF LOAD segments with llvm-readelf: all 64-bit libraries (arm64-v8a, x86_64) are 16 KB-aligned (0x4000). The 4 KB-aligned segments are only in 32-bit libraries (armeabi-v7a, x86), which the requirement does not cover.
+- Play target API: read developer.android.com (2026-10-06): new apps and updates must target API 36 from 31 Aug 2026. Our targetSdk is 36.
+- Fresh install, network ON, run 1: `pm clear`, `am start -W` TotalTime 10,993 ms (first launch after install; median of 5 NOT yet taken). Home appears (`rel_online_run1_after_wait.png`). An emulator "System UI isn't responding" dialog appeared and was dismissed with Wait (system process, not ours). Logcat FATAL EXCEPTIONs in this window belong to com.android.phone, networkstack, com.google.android.gms, systemui and quicksearchbox: none to com.pujasaathi.india.
+- Scripts: `scripts/release-check.py` written (tests, content, export match, secret scan, APK permissions vs allowed + accepted, versionCode rule). NOT RUN END-TO-END YET.
+
+Not done yet in Stage 3 (continue here):
+1. Fresh install run 2 with network ON; then both runs with network OFF (`svc wifi disable; svc data disable`), with `pm clear` each time and `am start -W`. Median of 5 cold starts; `dumpsys meminfo` after a 5-minute session.
+2. OFFLINE review on the release build: Library, search EN and HI, Puja Details, samagri ticks, vidhi, calendar, create a preparation, a reminder 2 minutes ahead (fires and opens the checklist; the release build also needs the reminder re-test because blocked permissions include VIBRATE and c2dm), share sheet, Reset local data. Ad slots must be absent.
+3. ONLINE on release: ads must stay disabled (empty real IDs): no test ad, no placeholder, no crash.
+4. Debug build keeps its dev menu: verify (blockedPermissions also apply to debug manifests; not checked yet).
+5. Accessibility on release: large text, 360 dp, TalkBack labels; fix cheap clear problems; list the rest.
+6. Run `python scripts/release-check.py` end-to-end; plus CLEAN INSTALL, tsc, lint, format:check, npm test, pytest, validate_content, dev-server bundle check.
+7. Delete the throwaway keystore folder and the props file after the last test build.
+8. Open decisions for the owner: keep or block ACCESS_ADSERVICES_* and FOREGROUND_SERVICE (ads / WorkManager); the reminder vibration pattern no longer vibrates without VIBRATE (behaviour change, no code change made).
 ### Stage 2 — CI and quality pass (in progress)
 Done:
 - `.github/workflows/ci.yml` (mobile: npm ci, tsc, lint, format:check, npm test on Node 22; backend: pip install, pytest, validate_content on Python 3.12). Not run on GitHub: it runs after the branch is pushed. Locally: backend steps passed in a fresh venv (139 tests, content OK) on Python 3.14 only; the 3.12 and Node 22 runs are unverified locally.
