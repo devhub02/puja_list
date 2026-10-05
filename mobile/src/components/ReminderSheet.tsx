@@ -50,7 +50,12 @@ const emptyForm: Form = { editingId: null, date: null, time: null, label: '' };
  * Bottom sheet for the reminders of ONE preparation: the list (switch, edit, delete), and a form with a date
  * picker, a time picker, quick picks (only with a real bundled festival date) and an optional note.
  */
-export function ReminderSheet({
+export function ReminderSheet(props: Props) {
+  // Mounted only while open, so a hidden sheet never reads reminders or festival dates.
+  return props.visible ? <ReminderSheetBody {...props} /> : null;
+}
+
+function ReminderSheetBody({
   visible,
   onClose,
   title,

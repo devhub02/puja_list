@@ -139,10 +139,22 @@ export function useReminderController(options: {
     async (reminder: Reminder, enabled: boolean): Promise<void> => {
       setError(null);
       try {
+        // A time that has passed is refused before any permission dialog is shown.
+        if (enabled && isPastReminder(reminder.scheduledAt, new Date())) {
+          throw new ReminderError('past');
+        }
         const step = enabled ? await permissionStep() : 'granted';
         const updated = await setReminderEnabled(createReminderDeps(db), reminder.id, enabled);
         bump();
-        notify(t(updated.enabled ? 'reminders.enabledToast' : 'reminders.disabledToast'));
+        notify(
+          t(
+            !updated.enabled
+              ? 'reminders.disabledToast'
+              : updated.notificationId
+                ? 'reminders.enabledToast'
+                : 'reminders.savedPaused',
+          ),
+        );
         if (enabled) afterStep(step);
       } catch (cause) {
         if (!(cause instanceof ReminderError))

@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useOptionalDatabase } from '@/db/DatabaseProvider';
+import { reconcileAndRefresh } from '@/notifications/runtime';
 import { getNotificationScheduler } from '@/notifications/scheduler';
 import { resetLocalData } from '@/services/resetLocalData';
 import { usePreparationStore } from '@/store/preparationStore';
@@ -32,6 +33,8 @@ export function useResetLocalData() {
     setError(null);
     try {
       const result = await resetLocalData(db, getNotificationScheduler());
+      // Removes any notification an operation that was already running scheduled during the reset.
+      void reconcileAndRefresh(db);
       resetUserStateStore();
       void useUserStateStore.getState().load(db);
       usePreparationStore.getState().bump();

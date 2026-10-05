@@ -35,7 +35,6 @@ export function pickTime(initial: string | null): Promise<string | null> {
     DateTimePickerAndroid.open({
       value,
       mode: 'time',
-      is24Hour: false,
       onChange: (event, date) => {
         resolve(
           event.type === 'set' && date ? formatTime(date.getHours(), date.getMinutes()) : null,
