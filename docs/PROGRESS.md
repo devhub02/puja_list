@@ -2,7 +2,7 @@
 
 ## Release preparation (master run, branch `phase-8-release`)
 
-NEXT: stage 1 (package rename) — checks are green; the 2-minute reminder check on the emulator is NOT done yet.
+NEXT: stage 1 — rename and checks are green; the reminder notification check did NOT pass (see below).
 
 ### Stage 0 — preflight: DONE
 - `main` contains Phase 7 incl. fix `783d06a` (merge `58a453f`). `phase-8-release` created from `main`.
@@ -34,7 +34,8 @@ First-launch note (the "splash hang" investigated during Stage 1):
 - Observed: Home showed "Loading..." in the featured area for a short time on the first run, then content. Not investigated further.
 
 Not yet verified (Stage 1 remaining):
-- The reminder check: a reminder 2 minutes ahead fires and opens the checklist. Not run yet.
+- Reminder check (run on the emulator, NOT passed): on Bhai Dooj, Start preparation -> Samagri -> Remind me -> date 6 Oct 2026, time 2:55 am (set about 1.5 minutes before the fire time, not the 2 minutes asked for) -> Continue on the app's permission explainer -> Android notification permission Allow -> "Reminder saved", switch On. The app was sent to the background. The alarm is registered (`dumpsys alarm`: RTC_WAKEUP for 9:25 PM UTC = 2:55 am IST, `com.pujasaathi.india`). The notification did NOT appear in the shade and no tap test was run. At device time 02:55:40 the alarm was still pending and overdue; the emulator clock advances much slower than wall time, so the cause (emulator clock/doze versus an app bug) is not established. Next: rerun on a longer lead time and watch `dumpsys alarm` and the shade, or check on a real device.
+- Stage 1 status: NOT complete because of the reminder check above.
 
 Phases are defined in the project plan; this checklist tracks their status. Statuses are updated only after the work is done and its checks have been seen to pass.
 
