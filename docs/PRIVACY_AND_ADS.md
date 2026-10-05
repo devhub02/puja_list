@@ -45,13 +45,24 @@ From the generated manifest and the libraries' own manifests (see `docs/ADS_SETU
 |---|---|---|
 | `INTERNET` | Expo's prebuild template (pre-existing) + `react-native-google-mobile-ads` | Ads and the consent form need a network request; was already present before this phase for the dev build to reach Metro |
 | `ACCESS_NETWORK_STATE` | `react-native-google-mobile-ads` | Lets the ads SDK check connectivity before requesting an ad |
-| `WAKE_LOCK` | `react-native-google-mobile-ads` | Used internally by the Play Services Ads SDK |
-| `com.google.android.gms.permission.AD_ID` | The Play Services Ads SDK AAR itself (merged by Gradle at build time, not by this project's manifest) — **VERIFY** on a real `./gradlew assembleDebug`/`bundleRelease` output, since this sandbox could not run Gradle | Lets the SDK read the advertising identifier for non-children's ads; the manifest merger adds this automatically for the installed SDK version |
+| `WAKE_LOCK` | `react-native-google-mobile-ads` (confirmed in the merged manifest; the debug source set also injects it) | Used internally by the Play Services Ads SDK |
+| `com.google.android.gms.permission.AD_ID` | `com.google.android.gms:play-services-ads-api:25.4.0` (confirmed in the merged manifest of a real debug build, Phase 7 verification) | Lets the SDK read the advertising identifier. Confirmed present in the installed APK (`aapt dump permissions`) and in `adb shell dumpsys package com.pujasaathi.app`. |
 | `RECEIVE_BOOT_COMPLETED`, `POST_NOTIFICATIONS` | `expo-notifications` (Phase 6C, unrelated to ads) | Local reminders |
 | `SYSTEM_ALERT_WINDOW`, `VIBRATE`, `READ_EXTERNAL_STORAGE`/`WRITE_EXTERNAL_STORAGE` (max SDK 32) | Expo's prebuild template (pre-existing, unrelated to ads) | Not from this phase |
 
 **No `SCHEDULE_EXACT_ALARM`/`USE_EXACT_ALARM`, no location, contacts, camera or microphone
 permission anywhere.**
+
+Other permissions in the merged manifest of the real debug build (Phase 7 verification, from `aapt dump permissions` and the manifest merger report):
+- `SYSTEM_ALERT_WINDOW`, `VIBRATE`, `READ_EXTERNAL_STORAGE` / `WRITE_EXTERNAL_STORAGE` (max SDK 32): from this project's own `android/app/src/main/AndroidManifest.xml` (Expo prebuild template). No feature needs them. `SYSTEM_ALERT_WINDOW` should be removed before release.
+- `ACCESS_ADSERVICES_AD_ID`, `ACCESS_ADSERVICES_ATTRIBUTION`, `ACCESS_ADSERVICES_TOPICS`: from `play-services-ads-api` (ads).
+- `com.google.android.c2dm.permission.RECEIVE`: from `firebase-messaging`, pulled in by `expo-notifications`. The app uses only local notifications, not remote push.
+- `FOREGROUND_SERVICE`: from `androidx.work` (WorkManager).
+- `com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE`: from `installreferrer`, pulled in by `expo-application`.
+- `DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION`: a signature permission defined by `androidx.core`, not user-facing.
+- About 25 launcher badge permissions (Samsung, HTC, Sony, Huawei, OPPO and others): from `me.leolin:ShortcutBadger`, pulled in by `expo-notifications`. They are declared but not requested at runtime; only `POST_NOTIFICATIONS` is a runtime permission.
+
+None of these is an exact-alarm, location, contacts, camera, microphone or media-storage permission. Removing the unused ones (the badge set, `c2dm`, `SYSTEM_ALERT_WINDOW`) is a possible follow-up; it needs a manifest `tools:node="remove"` config plugin and was not done in this phase.
 
 ## Data safety form (Play Console) — draft checklist
 
