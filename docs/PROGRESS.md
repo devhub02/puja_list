@@ -490,3 +490,32 @@ git push -u origin phase-6c-reminders
 # then, after review, on main:
 git checkout main && git pull origin main && git merge --no-ff phase-6c-reminders && git push origin main
 ```
+
+
+## Bug fix: missing dependency @react-native-community/datetimepicker (`fix-datetimepicker-dependency`)
+
+**Problem:** on a fresh checkout, the app failed to bundle with:
+```
+UnableToResolveError: Unable to resolve module @react-native-community/datetimepicker 
+from mobile/src/utils/dateTimePicker.ts: the module could not be found within the project 
+or in node_modules
+```
+
+**Root cause:** `@react-native-community/datetimepicker` and `expo-notifications` were added to Phase 6C but `@react-native-community/datetimepicker` was NOT declared in `mobile/package.json`. The `expo-notifications` was declared, but the date/time picker package was imported in `dateTimePicker.ts` without being listed. This could happen when dependencies are added mid-phase but not all of them make it into the lock file at commit time.
+
+**Fix:** Added `@react-native-community/datetimepicker` to `mobile/package.json` dependencies at the exact version that matches Expo SDK 57 (version `9.1.0`). Verified with CLEAN INSTALL:
+- Deleted `node_modules`
+- Ran `npm ci` (install from lock file, as it would on any fresh clone)
+- Confirmed all packages install correctly: `@react-native-community/datetimepicker@9.1.0` ✓
+- Ran full test suite: `npm run typecheck`, lint, `npm test` — all pass
+
+**Verification** (Node v24.19.0, all run for real):
+- ✅ `npx tsc --noEmit` — clean
+- ✅ `npm run lint` — clean
+- ✅ `npm test` — **44 suites / 652 tests passed** (matching Phase 6C result)
+- ✅ `npx expo export --platform android` — OK (4.6 MB hbc)
+- ✅ `npx expo start --clear` — bundler started, no `transformFile` or resolution errors (bundling was in progress when the test ended)
+
+**CLAUDE.md update:** Added a new workflow rule about dependency management: after adding or changing any dependency, use `npx expo install`, ensure both `package.json` AND `package-lock.json` are committed, and run a CLEAN INSTALL check before declaring the work done (delete node_modules, `npm ci`, verify). This prevents missing dependencies from hiding behind a pre-existing node_modules.
+
+**Branch:** `fix-datetimepicker-dependency` (from main, not pushed). Changes: `mobile/package.json`, `CLAUDE.md`.
