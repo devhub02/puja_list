@@ -17,9 +17,12 @@ export type SettingsState = {
   language: LanguageCode;
   themeMode: ThemeMode;
   textSize: TextSize;
+  /** Global switch for reminder notifications. Off = nothing is scheduled; reminders stay saved, paused. */
+  notificationsEnabled: boolean;
   setLanguage: (language: LanguageCode) => void;
   setThemeMode: (mode: ThemeMode) => void;
   setTextSize: (size: TextSize) => void;
+  setNotificationsEnabled: (enabled: boolean) => void;
 };
 
 /** Device language if supported, else English. */
@@ -34,6 +37,7 @@ export function detectDeviceLanguage(): LanguageCode {
 export const defaultSettings = {
   themeMode: 'system' as ThemeMode,
   textSize: 'medium' as TextSize,
+  notificationsEnabled: true,
 };
 
 export const useSettingsStore = create<SettingsState>()(
@@ -44,12 +48,18 @@ export const useSettingsStore = create<SettingsState>()(
       setLanguage: (language) => set({ language }),
       setThemeMode: (themeMode) => set({ themeMode }),
       setTextSize: (textSize) => set({ textSize }),
+      setNotificationsEnabled: (notificationsEnabled) => set({ notificationsEnabled }),
     }),
     {
       name: SETTINGS_STORAGE_KEY,
       version: 1,
       storage: createJSONStorage(() => AsyncStorage),
-      partialize: ({ language, themeMode, textSize }) => ({ language, themeMode, textSize }),
+      partialize: ({ language, themeMode, textSize, notificationsEnabled }) => ({
+        language,
+        themeMode,
+        textSize,
+        notificationsEnabled,
+      }),
       // Ignore stale/unknown saved values (e.g. a language removed in a later version).
       merge: (persisted, current) => {
         const saved = (persisted ?? {}) as Partial<SettingsState>;
@@ -62,6 +72,10 @@ export const useSettingsStore = create<SettingsState>()(
           textSize: textSizeOrder.includes(saved.textSize as TextSize)
             ? (saved.textSize as TextSize)
             : current.textSize,
+          notificationsEnabled:
+            typeof saved.notificationsEnabled === 'boolean'
+              ? saved.notificationsEnabled
+              : current.notificationsEnabled,
         };
       },
     },

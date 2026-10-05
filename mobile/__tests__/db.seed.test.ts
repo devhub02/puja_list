@@ -31,8 +31,9 @@ async function insertUserData(db: TestSqlDb) {
     ['prep_1', 2, null, 103],
   );
   await db.run(
-    'INSERT INTO reminder (id, puja_id, festival_id, title, fire_at, notification_id, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)',
-    ['usr_r1', 'puja_test_lakshmi', null, 'Remind me', 5000, 'n1', 103],
+    `INSERT INTO reminder (id, preparation_id, scheduled_at, enabled, notification_id, label, paused_reason,
+       completed_at, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    ['rem_r1', 'prep_1', '2031-10-29T18:30', 1, 'n1', 'Remind me', null, null, 103, 103],
   );
   await db.run('INSERT INTO recent_view (puja_id, viewed_at) VALUES (?, ?)', [
     'puja_test_lakshmi',

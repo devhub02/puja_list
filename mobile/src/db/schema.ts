@@ -238,18 +238,33 @@ export const vidhiProgress = sqliteTable('vidhi_progress', {
   updatedAt: integer('updated_at').notNull(),
 });
 
+/**
+ * A local reminder of one preparation (Phase 6C). Owned by its preparation (cascade), no foreign key to a
+ * content table. `scheduled_at` is a LOCAL wall-clock date-time string `YYYY-MM-DDTHH:mm` (no zone, no
+ * seconds): "8:00 on 8 Nov" stays 8:00 on the phone's clock. `notification_id` is the id the OS returned.
+ * `paused_reason` is why an enabled, future reminder is not scheduled (`global_off`, `no_permission`,
+ * `schedule_failed`); `completed_at` is set when a one-time reminder's time has passed.
+ */
 export const reminder = sqliteTable(
   'reminder',
   {
     id: text('id').primaryKey(),
-    pujaId: text('puja_id'),
-    festivalId: text('festival_id'),
-    title: text('title').notNull(),
-    fireAt: integer('fire_at').notNull(),
+    preparationId: text('preparation_id')
+      .notNull()
+      .references(() => preparation.id, { onDelete: 'cascade' }),
+    scheduledAt: text('scheduled_at').notNull(),
+    enabled: integer('enabled').notNull().default(1),
     notificationId: text('notification_id'),
+    label: text('label'),
+    pausedReason: text('paused_reason'),
+    completedAt: integer('completed_at'),
     createdAt: integer('created_at').notNull(),
+    updatedAt: integer('updated_at').notNull(),
   },
-  (t) => [index('reminder_fire_at_idx').on(t.fireAt), index('reminder_puja_id_idx').on(t.pujaId)],
+  (t) => [
+    uniqueIndex('reminder_preparation_time_uq').on(t.preparationId, t.scheduledAt),
+    index('reminder_scheduled_at_idx').on(t.scheduledAt),
+  ],
 );
 
 export const recentView = sqliteTable(

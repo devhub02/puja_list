@@ -61,3 +61,16 @@ export {
   saveVidhiPosition,
 } from './vidhiProgressRepository';
 export type { VidhiProgress } from './vidhiProgressRepository';
+export {
+  MAX_REMINDER_LABEL_LENGTH,
+  cleanReminderLabel,
+  countRemindersForPreparation,
+  deleteReminder,
+  findReminderAt,
+  getReminder,
+  insertReminder,
+  listReminders,
+  listRemindersForPreparation,
+  updateReminder,
+} from './reminderRepository';
+export type { PausedReason, Reminder, ReminderPatch } from './reminderRepository';

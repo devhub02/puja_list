@@ -3,15 +3,20 @@ import { useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 
 import { AppText } from '@/components/AppText';
+import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
+import { NotificationsSettings } from '@/components/NotificationsSettings';
+import { ResetLocalDataDialog } from '@/components/ResetLocalDataDialog';
 import { ScreenContainer } from '@/components/ScreenContainer';
 import { SectionHeader } from '@/components/SectionHeader';
 import { SegmentedControl } from '@/components/SegmentedControl';
 import type { SegmentOption } from '@/components/SegmentedControl';
+import { useOptionalDatabase } from '@/db/DatabaseProvider';
 import { useContentInfo } from '@/db/useContentInfo';
+import { useResetLocalData } from '@/hooks/useResetLocalData';
 import { languageCodes, languages } from '@/i18n/registry';
 import { useSettingsStore } from '@/store/settingsStore';
-import { spacing, textSizeOrder, themeModes } from '@/theme';
+import { spacing, textSizeOrder, themeModes, useTheme } from '@/theme';
 
 export default function SettingsScreen() {
   const { t } = useTranslation();
@@ -22,6 +27,9 @@ export default function SettingsScreen() {
   const setLanguage = useSettingsStore((s) => s.setLanguage);
   const setThemeMode = useSettingsStore((s) => s.setThemeMode);
   const setTextSize = useSettingsStore((s) => s.setTextSize);
+  const { colors } = useTheme();
+  const db = useOptionalDatabase();
+  const reset = useResetLocalData();
 
   const languageOptions = languageCodes.map((code) => ({
     value: code,
@@ -89,6 +97,8 @@ export default function SettingsScreen() {
         </Card>
       </View>
 
+      {db ? <NotificationsSettings /> : null}
+
       <View style={styles.section}>
         <SectionHeader title={t('settings.about.title')} />
         <Card>
@@ -143,6 +153,31 @@ export default function SettingsScreen() {
         </AppText>
         <AppText testID="disclaimer-body">{t('settings.disclaimer.body')}</AppText>
       </Card>
+
+      <View style={styles.section}>
+        <Card style={[styles.danger, { borderColor: colors.heading }]} testID="danger-section">
+          <AppText variant="subheading" color="heading" accessibilityRole="header">
+            {t('settings.reset.title')}
+          </AppText>
+          <AppText>{t('settings.reset.description')}</AppText>
+          <Button
+            testID="reset-data-open"
+            variant="outline"
+            icon="trash-can-outline"
+            label={t('settings.reset.button')}
+            disabled={!reset.canReset}
+            onPress={reset.openDialog}
+          />
+        </Card>
+      </View>
+
+      <ResetLocalDataDialog
+        visible={reset.open}
+        busy={reset.busy}
+        error={reset.error}
+        onClose={reset.close}
+        onConfirm={() => void reset.confirm()}
+      />
     </ScreenContainer>
   );
 }
@@ -151,5 +186,6 @@ const styles = StyleSheet.create({
   section: { gap: spacing.sm },
   subLabel: { marginTop: spacing.xs },
   preview: { marginTop: spacing.xs },
+  danger: { borderWidth: 1.5, gap: spacing.sm },
   versionRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
 });

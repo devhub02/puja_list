@@ -11,6 +11,9 @@ import { Chip } from '@/components/Chip';
 import { Dialog } from '@/components/Dialog';
 import { EmptyState } from '@/components/EmptyState';
 import { PreparationCard } from '@/components/PreparationCard';
+import { ReminderSheet } from '@/components/ReminderSheet';
+import { SharePreparationDialog } from '@/components/SharePreparationDialog';
+import { Button } from '@/components/Button';
 import { PujaCard } from '@/components/PujaCard';
 import { SectionHeader } from '@/components/SectionHeader';
 import { SegmentedControl } from '@/components/SegmentedControl';
@@ -32,6 +35,7 @@ import { usePreparationSummaries, usePujaPreparation } from '@/hooks/usePreparat
 import { useUserState } from '@/hooks/useUserState';
 import { formatShortDate } from '@/i18n/format';
 import { localize } from '@/i18n/localeMap';
+import { reconcileAndRefresh } from '@/notifications/runtime';
 import { writeAndRefresh } from '@/store/preparationStore';
 import { useSettingsStore } from '@/store/settingsStore';
 import { notify } from '@/utils/notify';
@@ -45,6 +49,8 @@ type ViewMode = 'checklists' | 'shopping';
 type Action =
   | { kind: 'none' }
   | { kind: 'sheet'; prep: PreparationSummary }
+  | { kind: 'remind'; prep: PreparationSummary }
+  | { kind: 'share'; prep: PreparationSummary }
   | { kind: 'rename'; prep: PreparationSummary }
   | { kind: 'duplicate'; prep: PreparationSummary }
   | { kind: 'clear'; prep: PreparationSummary }
@@ -106,11 +112,22 @@ export default function PreparationScreen() {
     const prep = find(id);
     if (prep) setAction({ kind: 'sheet', prep });
   };
+  const openRemind = (id: string) => {
+    const prep = find(id);
+    if (prep) setAction({ kind: 'remind', prep });
+  };
   const close = () => setAction({ kind: 'none' });
 
   const header = (
     <View style={styles.header}>
       <AppText variant="title">{t('preparation.title')}</AppText>
+      <Button
+        testID="manage-reminders"
+        variant="outline"
+        icon="bell-outline"
+        label={t('reminders.manage.title')}
+        onPress={() => router.push('/reminders')}
+      />
       <SegmentedControl
         accessibilityLabel={t('preparation.viewLabel')}
         testIDPrefix="view"
@@ -209,6 +226,7 @@ export default function PreparationScreen() {
               onOpenChecklist={openChecklist}
               onOpenVidhi={openVidhi}
               onMore={openSheet}
+              onRemind={openRemind}
             />
           );
         case 'recent': {
@@ -298,6 +316,22 @@ export default function PreparationScreen() {
     <View style={[styles.screen, { backgroundColor: colors.background, paddingTop: insets.top }]}>
       {content}
 
+      <ReminderSheet
+        visible={action.kind === 'remind'}
+        onClose={close}
+        title={prep ? labelOf(prep) : ''}
+        pujaId={prep?.pujaId ?? null}
+        preparationId={prep?.id ?? null}
+        getPreparationId={async () => {
+          if (!prep) throw new Error('No preparation');
+          return prep.id;
+        }}
+      />
+      <SharePreparationDialog
+        preparationId={action.kind === 'share' ? action.prep.id : null}
+        onClose={close}
+      />
+
       <Dialog
         testID="actions-dialog"
         visible={action.kind === 'sheet'}
@@ -314,6 +348,12 @@ export default function PreparationScreen() {
                 setAction({ kind: 'rename', prep });
               }
             },
+          },
+          {
+            label: t('share.action'),
+            icon: 'share-variant-outline',
+            testID: 'action-share',
+            onPress: () => prep && setAction({ kind: 'share', prep }),
           },
           {
             label: t('preparation.duplicate'),
@@ -448,9 +488,10 @@ export default function PreparationScreen() {
             testID: 'delete-prep-confirm',
             onPress: closeThen(() => {
               if (prep) {
-                void writeAndRefresh(() => deletePreparation(db, prep.id)).then(() =>
-                  notify(t('feedback.preparationDeleted')),
-                );
+                void writeAndRefresh(() => deletePreparation(db, prep.id))
+                  // Its reminders went with it; take their OS notifications away too.
+                  .then(() => reconcileAndRefresh(db))
+                  .then(() => notify(t('feedback.preparationDeleted')));
               }
             }),
           },

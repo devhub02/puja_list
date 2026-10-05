@@ -82,3 +82,34 @@ export function formatCalendarDateLong(
     timeZone: 'UTC',
   }).format(utcInstant(year, month, day));
 }
+
+/**
+ * A reminder time (`YYYY-MM-DDTHH:mm`, local wall clock) as e.g. "8 Nov 2026, 7:00 am" / "8 नव॰ 2026, सुबह 7:00".
+ * Formatted as a UTC instant so the phone's zone can never shift the day or the hour.
+ */
+export function formatReminderWhen(
+  parts: { year: number; month: number; day: number; hour: number; minute: number },
+  language: LanguageCode,
+): string {
+  const instant = utcInstant(parts.year, parts.month, parts.day);
+  instant.setUTCHours(parts.hour, parts.minute, 0, 0);
+  return new Intl.DateTimeFormat(languages[language].intlLocale, {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+    timeZone: 'UTC',
+  }).format(instant);
+}
+
+/** Just the clock time of a reminder, e.g. "7:00 am". */
+export function formatClockTime(hour: number, minute: number, language: LanguageCode): string {
+  const instant = utcInstant(2000, 1, 1);
+  instant.setUTCHours(hour, minute, 0, 0);
+  return new Intl.DateTimeFormat(languages[language].intlLocale, {
+    hour: 'numeric',
+    minute: '2-digit',
+    timeZone: 'UTC',
+  }).format(instant);
+}

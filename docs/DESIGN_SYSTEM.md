@@ -301,3 +301,45 @@ Verified by code/tests: roles, labels and selected states, labels for every day 
 - **See calendar row**: a 48dp-min link under the card: "See calendar" (primary, underlined, semibold) with an optional second line "N more in the next 30 days" (`textSecondary`) and an arrow; the count line is absent when it would be 0.
 - Hindi uses "तारीख़" for dates and the countdown wording `आज से शुरू`, `N दिन में`, `चल रहा है`.
 
+
+
+---
+
+# Phase 6C additions: reminders, notification settings, reset, share
+
+`ui-ux-pro-max` (`.agents/skills/ui-ux-pro-max/`) was used again by running `scripts/search.py` (`--domain ux` for "bottom sheet modal form", "destructive action confirmation", "empty state", "loading state async button", "date time picker"; `--stack react-native` for accessibility labels and touch) and the pre-delivery checklist in `references/pro-rules.md`. The queries "permission request explanation" and "switch toggle" returned **no match** in the skill's database, so those two decisions below are marked as fallbacks from the earlier phases' rules. It is not registered with the Skill tool in this environment. As before, CLAUDE.md's palette wins (React Native, not web); no colour token was added.
+
+| Skill guidance | Decision |
+|---|---|
+| Confirm before delete / irreversible actions | Delete reminder: a `Dialog` ("Delete this reminder?"). Reset local data: a `Dialog` that lists exactly what is deleted and what is kept, and keeps its confirm button **disabled until the word RESET is typed**. Not asked for: switching a reminder off (reversible), saving. |
+| Brief success message, never silent success | `notify()` toast after: reminder saved / updated / deleted / switched on or off, local data reset. A paused save says "saved, but it is paused" instead of "saved". |
+| Disable the button during an async action; loading feedback | Save is disabled while saving; the reset confirm is disabled while resetting; lists show `LoadingState` / `ErrorState`. |
+| Empty states: helpful message and an action | Manage reminders with no reminders: icon, "No reminders yet", how to make one, and a button to My Preparation. A group with no items says "Nothing here." The sheet's empty list says so in one line and the Add button is right under it. |
+| Labels on inputs, never placeholder-only; error near the field | Reminder note uses `TextField` with a visible label. The save error (past time, limit, duplicate) sits directly above the Save button as an `alert` live region. Date and time are two labelled buttons whose text becomes the chosen value, not placeholder text. |
+| Accessibility labels on every interactive control | Switch: "Reminder at <date and time>" with `switch` role and `checked`; edit and delete icons carry the time in their label; "Remind me about <puja>"; "Share checklist: <puja>". |
+| Touch targets 48dp, 8dp between | Switch box 48x48, icon buttons 48x48, chips 48, "Remind me" header pill min 48 tall, all dialog buttons full width. |
+| Locale-aware dates | Date and time text uses `Intl` in the selected language (`formatReminderWhen`, `formatClockTime`), formatted as a UTC instant so the device zone can never shift the shown day. |
+| Permission requests (no skill match, fallback) | Never at app start. A short, plain "Allow reminders?" dialog comes **before** the system dialog and says what the permission is for and that nothing goes over the internet. If the user declines, nothing is blocked: the reminder is saved paused with a calm explanation and a button to the system settings. If Android has stopped asking for good, the explanation step is skipped (it would lead nowhere) and the same settings button is offered. |
+| Switch (no skill match, fallback) | React Native `Switch` in a 48dp box with a text state label ("On" / "Off") next to it; colour is never the only signal. |
+
+## New components (`mobile/src/components`)
+
+- **`ReminderSheet`**: a bottom sheet (`Modal`, slide, scrim, 24dp top radius, max 92% of the window height, content max 640dp, back closes the form first, then the sheet). List mode: title, puja (and label), the battery note card, a note when notifications are off, the reminder rows or a one-line empty text, the limit hint ("up to 5"), **Add reminder** (disabled at the limit) and **Done**. Form mode: quick-pick chips (only with a real bundled festival date: "Day before the festival" / "Morning of the festival", they set the date only, with the line "Choose the time yourself"), **Choose date** and **Choose time** buttons (system pickers), an optional note, the error or the "Choose a date and a time to save." hint, the battery note, Save (disabled until both are chosen) and Cancel. Opening the sheet never creates a preparation; the first Save does (same lazy rule as Phase 5).
+- **`ReminderRow`**: a card with the time (subheading), the note, a one-line status ("On", "Off", "Paused: ...", "Time has passed"), a switch (disabled for a past reminder), and edit/delete icon buttons.
+- **`ReminderDialogs`**: the three dialogs of the flow (why we ask; saved but paused, with "Open notification settings"; delete confirmation).
+- **`ShareChecklistDialog`** and **`SharePreparationDialog`**: the share dialog with two radio chips ("All items" / "Only items I still need") and Share/Cancel; a note and a no-op when nothing is left to share. The preparation version loads the checklist first (for My Preparation).
+- **`NotificationsSettings`** and **`ResetLocalDataDialog`**: the Settings blocks.
+- Native pickers: `@react-native-community/datetimepicker` (Android dialogs, Expo Go compatible) behind `utils/dateTimePicker.ts`.
+
+## Screen rules
+
+- **Samagri screen**: the top bar holds the back button on the left and, on the right, a "Remind me" pill (bell icon + text, 48dp, outlined in `primary`) and a share icon button. Neither exists while the puja is loading or missing.
+- **My Preparation**: a "Manage reminders" outline button under the title; each card has a bell icon button before the "..." button (hidden for a puja that no longer exists); "Share checklist" is the first group of the "..." menu next to Rename/Duplicate.
+- **Manage reminders** (`app/reminders.tsx`, a stack screen opened from Settings and My Preparation): back button, title, battery note, a note when notifications are off, then three groups with counts: Upcoming, Paused, Past. Each row shows the puja and label above the time. Real empty state. Editing opens the same sheet straight in its form.
+- **Settings**: the Notifications section sits between Appearance and About: the switch (state text "On"/"Off"), a note when off, the permission line (Allowed / Not asked yet / Not allowed / Blocked in the phone settings), the battery note, "Manage reminders" and "Open system notification settings". **Reset local data** is the last block, in a card with a 1.5dp `heading`-coloured border (the palette has no danger colour, as noted in Phase 5), a header, one sentence and an outlined button.
+- **Nothing interrupts the vidhi reader**: no reminder UI exists on it, and while it is on screen a reminder that arrives is added to the notification shade silently (no banner, no sound).
+- The sheet and the Manage screen always show the battery wording: "Android may delay notifications because of battery optimization. Do not rely on a reminder as your only alarm."
+
+## Accessibility notes (Phase 6C)
+
+Switches announce their state and the time; icon buttons say what they act on; the error line is an `alert`; dialogs close with Android back; the reset confirm exposes `disabled`; headings are `header`. Hindi strings are natural Devanagari ("तारीख़", "रिमाइंडर", "सूचनाएँ"). **Not verifiable here (no emulator):** the sheet with the keyboard open (does Save stay reachable above the keyboard), the largest OS font at 360dp (the "Remind me" pill in the header next to the share button), how the system date/time dialogs look and behave on the real device, TalkBack reading of the switch rows, and the notification itself (see `docs/PROGRESS.md`).
