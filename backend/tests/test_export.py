@@ -147,7 +147,11 @@ def test_broken_previous_export_does_not_block(tmp_path):
 
 def _run(script: str, *args: str) -> subprocess.CompletedProcess:
     return subprocess.run(
-        [sys.executable, str(REPO / "scripts" / script), *args], capture_output=True, text=True, cwd=REPO
+        [sys.executable, str(REPO / "scripts" / script), *args],
+        stdin=subprocess.DEVNULL,
+        capture_output=True,
+        text=True,
+        cwd=REPO,
     )
 
 
