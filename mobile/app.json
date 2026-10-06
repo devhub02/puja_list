@@ -63,7 +63,7 @@
         "react-native-google-mobile-ads",
         {
           "androidSdk": "classic",
-          "androidAppId": "ca-app-pub-3940256099942544~3347511713"
+          "androidAppId": "ca-app-pub-5617515296566823~9432414645"
         }
       ],
       "./plugins/withPujaRelease.js"

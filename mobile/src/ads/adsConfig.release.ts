@@ -11,6 +11,6 @@ import type { AdPlacement } from './adsConfig';
  * git history; `__tests__/adsConfig.test.ts` fails if it finds one.
  */
 export const RELEASE_AD_UNIT_IDS: Record<AdPlacement, string> = {
-  home_banner: '', // fill before release
-  library_banner: '', // fill before release
+  home_banner: 'ca-app-pub-5617515296566823/6818693740', // LOCAL BUILD ONLY - revert before commit
+  library_banner: 'ca-app-pub-5617515296566823/2648434315', // LOCAL BUILD ONLY - revert before commit
 };
