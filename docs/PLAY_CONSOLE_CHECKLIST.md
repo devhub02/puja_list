@@ -35,16 +35,29 @@ accepted-permission sources), `docs/privacy-policy/` (policy and URL), `docs/STO
       children's-app policy applies if you select them, and the ads SDK then needs child-directed settings.]
 - [ ] Declare the app is not a news app and has no COVID or health-claims features. [VERIFY]
 
-## 7. Data safety form
-Base it on the real merged release manifest (Stage 3) and the SDK behaviour, not on guesses:
-- [ ] **Data collected by the app's own code: none.** The app sends nothing to a server of its own.
-- [ ] **Data handled by the ads SDK (Google AdMob / Mobile Ads):** device or other identifiers (the advertising ID), ad
-      interaction data, and approximate location derived from IP. Shared with Google for ads. [VERIFY against Google's
-      current Data safety guidance for the SDK version in the release build.]
-- [ ] Data is encrypted in transit (the SDK's requests). [VERIFY]
-- [ ] Users can request deletion: say what is true. Local data is deleted by uninstalling or with Reset local data;
-      ad data is managed through Google and Android settings. [VERIFY]
-- [ ] Do NOT answer "no data is collected" anywhere. [Rule from CLAUDE.md]
+## 7. Data safety form (draft answers; VERIFY each against the current form)
+Based on the merged release manifest (Stage 3) and the real SDKs. The app's own code collects and sends nothing to a
+server; the ads SDK does, on the device and to Google.
+
+| Question | Draft answer | Basis | Status |
+|---|---|---|---|
+| Does the app collect or share user data? | Yes, through the ads SDK only | AdMob / UMP | VERIFY |
+| Data types (ads SDK) | Device or other IDs (advertising ID); ad interaction data; approximate location (from IP) | Google Mobile Ads SDK | VERIFY the exact categories |
+| Data the app itself stores (local only) | Preparations, checklists, reminders, settings, recent searches | Local database and settings | Not sent anywhere; VERIFY how the form wants local-only data declared |
+| Shared with third parties | Yes: Google, for advertising | AdMob | VERIFY |
+| Purpose | Advertising or marketing; ad measurement as the form defines it | AdMob | VERIFY |
+| Optional or required | Ads data is handled by the SDK after the consent step where required | UMP `canRequestAds` | VERIFY |
+| Encrypted in transit | Yes for the SDK's requests | Google SDK | VERIFY |
+| Users can request deletion | Local data: uninstall or Reset local data in Settings. Ad data: through Google and Android settings | Reset local data exists | VERIFY the wording |
+| Does the app collect location, contacts, photos, files, camera, microphone? | No (the app asks for none of them) | Release APK permission list | matches |
+
+Permission sources the form may ask about (confirmed in the Stage 3 release APK):
+- `AD_ID`, `ACCESS_ADSERVICES_AD_ID`, `ACCESS_ADSERVICES_ATTRIBUTION`, `ACCESS_ADSERVICES_TOPICS`: Google Mobile Ads SDK.
+- `FOREGROUND_SERVICE`: WorkManager (`androidx.work`), a notification-stack dependency. Our code declares no foreground service.
+- `INTERNET`, `ACCESS_NETWORK_STATE`, `WAKE_LOCK`, `POST_NOTIFICATIONS`, `RECEIVE_BOOT_COMPLETED`, `VIBRATE`: the app's own use.
+- `com.pujasaathi.india.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION`: our own signature permission.
+
+Never answer "no data is collected". The ads SDK collects data.
 
 ## 8. Privacy policy
 - [ ] Publish the policy (`docs/privacy-policy/README.md`), then paste its https URL in Play Console (App content >
@@ -57,6 +70,10 @@ Base it on the real merged release manifest (Stage 3) and the SDK behaviour, not
 - [ ] Health apps: no (the guides mention fasting, but the app is not a health app). [VERIFY]
 - [ ] Advertising ID declaration: **yes, the app uses the advertising ID through the ads SDK.** [VERIFY the exact form.]
 - [ ] Other sensitive permissions: none beyond notifications, internet and network state. [VERIFY]
+- [ ] **Foreground service (FOREGROUND_SERVICE, from WorkManager):** our app declares no foreground service. Play requires a
+      declaration only for apps whose own code runs a foreground service of a listed type. Check the current Play rule for
+      foreground-service declarations in the console before answering. [VERIFY]
+- [ ] Store listing: set the category, tags, contact details and the listing text from `docs/STORE_LISTING.md`. [VERIFY]
 
 ## 10. Play App Signing
 - [ ] Enrol in **Play App Signing** (Google holds the app signing key). Keep your **upload key** safe (see
@@ -70,8 +87,14 @@ Base it on the real merged release manifest (Stage 3) and the SDK behaviour, not
 - [ ] Upload the **AAB** (`mobile/android/app/build/outputs/bundle/release/app-release.aab`) built with the real signing
       key. The throwaway test key must NOT be used for upload.
 - [ ] Keep testers opted in for the required period. [VERIFY]
+- [ ] Add testers by email: create a Google Group or a list of Gmail addresses in the testers tab, copy the opt-in link,
+      and send it to testers. Testers must accept the invitation and install from the Play link. [VERIFY]
+- [ ] Production access questionnaire (new personal accounts): answer truthfully. Describe the app as it is: an offline
+      puja guide with 16 AI-drafted guides and 103 festival entries, no accounts, no analytics, ads on two screens, and the
+      data safety answers in section 7. Do not describe features that do not exist. [VERIFY the questions in the console]
 
 ## 12. Production access
+- [ ] Roll out to production: choose the rollout percentage (start small if the console offers it). [VERIFY the rollout options.]
 - [ ] Apply for production access once the testing requirement is met. Answer the questions truthfully. [VERIFY the form.]
 - [ ] No approval or date is promised here.
 
