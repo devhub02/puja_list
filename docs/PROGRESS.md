@@ -2,7 +2,7 @@
 
 ## Release preparation (master run, branch `phase-8-release`)
 
-NEXT: stage 6 (final documentation). Stage 5 done; see the Stage 5 block. Open Stage 3 checks remain (see the Stage 3 block).
+NEXT: stage 8 (user actions and publishing). Stages 4 to 7 are done; see the Stage 7 block for what is verified and what is open.
 
 ### Stage 0 — preflight: DONE
 - `main` contains Phase 7 incl. fix `783d06a` (merge `58a453f`). `phase-8-release` created from `main`.
@@ -886,3 +886,30 @@ Environment: Node v24.19.0, JDK 17.0.20, `ANDROID_HOME` set, Pixel_9a_bulkingapp
 - `docs/STORE_LISTING.md`: English and Hindi app name, short description (74 and 69 characters, under 80), full description (1,524 and 1,519 characters, under 4,000), category and tags marked VERIFY, a "do not claim" list, graphic sizes (icon 512x512, feature graphic 1024x500, phone screenshots), and a 6-screen plan with adb capture commands. Review status stated from `content/`: 16 pujas and 103 festivals, all `ai_drafted`.
 - `docs/PLAY_CONSOLE_CHECKLIST.md`: new personal account, app creation, app access, ads declaration, IARC rating, target audience (not for children), data safety draft based on the real SDKs (no own-code collection; ads SDK identifiers), privacy policy URL, other declarations, advertising ID, Play App Signing, closed testing (rule marked VERIFY, not stated as fact), production access, and after-publish tasks (AdMob link, real ad unit IDs outside git, consent message, version increment). No approval or timelines promised.
 - NOT done: feature graphic, phone screenshots and the final icon export need the owner's artwork and sign-off. The screenshot capture is a plan, not run.
+
+
+### Stage 6 and Stage 7 — final documentation and verification (2026-10-06, not pushed)
+Stage 6 (documents): README rewritten for v1; KNOWN_LIMITATIONS, ROADMAP (planning only), CONTENT_REVIEW_STATUS (generated;
+checked by release-check), RELEASE (release order added), THIRD_PARTY_LICENSES (npm 702 production packages, 5 pinned Python
+packages). LICENSE intentionally not created; the README asks the owner to decide.
+
+Real counts used in the documents: 16 puja guides (all ai_drafted), 103 festivals (all ai_drafted), 25 dated calendar
+entries from 2026-10-11 to 2026-12-23. No 2027 calendar data.
+
+Stage 7 verification (final build from the Stage 7 commit, throwaway keystore created outside the repo and deleted):
+- Clean install (npm ci), tsc, lint, format:check: exit 0.
+- npm test with --runInBand: 716 of 716 passed (55 suites).
+- Secrets and ads config tests: 8 of 8 passed.
+- Backend pytest: 139 passed. validate_content.py: OK. import_calendar_dates.py: 25 dates, rewrote calendar/2026.json with the same content. export_content.py: exit 0, git shows no change to content or the exported bundle.
+- Android dev-server bundle: HTTP 200, 10,569,532 bytes; expo@57.0.26, metro@0.84.5, @expo/metro-config@57.0.12.
+- release-check.py (--skip-tests): RELEASE CHECK PASSED (content, export match, review status, secrets, APK permissions, versionCode).
+- Release AAB: 82,135,431 bytes. Release APK: 109,064,930 bytes. Both contain arm64-v8a, armeabi-v7a, x86 and x86_64 (default ABIs). zipalign -P 16: Verification successful. targetSdkVersion 36, versionCode 1.
+- Smoke test on the emulator, release APK: fresh start (pm clear + launch) reached Home twice with network ON and twice with network OFF; no FATAL EXCEPTION for the app. Settings shows no privacy-policy row (UI tree count 0), as designed while the URL is empty.
+- Reminder: set by the owner on the emulator; the owner reported that it fired and opened the checklist. The notification text was not captured by the assistant in this run.
+- bundletool per-device size (get-size total): NOT run; bundletool is not installed here.
+- English and Hindi search and samagri tick on this final build: NOT run in Stage 7 (they were checked on the earlier release build in Stage 3).
+- Ads on Home and Library on this final build: Home showed no ad slot; Library not checked on this build.
+- Debug build dev menu check: NOT run.
+- Stage 3 layout before/after device screenshots on this final build: NOT taken.
+
+Open items after Stage 7: the bundletool per-device size; the Stage 3 items listed above; CI has not run (it runs only after the branch is pushed).
