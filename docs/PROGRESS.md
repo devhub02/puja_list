@@ -70,6 +70,20 @@ Decisions and investigations (Stage 3, second pass):
   - ABI restriction to arm64-v8a and armeabi-v7a: NOT applied globally, because the x86_64 emulator used for testing needs x86_64 libraries. Option: release-only ABI split, to decide.
   - bundletool: not installed here, so per-device sizes are NOT measured. Rough estimate for an arm64 phone from the APK parts: about 42 MB compressed (not measured).
   - Before/after: no size change was applied in this pass.
+Final-build results (third pass, 2026-10-06):
+- FONT TRIM: applied, measured, then REVERTED. Measured in the AAB: raw 5.77 MB -> 3.13 MB (saving 2.64 MB), but compressed (what Play downloads) 2.77 MB -> 1.39 MB (saving 1.38 MB), below the 2 MB rule. Icon screenshots (Library, Calendar, Settings, Samagri, Puja Details, search, Vidhi, Home tab bar) showed no broken icons, but the rule failed, so the change was reverted (`mobile/app`, `mobile/src`: restored to HEAD).
+- ABI PLUGIN: DROPPED as decided. The release plugin is back to its committed version (signing and R8 and blocked permissions only). Build docs for the two build commands removed. The `ndk.abiFilters` and packaging excludes did not filter the core React Native libraries (six per ABI remained), so they were not kept.
+- Final release build (clean prebuild, default ABIs): `bundleRelease` BUILD SUCCESSFUL (17 min 5 s); `assembleRelease` BUILD SUCCESSFUL (1 min 36 s).
+  - AAB `mobile/android/app/build/outputs/bundle/release/app-release.aab`: 82,134,821 bytes; ABIs arm64-v8a, armeabi-v7a, x86, x86_64.
+  - APK `mobile/android/app/build/outputs/apk/release/app-release.apk`: 109,065,094 bytes; same four ABIs.
+  - Permissions in the final APK (aapt): INTERNET, ACCESS_NETWORK_STATE, WAKE_LOCK, POST_NOTIFICATIONS, RECEIVE_BOOT_COMPLETED, VIBRATE, AD_ID (allowed list); ACCESS_ADSERVICES_AD_ID, ACCESS_ADSERVICES_ATTRIBUTION, ACCESS_ADSERVICES_TOPICS, FOREGROUND_SERVICE, DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION (accepted). Nothing else. Blocked: SYSTEM_ALERT_WINDOW, READ_APP_BADGE, c2dm RECEIVE, launcher badges, storage, install referrer.
+  - 16 KB: `zipalign -c -P 16 -v 4` on the final APK: "Verification successful".
+  - targetSdkVersion 36; versionCode 1; versionName 1.0.0.
+- Per-device download size: `bundletool get-size total` NOT run (bundletool is not installed here; COULD-NOT-VERIFY). The commands are in docs/RELEASE.md.
+
+NOT yet done on the final build: reminder re-test with VIBRATE unblocked, startup runs (5 ON, 5 OFF) and phase breakdown, fresh installs twice ON and OFF, offline review (Vidhi, share, reset, Hindi, large text, 360 dp, TalkBack), ads check on Home and Library, debug dev menu, release-check.py, CLEAN INSTALL checks, throwaway keystore deletion, Stage 4.
+Layout defect found (not fixed): My Preparation buttons "Checklist" and "Vidhi" wrap mid-word at the current text size (screenshot icon_06_my_prep.png). Open issue.
+
 Not done yet in Stage 3 (continue here):
 1. Fresh install run 2 with network ON; then both runs with network OFF (`svc wifi disable; svc data disable`), with `pm clear` each time and `am start -W`. Median of 5 cold starts; `dumpsys meminfo` after a 5-minute session.
 2. OFFLINE review on the release build: Library, search EN and HI, Puja Details, samagri ticks, vidhi, calendar, create a preparation, a reminder 2 minutes ahead (fires and opens the checklist; the release build also needs the reminder re-test because blocked permissions include VIBRATE and c2dm), share sheet, Reset local data. Ad slots must be absent.

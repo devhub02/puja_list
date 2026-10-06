@@ -71,6 +71,27 @@ cd android
 
 Release builds use R8 minification and resource shrinking (set in the same plugin).
 
+## Per-device size and install (bundletool)
+
+Get bundletool from Google's official releases (https://github.com/google/bundletool/releases) and put the jar at
+`C:	oolsundletool.jar` (outside the repo). Run from `mobile/android`.
+
+Real download size per device: build the APK set once, then ask bundletool for the sizes per device dimension:
+
+```
+java -jar C:	oolsundletool.jar build-apks --bundle=app/build/outputs/bundle/release/app-release.aab --output=puja-all.apks --ks=C:\secure\puja-release.jks --ks-pass=file:C:\secure\store.pass --ks-key-alias=puja_release --key-pass=file:C:\secure\key.pass
+java -jar C:	oolsundletool.jar get-size total --apks=puja-all.apks --dimensions=ABI,SCREEN_DENSITY,LANGUAGE,SDK
+```
+
+Install on a connected phone (USB debugging on); this builds only for that phone:
+
+```
+java -jar C:	oolsundletool.jar build-apks --connected-device --bundle=app/build/outputs/bundle/release/app-release.aab --output=puja.apks --ks=C:\secure\puja-release.jks --ks-pass=file:C:\secure\store.pass --ks-key-alias=puja_release --key-pass=file:C:\secure\key.pass
+java -jar C:	oolsundletool.jar install-apks --apks=puja.apks
+```
+
+Keep passwords in files outside the repo (`file:` form), never on the command line in a committed script.
+
 ## Permissions
 
 `android.blockedPermissions` in `mobile/app.json` removes unused permissions from the merged manifest: system alert
