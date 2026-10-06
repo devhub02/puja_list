@@ -5,7 +5,7 @@ Checks, in order:
   1. Mobile tests pass (npm test) and backend tests pass (pytest).
   2. Content validates (scripts/validate_content.py).
   3. The exported bundle matches content/ (re-export, then git must show no change to content.json).
-  4. No secret-like file is tracked by git.
+  4. No secret-like file is tracked by git; docs/CONTENT_REVIEW_STATUS.md is up to date.
   5. The built release APK's permissions match the allowed list plus the accepted, documented findings.
   6. versionCode in mobile/app.json is higher than the last released value in docs/RELEASE.md
      (equal is allowed only when docs/RELEASE.md says there is no previous release).
@@ -79,6 +79,10 @@ def check_export_matches() -> None:
     print("   ok: exported content.json matches the committed bundle", flush=True)
 
 
+def check_review_status() -> None:
+    run([sys.executable, "scripts/generate_review_status.py", "--check"], ROOT, "docs/CONTENT_REVIEW_STATUS.md is current")
+
+
 def check_no_secrets() -> None:
     print("== no secret-like files tracked", flush=True)
     files = subprocess.run(["git", "ls-files", "-z"], cwd=ROOT, capture_output=True, text=True, check=True).stdout
@@ -132,6 +136,7 @@ def main() -> None:
         check_tests()
     check_content()
     check_export_matches()
+    check_review_status()
     check_no_secrets()
     check_apk_permissions(args.apk)
     check_version()

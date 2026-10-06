@@ -59,6 +59,20 @@ support, but it is slow. Do not commit the keystore or the passwords.
 Test signing (not for release): a throwaway key was generated outside the repo and used for the Stage 3 verification
 builds; it was deleted afterwards. Test APKs signed with it are not for distribution.
 
+## Release order (do these in this order)
+
+1. **Publish the privacy policy** (`docs/privacy-policy/README.md`) and check the live URL opens in a browser.
+2. **Set the URL in the app:** `PRIVACY_POLICY_URL` in `mobile/src/config/legal.ts`. This value is compiled into the app,
+   so it must be set **before** the release build; changing it later needs a new build and upload.
+3. **Bump the version** if this is not the first upload: `expo.android.versionCode` in `mobile/app.json`, +1.
+4. **Ads for production:** put the real AdMob IDs in for the production build only, following `docs/ADS_GO_LIVE.md`.
+   Never commit them.
+5. **Build the AAB with your real keystore** (set the four `PUJA_RELEASE_*` Gradle properties first):
+   `./gradlew :app:bundleRelease`, from `mobile/android`.
+6. **Run `python scripts/release-check.py`** and the secrets test, then `git status` (no secrets or generated files).
+7. **Upload** the AAB in the Play Console (closed testing first, see `docs/PLAY_CONSOLE_CHECKLIST.md`).
+8. **Update** "Last released versionCode" below to the uploaded value.
+
 ## Build
 
 ```
