@@ -144,3 +144,17 @@ python scripts/release-check.py --skip-tests
 ```
 
 It needs the release APK built first (`assembleRelease`), and ANDROID_HOME set (it uses `build-tools/37.0.0/aapt.exe`).
+
+## Release log
+
+| Date | versionName | versionCode | Artifact | SHA-256 | Size (bytes) | Notes |
+|---|---|---|---|---|---|---|
+| 2026-10-06 | 1.0.0 | 1 | `puja-saathi-1.0.0-1.aab` (outside the repo) | `1266372a7dee1c1f1b4e6eab8057fa0a6fed2ff6ffb1793ba20a70f3b496703a` | 82,135,452 | Signed with the upload key (signer SHA-256 matches the keystore). Not uploaded yet. Per-device download, typical arm64 phone: 23,772,105 bytes (bundletool 1.18.3). |
+| 2026-10-06 | 1.0.0 | 1 | `puja-saathi-1.0.0-1.apk` (outside the repo) | `1abb588cc930deb465559e44dd9d8b33c48df13e4523265c816dec3dbce4b7d8` | 109,065,046 | Universal APK, signed (APK Signature Scheme v2). For local install only. |
+
+| 2026-10-06 | 1.0.0 | 1 | `puja-saathi-1.0.0-1.aab` (final, with production AdMob IDs; outside the repo) | `6f08522379054f17431242e182bf18ea51e4525d9108d7dd485d880a85a35131` | 82,135,463 | Built with the real AdMob App ID and the Home and Library banner unit IDs, set locally in the build only (not committed; reverted before commit). Signer matches the keystore. |
+| 2026-10-06 | 1.0.0 | 1 | `puja-saathi-1.0.0-1.apk` (final; outside the repo) | `3fe343304f142f1be1f0c8d4c9004f87862b05c847f6c992dac9f86cfea4ed88` | 109,065,026 | Same build as the AAB. Manifest holds the real App ID; the Google test App ID is absent. APK Signature Scheme v2 verified. |
+
+The earlier ads-off builds (both versionCode 1) are kept in `E:\release-out\previous-ads-off\`; the final files replace them in `E:\release-out\`.
+
+The first upload is versionCode 1, so "Last released versionCode" stays `none` until the Play upload is done.

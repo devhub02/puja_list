@@ -4,6 +4,31 @@
 
 NEXT: stage 8 (user actions and publishing). Stages 4 to 7 are done; see the Stage 7 block for what is verified and what is open.
 
+### Stage 8 — signed release build (2026-10-06): artifacts built and verified, smoke test PARTIAL
+Done and verified (each command run and its output seen):
+- Signing: `~/.gradle/gradle.properties` holds the four PUJA_RELEASE_* names (values never printed). `scripts/check-signing.ps1` (commit `d52d51c`): OK. Owner CN `dev`, validity to 2054-02-21, RSA 2048-bit, not the Android Debug certificate. Key validity checked against developer.android.com/studio/publish/app-signing (must end after 22 Oct 2033; 25+ years recommended).
+- Repo checks: privacy policy URL set in `mobile/src/config/legal.ts`; versionName 1.0.0, versionCode 1 (first upload; equal to the value in RELEASE.md is allowed); real AdMob IDs empty in `adsConfig.release.ts`; no keystore, .jks or secret tracked; `mobile/android` and `scratch-screens/` git-ignored.
+- Clean install: `npm ci` exit 0. `tsc --noEmit` exit 0. `npm run lint` exit 0. `npm test`: 55 suites, 717 tests passed.
+- `npx expo prebuild --platform android --clean`: finished; signing wiring present.
+- Release build: `gradlew bundleRelease assembleRelease`: BUILD SUCCESSFUL in 18m 40s.
+- `scripts/release-check.py`: RELEASE CHECK PASSED (tests, pytest 139, content OK, export matches, no secret-like files, permissions allowed, versionCode).
+- Signatures: `apksigner verify` (APK, v2 true); `jarsigner -verify` (AAB, "jar verified", warnings only for the self-signed upload key). Signer SHA-256 of APK and AAB each MATCH the keystore certificate.
+- Sizes and hashes: AAB 82,135,452 bytes, SHA-256 `1266372a…703a`; APK 109,065,046 bytes, SHA-256 `1abb588c…b7d8`. aapt: package com.pujasaathi.india, versionCode 1, versionName 1.0.0, minSdk 24, targetSdk 36. Permissions: all allowed or accepted (no new ones).
+- Per-device download (bundletool 1.18.3, `get-size total`): typical arm64 phone XXHDPI English 23,772,105 bytes; range across all configs 22,375,375 to 24,752,830 bytes.
+- Outputs copied to `E:\release-out\` with `SHA256SUMS.txt`. Not committed.
+
+Smoke test on the release APK (emulator Pixel_9a, Android 15):
+- Fresh start, network ON, two runs: Home with real content. PASS. First launch after install took about 34 s to first frame (emulator cold start), second about 13 s.
+- Fresh start, network OFF, two runs: Home with real content. PASS.
+- English search "ganesh": Ganesh Chaturthi Puja with Hindi name. PASS. Hindi typing: COULD-NOT-VERIFY (adb cannot type Devanagari).
+- Puja details (AI-draft label shown), samagri screen, tick "Ganesh idol": 1 of 12, Required 1 of 4. PASS.
+- Settings: "Privacy policy" row present, tap opened Chrome (first-run screen). Page content: COULD-NOT-VERIFY (emulator System UI hangs).
+- Reminder 2 minutes ahead: COULD-NOT-VERIFY (notification permission was "Not allowed" after pm clear; not granted; emulator unstable).
+- Ads on Home and Library: Home shows no ad slot in visible areas. Library and the bottom of Home: COULD-NOT-VERIFY (emulator System UI dialog blocked the screens).
+- Logcat: no FATAL EXCEPTION and no ANR for com.pujasaathi.india in the runs above. ANRs seen were in Chrome, System UI and the gesture monitor (emulator processes).
+
+Open (not verified on the release build): Hindi search typing, reminder timing, Library and Home ad check after scroll, privacy page load, real-phone offline test.
+
 ### Stage 0 — preflight: DONE
 - `main` contains Phase 7 incl. fix `783d06a` (merge `58a453f`). `phase-8-release` created from `main`.
 - node v24.19.0, JDK 17.0.20, ANDROID_HOME set, emulator-5554 online (Android SDK 35), Gradle/Maven/npm hosts reachable (HTTP 200).

@@ -1,7 +1,7 @@
 # Privacy Policy — Puja Saathi
 
-**Effective date:** {{EFFECTIVE_DATE}}
-**Contact:** {{CONTACT_EMAIL}}
+**Effective date:** 06-10-2026
+**Contact:** app.in.helpdesk@gmail.com
 
 > [VERIFY — owner or lawyer] This draft describes what the app does in its code as of the Stage 4 review. It is not
 > legal advice, and it does not claim compliance with any specific law. Every statement marked VERIFY must be checked
@@ -69,7 +69,7 @@ When this policy changes, the effective date above is updated and the new versio
 [VERIFY — confirm how you will notify users.]
 
 ### 9. Contact
-{{CONTACT_EMAIL}}
+app.in.helpdesk@gmail.com
 
 ---
 
@@ -132,4 +132,4 @@ Platform (UMP)** के ज़रिए सहमति संदेश दि�
 [VERIFY — बताएं कि उपयोगकर्ताओं को कैसे सूचित किया जाएगा।]
 
 ### 9. संपर्क
-{{CONTACT_EMAIL}}
+app.in.helpdesk@gmail.com
