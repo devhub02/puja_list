@@ -399,3 +399,22 @@ never something a sandbox can verify):** what a real AdMob test ad actually look
 Featured row and inside the Library list at 360dp, in light and dark, at the largest text size; the
 real UMP consent form's own appearance and flow; TalkBack reading of the loaded ad slot and the
 privacy-choices row end to end. See `docs/PROGRESS.md`.
+
+
+---
+
+# Button rows (Stage 3 layout fix)
+
+Rule, for every screen, in English and Hindi, at every text size: **a label never breaks inside a word.**
+
+- Several buttons, chips or pills that share a row use `ButtonRow` (`mobile/src/components/ButtonRow.tsx`). The row wraps
+  onto the next line when the items do not fit. Items inside it use `buttonRowItem`, so each keeps its natural width.
+- Never give a text button a flex basis narrower than its label, and never let a label shrink below its words. Do not
+  shrink the font or truncate the text to make a row fit.
+- A pill that carries a label next to an icon (for example "Remind me") may wrap its label onto a second line at large
+  text. It keeps the icon beside the label when it fits, and it keeps its accessibility label. An icon alone is not allowed.
+- Icon-only buttons (back, share, more) keep their size and their accessibility labels; they never carry a text label.
+
+Evidence: `__tests__/buttonRows.test.tsx` (My Preparation card) and `__tests__/samagriButtonRows.test.tsx` (Samagri header
+and action row) render English and Hindi at medium and extra-large text and check the wrap and the natural width. Both fail
+on the old layouts (4 of 4 each).

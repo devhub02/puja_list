@@ -7,6 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { AppText } from '@/components/AppText';
 import { Button } from '@/components/Button';
+import { ButtonRow, buttonRowItem } from '@/components/ButtonRow';
 import { Card } from '@/components/Card';
 import { Chip } from '@/components/Chip';
 import { ChecklistRow } from '@/components/ChecklistRow';
@@ -559,30 +560,28 @@ export default function SamagriScreen() {
           />
         </View>
 
-        <View style={styles.actionRow}>
-          <View style={styles.actionCell}>
-            <Button
-              testID="add-item"
-              variant="outline"
-              icon="plus"
-              label={t('checklist.addItem')}
-              onPress={openAdd}
-            />
-          </View>
-          <View style={styles.actionCell}>
-            <Button
-              testID="reset-checklist"
-              variant="outline"
-              icon="restart"
-              label={t('checklist.reset')}
-              disabled={
-                !state ||
-                (state.checkedSamagriIds.length === 0 && state.checkedCustomIds.length === 0)
-              }
-              onPress={() => setDialog({ kind: 'reset' })}
-            />
-          </View>
-        </View>
+        <ButtonRow testID="samagri-actions">
+          <Button
+            testID="add-item"
+            variant="outline"
+            icon="plus"
+            label={t('checklist.addItem')}
+            onPress={openAdd}
+            style={buttonRowItem}
+          />
+          <Button
+            testID="reset-checklist"
+            variant="outline"
+            icon="restart"
+            label={t('checklist.reset')}
+            disabled={
+              !state ||
+              (state.checkedSamagriIds.length === 0 && state.checkedCustomIds.length === 0)
+            }
+            onPress={() => setDialog({ kind: 'reset' })}
+            style={buttonRowItem}
+          />
+        </ButtonRow>
       </View>
     );
 
@@ -844,19 +843,24 @@ function SectionHeader({
 const styles = StyleSheet.create({
   screen: { flex: 1 },
   flex: { flex: 1 },
-  barActions: { flexDirection: 'row', alignItems: 'center', gap: spacing.xs },
+  barActions: { flexDirection: 'row', alignItems: 'center', gap: spacing.xs, flexShrink: 1 },
   remindButton: {
     minHeight: minTouchTarget,
     flexDirection: 'row',
+    flexWrap: 'wrap',
     alignItems: 'center',
+    justifyContent: 'center',
     gap: spacing.xxs,
     paddingHorizontal: spacing.sm,
+    paddingVertical: spacing.xs,
     borderRadius: 999,
     borderWidth: 1.5,
+    flexShrink: 1,
   },
-  remindLabel: { flexShrink: 1 },
+  remindLabel: { flexShrink: 1, textAlign: 'center' },
   bar: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: spacing.xs,
@@ -890,8 +894,6 @@ const styles = StyleSheet.create({
     padding: spacing.sm,
   },
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.xs },
-  actionRow: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.xs },
-  actionCell: { flexGrow: 1, flexBasis: 150 },
   sectionHeader: {
     flexDirection: 'row',
     alignItems: 'center',

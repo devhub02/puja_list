@@ -81,6 +81,15 @@ Final-build results (third pass, 2026-10-06):
   - targetSdkVersion 36; versionCode 1; versionName 1.0.0.
 - Per-device download size: `bundletool get-size total` NOT run (bundletool is not installed here; COULD-NOT-VERIFY). The commands are in docs/RELEASE.md.
 
+Stage 3 closing verification (final build, 2026-10-06):
+- release-check.py (--skip-tests; tests run separately below): PASSED. Content OK; exported content.json matches the committed bundle; no secret-like files tracked; 12 APK permissions, all allowed or accepted; versionCode 1 (no previous release recorded).
+- Clean install: `rm -rf node_modules && npm ci` exit 0; tsc exit 0; lint exit 0; format:check exit 0 (after formatting plugins/withPujaRelease.js); npm test: 709 of 709 PASSED when run with --runInBand. Parallel run had 16 timeouts (5 s Jest limit under load), no assertion failures.
+- Backend: pytest 139 passed; validate_content.py OK (contentVersion 6, 103 festivals, 16 pujas, 53 samagri).
+- Dev-server bundle: `expo start --clear` (CI=1); Android entry bundle HTTP 200, 10,563,390 bytes. node v24.19.0; metro@0.84.5, @expo/metro-config@57.0.12.
+- Throwaway keystore: folder and props file deleted; no PUJA_RELEASE_* variables set in the environment.
+- Button-row fix: My Preparation and Samagri header/action row use ButtonRow; 8 tests pass (buttonRows, samagriButtonRows), each failing on the old layout. Rule recorded in docs/DESIGN_SYSTEM.md. Before/after device screenshots: NOT taken on the final build.
+- NOT verified in this stage: reminder re-test with VIBRATE (attempt to set the time via the picker failed; no reminder was saved); startup runs (5 ON, 5 OFF) and phase breakdown; fresh-install repeats; offline review (Vidhi, share, reset, Hindi, large text, 360 dp, TalkBack); ads check on Home and Library; debug dev menu check; reminder sheet and Vidhi audit. These stay open for the next session.
+
 NOT yet done on the final build: reminder re-test with VIBRATE unblocked, startup runs (5 ON, 5 OFF) and phase breakdown, fresh installs twice ON and OFF, offline review (Vidhi, share, reset, Hindi, large text, 360 dp, TalkBack), ads check on Home and Library, debug dev menu, release-check.py, CLEAN INSTALL checks, throwaway keystore deletion, Stage 4.
 Layout defect found (not fixed): My Preparation buttons "Checklist" and "Vidhi" wrap mid-word at the current text size (screenshot icon_06_my_prep.png). Open issue.
 

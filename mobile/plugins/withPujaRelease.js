@@ -51,11 +51,17 @@ gradle.taskGraph.whenReady { graph ->
 function applySigning(contents) {
   if (contents.includes(MARK)) return contents;
   const debugBlock = /(signingConfigs\s*\{\s*debug\s*\{[\s\S]*?\n {8}\}\n)/;
-  if (!debugBlock.test(contents)) throw new Error('withPujaRelease: could not find signingConfigs.debug in app/build.gradle');
+  if (!debugBlock.test(contents))
+    throw new Error('withPujaRelease: could not find signingConfigs.debug in app/build.gradle');
   let out = contents.replace(debugBlock, (m) => m + RELEASE_SIGNING_CONFIG.slice(1));
-  const releaseSigning = 'signingConfig signingConfigs.debug\n            def enableShrinkResources';
-  if (!out.includes(releaseSigning)) throw new Error('withPujaRelease: release buildType signing line not found');
-  out = out.replace(releaseSigning, 'signingConfig signingConfigs.release\n            def enableShrinkResources');
+  const releaseSigning =
+    'signingConfig signingConfigs.debug\n            def enableShrinkResources';
+  if (!out.includes(releaseSigning))
+    throw new Error('withPujaRelease: release buildType signing line not found');
+  out = out.replace(
+    releaseSigning,
+    'signingConfig signingConfigs.release\n            def enableShrinkResources',
+  );
   return out + FAIL_FAST;
 }
 
