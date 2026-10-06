@@ -2,7 +2,7 @@
 
 ## Release preparation (master run, branch `phase-8-release`)
 
-NEXT: stage 3 (release build) — partly done, see the Stage 3 block. Then stage 4 (privacy policy and Settings row).
+NEXT: stage 5 (store and Play Console documents). Stage 4 done; see the Stage 4 block.
 
 ### Stage 0 — preflight: DONE
 - `main` contains Phase 7 incl. fix `783d06a` (merge `58a453f`). `phase-8-release` created from `main`.
@@ -870,3 +870,13 @@ Environment: Node v24.19.0, JDK 17.0.20, `ANDROID_HOME` set, Pixel_9a_bulkingapp
 2. Library: about every 8 rows, never first or last, none under a filter with fewer than 8 results.
 3. Settings: "About ads" in English and Hindi; "Ad privacy choices" should not appear in India.
 4. The regression list from Phases 5, 6A, 6B and 6C (preparation ticks persist, reminder fires, share sheet, reset local data).
+
+
+### Stage 4 — privacy policy and Settings row (done 2026-10-06, not pushed)
+- `docs/privacy-policy/index.md`: English and Hindi policy with `{{CONTACT_EMAIL}}` and `{{EFFECTIVE_DATE}}` placeholders and `[VERIFY]` markers. No legal-compliance claim; no "no data is collected" claim.
+- `docs/privacy-policy/README.md`: GitHub Pages publishing steps, how to check the URL, where to paste it.
+- `mobile/src/config/legal.ts`: `PRIVACY_POLICY_URL` = '' (owner sets it).
+- `PrivacyPolicyRow` in Settings: hidden when the URL is empty; opens the URL in the browser; English and Hindi strings; accessible label; 48dp button.
+- Tests: `__tests__/privacyPolicyRow.test.tsx` (hidden when empty, visible when set, opens the URL, failure does not crash, Hindi, extra-large text); Settings tests pass (21 of 21 across the related suites).
+- Cross-check of every policy claim against the code and the release permission list: `docs/PRIVACY_AND_ADS.md` ("Policy cross-check"). One known leftover: the source manifest template lists the storage permissions, but they are blocked and absent from the shipped app.
+- NOT verified: the Settings row on a device (no device run this stage); that the published page opens (no URL is published yet).

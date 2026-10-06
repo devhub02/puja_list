@@ -170,3 +170,22 @@ Source of each permission, as seen in the merged release manifest and `aapt dump
 Blocked on purpose (`android.blockedPermissions` in `mobile/app.json`): SYSTEM_ALERT_WINDOW, READ_APP_BADGE, the push (c2dm) RECEIVE permission, the launcher badge permissions, READ/WRITE_EXTERNAL_STORAGE, and the install-referrer binding. None is used by the app.
 
 Kept on purpose: RECEIVE_BOOT_COMPLETED (reminders are re-created after a restart).
+
+
+## Policy cross-check (Stage 4, 2026-10-06)
+
+Each claim in `docs/privacy-policy/index.md`, checked against the code and the release build:
+
+| Claim | Evidence | Result |
+|---|---|---|
+| No analytics or crash-reporting SDK | `mobile/package.json` has no analytics or crash SDK | matches |
+| App code makes no network request of its own | no `fetch`, `axios` or XHR in `mobile/src` or `mobile/app`; network use comes only from the ads SDK | matches |
+| Reminders are local and need no internet | `expo-notifications` local scheduling; push permission (c2dm RECEIVE) blocked | matches |
+| No location, contacts, camera, microphone, exact alarm | merged release APK permission list (Stage 3) | matches |
+| Storage permissions are not in the release app | blocked in `app.json`; the *source* manifest template still lists READ/WRITE_EXTERNAL_STORAGE, but the merged release APK does not | matches for the shipped app; the template is a known leftover, not shipped |
+| Ads need internet; the space stays empty when offline | `AdSlot` renders nothing until a load succeeds | matches |
+| Consent step before personalised ads | `consent.ts` (`canRequestAds`), UMP | matches (what regions show the form: VERIFY) |
+| Reset local data removes all app data | `resetLocalData` action | matches |
+| Advertising ID is processed by the ads SDK | AD_ID in the release APK (Stage 3) | matches |
+
+Not claimed anywhere: legal compliance with any law, and "no data is collected".
