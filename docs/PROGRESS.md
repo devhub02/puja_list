@@ -2,7 +2,7 @@
 
 ## Release preparation (master run, branch `phase-8-release`)
 
-NEXT: stage 5 (store and Play Console documents). Stage 4 done; see the Stage 4 block.
+NEXT: stage 6 (final documentation). Stage 5 done; see the Stage 5 block. Open Stage 3 checks remain (see the Stage 3 block).
 
 ### Stage 0 — preflight: DONE
 - `main` contains Phase 7 incl. fix `783d06a` (merge `58a453f`). `phase-8-release` created from `main`.
@@ -880,3 +880,9 @@ Environment: Node v24.19.0, JDK 17.0.20, `ANDROID_HOME` set, Pixel_9a_bulkingapp
 - Tests: `__tests__/privacyPolicyRow.test.tsx` (hidden when empty, visible when set, opens the URL, failure does not crash, Hindi, extra-large text); Settings tests pass (21 of 21 across the related suites).
 - Cross-check of every policy claim against the code and the release permission list: `docs/PRIVACY_AND_ADS.md` ("Policy cross-check"). One known leftover: the source manifest template lists the storage permissions, but they are blocked and absent from the shipped app.
 - NOT verified: the Settings row on a device (no device run this stage); that the published page opens (no URL is published yet).
+
+
+### Stage 5 — store and Play Console documents (done 2026-10-06, not pushed)
+- `docs/STORE_LISTING.md`: English and Hindi app name, short description (74 and 69 characters, under 80), full description (1,524 and 1,519 characters, under 4,000), category and tags marked VERIFY, a "do not claim" list, graphic sizes (icon 512x512, feature graphic 1024x500, phone screenshots), and a 6-screen plan with adb capture commands. Review status stated from `content/`: 16 pujas and 103 festivals, all `ai_drafted`.
+- `docs/PLAY_CONSOLE_CHECKLIST.md`: new personal account, app creation, app access, ads declaration, IARC rating, target audience (not for children), data safety draft based on the real SDKs (no own-code collection; ads SDK identifiers), privacy policy URL, other declarations, advertising ID, Play App Signing, closed testing (rule marked VERIFY, not stated as fact), production access, and after-publish tasks (AdMob link, real ad unit IDs outside git, consent message, version increment). No approval or timelines promised.
+- NOT done: feature graphic, phone screenshots and the final icon export need the owner's artwork and sign-off. The screenshot capture is a plan, not run.
