@@ -32,6 +32,7 @@ ALLOWED_PERMISSIONS = {
     "android.permission.POST_NOTIFICATIONS",
     "android.permission.RECEIVE_BOOT_COMPLETED",
     "com.google.android.gms.permission.AD_ID",
+    "android.permission.VIBRATE",
 }
 # Present in the release build on purpose; each one is listed in docs/RELEASE.md with its source.
 ACCEPTED_PERMISSIONS = {

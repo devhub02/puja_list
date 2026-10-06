@@ -61,6 +61,15 @@ Release measurements and checks (added after the first status block; release APK
 - Ads on release with network ON: Home showed no ad slot in the visible area (`rel_online_run1_after_wait.png`). Not yet checked by scrolling to the bottom of Home or Library, and not yet checked in logcat for ad messages.
 - NOT yet verified on release: Vidhi reader offline (screenshot `rel_off_05_vidhi.png` taken, not yet reviewed), share sheet, Reset local data, Hindi, large text, 360 dp, TalkBack; debug dev menu still present (needs a debug rebuild); scripts/release-check.py run end to end; CLEAN INSTALL and the other checks; deletion of the throwaway keystore folder.
 
+Decisions and investigations (Stage 3, second pass):
+- Permissions: ACCESS_ADSERVICES_* (3), FOREGROUND_SERVICE and our DYNAMIC_RECEIVER permission are accepted; sources in docs/PRIVACY_AND_ADS.md. VIBRATE is UNBLOCKED (reminders vibrate). Release-check allowed list now includes VIBRATE. Still to do: rebuild the release APK with this change and re-test the 2-minute reminder on release.
+- SIZE (measured on the current release APK/AAB, before any change):
+  - APK 109,065,082 bytes: native libs 75.2 MB raw across 4 ABIs (x86 23.1, x86_64 22.6, arm64-v8a 22.1, armeabi-v7a 15.2); dex 20.3 MB raw (8.3 compressed); JS bundle (Hermes) 3.9 MB; images 3.1 MB; fonts 5.8 MB raw (2.8 compressed); resources 2.2 MB.
+  - AAB 82,134,799 bytes: includes BUNDLE-METADATA with native debug symbols (*.so.sym, about 10 MB raw per ABI, about 11 MB compressed in total) and proguard.map (6.8 MB compressed). These are Play crash-symbolication metadata and are NOT delivered to devices. Not removed: removing them would make Play crash reports unreadable.
+  - Fonts: 26 files. Our text fonts are Nunito Sans and Noto Sans Devanagari (about 1.1 MB raw, kept). The rest is icon fonts from @expo/vector-icons (about 4.3 MB raw, 14 icon sets; we use Material Community Icons) and Material Symbols from expo-google-fonts (0.97 MB raw). Trimming those needs a dependency or plugin change: NOT done, needs your decision.
+  - ABI restriction to arm64-v8a and armeabi-v7a: NOT applied globally, because the x86_64 emulator used for testing needs x86_64 libraries. Option: release-only ABI split, to decide.
+  - bundletool: not installed here, so per-device sizes are NOT measured. Rough estimate for an arm64 phone from the APK parts: about 42 MB compressed (not measured).
+  - Before/after: no size change was applied in this pass.
 Not done yet in Stage 3 (continue here):
 1. Fresh install run 2 with network ON; then both runs with network OFF (`svc wifi disable; svc data disable`), with `pm clear` each time and `am start -W`. Median of 5 cold starts; `dumpsys meminfo` after a 5-minute session.
 2. OFFLINE review on the release build: Library, search EN and HI, Puja Details, samagri ticks, vidhi, calendar, create a preparation, a reminder 2 minutes ahead (fires and opens the checklist; the release build also needs the reminder re-test because blocked permissions include VIBRATE and c2dm), share sheet, Reset local data. Ad slots must be absent.

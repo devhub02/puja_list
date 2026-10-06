@@ -155,3 +155,18 @@ changed; continued use of the app after a change means you accept the update."]
       from the Play Console listing
 - [ ] Confirm whether DPDP Act (India) or any other local law adds requirements beyond this
       checklist — not evaluated here
+
+
+## Accepted release permissions (confirmed in the Stage 3 release APK, 2026-10-06)
+
+Source of each permission, as seen in the merged release manifest and `aapt dump permissions`:
+
+- `com.google.android.gms.permission.AD_ID`: Google Mobile Ads SDK (`play-services-ads-api`), via the `react-native-google-mobile-ads` package. Lets the SDK read the advertising ID. Our code never reads it.
+- `android.permission.ACCESS_ADSERVICES_AD_ID`, `ACCESS_ADSERVICES_ATTRIBUTION`, `ACCESS_ADSERVICES_TOPICS`: Google Mobile Ads SDK (`play-services-ads-api`). Privacy Sandbox support (ad attribution and interest topics). Our code does not call these APIs.
+- `android.permission.FOREGROUND_SERVICE`: WorkManager (`androidx.work`), a dependency of the notification stack. Our code declares no foreground service.
+- `com.pujasaathi.india.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION`: AndroidX core, signature permission scoped to our package. Not a user-facing permission.
+- `android.permission.VIBRATE`: allowed again so reminder notifications can vibrate (the reminder channel sets a vibration pattern in `mobile/src/notifications/expoScheduler.ts`).
+
+Blocked on purpose (`android.blockedPermissions` in `mobile/app.json`): SYSTEM_ALERT_WINDOW, READ_APP_BADGE, the push (c2dm) RECEIVE permission, the launcher badge permissions, READ/WRITE_EXTERNAL_STORAGE, and the install-referrer binding. None is used by the app.
+
+Kept on purpose: RECEIVE_BOOT_COMPLETED (reminders are re-created after a restart).
