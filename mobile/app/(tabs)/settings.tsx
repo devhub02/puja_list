@@ -7,6 +7,7 @@ import { AppText } from '@/components/AppText';
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
 import { NotificationsSettings } from '@/components/NotificationsSettings';
+import { PrivacyPolicyRow } from '@/components/PrivacyPolicyRow';
 import { ResetLocalDataDialog } from '@/components/ResetLocalDataDialog';
 import { ScreenContainer } from '@/components/ScreenContainer';
 import { SectionHeader } from '@/components/SectionHeader';
@@ -149,6 +150,8 @@ export default function SettingsScreen() {
       </View>
 
       <AdsPrivacySettings />
+
+      <PrivacyPolicyRow />
 
       <Card tone="alt">
         <AppText variant="subheading" accessibilityRole="header">

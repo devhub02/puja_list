@@ -73,6 +73,30 @@ describe('useDatabaseInit', () => {
   });
 });
 
+describe('useDatabaseInit timeout', () => {
+  it('never leaves the splash gate held forever: a stalled open becomes an error (Retry screen) after the timeout', async () => {
+    const db = createMigratedDb();
+    const init = jest
+      .fn<Promise<typeof db>, []>()
+      .mockImplementationOnce(() => new Promise(() => undefined))
+      .mockImplementationOnce(() => Promise.resolve(db));
+    jest.spyOn(console, 'error').mockImplementation(() => undefined);
+
+    const { result } = await renderHook(() => useDatabaseInit(init, 30));
+    expect(result.current.settledOnce).toBe(false);
+
+    await waitFor(() => expect(result.current.status).toBe('error'), { timeout: 2000 });
+    expect(result.current.settledOnce).toBe(true);
+    expect(String((result.current as { error?: unknown }).error)).toMatch(
+      /did not finish within 30 ms/,
+    );
+
+    await act(async () => result.current.retry());
+    await waitFor(() => expect(result.current.status).toBe('ready'));
+    expect(init).toHaveBeenCalledTimes(2);
+  });
+});
+
 describe('Settings > About content info', () => {
   it('shows the real content version and puja count from the database', async () => {
     const db = createMigratedDb();

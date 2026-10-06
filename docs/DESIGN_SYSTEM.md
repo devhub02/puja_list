@@ -197,7 +197,7 @@ This is a deliberate stop-gap; the proper fix is a structured `safetyNotes` fiel
 ## Images
 
 Brand, category and puja artwork live in `mobile/assets/images/{brand,categories,pujas}` as WebP (PNG for the three brand files),
-all under 150 KB. `src/theme/images.ts` is the only id -> image mapping. Cards use the image 88 dp wide; Details uses it full
+all under 150 KB, except the splash image: the owner's original `splash-icon.png` (1254 x 1254 RGBA, 1.5 MB) is used unchanged on purpose, from commit `38f5f02`. The splash is drawn at `imageWidth` 140 dp (not 200): Android 12+ shows only a circle of about 192 dp, so the wider logo was cut off. `src/theme/images.ts` is the only id -> image mapping. Cards use the image 88 dp wide; Details uses it full
 width at 16:9. The splash uses the cream background in dark mode too, because the logo's maroon text is unreadable on the dark
 background.
 
@@ -399,3 +399,22 @@ never something a sandbox can verify):** what a real AdMob test ad actually look
 Featured row and inside the Library list at 360dp, in light and dark, at the largest text size; the
 real UMP consent form's own appearance and flow; TalkBack reading of the loaded ad slot and the
 privacy-choices row end to end. See `docs/PROGRESS.md`.
+
+
+---
+
+# Button rows (Stage 3 layout fix)
+
+Rule, for every screen, in English and Hindi, at every text size: **a label never breaks inside a word.**
+
+- Several buttons, chips or pills that share a row use `ButtonRow` (`mobile/src/components/ButtonRow.tsx`). The row wraps
+  onto the next line when the items do not fit. Items inside it use `buttonRowItem`, so each keeps its natural width.
+- Never give a text button a flex basis narrower than its label, and never let a label shrink below its words. Do not
+  shrink the font or truncate the text to make a row fit.
+- A pill that carries a label next to an icon (for example "Remind me") may wrap its label onto a second line at large
+  text. It keeps the icon beside the label when it fits, and it keeps its accessibility label. An icon alone is not allowed.
+- Icon-only buttons (back, share, more) keep their size and their accessibility labels; they never carry a text label.
+
+Evidence: `__tests__/buttonRows.test.tsx` (My Preparation card) and `__tests__/samagriButtonRows.test.tsx` (Samagri header
+and action row) render English and Hindi at medium and extra-large text and check the wrap and the natural width. Both fail
+on the old layouts (4 of 4 each).

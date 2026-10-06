@@ -4,3 +4,6 @@ dist
 package-lock.json
 drizzle
 assets/puja_data
+android
+ios
+.verify

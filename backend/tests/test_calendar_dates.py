@@ -320,7 +320,7 @@ def test_a_stray_comma_is_reported(tmp_path):
 
 def _run(script: str, *args: str) -> subprocess.CompletedProcess:
     return subprocess.run([sys.executable, str(REPO / "scripts" / script), *args],
-                          capture_output=True, text=True, cwd=REPO)
+                          stdin=subprocess.DEVNULL, capture_output=True, text=True, cwd=REPO)
 
 
 def test_scripts_end_to_end_on_fixture_content(tmp_path):

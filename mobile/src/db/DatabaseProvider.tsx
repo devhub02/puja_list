@@ -31,7 +31,33 @@ export type DatabaseState =
  * exposes `retry`. `settledOnce` becomes true after the first success or failure, so the splash
  * screen can be held until then and not come back on retries.
  */
-export function useDatabaseInit(init: () => Promise<SqlDb>) {
+/** A stalled database open must not hold the splash screen forever: after this, the Retry screen shows. */
+export const DB_SETUP_TIMEOUT_MS = 20_000;
+
+/** Rejects if `promise` does not settle within `ms`. The original promise is not cancelled. */
+export function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
+  return new Promise<T>((resolve, reject) => {
+    const timer = setTimeout(
+      () => reject(new Error(`Database setup did not finish within ${ms} ms`)),
+      ms,
+    );
+    promise.then(
+      (value) => {
+        clearTimeout(timer);
+        resolve(value);
+      },
+      (error: unknown) => {
+        clearTimeout(timer);
+        reject(error);
+      },
+    );
+  });
+}
+
+export function useDatabaseInit(
+  init: () => Promise<SqlDb>,
+  timeoutMs: number = DB_SETUP_TIMEOUT_MS,
+) {
   const [state, setState] = useState<DatabaseState>({
     status: 'loading',
     db: null,
@@ -41,7 +67,7 @@ export function useDatabaseInit(init: () => Promise<SqlDb>) {
 
   useEffect(() => {
     let cancelled = false;
-    init().then(
+    withTimeout(init(), timeoutMs).then(
       (db) => {
         if (!cancelled) setState({ status: 'ready', db, settledOnce: true });
       },
@@ -55,7 +81,7 @@ export function useDatabaseInit(init: () => Promise<SqlDb>) {
     };
     // `init` is intentionally not a dependency: it is a fixed function for the app's lifetime.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [attempt]);
+  }, [attempt, timeoutMs]);
 
   const retry = useCallback(() => {
     setState({ status: 'loading', db: null, settledOnce: true });

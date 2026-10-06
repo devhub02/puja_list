@@ -9,6 +9,7 @@ import { spacing } from '@/theme/tokens';
 
 import { AppText } from './AppText';
 import { Button } from './Button';
+import { ButtonRow, buttonRowItem } from './ButtonRow';
 import { Card } from './Card';
 import { IconButton } from './IconButton';
 import { ProgressBar } from './ProgressBar';
@@ -90,41 +91,35 @@ function PreparationCardBase({
         {t('preparation.lastOpened', { date: formatShortDate(summary.lastOpenedAt, language) })}
       </AppText>
 
-      <View style={styles.actions}>
+      <ButtonRow style={styles.actions} testID={`prep-actions-${summary.id}`}>
         {available ? (
           <>
-            <View style={styles.cell}>
-              <Button
-                testID={`prep-open-${summary.id}`}
-                variant="outline"
-                icon="basket-outline"
-                label={t('preparation.openChecklist')}
-                accessibilityLabel={`${t('preparation.openChecklist')}: ${label}`}
-                onPress={() => onOpenChecklist(summary.id)}
-              />
-            </View>
-            <View style={styles.cell}>
-              <Button
-                testID={`prep-vidhi-open-${summary.id}`}
-                variant="outline"
-                icon="book-open-variant"
-                label={t('preparation.openVidhi')}
-                accessibilityLabel={`${t('preparation.openVidhi')}: ${label}`}
-                onPress={() => onOpenVidhi(summary.id)}
-              />
-            </View>
+            <Button
+              testID={`prep-open-${summary.id}`}
+              variant="outline"
+              icon="basket-outline"
+              label={t('preparation.openChecklist')}
+              accessibilityLabel={`${t('preparation.openChecklist')}: ${label}`}
+              onPress={() => onOpenChecklist(summary.id)}
+              style={buttonRowItem}
+            />
+            <Button
+              testID={`prep-vidhi-open-${summary.id}`}
+              variant="outline"
+              icon="book-open-variant"
+              label={t('preparation.openVidhi')}
+              accessibilityLabel={`${t('preparation.openVidhi')}: ${label}`}
+              onPress={() => onOpenVidhi(summary.id)}
+              style={buttonRowItem}
+            />
+            <IconButton
+              testID={`prep-remind-${summary.id}`}
+              icon="bell-plus-outline"
+              color="primary"
+              accessibilityLabel={t('reminders.remindMeFor', { name: label })}
+              onPress={() => onRemind(summary.id)}
+            />
           </>
-        ) : (
-          <View style={styles.cell} />
-        )}
-        {available ? (
-          <IconButton
-            testID={`prep-remind-${summary.id}`}
-            icon="bell-plus-outline"
-            color="primary"
-            accessibilityLabel={t('reminders.remindMeFor', { name: label })}
-            onPress={() => onRemind(summary.id)}
-          />
         ) : null}
         <IconButton
           testID={`prep-more-${summary.id}`}
@@ -133,7 +128,7 @@ function PreparationCardBase({
           accessibilityLabel={t('preparation.moreFor', { name: label })}
           onPress={() => onMore(summary.id)}
         />
-      </View>
+      </ButtonRow>
     </Card>
   );
 }
@@ -144,6 +139,5 @@ const styles = StyleSheet.create({
   card: { gap: spacing.xs },
   head: { gap: spacing.xxs },
   progress: { gap: spacing.xxs },
-  actions: { flexDirection: 'row', alignItems: 'center', gap: spacing.xs, marginTop: spacing.xs },
-  cell: { flex: 1 },
+  actions: { marginTop: spacing.xs },
 });

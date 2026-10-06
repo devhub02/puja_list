@@ -49,3 +49,6 @@ Thumbs.db
 .idea/
 .vscode/
 *.swp
+
+# Local emulator screenshots and captures (never commit)
+scratch-screens/

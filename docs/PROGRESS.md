@@ -1,5 +1,149 @@
 # Progress
 
+## Release preparation (master run, branch `phase-8-release`)
+
+NEXT: stage 8 (user actions and publishing). Stages 4 to 7 are done; see the Stage 7 block for what is verified and what is open.
+
+### Stage 0 — preflight: DONE
+- `main` contains Phase 7 incl. fix `783d06a` (merge `58a453f`). `phase-8-release` created from `main`.
+- node v24.19.0, JDK 17.0.20, ANDROID_HOME set, emulator-5554 online (Android SDK 35), Gradle/Maven/npm hosts reachable (HTTP 200).
+
+### Stage 1 — package rename `com.pujasaathi.app` -> `com.pujasaathi.india` (in progress)
+Done and verified:
+- Search: class (a) hits changed in `mobile/app.json` (`android.package`), `README.md`, `CLAUDE.md`, `docs/PRIVACY_AND_ADS.md` (adb command). Not changed: display name, `pujasaathi` URL scheme, notification channel `reminders`, content ids, DB names, AdMob test IDs. Historical entries in this file keep the old ID on purpose.
+- `npx expo prebuild --platform android --clean`: `namespace`/`applicationId` = `com.pujasaathi.india`; Kotlin dirs `com/pujasaathi/india`; nothing in `android/` references the old ID.
+- Debug build `npx expo run:android --variant debug`: BUILD SUCCESSFUL (6m 10s). `aapt dump badging`: `package: name='com.pujasaathi.india' versionCode='1' versionName='1.0.0'`, label "Puja Saathi". `pm list packages`: new ID installed. Old app uninstalled (`Success`).
+- First-launch check (fresh install, `pm clear` twice): splash -> Home with real content (Next festival Sharad Navratri, featured pujas, category row) on both runs. See the first-launch note below.
+- CLEAN INSTALL: `rm -rf node_modules && npm ci` EXIT 0.
+- `npx tsc --noEmit`: exit 0.
+- `npm run lint`: exit 0 (after excluding the git-ignored local `.verify/` folder, see below).
+- `npm run format:check`: exit 0 (after `endOfLine: auto`, see below).
+- `npm test`: 51 suites / 697 tests passed (run alone; an earlier run under load had 14 timeouts, not logic failures).
+- backend `pytest`: 139 passed (after the subprocess fix below). `scripts/validate_content.py`: content OK (contentVersion 6, 103 festivals, 16 pujas, 53 samagri, 1 calendar year).
+- Dev-server bundle: `GET /node_modules/expo-router/entry.bundle?platform=android&dev=true&minify=false` -> HTTP 200, 10,563,390 bytes, 18.1 s, no Metro errors in the log. `npm ls metro @expo/metro-config`: `metro@0.84.5`, `@expo/metro-config@57.0.12`; no `metro*` in package.json.
+
+Fixes made during Stage 1 (small, each justified):
+- `backend/tests/test_export.py`, `backend/tests/test_calendar_dates.py`: the subprocess helpers pass `stdin=subprocess.DEVNULL`. Without it 3 tests failed on Windows with `WinError 6: The handle is invalid` (pytest's capture handed the child an invalid stdin handle). Same failure from PowerShell and Bash.
+- `mobile/eslint.config.js`: ignore `.verify/*` (git-ignored local verification folder with a 10 MB bundle; it produced about 33,000 lint errors).
+- `mobile/.prettierrc`: `"endOfLine": "auto"`. The repo stores LF but this Windows checkout has CRLF (`core.autocrlf=true`), so every file failed `format:check` with LF-only rules.
+- `.gitignore`: `scratch-screens/` (emulator screenshots).
+
+First-launch note (the "splash hang" investigated during Stage 1):
+- It was NOT an app first-launch bug. The debug build loads JS from Metro. Metro on 8081 was hung (HTTP 000) after the first run, and the `adb reverse tcp:8081 tcp:8081` forward had been dropped. With a working Metro and forward the app logged `Running "main"`, requested the bundle and rendered Home (`isMetroRunning(): true`, `loadJSBundleFromMetro()`).
+- Not done: the bisect with the old ID (old APK no longer built or installed). No reproduction on the new ID after a clean start, so there is nothing to bisect.
+- Observed: Home showed "Loading..." in the featured area for a short time on the first run, then content. Not investigated further.
+
+Not yet verified (Stage 1 remaining):
+- Reminder check: PASSED on the emulator. Bhai Dooj, Start preparation -> Samagri -> Remind me -> 6 Oct 2026, 2:55 am (set about 1.5 minutes before the fire time, not the 2 minutes asked for) -> app permission explainer -> Android notification permission Allow -> "Reminder saved", switch On. App sent to the background. The alarm fired late: at device time 02:56 (it was due 02:55, and it was still pending and overdue at 02:55:40). Notification shown: "Puja Saathi - Bhai Dooj - Time to check your samagri checklist." Tapping it opened the Bhai Dooj Samagri checklist (0 of 9 checked, Required 0 of 4). Caveat: the emulator clock runs slower than wall time, so the one-minute delay is not confirmed as a real-device behaviour; inexact alarms can be delayed, which the app already warns about.
+- Splash hang, root cause (verified): NOT an app bug. The debug build loads JS from Metro. Metro on 8081 had hung (HTTP 000 after the first run) and the `adb reverse tcp:8081 tcp:8081` forward had been dropped, so the app never got its bundle and the splash stayed up. With Metro answering and the forward set, the app logged `Running "main"` and rendered Home. No code fix was needed for this cause.
+- Splash hardening (code change, separate from the cause): the splash gate waited on fonts, settings and the database with no time limit, so a stalled database open would hold the splash forever on any device. `useDatabaseInit` now times out after `DB_SETUP_TIMEOUT_MS` (20 s, `mobile/src/db/DatabaseProvider.tsx`): the hook moves to the error state, the splash clears and the translated Retry screen shows. Test: `__tests__/startup.test.tsx` > "useDatabaseInit timeout". Mutation check: with the timeout wrapper removed, that test fails (1 failed); with it, the file passes (8 of 8).
+- Splash size fix: `imageWidth` 200 -> 140 in `mobile/app.json`. On Android 12+ only a circle of about 192 dp is visible; the artwork's opaque pixels reached 125 dp at 200 dp (cut off) and reach 87.5 dp at 140 dp (inside). Verified on the emulator: the full "PujaSaathi" wordmark is visible on cold start (screenshot taken 2 s after launch).
+- Splash image: the splash now uses the owner's original `splash-icon.png` (1254 x 1254 RGBA, 1.5 MB) from commit `38f5f02`, not the optimised 64 KB copy. `docs/DESIGN_SYSTEM.md` records this as the one exception to the 150 KB image rule. `expo prebuild` regenerated the Android splash resources from it.
+### Stage 3 — release build (in progress; NEXT: stage 3, continue)
+Done and verified (run and seen):
+- Release signing without secrets: `mobile/plugins/withPujaRelease.js` (Expo config plugin, survives `prebuild --clean`). Without the four Gradle properties, `assembleRelease` exits 1 with the names of the missing properties (ran, seen). Test builds were signed with a THROWAWAY key generated in `%TEMP%/puja-throwaway-keystore` (outside the repo). That folder is to be deleted at the end of Stage 3; passwords were only in that folder.
+- Release build: `bundleRelease` and `assembleRelease` BUILD SUCCESSFUL (final build 22 min 22 s). versionCode 1, versionName 1.0.0, targetSdk 36, not debuggable. R8 (minify) and resource shrink enabled via plugin; mapping.txt produced (72.6 MB).
+- Sizes (final build): APK `mobile/android/app/build/outputs/apk/release/app-release.apk` = 109,065,082 bytes (universal, 4 ABIs). AAB `.../bundle/release/app-release.aab` = 82,134,799 bytes.
+- Permissions in the final release APK (`aapt dump permissions`): ACCESS_NETWORK_STATE, INTERNET, POST_NOTIFICATIONS, RECEIVE_BOOT_COMPLETED, WAKE_LOCK, com.google.android.gms.permission.AD_ID (all on the allowed list), plus accepted findings: ACCESS_ADSERVICES_AD_ID, ACCESS_ADSERVICES_ATTRIBUTION, ACCESS_ADSERVICES_TOPICS (from the Google Mobile Ads SDK / play-services-ads-api), FOREGROUND_SERVICE (from WorkManager), and our own DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION. Blocked via `android.blockedPermissions` (23 in the manifest, plus 3 more = 26): SYSTEM_ALERT_WINDOW, VIBRATE, READ_APP_BADGE, c2dm RECEIVE, launcher badge permissions, READ/WRITE_EXTERNAL_STORAGE, install-referrer binding. RECEIVE_BOOT_COMPLETED was NOT removed.
+- AD_ID: confirmed present in the final merged release manifest and the built APK (source: play-services-ads-api via the Google Mobile Ads SDK). PRIVACY_AND_ADS.md still needs the "inferred / VERIFY" wording replaced (see Stage 4 items).
+- 16 KB pages: `zipalign -c -P 16 4` on the APK: "Verification successful". ELF LOAD segments with llvm-readelf: all 64-bit libraries (arm64-v8a, x86_64) are 16 KB-aligned (0x4000). The 4 KB-aligned segments are only in 32-bit libraries (armeabi-v7a, x86), which the requirement does not cover.
+- Play target API: read developer.android.com (2026-10-06): new apps and updates must target API 36 from 31 Aug 2026. Our targetSdk is 36.
+- Fresh install, network ON, run 1: `pm clear`, `am start -W` TotalTime 10,993 ms (first launch after install; median of 5 NOT yet taken). Home appears (`rel_online_run1_after_wait.png`). An emulator "System UI isn't responding" dialog appeared and was dismissed with Wait (system process, not ours). Logcat FATAL EXCEPTIONs in this window belong to com.android.phone, networkstack, com.google.android.gms, systemui and quicksearchbox: none to com.pujasaathi.india.
+- Scripts: `scripts/release-check.py` written (tests, content, export match, secret scan, APK permissions vs allowed + accepted, versionCode rule). NOT RUN END-TO-END YET.
+
+Release measurements and checks (added after the first status block; release APK installed with `install -r`, debug app uninstalled first):
+- Cold start with `am start -W` after `pm clear` + force-stop, network ON: 10,993 ms (first launch after install), 3,461, 7,744, 5,428, 3,674, 4,056 ms. Median of the six: 4,742 ms. Network OFF: 3,219 and 3,566 ms. Emulator numbers only (Pixel 9a AVD); a real phone will differ.
+- Memory (`dumpsys meminfo` TOTAL PSS): baseline 169,701 KB; after a scripted 5-minute session (swipes and tab taps, network OFF) 206,430 KB (+36.7 MB). One run only; not a leak test.
+- Fresh install with network OFF (`pm clear` then launch): Home appears (`rel_offline_run2.png`).
+- Offline PASS on release: Library and English search "ganesh" (`rel_off_02_search.png`); Puja Details, Start preparation, samagri tick (`rel_off_04_samagri_tick.png`); Calendar month view (`rel_off_06_calendar.png`, no ad).
+- Reminder on release, offline: set for 6 Oct 2026 10:05 AM at device 10:01 (about 4 minutes ahead, not 2: the picker's minute dial steps are 5 minutes). Alarm registered. The notification appeared about a minute late (device 10:06), "Ganesh Chaturthi Puja: Time to check your samagri checklist" (`rel_off_13_notif.png`). Tapping it opened the Ganesh samagri checklist with the earlier tick kept (`rel_off_14_notif_tapped.png`). So the reminder path works with VIBRATE and c2dm blocked.
+- Logcat (release, this session): fatal exceptions were in system and Google processes only (com.android.phone, networkstack, com.google.android.gms, systemui, quicksearchbox), not in com.pujasaathi.india. An emulator "System UI isn't responding" dialog appeared once and was dismissed with Wait.
+- Ads on release with network ON: Home showed no ad slot in the visible area (`rel_online_run1_after_wait.png`). Not yet checked by scrolling to the bottom of Home or Library, and not yet checked in logcat for ad messages.
+- NOT yet verified on release: Vidhi reader offline (screenshot `rel_off_05_vidhi.png` taken, not yet reviewed), share sheet, Reset local data, Hindi, large text, 360 dp, TalkBack; debug dev menu still present (needs a debug rebuild); scripts/release-check.py run end to end; CLEAN INSTALL and the other checks; deletion of the throwaway keystore folder.
+
+Decisions and investigations (Stage 3, second pass):
+- Permissions: ACCESS_ADSERVICES_* (3), FOREGROUND_SERVICE and our DYNAMIC_RECEIVER permission are accepted; sources in docs/PRIVACY_AND_ADS.md. VIBRATE is UNBLOCKED (reminders vibrate). Release-check allowed list now includes VIBRATE. Still to do: rebuild the release APK with this change and re-test the 2-minute reminder on release.
+- SIZE (measured on the current release APK/AAB, before any change):
+  - APK 109,065,082 bytes: native libs 75.2 MB raw across 4 ABIs (x86 23.1, x86_64 22.6, arm64-v8a 22.1, armeabi-v7a 15.2); dex 20.3 MB raw (8.3 compressed); JS bundle (Hermes) 3.9 MB; images 3.1 MB; fonts 5.8 MB raw (2.8 compressed); resources 2.2 MB.
+  - AAB 82,134,799 bytes: includes BUNDLE-METADATA with native debug symbols (*.so.sym, about 10 MB raw per ABI, about 11 MB compressed in total) and proguard.map (6.8 MB compressed). These are Play crash-symbolication metadata and are NOT delivered to devices. Not removed: removing them would make Play crash reports unreadable.
+  - Fonts: 26 files. Our text fonts are Nunito Sans and Noto Sans Devanagari (about 1.1 MB raw, kept). The rest is icon fonts from @expo/vector-icons (about 4.3 MB raw, 14 icon sets; we use Material Community Icons) and Material Symbols from expo-google-fonts (0.97 MB raw). Trimming those needs a dependency or plugin change: NOT done, needs your decision.
+  - ABI restriction to arm64-v8a and armeabi-v7a: NOT applied globally, because the x86_64 emulator used for testing needs x86_64 libraries. Option: release-only ABI split, to decide.
+  - bundletool: not installed here, so per-device sizes are NOT measured. Rough estimate for an arm64 phone from the APK parts: about 42 MB compressed (not measured).
+  - Before/after: no size change was applied in this pass.
+Final-build results (third pass, 2026-10-06):
+- FONT TRIM: applied, measured, then REVERTED. Measured in the AAB: raw 5.77 MB -> 3.13 MB (saving 2.64 MB), but compressed (what Play downloads) 2.77 MB -> 1.39 MB (saving 1.38 MB), below the 2 MB rule. Icon screenshots (Library, Calendar, Settings, Samagri, Puja Details, search, Vidhi, Home tab bar) showed no broken icons, but the rule failed, so the change was reverted (`mobile/app`, `mobile/src`: restored to HEAD).
+- ABI PLUGIN: DROPPED as decided. The release plugin is back to its committed version (signing and R8 and blocked permissions only). Build docs for the two build commands removed. The `ndk.abiFilters` and packaging excludes did not filter the core React Native libraries (six per ABI remained), so they were not kept.
+- Final release build (clean prebuild, default ABIs): `bundleRelease` BUILD SUCCESSFUL (17 min 5 s); `assembleRelease` BUILD SUCCESSFUL (1 min 36 s).
+  - AAB `mobile/android/app/build/outputs/bundle/release/app-release.aab`: 82,134,821 bytes; ABIs arm64-v8a, armeabi-v7a, x86, x86_64.
+  - APK `mobile/android/app/build/outputs/apk/release/app-release.apk`: 109,065,094 bytes; same four ABIs.
+  - Permissions in the final APK (aapt): INTERNET, ACCESS_NETWORK_STATE, WAKE_LOCK, POST_NOTIFICATIONS, RECEIVE_BOOT_COMPLETED, VIBRATE, AD_ID (allowed list); ACCESS_ADSERVICES_AD_ID, ACCESS_ADSERVICES_ATTRIBUTION, ACCESS_ADSERVICES_TOPICS, FOREGROUND_SERVICE, DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION (accepted). Nothing else. Blocked: SYSTEM_ALERT_WINDOW, READ_APP_BADGE, c2dm RECEIVE, launcher badges, storage, install referrer.
+  - 16 KB: `zipalign -c -P 16 -v 4` on the final APK: "Verification successful".
+  - targetSdkVersion 36; versionCode 1; versionName 1.0.0.
+- Per-device download size: `bundletool get-size total` NOT run (bundletool is not installed here; COULD-NOT-VERIFY). The commands are in docs/RELEASE.md.
+
+Stage 3 closing verification (final build, 2026-10-06):
+- release-check.py (--skip-tests; tests run separately below): PASSED. Content OK; exported content.json matches the committed bundle; no secret-like files tracked; 12 APK permissions, all allowed or accepted; versionCode 1 (no previous release recorded).
+- Clean install: `rm -rf node_modules && npm ci` exit 0; tsc exit 0; lint exit 0; format:check exit 0 (after formatting plugins/withPujaRelease.js); npm test: 709 of 709 PASSED when run with --runInBand. Parallel run had 16 timeouts (5 s Jest limit under load), no assertion failures.
+- Backend: pytest 139 passed; validate_content.py OK (contentVersion 6, 103 festivals, 16 pujas, 53 samagri).
+- Dev-server bundle: `expo start --clear` (CI=1); Android entry bundle HTTP 200, 10,563,390 bytes. node v24.19.0; metro@0.84.5, @expo/metro-config@57.0.12.
+- Throwaway keystore: folder and props file deleted; no PUJA_RELEASE_* variables set in the environment.
+- Button-row fix: My Preparation and Samagri header/action row use ButtonRow; 8 tests pass (buttonRows, samagriButtonRows), each failing on the old layout. Rule recorded in docs/DESIGN_SYSTEM.md. Before/after device screenshots: NOT taken on the final build.
+- NOT verified in this stage: reminder re-test with VIBRATE (attempt to set the time via the picker failed; no reminder was saved); startup runs (5 ON, 5 OFF) and phase breakdown; fresh-install repeats; offline review (Vidhi, share, reset, Hindi, large text, 360 dp, TalkBack); ads check on Home and Library; debug dev menu check; reminder sheet and Vidhi audit. These stay open for the next session.
+
+NOT yet done on the final build: reminder re-test with VIBRATE unblocked, startup runs (5 ON, 5 OFF) and phase breakdown, fresh installs twice ON and OFF, offline review (Vidhi, share, reset, Hindi, large text, 360 dp, TalkBack), ads check on Home and Library, debug dev menu, release-check.py, CLEAN INSTALL checks, throwaway keystore deletion, Stage 4.
+Layout defect found (not fixed): My Preparation buttons "Checklist" and "Vidhi" wrap mid-word at the current text size (screenshot icon_06_my_prep.png). Open issue.
+
+Not done yet in Stage 3 (continue here):
+1. Fresh install run 2 with network ON; then both runs with network OFF (`svc wifi disable; svc data disable`), with `pm clear` each time and `am start -W`. Median of 5 cold starts; `dumpsys meminfo` after a 5-minute session.
+2. OFFLINE review on the release build: Library, search EN and HI, Puja Details, samagri ticks, vidhi, calendar, create a preparation, a reminder 2 minutes ahead (fires and opens the checklist; the release build also needs the reminder re-test because blocked permissions include VIBRATE and c2dm), share sheet, Reset local data. Ad slots must be absent.
+3. ONLINE on release: ads must stay disabled (empty real IDs): no test ad, no placeholder, no crash.
+4. Debug build keeps its dev menu: verify (blockedPermissions also apply to debug manifests; not checked yet).
+5. Accessibility on release: large text, 360 dp, TalkBack labels; fix cheap clear problems; list the rest.
+6. Run `python scripts/release-check.py` end-to-end; plus CLEAN INSTALL, tsc, lint, format:check, npm test, pytest, validate_content, dev-server bundle check.
+7. Delete the throwaway keystore folder and the props file after the last test build.
+8. Open decisions for the owner: keep or block ACCESS_ADSERVICES_* and FOREGROUND_SERVICE (ads / WorkManager); the reminder vibration pattern no longer vibrates without VIBRATE (behaviour change, no code change made).
+### Stage 2 — CI and quality pass (in progress)
+Done:
+- `.github/workflows/ci.yml` (mobile: npm ci, tsc, lint, format:check, npm test on Node 22; backend: pip install, pytest, validate_content on Python 3.12). Not run on GitHub: it runs after the branch is pushed. Locally: backend steps passed in a fresh venv (139 tests, content OK) on Python 3.14 only; the 3.12 and Node 22 runs are unverified locally.
+- `mobile/.prettierignore`: `android`, `ios`, `.verify` added. Formatting was NOT rewritten repo-wide: `format:check` passes without changes.
+- `mobile/__tests__/repoSecrets.test.ts`: fails if a `.keystore`, `.jks` or `google-services.json` is tracked, or a real AdMob publisher id is in any tracked text file. Verified by tracking a fake keystore and a fake id: both reported, then removed.
+- Splash: see the splash entries above.
+Coverage review (areas from the brief): covered by existing tests: content pipeline (seed, bundled content, export), DB and migrations 0002-0004, search, preparation/checklist, vidhi, calendar, reminders, share (My Preparation and Samagri dialogs), reset (`resetLocalData.test.ts`), ads (consent, placement, forbidden screens, offline fail-closed), settings, startup. Gaps not covered by automated tests: 360 dp layout and largest OS font (visual only, not automated); TalkBack behaviour (labels asserted in component tests, not read by a screen reader); Hindi typing in the search field on the emulator (adb cannot type Devanagari); real notification delivery timing (see the reminder check).
+Emulator review, network OFF (debug build): NOT VERIFIED. The debug build could not load its JavaScript with Wi-Fi and mobile data off ("Unable to load script", Metro unreachable), even with `adb reverse tcp:8081 tcp:8081` set. With Wi-Fi back on it loads Home normally. So the offline check of the app itself must use a release build (no Metro), in Stage 3.
+Emulator review, network ON (debug build): Home loads with the test ad slot labelled "ADVERTISEMENT". Not yet walked through every screen.
+Online walk-through, debug build, Wi-Fi on (screenshots in the git-ignored `scratch-screens/`, each one looked at):
+- Home (light): PASS. `t05_home_scrolled.png`: "ADVERTISEMENT" label above Google's test banner.
+- Home (dark): PASS for the palette. `t18_home_dark.png`: the test banner is white (that is Google's creative, not our styling).
+- Library (light): PASS for content. `t02_library.png`, `t03_library_scrolled.png`: no ad seen in rows 1-16 that were scrolled through. NOT VERIFIED: the inline ad after row 8 never appeared, so its cadence is unconfirmed (no-fill or a bug is not established).
+- Library (dark): PASS. `t19_library_dark.png`.
+- Puja Details: PASS, no ad in the visible area. `t09_puja_details.png` (rest of page not scrolled).
+- Vidhi reader: PASS, no ad. `t10_vidhi.png`.
+- Samagri checklist: PASS, no ad. `29_tapped_notif.png`.
+- My Preparation: PASS, no ad (empty state, data had been cleared). `t11_my_preparation.png`.
+- Reminder sheet: PASS, no ad. `11_reminder_sheet.png`. Manage reminders screen: COULD-NOT-VERIFY (not opened in this pass).
+- Settings (English): PASS, no ad; About ads card present. `t14_settings_en_scrolled.png`. Settings (Hindi): COULD-NOT-VERIFY (not switched).
+- Calendar (month): PASS, no ad. `t12_calendar.png`. All festivals: PASS, no ad. `t16_festival_details.png`.
+- Festival Details (Mysuru Dasara): PASS, no ad. `t17_festival_row_tap.png`. Dark view was checked on screen, but its screenshot file was overwritten by the Home dark capture: not kept as evidence.
+- Hindi on Home and Library: COULD-NOT-VERIFY (language not switched in this pass).
+- Large text size on Home and Library: COULD-NOT-VERIFY (not set in this pass).
+- Ad rule ("no ad except Home and Library"): every screen above that was checked shows no ad. The forbidden-screen source test (`noAdsInForbiddenScreens.test.ts`) also passes.
+
+Logcat for this session (debug build):
+- No `FATAL EXCEPTION` for `com.pujasaathi.india`.
+- One ANR for `com.pujasaathi.india` (`MainActivity`) at 03:32:40, during the network-off attempt when the debug build could not reach Metro. Not reproduced online.
+- ReactNativeJS warnings "Cannot connect to Expo CLI" at 03:32 (same offline attempt).
+- ANRs for the launcher, System UI and input (emulator processes, not ours) at 03:31-03:32.
+- AdMob/UMP: no ad load error for our app was visible in logcat. The Home test banner rendered, which means the ad loaded. The AdSlot shows its label only after a successful load.
+
+Cheap accessibility fixes: none made in this pass (no defect was found in the screens above). Not checked in this pass: touch-target sizes below 48 dp, TalkBack labels on each control, text clipping at the largest size. These stay open for Stage 3.
+
+Backend and Python (CI uses 3.12, local tests ran on 3.14): `backend/requirements.txt` pins every package exactly (alembic 1.20.0, fastapi 0.142.2, httpx 0.28.1, pydantic 2.13.5, pytest 9.1.1, SQLAlchemy 2.1.3, uvicorn 0.54.0). A fresh venv from those pins installed and passed (139 tests, content OK) on 3.14. I did not audit the code for 3.14-only features, and I did not run 3.12 locally. Nothing found so far depends on 3.14 behaviour; CI is the first real 3.12 run, after the push.
+
+Moved to Stage 3 (explicit): (1) the OFFLINE review on the RELEASE build (no Metro); (2) the fresh-install check on the release build: `adb shell pm clear com.pujasaathi.india`, launch, Home appears, twice in a row, with network ON and OFF; (3) cold start (`am start -W`), memory after a long session and APK/AAB size, all on the release build. No cold-start, memory or size numbers were taken on the debug build. (4) Accessibility items left open above.
+
+Still to do in Stage 2: the rest of the emulator review (screens, logcat FATAL/ANR, ad errors), performance (cold start with `am start -W`, memory, APK size) and accessibility checks.
+- Stage 1 status: COMPLETE. All Stage 1 checks passed (see above) and the reminder check passed with the caveat.
+
 Phases are defined in the project plan; this checklist tracks their status. Statuses are updated only after the work is done and its checks have been seen to pass.
 
 - [x] **Phase 0 — Monorepo bootstrap and documentation** (done on branch `phase-0-setup`, not pushed)
@@ -726,3 +870,46 @@ Environment: Node v24.19.0, JDK 17.0.20, `ANDROID_HOME` set, Pixel_9a_bulkingapp
 2. Library: about every 8 rows, never first or last, none under a filter with fewer than 8 results.
 3. Settings: "About ads" in English and Hindi; "Ad privacy choices" should not appear in India.
 4. The regression list from Phases 5, 6A, 6B and 6C (preparation ticks persist, reminder fires, share sheet, reset local data).
+
+
+### Stage 4 — privacy policy and Settings row (done 2026-10-06, not pushed)
+- `docs/privacy-policy/index.md`: English and Hindi policy with `{{CONTACT_EMAIL}}` and `{{EFFECTIVE_DATE}}` placeholders and `[VERIFY]` markers. No legal-compliance claim; no "no data is collected" claim.
+- `docs/privacy-policy/README.md`: GitHub Pages publishing steps, how to check the URL, where to paste it.
+- `mobile/src/config/legal.ts`: `PRIVACY_POLICY_URL` = '' (owner sets it).
+- `PrivacyPolicyRow` in Settings: hidden when the URL is empty; opens the URL in the browser; English and Hindi strings; accessible label; 48dp button.
+- Tests: `__tests__/privacyPolicyRow.test.tsx` (hidden when empty, visible when set, opens the URL, failure does not crash, Hindi, extra-large text); Settings tests pass (21 of 21 across the related suites).
+- Cross-check of every policy claim against the code and the release permission list: `docs/PRIVACY_AND_ADS.md` ("Policy cross-check"). One known leftover: the source manifest template lists the storage permissions, but they are blocked and absent from the shipped app.
+- NOT verified: the Settings row on a device (no device run this stage); that the published page opens (no URL is published yet).
+
+
+### Stage 5 — store and Play Console documents (done 2026-10-06, not pushed)
+- `docs/STORE_LISTING.md`: English and Hindi app name, short description (74 and 69 characters, under 80), full description (1,524 and 1,519 characters, under 4,000), category and tags marked VERIFY, a "do not claim" list, graphic sizes (icon 512x512, feature graphic 1024x500, phone screenshots), and a 6-screen plan with adb capture commands. Review status stated from `content/`: 16 pujas and 103 festivals, all `ai_drafted`.
+- `docs/PLAY_CONSOLE_CHECKLIST.md`: new personal account, app creation, app access, ads declaration, IARC rating, target audience (not for children), data safety draft based on the real SDKs (no own-code collection; ads SDK identifiers), privacy policy URL, other declarations, advertising ID, Play App Signing, closed testing (rule marked VERIFY, not stated as fact), production access, and after-publish tasks (AdMob link, real ad unit IDs outside git, consent message, version increment). No approval or timelines promised.
+- NOT done: feature graphic, phone screenshots and the final icon export need the owner's artwork and sign-off. The screenshot capture is a plan, not run.
+
+
+### Stage 6 and Stage 7 — final documentation and verification (2026-10-06, not pushed)
+Stage 6 (documents): README rewritten for v1; KNOWN_LIMITATIONS, ROADMAP (planning only), CONTENT_REVIEW_STATUS (generated;
+checked by release-check), RELEASE (release order added), THIRD_PARTY_LICENSES (npm 702 production packages, 5 pinned Python
+packages). LICENSE intentionally not created; the README asks the owner to decide.
+
+Real counts used in the documents: 16 puja guides (all ai_drafted), 103 festivals (all ai_drafted), 25 dated calendar
+entries from 2026-10-11 to 2026-12-23. No 2027 calendar data.
+
+Stage 7 verification (final build from the Stage 7 commit, throwaway keystore created outside the repo and deleted):
+- Clean install (npm ci), tsc, lint, format:check: exit 0.
+- npm test with --runInBand: 716 of 716 passed (55 suites).
+- Secrets and ads config tests: 8 of 8 passed.
+- Backend pytest: 139 passed. validate_content.py: OK. import_calendar_dates.py: 25 dates, rewrote calendar/2026.json with the same content. export_content.py: exit 0, git shows no change to content or the exported bundle.
+- Android dev-server bundle: HTTP 200, 10,569,532 bytes; expo@57.0.26, metro@0.84.5, @expo/metro-config@57.0.12.
+- release-check.py (--skip-tests): RELEASE CHECK PASSED (content, export match, review status, secrets, APK permissions, versionCode).
+- Release AAB: 82,135,431 bytes. Release APK: 109,064,930 bytes. Both contain arm64-v8a, armeabi-v7a, x86 and x86_64 (default ABIs). zipalign -P 16: Verification successful. targetSdkVersion 36, versionCode 1.
+- Smoke test on the emulator, release APK: fresh start (pm clear + launch) reached Home twice with network ON and twice with network OFF; no FATAL EXCEPTION for the app. Settings shows no privacy-policy row (UI tree count 0), as designed while the URL is empty.
+- Reminder: set by the owner on the emulator; the owner reported that it fired and opened the checklist. The notification text was not captured by the assistant in this run.
+- bundletool per-device size (get-size total): NOT run; bundletool is not installed here.
+- English and Hindi search and samagri tick on this final build: NOT run in Stage 7 (they were checked on the earlier release build in Stage 3).
+- Ads on Home and Library on this final build: Home showed no ad slot; Library not checked on this build.
+- Debug build dev menu check: NOT run.
+- Stage 3 layout before/after device screenshots on this final build: NOT taken.
+
+Open items after Stage 7: the bundletool per-device size; the Stage 3 items listed above; CI has not run (it runs only after the branch is pushed).

@@ -46,7 +46,7 @@ From the generated manifest and the libraries' own manifests (see `docs/ADS_SETU
 | `INTERNET` | Expo's prebuild template (pre-existing) + `react-native-google-mobile-ads` | Ads and the consent form need a network request; was already present before this phase for the dev build to reach Metro |
 | `ACCESS_NETWORK_STATE` | `react-native-google-mobile-ads` | Lets the ads SDK check connectivity before requesting an ad |
 | `WAKE_LOCK` | `react-native-google-mobile-ads` (confirmed in the merged manifest; the debug source set also injects it) | Used internally by the Play Services Ads SDK |
-| `com.google.android.gms.permission.AD_ID` | `com.google.android.gms:play-services-ads-api:25.4.0` (confirmed in the merged manifest of a real debug build, Phase 7 verification) | Lets the SDK read the advertising identifier. Confirmed present in the installed APK (`aapt dump permissions`) and in `adb shell dumpsys package com.pujasaathi.app`. |
+| `com.google.android.gms.permission.AD_ID` | `com.google.android.gms:play-services-ads-api:25.4.0` (confirmed in the merged manifest of a real debug build, Phase 7 verification) | Lets the SDK read the advertising identifier. Confirmed present in the installed APK (`aapt dump permissions`) and in `adb shell dumpsys package com.pujasaathi.india` (the Phase 7 check ran under the previous ID `com.pujasaathi.app`). |
 | `RECEIVE_BOOT_COMPLETED`, `POST_NOTIFICATIONS` | `expo-notifications` (Phase 6C, unrelated to ads) | Local reminders |
 | `SYSTEM_ALERT_WINDOW`, `VIBRATE`, `READ_EXTERNAL_STORAGE`/`WRITE_EXTERNAL_STORAGE` (max SDK 32) | Expo's prebuild template (pre-existing, unrelated to ads) | Not from this phase |
 
@@ -155,3 +155,37 @@ changed; continued use of the app after a change means you accept the update."]
       from the Play Console listing
 - [ ] Confirm whether DPDP Act (India) or any other local law adds requirements beyond this
       checklist — not evaluated here
+
+
+## Accepted release permissions (confirmed in the Stage 3 release APK, 2026-10-06)
+
+Source of each permission, as seen in the merged release manifest and `aapt dump permissions`:
+
+- `com.google.android.gms.permission.AD_ID`: Google Mobile Ads SDK (`play-services-ads-api`), via the `react-native-google-mobile-ads` package. Lets the SDK read the advertising ID. Our code never reads it.
+- `android.permission.ACCESS_ADSERVICES_AD_ID`, `ACCESS_ADSERVICES_ATTRIBUTION`, `ACCESS_ADSERVICES_TOPICS`: Google Mobile Ads SDK (`play-services-ads-api`). Privacy Sandbox support (ad attribution and interest topics). Our code does not call these APIs.
+- `android.permission.FOREGROUND_SERVICE`: WorkManager (`androidx.work`), a dependency of the notification stack. Our code declares no foreground service.
+- `com.pujasaathi.india.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION`: AndroidX core, signature permission scoped to our package. Not a user-facing permission.
+- `android.permission.VIBRATE`: allowed again so reminder notifications can vibrate (the reminder channel sets a vibration pattern in `mobile/src/notifications/expoScheduler.ts`).
+
+Blocked on purpose (`android.blockedPermissions` in `mobile/app.json`): SYSTEM_ALERT_WINDOW, READ_APP_BADGE, the push (c2dm) RECEIVE permission, the launcher badge permissions, READ/WRITE_EXTERNAL_STORAGE, and the install-referrer binding. None is used by the app.
+
+Kept on purpose: RECEIVE_BOOT_COMPLETED (reminders are re-created after a restart).
+
+
+## Policy cross-check (Stage 4, 2026-10-06)
+
+Each claim in `docs/privacy-policy/index.md`, checked against the code and the release build:
+
+| Claim | Evidence | Result |
+|---|---|---|
+| No analytics or crash-reporting SDK | `mobile/package.json` has no analytics or crash SDK | matches |
+| App code makes no network request of its own | no `fetch`, `axios` or XHR in `mobile/src` or `mobile/app`; network use comes only from the ads SDK | matches |
+| Reminders are local and need no internet | `expo-notifications` local scheduling; push permission (c2dm RECEIVE) blocked | matches |
+| No location, contacts, camera, microphone, exact alarm | merged release APK permission list (Stage 3) | matches |
+| Storage permissions are not in the release app | blocked in `app.json`; the *source* manifest template still lists READ/WRITE_EXTERNAL_STORAGE, but the merged release APK does not | matches for the shipped app; the template is a known leftover, not shipped |
+| Ads need internet; the space stays empty when offline | `AdSlot` renders nothing until a load succeeds | matches |
+| Consent step before personalised ads | `consent.ts` (`canRequestAds`), UMP | matches (what regions show the form: VERIFY) |
+| Reset local data removes all app data | `resetLocalData` action | matches |
+| Advertising ID is processed by the ads SDK | AD_ID in the release APK (Stage 3) | matches |
+
+Not claimed anywhere: legal compliance with any law, and "no data is collected".

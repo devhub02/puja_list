@@ -1,5 +1,6 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Pressable, StyleSheet } from 'react-native';
+import type { StyleProp, ViewStyle } from 'react-native';
 import type { ComponentProps } from 'react';
 
 import { iconSize, minTouchTarget, radius, spacing } from '@/theme/tokens';
@@ -18,6 +19,8 @@ type Props = {
   /** Dimmed and not pressable; exposed to screen readers as disabled. Prefer explaining why nearby. */
   disabled?: boolean;
   testID?: string;
+  /** Layout only (e.g. `buttonRowItem` inside a ButtonRow). */
+  style?: StyleProp<ViewStyle>;
 };
 
 /** Full-width-capable button, at least 48dp tall. Colour-only pressed feedback (no layout shift). */
@@ -30,6 +33,7 @@ export function Button({
   accessibilityLabel,
   disabled = false,
   testID,
+  style,
 }: Props) {
   const { colors } = useTheme();
   const primary = variant === 'primary';
@@ -46,6 +50,7 @@ export function Button({
       style={({ pressed }) => [
         styles.button,
         disabled && styles.disabled,
+        style,
         primary
           ? { backgroundColor: colors.primary, opacity: pressed ? 0.85 : 1 }
           : {

@@ -400,6 +400,11 @@ const en = {
       cancelFailed:
         'Your data was deleted, but scheduled reminders could not be cancelled. They will be removed the next time the app starts.',
     },
+    privacyPolicy: {
+      hint: 'Read how Puja Saathi handles your data. The page opens in your browser.',
+      open: 'Privacy policy',
+      openA11y: 'Open the privacy policy in your browser',
+    },
     about: {
       title: 'About',
       version: 'App version',
